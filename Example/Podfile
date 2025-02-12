@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '15.0'
+project 'CP_Example'
+
+target 'LiveDigitalSDKExample' do
+	use_frameworks!
+	pod 'LiveDigitalSDK',
+		:git => 'https://github.com/VLprojects/livedigital-ios-sdk-binary',
+		:tag => '2.7.3'
+end

@@ -1,0 +1,24 @@
+{
+  "originHash" : "c063b1d272f166fcd5ceb792914579ed9eb5aae3ef6ea9ae14f6c0878162ec6f",
+  "pins" : [
+    {
+      "identity" : "livedigital-ios-sdk-binary",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/VLprojects/livedigital-ios-sdk-binary.git",
+      "state" : {
+        "revision" : "d1826b5746d2e05492e1505b4f27667853a55029",
+        "version" : "2.7.3"
+      }
+    },
+    {
+      "identity" : "mediasoup-client-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/VLprojects/mediasoup-client-swift.git",
+      "state" : {
+        "revision" : "400f77e831be088e328821d32a7b0223ff1c51da",
+        "version" : "0.8.0"
+      }
+    }
+  ],
+  "version" : 3
+}
