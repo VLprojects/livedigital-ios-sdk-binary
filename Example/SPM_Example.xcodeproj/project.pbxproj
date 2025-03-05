@@ -423,7 +423,7 @@
 			repositoryURL = "https://github.com/VLprojects/livedigital-ios-sdk-binary.git";
 			requirement = {
 				kind = exactVersion;
-				version = 2.7.3;
+				version = 2.8.0;
 			};
 		};
 		FFE2A1112D5C61F000497CCC /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */ = {

@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "mediasoup-client-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/VLprojects/mediasoup-client-swift.git",
+      "state" : {
+        "revision" : "400f77e831be088e328821d32a7b0223ff1c51da",
+        "version" : "0.8.0"
+      }
+    }
+  ],
+  "version" : 2
+}

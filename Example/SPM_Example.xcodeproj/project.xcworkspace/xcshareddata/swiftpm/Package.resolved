@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/VLprojects/livedigital-ios-sdk-binary.git",
       "state" : {
-        "revision" : "d1826b5746d2e05492e1505b4f27667853a55029",
-        "version" : "2.7.3"
+        "revision" : "84bf0aabc59dc5783c180bdbece8683d52b0f87f",
+        "version" : "2.8.0"
       }
     },
     {
