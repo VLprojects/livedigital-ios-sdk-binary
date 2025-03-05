@@ -15807,43 +15807,6 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(LiveDigitalSDK.TrackLabel.Type) -> LiveDigitalSDK.TrackLabel",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "TrackLabel",
-                    "printedName": "LiveDigitalSDK.TrackLabel",
-                    "usr": "s:14LiveDigitalSDK10TrackLabelO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "LiveDigitalSDK.TrackLabel.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "TrackLabel",
-                        "printedName": "LiveDigitalSDK.TrackLabel",
-                        "usr": "s:14LiveDigitalSDK10TrackLabelO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:14LiveDigitalSDK10TrackLabelO7unknownyA2CmF",
-            "mangledName": "$s14LiveDigitalSDK10TrackLabelO7unknownyA2CmF",
-            "moduleName": "LiveDigitalSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "custom",
-            "printedName": "custom",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
                 "printedName": "(LiveDigitalSDK.TrackLabel.Type) -> (Swift.String) -> LiveDigitalSDK.TrackLabel",
                 "children": [
                   {
@@ -15882,8 +15845,8 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:14LiveDigitalSDK10TrackLabelO6customyACSScACmF",
-            "mangledName": "$s14LiveDigitalSDK10TrackLabelO6customyACSScACmF",
+            "usr": "s:14LiveDigitalSDK10TrackLabelO7unknownyACSScACmF",
+            "mangledName": "$s14LiveDigitalSDK10TrackLabelO7unknownyACSScACmF",
             "moduleName": "LiveDigitalSDK"
           },
           {
@@ -16032,6 +15995,80 @@
             "declKind": "EnumElement",
             "usr": "s:14LiveDigitalSDK10TrackLabelO11screenAudioyA2CmF",
             "mangledName": "$s14LiveDigitalSDK10TrackLabelO11screenAudioyA2CmF",
+            "moduleName": "LiveDigitalSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "customVideo",
+            "printedName": "customVideo",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(LiveDigitalSDK.TrackLabel.Type) -> LiveDigitalSDK.TrackLabel",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "TrackLabel",
+                    "printedName": "LiveDigitalSDK.TrackLabel",
+                    "usr": "s:14LiveDigitalSDK10TrackLabelO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "LiveDigitalSDK.TrackLabel.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "TrackLabel",
+                        "printedName": "LiveDigitalSDK.TrackLabel",
+                        "usr": "s:14LiveDigitalSDK10TrackLabelO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:14LiveDigitalSDK10TrackLabelO11customVideoyA2CmF",
+            "mangledName": "$s14LiveDigitalSDK10TrackLabelO11customVideoyA2CmF",
+            "moduleName": "LiveDigitalSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "customAudio",
+            "printedName": "customAudio",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(LiveDigitalSDK.TrackLabel.Type) -> LiveDigitalSDK.TrackLabel",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "TrackLabel",
+                    "printedName": "LiveDigitalSDK.TrackLabel",
+                    "usr": "s:14LiveDigitalSDK10TrackLabelO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "LiveDigitalSDK.TrackLabel.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "TrackLabel",
+                        "printedName": "LiveDigitalSDK.TrackLabel",
+                        "usr": "s:14LiveDigitalSDK10TrackLabelO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:14LiveDigitalSDK10TrackLabelO11customAudioyA2CmF",
+            "mangledName": "$s14LiveDigitalSDK10TrackLabelO11customAudioyA2CmF",
             "moduleName": "LiveDigitalSDK"
           },
           {

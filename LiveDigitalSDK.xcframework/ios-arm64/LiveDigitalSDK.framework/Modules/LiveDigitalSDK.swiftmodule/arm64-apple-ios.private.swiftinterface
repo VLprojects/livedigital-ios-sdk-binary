@@ -629,12 +629,13 @@ public protocol MIMETyped : Swift.Equatable {
   var mimeTypeString: Swift.String { get }
 }
 public enum TrackLabel : Swift.Hashable {
-  case unknown
-  case custom(Swift.String)
+  case unknown(Swift.String)
   case camera
   case microphone
   case screenVideo
   case screenAudio
+  case customVideo
+  case customAudio
   public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: LiveDigitalSDK.TrackLabel, b: LiveDigitalSDK.TrackLabel) -> Swift.Bool
   public var hashValue: Swift.Int {
