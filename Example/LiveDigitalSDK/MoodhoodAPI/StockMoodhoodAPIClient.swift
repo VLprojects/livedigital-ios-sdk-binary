@@ -96,7 +96,7 @@ extension StockMoodhoodAPIClient: MoodhoodAPIClient {
 		room: String,
 		participant: String
 	) async throws(MoodhoodAPIClientError) {
-		let result: EmptyResult = try await post(
+		let _: EmptyResult = try await post(
 			endpoint: Endpoints.joinRoom(space: space, room: room),
 			headers: [
 				"Authorization": "\(userToken.tokenType) \(userToken.accessToken)",

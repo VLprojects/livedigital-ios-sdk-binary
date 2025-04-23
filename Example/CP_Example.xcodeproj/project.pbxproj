@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		E4CD703675EF048165295137 /* Pods_LiveDigitalSDKExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D970F2F152FCB07F1758161 /* Pods_LiveDigitalSDKExample.framework */; };
+		FF4A03A72DB8B2A6005AE6D0 /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4A03A62DB8B2A6005AE6D0 /* StartVC.swift */; };
+		FF4A03A82DB8B2A6005AE6D0 /* SessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4A03A52DB8B2A6005AE6D0 /* SessionVC.swift */; };
 		FFE7933726A95E5500FF5148 /* PeerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7933626A95E5500FF5148 /* PeerView.swift */; };
 		FFE7933926A95FB400FF5148 /* PeerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE7933826A95FB400FF5148 /* PeerView.xib */; };
 		FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */; };
@@ -36,12 +37,13 @@
 		607FACD01AFB9204008FA782 /* LiveDigitalSDKExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveDigitalSDKExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		78EA401149B94AA7EBFB46CF /* Pods_LiveDigitalSDKExample_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveDigitalSDKExample_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A00D70263FC4BD91D4F586D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		FF4A03A52DB8B2A6005AE6D0 /* SessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionVC.swift; sourceTree = "<group>"; };
+		FF4A03A62DB8B2A6005AE6D0 /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
 		FFE7933626A95E5500FF5148 /* PeerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerView.swift; sourceTree = "<group>"; };
 		FFE7933826A95FB400FF5148 /* PeerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeerView.xib; sourceTree = "<group>"; };
 		FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMoodhoodAPIClient.swift; sourceTree = "<group>"; };
@@ -91,7 +93,8 @@
 			children = (
 				FFFA321C2D30DFF50043C2E7 /* MoodhoodAPI */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				FF4A03A52DB8B2A6005AE6D0 /* SessionVC.swift */,
+				FF4A03A62DB8B2A6005AE6D0 /* StartVC.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -212,8 +215,6 @@
 				Base,
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
-			packageReferences = (
-			);
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -287,10 +288,11 @@
 				FFFA32292D311A560043C2E7 /* MoodhoodParticipant.swift in Sources */,
 				FFE7933726A95E5500FF5148 /* PeerView.swift in Sources */,
 				FFFA322F2D3131ED0043C2E7 /* EmptyResult.swift in Sources */,
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */,
 				FFFA32242D30EA170043C2E7 /* MoodhoodAPIClientError.swift in Sources */,
 				FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */,
+				FF4A03A72DB8B2A6005AE6D0 /* StartVC.swift in Sources */,
+				FF4A03A82DB8B2A6005AE6D0 /* SessionVC.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */,
 				FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */,

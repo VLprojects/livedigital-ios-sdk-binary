@@ -3,15 +3,16 @@ import LiveDigitalSDK
 import AVFoundation
 
 
-final class ViewController: UIViewController {
+final class SessionVC: UIViewController {
 	private struct Constants {
 		static let moodhoodAPIHost = URL(string: "https://moodhood-api.livedigital.space")!
 		static let moodhoodClientId = "moodhood-demo"
 		static let moodhoodClientSecret = "demo12345abcde6789zxcvDemo"
 		static let loadBalancerHost = URL(string: "https://lb.livedigital.space")!
-		static let testSpaceId = "6144806aac512ee6cd29be10"
-		static let testRoomId = "66cbf30dd3522636cfeb77cb"
 	}
+
+	var spaceId: String?
+	var roomId: String?
 
 	@IBOutlet var localPreviewShadowView: UIView!
 	@IBOutlet var localPreviewContainer: UIView!
@@ -20,6 +21,7 @@ final class ViewController: UIViewController {
 	@IBOutlet var localVideoButton: UIButton!
 	@IBOutlet var peersViewsScroller: UIScrollView!
 	@IBOutlet var peersViewsContainer: UIStackView!
+	@IBOutlet var finishButton: UIButton!
 	private var peerViews = [PeerId: PeerView]()
 	private var peers = [PeerId: Peer]()
 
@@ -80,6 +82,10 @@ final class ViewController: UIViewController {
 		super.viewDidLoad()
 		print("LiveDigitalSDK version: \(LiveDigital.version())")
 
+		finishButton.layer.masksToBounds = true
+		finishButton.layer.cornerRadius = 20
+		finishButton.backgroundColor = .systemRed
+
 		buttonsContainer.layer.masksToBounds = true
 		buttonsContainer.layer.cornerRadius = 20
 
@@ -99,7 +105,9 @@ final class ViewController: UIViewController {
 
 		AVCaptureDevice.requestAccess(for: .audio) { granted in
 			AVCaptureDevice.requestAccess(for: .video) { granted in
-				self.startConferenceSession()
+				DispatchQueue.main.async {
+					self.startConferenceSession()
+				}
 			}
 		}
 	}
@@ -107,12 +115,12 @@ final class ViewController: UIViewController {
 
 // MARK: - LiveDigitalSessionManagerDelegate implementation
 
-extension ViewController: LiveDigitalSessionManagerDelegate {
+extension SessionVC: LiveDigitalSessionManagerDelegate {
 }
 
 // MARK: - CameraManagerDelegate implementation
 
-extension ViewController: CameraManagerDelegate {
+extension SessionVC: CameraManagerDelegate {
 	func cameraManagerFailed(cameraManager: CameraManager, error: MediaCapturerError) {
 		print("\(cameraManager) failed with error \(error)")
 	}
@@ -123,7 +131,7 @@ extension ViewController: CameraManagerDelegate {
 
 // MARK: - AudioRouterDelegate implementation
 
-extension ViewController: AudioRouterDelegate {
+extension SessionVC: AudioRouterDelegate {
 	func needRestartAudio() {
 	}
 
@@ -133,9 +141,9 @@ extension ViewController: AudioRouterDelegate {
 
 // MARK: - ChannelSessionObserver implementation
 
-extension ViewController: ChannelSessionObserver {
+extension SessionVC: ChannelSessionObserver {
 	func channelSessionJoinedChannel(_ channelSession: any LiveDigitalSDK.ChannelSession) {
-		guard let participantId, let userToken else {
+		guard let participantId, let userToken, let spaceId, let roomId else {
 			print("Failed to join room: missing participantId or userToken")
 			return
 		}
@@ -144,8 +152,8 @@ extension ViewController: ChannelSessionObserver {
 			do {
 				try await apiClient.joinRoom(
 					userToken: userToken,
-					space: Constants.testSpaceId,
-					room: Constants.testRoomId,
+					space: spaceId,
+					room: roomId,
 					participant: participantId
 				)
 				print("Joined room")
@@ -240,7 +248,7 @@ extension ViewController: ChannelSessionObserver {
 
 // MARK: - ChannelSessionDelegate implementation
 
-extension ViewController: ChannelSessionDelegate {
+extension SessionVC: ChannelSessionDelegate {
 	func sessionNeedsRestart(_ channelSession: ChannelSession) {
 		self.channelSession?.start(
 			mediaRole: .host,
@@ -271,23 +279,27 @@ extension ViewController: ChannelSessionDelegate {
 }
 
 // MARK: - Private methods
-private extension ViewController {
+private extension SessionVC {
 	func startConferenceSession() {
+		updateLocalVideoEnabled(false)
+		updateLocalAudioEnabled(false)
+
+		guard let spaceId, let roomId else {
+			print("Skip session start: spaceId or roomId is not specified")
+			return
+		}
+
 		Task {
 			let userToken = try await apiClient.authorizeAsGuest()
 			print("Created user token: \(userToken)")
 
-			let room = try await apiClient.fetchRoom(
-				userToken: userToken,
-				space: Constants.testSpaceId,
-				room: Constants.testRoomId
-			)
+			let room = try await apiClient.fetchRoom(userToken: userToken, space: spaceId, room: roomId)
 			print("Fetched room details: \(room)")
 
 			let participant = try await apiClient.createParticipant(
 				userToken: userToken,
-				space: Constants.testSpaceId,
-				room: Constants.testRoomId,
+				space: spaceId,
+				room: roomId,
 				clientUniqueId: clientUniqueId,
 				role: "host",
 				name: UIDevice.current.name
@@ -296,7 +308,7 @@ private extension ViewController {
 
 			let signalingToken = try await apiClient.createSignalingToken(
 				userToken: userToken,
-				space: Constants.testSpaceId,
+				space: spaceId,
 				participant: participant.id
 			)
 			print("Created signaling token: \(signalingToken)")
@@ -349,19 +361,14 @@ private extension ViewController {
 					print("Failed to start session with error: \(error)")
 			}
 
-			self.updateLocalVideoEnabled(false)
+			self.updateLocalVideoEnabled(self.videoSource != nil)
 			self.updateLocalAudioEnabled(self.audioSource != nil)
 		})
-
-		startVideoSource()
-		startAudioSource()
 	}
 
-	func startVideoSource() {
+	func startVideoSource(_ completion: ((VideoSource?)-> Void)) {
 		switch engine.startVideoSource(position: .front) {
 			case let .success(videoSource):
-				self.videoSource = videoSource
-
 				videoSource.localVideoView.translatesAutoresizingMaskIntoConstraints = false
 				localPreviewContainer.addSubview(videoSource.localVideoView)
 				localPreviewContainer.leftAnchor
@@ -376,8 +383,11 @@ private extension ViewController {
 				localPreviewContainer.bottomAnchor
 					.constraint(equalTo: videoSource.localVideoView.bottomAnchor)
 					.isActive = true
+				completion(videoSource)
+
 			case let .failure(error):
 				print("Failed to start video source: \(error)")
+				completion(nil)
 		}
 	}
 
@@ -401,6 +411,14 @@ private extension ViewController {
 	}
 
 	func updateLocalVideoEnabled(_ enabled: Bool) {
+		if enabled, videoSource == nil {
+			startVideoSource { [weak self] source in
+				self?.videoSource = source
+				self?.updateLocalVideoEnabled(enabled)
+			}
+			return
+		}
+
 		guard let session = channelSession, let source = videoSource else {
 			print("Failed to update local video state: channel or video source is undefined.")
 			updateVideoButtonState(isOn: false)
@@ -411,11 +429,19 @@ private extension ViewController {
 			session.addVideoSource(source)
 		} else {
 			session.removeVideoSource(source)
+			engine.stopVideoSource(source)
+			if let camSource = source as? VideoSourceWithPreview {
+				camSource.localVideoView.removeFromSuperview()
+			}
+			videoSource = nil
 		}
 		updateVideoButtonState(isOn: enabled)
 	}
 
 	func updateLocalAudioEnabled(_ enabled: Bool) {
+		if enabled, audioSource == nil {
+			startAudioSource()
+		}
 		guard let session = channelSession, let source = audioSource else {
 			print("Failed to update local audio state: channel or audio source is undefined.")
 			updateAudioButtonState(isOn: false)
@@ -426,6 +452,8 @@ private extension ViewController {
 			session.addAudioSource(source)
 		} else {
 			session.removeAudioSource(source)
+			engine.stopAudioSource(source)
+			audioSource = nil
 		}
 		updateAudioButtonState(isOn: enabled)
 	}
@@ -506,7 +534,7 @@ private extension ViewController {
 
 // MARK: - UI Actions
 
-private extension ViewController {
+private extension SessionVC {
 	@IBAction
 	func toggleMicrophoneEnabled(_ sender: UIButton) {
 		updateLocalAudioEnabled(!sender.isSelected)
@@ -523,11 +551,30 @@ private extension ViewController {
 			print("Failed to flip camera: \(error)")
 		}
 	}
+
+	@IBAction
+	func finishSession(_ sender: UIButton) {
+		if let videoSource {
+			engine.stopVideoSource(videoSource)
+		}
+		if let audioSource {
+			engine.stopAudioSource(audioSource)
+		}
+
+		guard let channelSession else {
+			dismiss(animated: true)
+			return
+		}
+		finishButton.isEnabled = false
+		channelSession.stop(completion: { [weak self] in
+			self?.dismiss(animated: true)
+		})
+	}
 }
 
 // MARK: - UIScrollViewDelegate implementation
 
-extension ViewController: UIScrollViewDelegate {
+extension SessionVC: UIScrollViewDelegate {
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		updateVisiblePeersVideos()
 	}
@@ -539,7 +586,7 @@ extension ViewController: UIScrollViewDelegate {
 
 // MARK: - UIContextMenuInteractionDelegate implementation
 
-extension ViewController: UIContextMenuInteractionDelegate {
+extension SessionVC: UIContextMenuInteractionDelegate {
 	func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
 		configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
 
