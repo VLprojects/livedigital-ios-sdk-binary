@@ -13,7 +13,7 @@
         <!--StartVC-->
         <scene sceneID="Qkb-3H-F37">
             <objects>
-                <viewController storyboardIdentifier="StartVC" id="e7q-uX-7rx" customClass="StartVC" customModule="LiveDigitalSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StartVC" id="e7q-uX-7rx" customClass="StartVC" customModule="LiveDigitalSDKExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zAD-MW-ekC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,12 +66,20 @@
                                     <constraint firstItem="p6c-j1-lSe" firstAttribute="width" secondItem="qn5-Eh-Mp7" secondAttribute="width" id="6Yo-n6-IGK"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dpp-3T-Z82">
+                                <rect key="frame" x="186.5" y="807.5" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GRa-cc-Wel"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GRa-cc-Wel" firstAttribute="trailing" secondItem="kIt-Sz-7Tp" secondAttribute="trailing" constant="40" id="FFZ-AI-7Bu"/>
                             <constraint firstItem="kIt-Sz-7Tp" firstAttribute="centerY" secondItem="zAD-MW-ekC" secondAttribute="centerY" id="Nz3-DH-4mE"/>
+                            <constraint firstItem="Dpp-3T-Z82" firstAttribute="centerX" secondItem="GRa-cc-Wel" secondAttribute="centerX" id="OkV-dS-ZAp"/>
+                            <constraint firstItem="Dpp-3T-Z82" firstAttribute="bottom" secondItem="GRa-cc-Wel" secondAttribute="bottom" id="TXQ-mt-s10"/>
                             <constraint firstItem="kIt-Sz-7Tp" firstAttribute="leading" secondItem="GRa-cc-Wel" secondAttribute="leading" constant="40" id="udm-ym-ePi"/>
                         </constraints>
                     </view>
@@ -79,6 +87,7 @@
                         <outlet property="roomIdInput" destination="lf6-64-tiD" id="bZJ-k3-vY7"/>
                         <outlet property="spaceIdInput" destination="kjU-p7-ZJj" id="mPQ-hM-4rp"/>
                         <outlet property="startButton" destination="ldc-21-jfm" id="Fgt-0A-GCg"/>
+                        <outlet property="versionLabel" destination="Dpp-3T-Z82" id="tcM-3N-8n6"/>
                         <segue destination="vXZ-lx-hvc" kind="presentation" identifier="StartSession" modalPresentationStyle="fullScreen" id="fAk-Ab-Ots"/>
                     </connections>
                 </viewController>
@@ -89,7 +98,7 @@
         <!--SessionVC-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="SessionVC" automaticallyAdjustsScrollViewInsets="NO" id="vXZ-lx-hvc" customClass="SessionVC" customModule="LiveDigitalSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SessionVC" automaticallyAdjustsScrollViewInsets="NO" id="vXZ-lx-hvc" customClass="SessionVC" customModule="LiveDigitalSDKExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

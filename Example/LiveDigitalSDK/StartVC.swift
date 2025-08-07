@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import LiveDigitalSDK
 
 
 final class StartVC: UIViewController {
@@ -11,11 +12,13 @@ final class StartVC: UIViewController {
 	@IBOutlet var spaceIdInput: UITextField!
 	@IBOutlet var roomIdInput: UITextField!
 	@IBOutlet var startButton: UIButton!
+	@IBOutlet var versionLabel: UILabel!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		spaceIdInput.text = Constants.testSpaceId
 		roomIdInput.text = Constants.testRoomId
+		versionLabel.text = "LiveDigitalSDK version: \(LiveDigital.version())"
 	}
 
 	@IBAction func startTapped() {
