@@ -8,11 +8,19 @@ final class SessionVC: UIViewController {
 		static let moodhoodAPIHost = URL(string: "https://moodhood-api.livedigital.space")!
 		static let moodhoodClientId = "moodhood-demo"
 		static let moodhoodClientSecret = "demo12345abcde6789zxcvDemo"
-		static let loadBalancerHost = URL(string: "https://lb.livedigital.space")!
 	}
 
-	var spaceId: String?
-	var roomId: String?
+	var spaceId: String? {
+		didSet {
+			updateLoggerMeta()
+		}
+	}
+
+	var roomId: String? {
+		didSet {
+			updateLoggerMeta()
+		}
+	}
 
 	@IBOutlet var localPreviewShadowView: UIView!
 	@IBOutlet var localPreviewContainer: UIView!
@@ -37,7 +45,8 @@ final class SessionVC: UIViewController {
 
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		let engine = StockLiveDigitalEngine(
-			environment: LiveDigitalSDKEnvironment(loadBalancerHost: Constants.loadBalancerHost)
+			environment: .production,
+			clientUniqueId: LiveDigitalSDK.ClientUniqueId(rawValue: clientUniqueId)
 		)
 		self.engine = engine
 
@@ -55,7 +64,8 @@ final class SessionVC: UIViewController {
 
 	required init?(coder: NSCoder) {
 		let engine = StockLiveDigitalEngine(
-			environment: LiveDigitalSDKEnvironment(loadBalancerHost: Constants.loadBalancerHost)
+			environment: .production,
+			clientUniqueId: LiveDigitalSDK.ClientUniqueId(rawValue: clientUniqueId)
 		)
 		self.engine = engine
 
@@ -280,6 +290,15 @@ extension SessionVC: ChannelSessionDelegate {
 
 // MARK: - Private methods
 private extension SessionVC {
+	func updateLoggerMeta() {
+		if let roomId {
+			engine.logger.addMeta(["roomId": roomId])
+		}
+		if let spaceId {
+			engine.logger.addMeta(["spaceId": spaceId])
+		}
+	}
+
 	func startConferenceSession() {
 		updateLocalVideoEnabled(false)
 		updateLocalAudioEnabled(false)
@@ -320,7 +339,7 @@ private extension SessionVC {
 				self.startConferenceSession(
 					channelId: ChannelId(value: room.channelId),
 					participantId: ParticipantId(value: participant.id),
-					peerId: PeerId(value: participant.id),
+					peerId: PeerId(rawValue: participant.id),
 					signalingToken: signalingToken.signalingToken
 				)
 			}

@@ -11,11 +11,9 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		FF16A1412D5C67F000D88D4C /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF16A1402D5C67F000D88D4C /* LiveDigitalSDK */; };
-		FF34AE2A2D5B6D5A00F38FAB /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF34AE292D5B6D5A00F38FAB /* LiveDigitalSDK */; };
 		FF800AC42DBA4BD10060FAED /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC32DBA4BD10060FAED /* StartVC.swift */; };
 		FF800AC52DBA4BD10060FAED /* SessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC22DBA4BD10060FAED /* SessionVC.swift */; };
-		FFE2A1132D5C61F000497CCC /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FFE2A1122D5C61F000497CCC /* LiveDigitalSDK */; };
+		FFB0FB2A2E459A6B00F787EC /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FFB0FB292E459A6B00F787EC /* LiveDigitalSDK */; };
 		FFE7933726A95E5500FF5148 /* PeerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7933626A95E5500FF5148 /* PeerView.swift */; };
 		FFE7933926A95FB400FF5148 /* PeerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE7933826A95FB400FF5148 /* PeerView.xib */; };
 		FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */; };
@@ -58,9 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFE2A1132D5C61F000497CCC /* LiveDigitalSDK in Frameworks */,
-				FF34AE2A2D5B6D5A00F38FAB /* LiveDigitalSDK in Frameworks */,
-				FF16A1412D5C67F000D88D4C /* LiveDigitalSDK in Frameworks */,
+				FFB0FB2A2E459A6B00F787EC /* LiveDigitalSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,7 +186,7 @@
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
 			packageReferences = (
-				FF16A13F2D5C67F000D88D4C /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */,
+				FFB0FB282E459A6B00F787EC /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */,
 			);
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
 			projectDirPath = "";
@@ -422,37 +418,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FF16A13F2D5C67F000D88D4C /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */ = {
+		FFB0FB282E459A6B00F787EC /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/VLprojects/livedigital-ios-sdk-binary.git";
 			requirement = {
 				kind = exactVersion;
-				version = 2.10.2;
-			};
-		};
-		FFE2A1112D5C61F000497CCC /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/VLprojects/livedigital-ios-sdk-binary.git";
-			requirement = {
-				kind = exactVersion;
-				version = 2.7.3;
+				version = 2.11.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FF16A1402D5C67F000D88D4C /* LiveDigitalSDK */ = {
+		FFB0FB292E459A6B00F787EC /* LiveDigitalSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FF16A13F2D5C67F000D88D4C /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */;
-			productName = LiveDigitalSDK;
-		};
-		FF34AE292D5B6D5A00F38FAB /* LiveDigitalSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LiveDigitalSDK;
-		};
-		FFE2A1122D5C61F000497CCC /* LiveDigitalSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FFE2A1112D5C61F000497CCC /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */;
+			package = FFB0FB282E459A6B00F787EC /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */;
 			productName = LiveDigitalSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
