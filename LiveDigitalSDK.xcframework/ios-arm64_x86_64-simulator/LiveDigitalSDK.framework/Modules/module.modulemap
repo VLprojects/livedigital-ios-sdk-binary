@@ -1,0 +1,17 @@
+framework module LiveDigitalSDK {
+	export LiveDigitalSDK
+
+	header "VLMTLCIRenderer.h"
+	header "VLMTLI420Renderer.h"
+	header "VLMTLNV12Renderer.h"
+	header "VLMTLRenderer.h"
+	header "VLMTLRGBRenderer.h"
+	header "VLMTLVideoView.h"
+	header "RTCGeneratorVideoCapturer.h"
+	header "RTCSampleBufferCapturer.h"
+}
+
+module LiveDigitalSDK.Swift {
+  header "LiveDigitalSDK-Swift.h"
+  requires objc
+}
