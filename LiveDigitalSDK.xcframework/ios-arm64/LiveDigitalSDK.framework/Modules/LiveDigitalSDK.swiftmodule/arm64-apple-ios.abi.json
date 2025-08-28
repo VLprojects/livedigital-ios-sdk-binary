@@ -33910,14 +33910,21 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
       "kind": "BooleanLiteral",
-      "offset": 1191,
+      "offset": 1120,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
       "kind": "BooleanLiteral",
-      "offset": 2355,
+      "offset": 2284,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
+      "kind": "BooleanLiteral",
+      "offset": 17807,
       "length": 5,
       "value": "false"
     },
@@ -34133,15 +34140,8 @@
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Signaling\/APIClient\/StockAPIClient.swift",
-      "kind": "StringLiteral",
-      "offset": 523,
-      "length": 11,
-      "value": "\"apiClient\""
-    },
-    {
-      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Signaling\/APIClient\/StockAPIClient.swift",
       "kind": "Array",
-      "offset": 651,
+      "offset": 548,
       "length": 2,
       "value": "[]"
     },
