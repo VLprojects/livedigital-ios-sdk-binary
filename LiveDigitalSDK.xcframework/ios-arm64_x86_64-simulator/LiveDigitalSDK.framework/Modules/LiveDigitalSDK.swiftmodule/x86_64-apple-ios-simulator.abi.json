@@ -9977,28 +9977,6 @@
           },
           {
             "kind": "Function",
-            "name": "prepareAudioSession",
-            "printedName": "prepareAudioSession()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:14LiveDigitalSDK0aB16MicrophoneEngineP19prepareAudioSessionyyFZ",
-            "mangledName": "$s14LiveDigitalSDK0aB16MicrophoneEngineP19prepareAudioSessionyyFZ",
-            "moduleName": "LiveDigitalSDK",
-            "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.LiveDigitalMicrophoneEngine>",
-            "sugared_genericSig": "<Self where Self : LiveDigitalSDK.LiveDigitalMicrophoneEngine>",
-            "static": true,
-            "protocolReq": true,
-            "reqNewWitnessTableEntry": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
             "name": "startAudioSource",
             "printedName": "startAudioSource()",
             "children": [
@@ -12272,17 +12250,32 @@
           {
             "kind": "Function",
             "name": "prepareAudioSession",
-            "printedName": "prepareAudioSession()",
+            "printedName": "prepareAudioSession(logger:)",
             "children": [
               {
                 "kind": "TypeNominal",
                 "name": "Void",
                 "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any LiveDigitalSDK.LDSDKLogger)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LDSDKLogger",
+                    "printedName": "any LiveDigitalSDK.LDSDKLogger",
+                    "usr": "s:14LiveDigitalSDK11LDSDKLoggerP"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
               }
             ],
             "declKind": "Func",
-            "usr": "s:14LiveDigitalSDK05StockaB6EngineC19prepareAudioSessionyyFZ",
-            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC19prepareAudioSessionyyFZ",
+            "usr": "s:14LiveDigitalSDK05StockaB6EngineC19prepareAudioSession6loggeryAA11LDSDKLogger_pSg_tFZ",
+            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC19prepareAudioSession6loggeryAA11LDSDKLogger_pSg_tFZ",
             "moduleName": "LiveDigitalSDK",
             "static": true,
             "declAttributes": [
@@ -33924,7 +33917,7 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
       "kind": "BooleanLiteral",
-      "offset": 17807,
+      "offset": 17909,
       "length": 5,
       "value": "false"
     },

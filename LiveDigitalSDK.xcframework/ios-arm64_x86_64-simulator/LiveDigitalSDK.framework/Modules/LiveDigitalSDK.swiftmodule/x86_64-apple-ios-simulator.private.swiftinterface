@@ -400,7 +400,6 @@ public enum LiveDigitalEngineError : Foundation.LocalizedError {
 public protocol LiveDigitalMicrophoneEngine {
   var audioSources: [LiveDigitalSDK.AudioSource] { get }
   var audioRouter: any LiveDigitalSDK.AudioRouter { get }
-  static func prepareAudioSession()
   func startAudioSource() -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
   func startAudioSource(encodingParameters: LiveDigitalSDK.AudioEncodingParameters) -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
   func stopAudioSource(_ audioSource: LiveDigitalSDK.AudioSource)
@@ -491,7 +490,7 @@ extension LiveDigitalSDK.StockLiveDigitalEngine : LiveDigitalSDK.LiveDigitalMicr
   final public var audioRouter: any LiveDigitalSDK.AudioRouter {
     get
   }
-  public static func prepareAudioSession()
+  public static func prepareAudioSession(logger: (any LiveDigitalSDK.LDSDKLogger)? = nil)
   final public func startAudioSource() -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
   final public func startAudioSource(encodingParameters: LiveDigitalSDK.AudioEncodingParameters) -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
   final public func stopAudioSource(_ audioSource: LiveDigitalSDK.AudioSource)
