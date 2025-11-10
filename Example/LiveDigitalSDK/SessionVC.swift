@@ -254,6 +254,19 @@ extension SessionVC: ChannelSessionObserver {
 			peerView.update(name: update.appData["name"] as? String)
 		}
 	}
+
+	func channelSessionStoppedByServer(_ channelSession: ChannelSession) {
+		if let videoSource {
+			engine.stopVideoSource(videoSource)
+		}
+		if let audioSource {
+			engine.stopAudioSource(audioSource)
+		}
+		finishButton.isEnabled = false
+		channelSession.stop(completion: { [weak self] in
+			self?.dismiss(animated: true)
+		})
+	}
 }
 
 // MARK: - ChannelSessionDelegate implementation
