@@ -42,47 +42,47 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		yXbFyVfiGJOrdDtytiTsy+GJ518=
+		uyOF1sn1wdBQwA7TsllA2HsG3ig=
 		</data>
 		<key>Modules/LiveDigitalSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		o2VRUHpTVa3TzevKy6r1wdpnmRM=
+		6wDKATw6biufis2vaIgUMm/t1vg=
 		</data>
 		<key>Modules/LiveDigitalSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		JPK1hrzU0M9f1tSJXk4qd03A6Bg=
+		ViXdCgeJfuvbdDat886sYOkkdPs=
 		</data>
 		<key>Modules/LiveDigitalSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		7MTmMksF13jM7ltuDtUl9boVCWk=
+		BJ5w//XPWQjj8NwradAONLKaJ0o=
 		</data>
 		<key>Modules/LiveDigitalSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		JPK1hrzU0M9f1tSJXk4qd03A6Bg=
+		ViXdCgeJfuvbdDat886sYOkkdPs=
 		</data>
 		<key>Modules/LiveDigitalSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		7zhWB6IsDDKhRCwiF8/bjtp0nwI=
+		H2zRnwsLdIX+TTH6qcxwKg02Qqg=
 		</data>
 		<key>Modules/LiveDigitalSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		o2VRUHpTVa3TzevKy6r1wdpnmRM=
+		6wDKATw6biufis2vaIgUMm/t1vg=
 		</data>
 		<key>Modules/LiveDigitalSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		kDn2G+nwsc1BaBqFXBKaIURv9qk=
+		804mrpREb1DzmHz15n0U1ZLVYz0=
 		</data>
 		<key>Modules/LiveDigitalSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		gHCBZFlHzzk/RYkIip8m9MTcuso=
+		uRdcS2p7NyCJJxICILjzGTaTPBg=
 		</data>
 		<key>Modules/LiveDigitalSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		kDn2G+nwsc1BaBqFXBKaIURv9qk=
+		804mrpREb1DzmHz15n0U1ZLVYz0=
 		</data>
 		<key>Modules/LiveDigitalSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		+8GftJtCSq/C1/XrhaghA7hVhgA=
+		GQU/ZUsZDNFNzLOUOFbAlOASelE=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -158,70 +158,70 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			a2LaSzzR0IWa6Q+7lA39W8Jcp3WkzNNPJ1CReUSrLsY=
+			EalvGXDWgNvbsJ4cIW4WWbBjn6VDHA/cVryKsnoqK3k=
 			</data>
 		</dict>
 		<key>Modules/LiveDigitalSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			B1cI5AhIFBzQlIbfO8HNtJpnBAR104q4cgRcaa5roCU=
+			6srXt7Qpq3jgMfLx/g8hyA6bWNB8iYK6aE58WTjgI4I=
 			</data>
 		</dict>
 		<key>Modules/LiveDigitalSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Injy/tzYxvS5WqaATNQhJ6e7LcRe6Uiw2rUjF9TFFy4=
+			y9XiyyduAvB7y9IHOG7//wFPIeG5eWgcKG4GEqy2siU=
 			</data>
 		</dict>
 		<key>Modules/LiveDigitalSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			B1cI5AhIFBzQlIbfO8HNtJpnBAR104q4cgRcaa5roCU=
+			6srXt7Qpq3jgMfLx/g8hyA6bWNB8iYK6aE58WTjgI4I=
 			</data>
 		</dict>
 		<key>Modules/LiveDigitalSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			MiQ3kfjI/Mdb5N7ZiiAHuCdZXP7DV6cb+AFBJDlU42E=
+			CnO9sSxTNyGoxYcAG0+J8IxM/zqCCWW9L064I8FelIo=
 			</data>
 		</dict>
 		<key>Modules/LiveDigitalSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			a2LaSzzR0IWa6Q+7lA39W8Jcp3WkzNNPJ1CReUSrLsY=
+			EalvGXDWgNvbsJ4cIW4WWbBjn6VDHA/cVryKsnoqK3k=
 			</data>
 		</dict>
 		<key>Modules/LiveDigitalSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			zaj7SRR7Xon9nPW2B2AIq4diWL2FUbukEgM6haovmnc=
+			zim3aAFUVNzX+8oJZt9NceKsWQof20JKDP3trsobwfY=
 			</data>
 		</dict>
 		<key>Modules/LiveDigitalSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			tnz+3/vh2VmvERwSOrmSq/S0rxjWFZgY7d1dgeFNDqE=
+			14VSBxhhoKqYeZAvShe2YgPTY/elEwJhe9kiLudfzNM=
 			</data>
 		</dict>
 		<key>Modules/LiveDigitalSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			zaj7SRR7Xon9nPW2B2AIq4diWL2FUbukEgM6haovmnc=
+			zim3aAFUVNzX+8oJZt9NceKsWQof20JKDP3trsobwfY=
 			</data>
 		</dict>
 		<key>Modules/LiveDigitalSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			S2PsNX10NHXEpRviGhfqIGkpI63Iafv58yXOS3tWNcM=
+			jbAXBUfKFqIFt/d5ShUDmJSyez+AX6KOt0d+XSSumqc=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

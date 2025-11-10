@@ -5198,6 +5198,16 @@
       },
       {
         "kind": "Import",
+        "name": "JSONHash",
+        "printedName": "JSONHash",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -29428,13 +29438,6 @@
       },
       {
         "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "LiveDigitalSDK"
-      },
-      {
-        "kind": "Import",
         "name": "LDLogging",
         "printedName": "LDLogging",
         "declKind": "Import",
@@ -33343,21 +33346,21 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConsistencyIssues\/StockChannelStateChecker.swift",
       "kind": "IntegerLiteral",
-      "offset": 120,
+      "offset": 145,
       "length": 1,
       "value": "3"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConsistencyIssues\/StockChannelStateChecker.swift",
       "kind": "FloatLiteral",
-      "offset": 176,
+      "offset": 201,
       "length": 3,
       "value": "2.6"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConsistencyIssues\/StockChannelStateChecker.swift",
       "kind": "BooleanLiteral",
-      "offset": 424,
+      "offset": 449,
       "length": 5,
       "value": "false"
     },
@@ -33917,7 +33920,7 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
       "kind": "BooleanLiteral",
-      "offset": 17909,
+      "offset": 17912,
       "length": 5,
       "value": "false"
     },
