@@ -21,7 +21,7 @@ let package = Package(
 	dependencies: [
 		.package(
 			url: "https://github.com/VLprojects/mediasoup-client-swift.git",
-			exact: "0.8.0"
+			exact: "0.9.0"
 		)
 	],
 

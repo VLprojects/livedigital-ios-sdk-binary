@@ -1,10 +1,10 @@
 PODS:
-  - LiveDigitalSDK (2.11.1):
+  - LiveDigitalSDK (2.12.2):
     - Mediasoup-Client-Swift (= 0.8.0)
   - Mediasoup-Client-Swift (0.8.0)
 
 DEPENDENCIES:
-  - LiveDigitalSDK (from `https://github.com/VLprojects/livedigital-ios-sdk-binary`, tag `2.11.1`)
+  - LiveDigitalSDK (from `https://github.com/VLprojects/livedigital-ios-sdk-binary`, tag `2.12.2`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -13,17 +13,17 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   LiveDigitalSDK:
     :git: https://github.com/VLprojects/livedigital-ios-sdk-binary
-    :tag: 2.11.1
+    :tag: 2.12.2
 
 CHECKOUT OPTIONS:
   LiveDigitalSDK:
     :git: https://github.com/VLprojects/livedigital-ios-sdk-binary
-    :tag: 2.11.1
+    :tag: 2.12.2
 
 SPEC CHECKSUMS:
-  LiveDigitalSDK: 80ea2656c1829594a3c05be81c5c800e936fddcc
+  LiveDigitalSDK: 1162ccf0c51a4d0c28923deca5afd754093b9d53
   Mediasoup-Client-Swift: c6c318be2f5940a25eac32ee983840603de7a56e
 
-PODFILE CHECKSUM: 9ceb21d53c14525b127bda94afbd514bb0a4865e
+PODFILE CHECKSUM: 093a449d630185a0ce49d047a2b41b7f70c8fc69
 
 COCOAPODS: 1.16.2

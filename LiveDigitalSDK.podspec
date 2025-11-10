@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 	s.ios.deployment_target = '15.0'
 	s.swift_version = '5.4'
 
-	s.dependency 'Mediasoup-Client-Swift', '0.8.0'
+	s.dependency 'Mediasoup-Client-Swift', '0.9.0'
 
 	s.vendored_frameworks =
 		"LiveDigitalSDK.xcframework"

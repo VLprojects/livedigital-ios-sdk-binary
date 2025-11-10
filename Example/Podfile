@@ -7,5 +7,5 @@ target 'LiveDigitalSDKExample' do
 	use_frameworks!
 	pod 'LiveDigitalSDK',
 		:git => 'https://github.com/VLprojects/livedigital-ios-sdk-binary',
-		:tag => '2.11.1'
+		:tag => '2.12.2'
 end
