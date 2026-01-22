@@ -11,6 +11,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		FF6267EC2EEA6F4F0081A62A /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF6267EB2EEA6F4F0081A62A /* LiveDigitalSDK */; };
 		FF800AC42DBA4BD10060FAED /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC32DBA4BD10060FAED /* StartVC.swift */; };
 		FF800AC52DBA4BD10060FAED /* SessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC22DBA4BD10060FAED /* SessionVC.swift */; };
 		FF98FFB02EC1C85A003F1D90 /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF98FFAF2EC1C85A003F1D90 /* LiveDigitalSDK */; };
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF6267EC2EEA6F4F0081A62A /* LiveDigitalSDK in Frameworks */,
 				FF98FFB02EC1C85A003F1D90 /* LiveDigitalSDK in Frameworks */,
 				FFB0FB2A2E459A6B00F787EC /* LiveDigitalSDK in Frameworks */,
 			);
@@ -188,7 +190,7 @@
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
 			packageReferences = (
-				FF98FFAE2EC1C85A003F1D90 /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */,
+				FF6267EA2EEA6F4F0081A62A /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */,
 			);
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
 			projectDirPath = "";
@@ -420,6 +422,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FF6267EA2EEA6F4F0081A62A /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/VLprojects/livedigital-ios-sdk-binary.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.12.3;
+			};
+		};
 		FF98FFAE2EC1C85A003F1D90 /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/VLprojects/livedigital-ios-sdk-binary.git";
@@ -439,6 +449,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FF6267EB2EEA6F4F0081A62A /* LiveDigitalSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF6267EA2EEA6F4F0081A62A /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */;
+			productName = LiveDigitalSDK;
+		};
 		FF98FFAF2EC1C85A003F1D90 /* LiveDigitalSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FF98FFAE2EC1C85A003F1D90 /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */;
