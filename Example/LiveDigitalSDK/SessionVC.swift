@@ -375,7 +375,6 @@ private extension SessionVC {
 			signalingToken: signalingToken,
 			peerId: peerId,
 			peerPayload: [
-				"joinApproval": "notNeeded",
 				"name": UIDevice.current.name
 			],
 			completion: { [weak self] result in
