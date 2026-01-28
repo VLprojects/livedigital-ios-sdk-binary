@@ -273,15 +273,22 @@ extension SessionVC: ChannelSessionObserver {
 
 extension SessionVC: ChannelSessionDelegate {
 	func sessionNeedsRestart(_ channelSession: ChannelSession) {
-		self.channelSession?.start(
-			mediaRole: .host,
-			participantId: nil,
-			signalingToken: nil,
-			peerId: nil,
-			peerPayload: [
-				"name": UIDevice.current.name
-			]
-		)
+		let sessionIsRunning = switch channelSession.status {
+			case .starting, .started, .restarting: true
+			case .stopping, .stopped: false
+			@unknown default: true
+		}
+		guard !sessionIsRunning else {
+			print("Will stop running session during reconnect flow...")
+			channelSession.stop { [weak self] in
+				print("Will start a new session as new participant during reconnect flow...")
+				self?.startConferenceSession()
+			}
+			return
+		}
+
+		print("Will start a new session as new participant during reconnect flow...")
+		self.startConferenceSession()
 	}
 
 	func channelSessionShouldSuspendVideo(_ channelSession: ChannelSession,
@@ -375,7 +382,6 @@ private extension SessionVC {
 			signalingToken: signalingToken,
 			peerId: peerId,
 			peerPayload: [
-				"joinApproval": "notNeeded",
 				"name": UIDevice.current.name
 			],
 			completion: { [weak self] result in
