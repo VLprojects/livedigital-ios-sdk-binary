@@ -281,7 +281,8 @@ extension SessionVC: ChannelSessionDelegate {
 		guard !sessionIsRunning else {
 			print("Will stop running session during reconnect flow...")
 			channelSession.stop { [weak self] in
-				self?.sessionNeedsRestart(channelSession)
+				print("Will start a new session as new participant during reconnect flow...")
+				self?.startConferenceSession()
 			}
 			return
 		}
