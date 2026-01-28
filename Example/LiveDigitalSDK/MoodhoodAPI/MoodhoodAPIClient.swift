@@ -2,10 +2,14 @@ import Foundation
 
 
 protocol MoodhoodAPIClient {
+	var isAuthorized: Bool { get }
+
+	@discardableResult
 	func authorizeAsGuest() async throws(MoodhoodAPIClientError) -> MoodhoodUserToken
 
+	func unauthorize()
+
 	func createParticipant(
-		userToken: MoodhoodUserToken,
 		space: String,
 		room: String,
 		clientUniqueId: String,
@@ -14,19 +18,20 @@ protocol MoodhoodAPIClient {
 	) async throws(MoodhoodAPIClientError) -> MoodhoodParticipant
 
 	func createSignalingToken(
-		userToken: MoodhoodUserToken,
 		space: String,
 		participant: String
 	) async throws(MoodhoodAPIClientError) -> SignalingToken
 
 	func fetchRoom(
-		userToken: MoodhoodUserToken,
+		roomAlias: String
+	) async throws(MoodhoodAPIClientError) -> Room
+
+	func fetchRoom(
 		space: String,
 		room: String
 	) async throws(MoodhoodAPIClientError) -> Room
 
 	func joinRoom(
-		userToken: MoodhoodUserToken,
 		space: String,
 		room: String,
 		participant: String
