@@ -547,6 +547,8 @@ private extension SessionVC {
 								title = routeTitle
 							case .noAudio:
 								title = "No audio"
+							@unknown default:
+								title = "\(route.kind) (unsupported)"
 						}
 						return UIAction(title: title, state: isSelected ? .on : .off,
 						handler: { [weak self] _ in
