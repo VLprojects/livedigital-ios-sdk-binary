@@ -256,16 +256,7 @@ extension SessionVC: ChannelSessionObserver {
 	}
 
 	func channelSessionStoppedByServer(_ channelSession: ChannelSession) {
-		if let videoSource {
-			engine.stopVideoSource(videoSource)
-		}
-		if let audioSource {
-			engine.stopAudioSource(audioSource)
-		}
-		finishButton.isEnabled = false
-		channelSession.stop(completion: { [weak self] in
-			self?.dismiss(animated: true)
-		})
+		finishSession()
 	}
 }
 
@@ -314,9 +305,33 @@ private extension SessionVC {
 		if let roomId {
 			engine.logger.addMeta(["roomId": roomId])
 		}
+	}
+
+	func finishSession() {
+		if let videoSource {
+			engine.stopVideoSource(videoSource)
+		}
+		if let audioSource {
+			engine.stopAudioSource(audioSource)
+		}
 		if let spaceId {
 			engine.logger.addMeta(["spaceId": spaceId])
+
+		if let channelSession {
+			finishButton.isEnabled = false
+			channelSession.stop(completion: { [weak self] in
+				self?.endSession()
+			})
+		} else {
+			endSession()
 		}
+	}
+
+	func endSession() {
+		if let call {
+			callManager?.reportCallEnded(call)
+		}
+		dismiss(animated: true)
 	}
 
 	func startConferenceSession() {
@@ -592,21 +607,7 @@ private extension SessionVC {
 
 	@IBAction
 	func finishSession(_ sender: UIButton) {
-		if let videoSource {
-			engine.stopVideoSource(videoSource)
-		}
-		if let audioSource {
-			engine.stopAudioSource(audioSource)
-		}
-
-		guard let channelSession else {
-			dismiss(animated: true)
-			return
-		}
-		finishButton.isEnabled = false
-		channelSession.stop(completion: { [weak self] in
-			self?.dismiss(animated: true)
-		})
+		finishSession()
 	}
 }
 
