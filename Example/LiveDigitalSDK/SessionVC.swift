@@ -4,23 +4,22 @@ import AVFoundation
 
 
 final class SessionVC: UIViewController {
-	private struct Constants {
-		static let moodhoodAPIHost = URL(string: "https://moodhood-api.livedigital.space")!
-		static let moodhoodClientId = "moodhood-demo"
-		static let moodhoodClientSecret = "demo12345abcde6789zxcvDemo"
-	}
-
-	var spaceId: String? {
+	var room: Room? {
 		didSet {
 			updateLoggerMeta()
 		}
 	}
-
-	var roomId: String? {
+	var call: Call?
+	var callManager: CallManager? {
 		didSet {
-			updateLoggerMeta()
+			if let oldValue {
+				oldValue.removeObserver(self)
+			}
+			callManager?.addObserver(self)
 		}
 	}
+
+	var apiClient: MoodhoodAPIClient!
 
 	@IBOutlet var localPreviewShadowView: UIView!
 	@IBOutlet var localPreviewContainer: UIView!
@@ -32,15 +31,11 @@ final class SessionVC: UIViewController {
 	@IBOutlet var finishButton: UIButton!
 	private var peerViews = [PeerId: PeerView]()
 	private var peers = [PeerId: Peer]()
-
 	private let clientUniqueId: String = UUID().uuidString
-	private let apiClient: MoodhoodAPIClient
 	private let engine: LiveDigitalEngine
 	private var channelSession: ChannelSession?
 	private var videoSource: VideoSource?
 	private var audioSource: AudioSource?
-
-	private var userToken: MoodhoodUserToken?
 	private var participantId: String?
 
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -49,13 +44,6 @@ final class SessionVC: UIViewController {
 			clientUniqueId: LiveDigitalSDK.ClientUniqueId(rawValue: clientUniqueId)
 		)
 		self.engine = engine
-
-		let apiEnvironment = MoodhoodAPIEnvironment(
-			apiHost: Constants.moodhoodAPIHost,
-			clientId: Constants.moodhoodClientId,
-			clientSecret: Constants.moodhoodClientSecret
-		)
-		self.apiClient = StockMoodhoodAPIClient(environment: apiEnvironment)
 
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
@@ -68,13 +56,6 @@ final class SessionVC: UIViewController {
 			clientUniqueId: LiveDigitalSDK.ClientUniqueId(rawValue: clientUniqueId)
 		)
 		self.engine = engine
-
-		let apiEnvironment = MoodhoodAPIEnvironment(
-			apiHost: Constants.moodhoodAPIHost,
-			clientId: Constants.moodhoodClientId,
-			clientSecret: Constants.moodhoodClientSecret
-		)
-		self.apiClient = StockMoodhoodAPIClient(environment: apiEnvironment)
 
 		super.init(coder: coder)
 
@@ -121,6 +102,10 @@ final class SessionVC: UIViewController {
 			}
 		}
 	}
+
+	deinit {
+		callManager?.removeObserver(self)
+	}
 }
 
 // MARK: - LiveDigitalSessionManagerDelegate implementation
@@ -153,17 +138,16 @@ extension SessionVC: AudioRouterDelegate {
 
 extension SessionVC: ChannelSessionObserver {
 	func channelSessionJoinedChannel(_ channelSession: any LiveDigitalSDK.ChannelSession) {
-		guard let participantId, let userToken, let spaceId, let roomId else {
-			print("Failed to join room: missing participantId or userToken")
+		guard let participantId, let room else {
+			print("Failed to join room: missing participantId or room")
 			return
 		}
 
 		Task {
 			do {
 				try await apiClient.joinRoom(
-					userToken: userToken,
-					space: spaceId,
-					room: roomId,
+					space: room.spaceId,
+					room: room.id,
 					participant: participantId
 				)
 				print("Joined room")
@@ -299,11 +283,37 @@ extension SessionVC: ChannelSessionDelegate {
 	}
 }
 
+// MARK: - CallManagerObserver implementation
+
+extension SessionVC: CallManagerObserver {
+	func didEndCall(_ call: Call) {
+		guard call.id == self.call?.id else {
+			return
+		}
+		self.call = nil
+		finishSession()
+	}
+
+	func didUpdateCallMuteState(_ call: Call) {
+		guard call.id == self.call?.id else {
+			return
+		}
+		self.call = call
+
+		updateLocalAudioEnabled(!call.isMuted)
+	}
+
+	func didUpdateAudioSession(_ audioSession: AVAudioSession, active: Bool) {
+		// TODO: Implement me!
+	}
+}
+
 // MARK: - Private methods
 private extension SessionVC {
 	func updateLoggerMeta() {
-		if let roomId {
-			engine.logger.addMeta(["roomId": roomId])
+		if let room {
+			engine.logger.addMeta(["roomId": room.id])
+			engine.logger.addMeta(["spaceId": room.spaceId])
 		}
 	}
 
@@ -314,8 +324,6 @@ private extension SessionVC {
 		if let audioSource {
 			engine.stopAudioSource(audioSource)
 		}
-		if let spaceId {
-			engine.logger.addMeta(["spaceId": spaceId])
 
 		if let channelSession {
 			finishButton.isEnabled = false
@@ -336,24 +344,26 @@ private extension SessionVC {
 
 	func startConferenceSession() {
 		updateLocalVideoEnabled(false)
-		updateLocalAudioEnabled(false)
 
-		guard let spaceId, let roomId else {
-			print("Skip session start: spaceId or roomId is not specified")
+		if let call {
+			updateLocalAudioEnabled(!call.isMuted)
+		} else {
+			updateLocalAudioEnabled(false)
+		}
+
+		guard let room else {
+			print("Skip session start: room is not specified")
 			return
 		}
 
 		Task {
-			let userToken = try await apiClient.authorizeAsGuest()
-			print("Created user token: \(userToken)")
-
-			let room = try await apiClient.fetchRoom(userToken: userToken, space: spaceId, room: roomId)
-			print("Fetched room details: \(room)")
+			if !apiClient.isAuthorized {
+				try await apiClient.authorizeAsGuest()
+			}
 
 			let participant = try await apiClient.createParticipant(
-				userToken: userToken,
-				space: spaceId,
-				room: roomId,
+				space: room.spaceId,
+				room: room.id,
 				clientUniqueId: clientUniqueId,
 				role: "host",
 				name: UIDevice.current.name
@@ -361,14 +371,12 @@ private extension SessionVC {
 			print("Created participant: \(participant)")
 
 			let signalingToken = try await apiClient.createSignalingToken(
-				userToken: userToken,
-				space: spaceId,
+				space: room.spaceId,
 				participant: participant.id
 			)
 			print("Created signaling token: \(signalingToken)")
 
 			await MainActor.run {
-				self.userToken = userToken
 				self.participantId = participant.id
 
 				self.startConferenceSession(
