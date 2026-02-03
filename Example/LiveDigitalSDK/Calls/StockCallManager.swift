@@ -112,7 +112,7 @@ extension StockCallManager: CallManager {
 		startAction.isVideo = true
 		let transaction = CXTransaction(action: startAction)
 		callController.request(transaction) { error in
-			if let error = error {
+			if let error {
 				print("CallKit start failed:", error)
 			}
 		}
