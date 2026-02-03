@@ -30,6 +30,7 @@
 		FFF42C982F32006C00AE3966 /* StockSessionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C972F32006C00AE3966 /* StockSessionPresenter.swift */; };
 		FFF42C992F32006C00AE3966 /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C962F32006C00AE3966 /* SessionView.swift */; };
 		FFF42C9A2F32006C00AE3966 /* SessionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C952F32006C00AE3966 /* SessionPresenter.swift */; };
+		FFF42CA22F32037F00AE3966 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42CA02F32037F00AE3966 /* Weak.swift */; };
 		FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */; };
 		FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */; };
 		FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */; };
@@ -75,6 +76,7 @@
 		FFF42C952F32006C00AE3966 /* SessionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPresenter.swift; sourceTree = "<group>"; };
 		FFF42C962F32006C00AE3966 /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		FFF42C972F32006C00AE3966 /* StockSessionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSessionPresenter.swift; sourceTree = "<group>"; };
+		FFF42CA02F32037F00AE3966 /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMoodhoodAPIClient.swift; sourceTree = "<group>"; };
 		FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIClient.swift; sourceTree = "<group>"; };
 		FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIEnvironment.swift; sourceTree = "<group>"; };
@@ -123,12 +125,13 @@
 				FFF42C5D2F31DD5800AE3966 /* Application */,
 				FFF42C632F31DD5800AE3966 /* Calls */,
 				FFF42C662F31DD5800AE3966 /* Config */,
+				FFFA321C2D30DFF50043C2E7 /* MoodhoodAPI */,
 				FFF42C692F31DD5800AE3966 /* Permissions */,
 				FFF42C6D2F31DD5800AE3966 /* QRCode */,
 				FFF42C712F31DD5800AE3966 /* Resources */,
 				FFF42C772F31DD5800AE3966 /* SessionScreen */,
 				FFF42C7A2F31DD5800AE3966 /* StartScreen */,
-				FFFA321C2D30DFF50043C2E7 /* MoodhoodAPI */,
+				FFF42CA12F32037F00AE3966 /* Utils */,
 			);
 			name = "Example for LiveDigitalSDK";
 			path = LiveDigitalSDK;
@@ -241,6 +244,14 @@
 				FFF42C792F31DD5800AE3966 /* StartVC.swift */,
 			);
 			path = StartScreen;
+			sourceTree = "<group>";
+		};
+		FFF42CA12F32037F00AE3966 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FFF42CA02F32037F00AE3966 /* Weak.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		FFFA321C2D30DFF50043C2E7 /* MoodhoodAPI */ = {
@@ -395,6 +406,7 @@
 				FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */,
 				FFFA32242D30EA170043C2E7 /* MoodhoodAPIClientError.swift in Sources */,
 				FFF42C812F31DD5800AE3966 /* SceneDelegate.swift in Sources */,
+				FFF42CA22F32037F00AE3966 /* Weak.swift in Sources */,
 				FFF42C822F31DD5800AE3966 /* AppDelegate.swift in Sources */,
 				FFF42C832F31DD5800AE3966 /* PermissionState.swift in Sources */,
 				FFF42C842F31DD5800AE3966 /* CallManagerObserver.swift in Sources */,

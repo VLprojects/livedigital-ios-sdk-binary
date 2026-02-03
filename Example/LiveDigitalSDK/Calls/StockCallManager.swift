@@ -14,7 +14,7 @@ final class StockCallManager: NSObject {
 	private let pushRegistry: PKPushRegistry
 	private let callProvider: CXProvider
 	private let callController: CXCallController
-	private var observers = [any CallManagerObserver]()
+	private var observers = [Weak<any CallManagerObserver>]()
 	private var calls = [UUID: Call]()
 
 	override init() {
@@ -81,14 +81,14 @@ extension StockCallManager: CallManager {
 	}
 
 	func addObserver(_ observer: any CallManagerObserver) {
-		observers.append(observer)
+		observers.append(Weak(value: observer))
 		for call in calls.values where call.direction == .outgoing && call.state == .connecting {
 			observer.didInitiateCall(call)
 		}
 	}
 
 	func removeObserver(_ observer: any CallManagerObserver) {
-		observers.removeAll { $0 === observer }
+		observers.removeAll { $0.value === observer }
 	}
 
 	func startCallFromIntent(_ intent: INIntent) {
@@ -228,9 +228,10 @@ extension StockCallManager: PKPushRegistryDelegate {
 extension StockCallManager: CXProviderDelegate {
 	func providerDidReset(_ provider: CXProvider) {
 		for call in calls.values {
-			observers.forEach { observer in
-				observer.didEndCall(call)
-			}
+			observers
+				.forEach { observer in
+					observer.value?.didEndCall(call)
+				}
 		}
 		calls.removeAll()
 	}
@@ -246,7 +247,7 @@ extension StockCallManager: CXProviderDelegate {
 		)
 		calls[action.callUUID] = call
 		observers.forEach { observer in
-			observer.didInitiateCall(call)
+			observer.value?.didInitiateCall(call)
 		}
 		action.fulfill()
 	}
@@ -257,7 +258,7 @@ extension StockCallManager: CXProviderDelegate {
 			call.state = .active
 			calls[call.id] = call
 			self.observers.forEach { observer in
-				observer.didReceiveCall(call)
+				observer.value?.didReceiveCall(call)
 			}
 			action.fulfill()
 		} else {
@@ -270,7 +271,7 @@ extension StockCallManager: CXProviderDelegate {
 		if var call = calls.removeValue(forKey: action.callUUID) {
 			call.state = .ended
 			observers.forEach { observer in
-				observer.didEndCall(call)
+				observer.value?.didEndCall(call)
 			}
 			action.fulfill()
 		} else {
@@ -284,7 +285,7 @@ extension StockCallManager: CXProviderDelegate {
 			call.isMuted = action.isMuted
 			calls[call.id] = call
 			for observer in observers {
-				observer.didUpdateCallMuteState(call)
+				observer.value?.didUpdateCallMuteState(call)
 			}
 			action.fulfill()
 		} else {
@@ -299,14 +300,14 @@ extension StockCallManager: CXProviderDelegate {
 	func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
 		print("Call provider did activate \(audioSession)")
 		for observer in observers {
-			observer.didUpdateAudioSession(audioSession, active: true)
+			observer.value?.didUpdateAudioSession(audioSession, active: true)
 		}
 	}
 
 	func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
 		print("Call provider did deactivate \(audioSession)")
 		for observer in observers {
-			observer.didUpdateAudioSession(audioSession, active: false)
+			observer.value?.didUpdateAudioSession(audioSession, active: false)
 		}
 	}
 }
