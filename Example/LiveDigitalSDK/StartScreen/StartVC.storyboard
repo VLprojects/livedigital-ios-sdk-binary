@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jkn-5e-bO2">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--StartVC-->
+        <scene sceneID="ne4-8f-GGr">
+            <objects>
+                <viewController storyboardIdentifier="StartVC" id="jkn-5e-bO2" customClass="StartVC" customModule="LiveDigitalSDKExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PI6-kO-49x">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ISv-oZ-RIR">
+                                <rect key="frame" x="40" y="266" width="313" height="320"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incoming call" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTp-29-OkF">
+                                        <rect key="frame" x="0.0" y="0.0" width="313" height="26.333333333333332"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPM-eo-cKH">
+                                        <rect key="frame" x="0.0" y="42.333333333333314" width="313" height="34.333333333333343"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Request APNS permissions"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Request APNS permissions"/>
+                                        <connections>
+                                            <action selector="requestAPNSPermissionsTapped" destination="jkn-5e-bO2" eventType="touchUpInside" id="whc-St-a2M"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bs2-5Y-okI">
+                                        <rect key="frame" x="0.0" y="92.666666666666686" width="313" height="34.333333333333343"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Copy device token"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Copy device token"/>
+                                        <connections>
+                                            <action selector="copyDeviceTokenTapped" destination="jkn-5e-bO2" eventType="touchUpInside" id="oTP-RY-Fcx"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8J-b2-bPO">
+                                        <rect key="frame" x="0.0" y="143" width="313" height="34.333333333333343"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Show device token QR"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Show device token QR"/>
+                                        <connections>
+                                            <action selector="showDeviceTokenQRTapped" destination="jkn-5e-bO2" eventType="touchUpInside" id="6bc-75-aSF"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open room by alias" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVD-Uk-mQP">
+                                        <rect key="frame" x="0.0" y="193.33333333333331" width="313" height="26.333333333333343"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="brd-34-omK">
+                                        <rect key="frame" x="0.0" y="235.66666666666669" width="313" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alias" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzG-qI-ASd">
+                                                <rect key="frame" x="0.0" y="0.0" width="36.333333333333336" height="34"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Room alias" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sdn-gO-Xyk">
+                                                <rect key="frame" x="52.333333333333343" y="0.0" width="260.66666666666663" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKM-ex-XMt">
+                                        <rect key="frame" x="0.0" y="285.66666666666663" width="313" height="34.333333333333314"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Open room"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Open room"/>
+                                        <connections>
+                                            <action selector="startByAliasTapped" destination="jkn-5e-bO2" eventType="touchUpInside" id="FNg-MB-7eT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hv-eD-COh">
+                                <rect key="frame" x="176" y="763.66666666666663" width="41.333333333333343" height="20.333333333333371"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8Ak-KW-Tgg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7hv-eD-COh" firstAttribute="centerX" secondItem="8Ak-KW-Tgg" secondAttribute="centerX" id="2hg-ru-cMf"/>
+                            <constraint firstItem="8Ak-KW-Tgg" firstAttribute="trailing" secondItem="ISv-oZ-RIR" secondAttribute="trailing" constant="40" id="cRI-Wi-Ag4"/>
+                            <constraint firstItem="ISv-oZ-RIR" firstAttribute="centerY" secondItem="PI6-kO-49x" secondAttribute="centerY" id="cXf-Tc-3N8"/>
+                            <constraint firstItem="ISv-oZ-RIR" firstAttribute="leading" secondItem="8Ak-KW-Tgg" secondAttribute="leading" constant="40" id="e34-NI-HIB"/>
+                            <constraint firstItem="7hv-eD-COh" firstAttribute="bottom" secondItem="8Ak-KW-Tgg" secondAttribute="bottom" id="wkb-Hp-ZSd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="WRa-am-6O2"/>
+                    <connections>
+                        <outlet property="copyDeviceTokenButton" destination="Bs2-5Y-okI" id="YgY-ci-8LE"/>
+                        <outlet property="requestAPNSPermissionsButton" destination="gPM-eo-cKH" id="po8-c5-Wrg"/>
+                        <outlet property="roomAliasInput" destination="sdn-gO-Xyk" id="yvZ-zg-pXS"/>
+                        <outlet property="showDeviceTokenQRButton" destination="C8J-b2-bPO" id="0hT-tt-kLq"/>
+                        <outlet property="versionLabel" destination="7hv-eD-COh" id="2Ff-ze-cUi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6RZ-Ky-7Gf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-751" y="110"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

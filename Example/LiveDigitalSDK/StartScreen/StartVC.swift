@@ -149,8 +149,8 @@ private extension StartVC {
 	}
 
 	func openSession(in room: Room, call: Call) {
-		let sb = UIStoryboard(name: "Main", bundle: nil)
-		guard let sessionVC = sb.instantiateViewController(withIdentifier: "SessionVC") as? SessionVC else {
+		let sb = UIStoryboard(name: "SessionVC", bundle: nil)
+		guard let sessionVC = sb.instantiateInitialViewController() as? SessionVC else {
 			return
 		}
 		sessionVC.call = call
