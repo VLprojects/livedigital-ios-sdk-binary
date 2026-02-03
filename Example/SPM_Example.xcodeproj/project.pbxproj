@@ -29,6 +29,9 @@
 		FFE7933726A95E5500FF5148 /* PeerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7933626A95E5500FF5148 /* PeerView.swift */; };
 		FFE7933926A95FB400FF5148 /* PeerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE7933826A95FB400FF5148 /* PeerView.xib */; };
 		FFF42C572F31DA4C00AE3966 /* StartVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C562F31DA4C00AE3966 /* StartVC.storyboard */; };
+		FFF42C902F31DEB200AE3966 /* StockSessionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C8F2F31DEAB00AE3966 /* StockSessionPresenter.swift */; };
+		FFF42C922F31E0F800AE3966 /* SessionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C912F31E0F400AE3966 /* SessionPresenter.swift */; };
+		FFF42C942F31E1A400AE3966 /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C932F31E1A200AE3966 /* SessionView.swift */; };
 		FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */; };
 		FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */; };
 		FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */; };
@@ -65,6 +68,9 @@
 		FFE7933626A95E5500FF5148 /* PeerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerView.swift; sourceTree = "<group>"; };
 		FFE7933826A95FB400FF5148 /* PeerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeerView.xib; sourceTree = "<group>"; };
 		FFF42C562F31DA4C00AE3966 /* StartVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartVC.storyboard; sourceTree = "<group>"; };
+		FFF42C8F2F31DEAB00AE3966 /* StockSessionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSessionPresenter.swift; sourceTree = "<group>"; };
+		FFF42C912F31E0F400AE3966 /* SessionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPresenter.swift; sourceTree = "<group>"; };
+		FFF42C932F31E1A200AE3966 /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMoodhoodAPIClient.swift; sourceTree = "<group>"; };
 		FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIClient.swift; sourceTree = "<group>"; };
 		FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIEnvironment.swift; sourceTree = "<group>"; };
@@ -177,8 +183,11 @@
 			children = (
 				FFE7933626A95E5500FF5148 /* PeerView.swift */,
 				FFE7933826A95FB400FF5148 /* PeerView.xib */,
+				FFF42C912F31E0F400AE3966 /* SessionPresenter.swift */,
 				607FACD91AFB9204008FA782 /* SessionVC.storyboard */,
 				FF800AC22DBA4BD10060FAED /* SessionVC.swift */,
+				FFF42C932F31E1A200AE3966 /* SessionView.swift */,
+				FFF42C8F2F31DEAB00AE3966 /* StockSessionPresenter.swift */,
 			);
 			path = SessionScreen;
 			sourceTree = "<group>";
@@ -323,12 +332,15 @@
 				FFAFC88A2F2717FD002E4D51 /* FullscreenImageVC.swift in Sources */,
 				FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */,
 				FFAFC88C2F277F1A002E4D51 /* CallManagerObserver.swift in Sources */,
+				FFF42C922F31E0F800AE3966 /* SessionPresenter.swift in Sources */,
 				FFA56F502F2243AC000FFD29 /* StockCallManager.swift in Sources */,
 				FF800AC42DBA4BD10060FAED /* StartVC.swift in Sources */,
+				FFF42C902F31DEB200AE3966 /* StockSessionPresenter.swift in Sources */,
 				FF800AC52DBA4BD10060FAED /* SessionVC.swift in Sources */,
 				FFA56F522F2343B7000FFD29 /* PermissionState.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */,
+				FFF42C942F31E1A400AE3966 /* SessionView.swift in Sources */,
 				FF0203892F2AFF970020642D /* PushPermissionsManager.swift in Sources */,
 				FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */,
 				FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */,

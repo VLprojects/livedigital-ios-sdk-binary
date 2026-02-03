@@ -27,6 +27,9 @@
 		FFF42C8C2F31DD5800AE3966 /* PushPermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C682F31DD5800AE3966 /* PushPermissionsManager.swift */; };
 		FFF42C8D2F31DD5800AE3966 /* PeerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C722F31DD5800AE3966 /* PeerView.swift */; };
 		FFF42C8E2F31DD5800AE3966 /* Call.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C5F2F31DD5800AE3966 /* Call.swift */; };
+		FFF42C982F32006C00AE3966 /* StockSessionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C972F32006C00AE3966 /* StockSessionPresenter.swift */; };
+		FFF42C992F32006C00AE3966 /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C962F32006C00AE3966 /* SessionView.swift */; };
+		FFF42C9A2F32006C00AE3966 /* SessionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C952F32006C00AE3966 /* SessionPresenter.swift */; };
 		FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */; };
 		FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */; };
 		FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */; };
@@ -69,6 +72,9 @@
 		FFF42C762F31DD5800AE3966 /* SessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionVC.swift; sourceTree = "<group>"; };
 		FFF42C782F31DD5800AE3966 /* StartVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartVC.storyboard; sourceTree = "<group>"; };
 		FFF42C792F31DD5800AE3966 /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
+		FFF42C952F32006C00AE3966 /* SessionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPresenter.swift; sourceTree = "<group>"; };
+		FFF42C962F32006C00AE3966 /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
+		FFF42C972F32006C00AE3966 /* StockSessionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSessionPresenter.swift; sourceTree = "<group>"; };
 		FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMoodhoodAPIClient.swift; sourceTree = "<group>"; };
 		FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIClient.swift; sourceTree = "<group>"; };
 		FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIEnvironment.swift; sourceTree = "<group>"; };
@@ -219,8 +225,11 @@
 			children = (
 				FFF42C722F31DD5800AE3966 /* PeerView.swift */,
 				FFF42C732F31DD5800AE3966 /* PeerView.xib */,
+				FFF42C952F32006C00AE3966 /* SessionPresenter.swift */,
 				FFF42C752F31DD5800AE3966 /* SessionVC.storyboard */,
 				FFF42C762F31DD5800AE3966 /* SessionVC.swift */,
+				FFF42C962F32006C00AE3966 /* SessionView.swift */,
+				FFF42C972F32006C00AE3966 /* StockSessionPresenter.swift */,
 			);
 			path = SessionScreen;
 			sourceTree = "<group>";
@@ -403,6 +412,9 @@
 				FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */,
 				FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */,
 				FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */,
+				FFF42C982F32006C00AE3966 /* StockSessionPresenter.swift in Sources */,
+				FFF42C992F32006C00AE3966 /* SessionView.swift in Sources */,
+				FFF42C9A2F32006C00AE3966 /* SessionPresenter.swift in Sources */,
 				FFFA322D2D3128240043C2E7 /* Room.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

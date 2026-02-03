@@ -153,10 +153,8 @@ private extension StartVC {
 		guard let sessionVC = sb.instantiateInitialViewController() as? SessionVC else {
 			return
 		}
-		sessionVC.call = call
-		sessionVC.room = room
-		sessionVC.apiClient = apiClient
-		sessionVC.callManager = callManager
+		let presenter = StockSessionPresenter(room: room, apiClient: apiClient, callManager: callManager, view: sessionVC)
+		sessionVC.presenter = presenter
 		sessionVC.modalPresentationStyle = .fullScreen
 		present(sessionVC, animated: true, completion: nil)
 	}
