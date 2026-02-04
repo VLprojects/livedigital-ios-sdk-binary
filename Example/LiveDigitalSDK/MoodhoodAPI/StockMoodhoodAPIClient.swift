@@ -8,6 +8,9 @@ internal final class StockMoodhoodAPIClient {
 		static func createSignalingToken(space: String, participant: String) -> String {
 			"/v1/spaces/\(space)/participants/\(participant)/signaling-token"
 		}
+		static func fetchRoomByAlias(roomAlias: String) -> String {
+			"/v1/spaces/room-by-alias/\(roomAlias)"
+		}
 		static func fetchRoom(space: String, room: String) -> String {
 			"/v1/spaces/\(space)/rooms/\(room)"
 		}
@@ -22,6 +25,7 @@ internal final class StockMoodhoodAPIClient {
 		return URLSession(configuration: config)
 	}()
 
+	private var userToken: MoodhoodUserToken?
 	private let environment: MoodhoodAPIEnvironment
 	private let decoder = JSONDecoder()
 
@@ -31,8 +35,13 @@ internal final class StockMoodhoodAPIClient {
 }
 
 extension StockMoodhoodAPIClient: MoodhoodAPIClient {
+	var isAuthorized: Bool {
+		return userToken != nil
+	}
+
+	@discardableResult
 	func authorizeAsGuest() async throws(MoodhoodAPIClientError) -> MoodhoodUserToken {
-		return try await post(
+		let token: MoodhoodUserToken = try await post(
 			endpoint: Endpoints.createMoodhoodAPIToken,
 			parameters: [
 				"client_id": environment.clientId,
@@ -40,16 +49,26 @@ extension StockMoodhoodAPIClient: MoodhoodAPIClient {
 				"grant_type": "client_credentials"
 			]
 		)
+		print("Created user token: \(token)")
+		self.userToken = token
+		return token
+	}
+
+	func unauthorize() {
+		self.userToken = nil
 	}
 
 	func createParticipant(
-		userToken: MoodhoodUserToken,
 		space: String,
 		room: String,
 		clientUniqueId: String,
 		role: String,
 		name: String
 	) async throws(MoodhoodAPIClientError) -> MoodhoodParticipant {
+		guard let userToken else {
+			throw .notAuthorized
+		}
+
 		return try await post(
 			endpoint: Endpoints.createParticipant(space: space),
 			headers: [
@@ -65,10 +84,13 @@ extension StockMoodhoodAPIClient: MoodhoodAPIClient {
 	}
 
 	func createSignalingToken(
-		userToken: MoodhoodUserToken,
 		space: String,
 		participant: String
 	) async throws(MoodhoodAPIClientError) -> SignalingToken {
+		guard let userToken else {
+			throw .notAuthorized
+		}
+
 		return try await post(
 			endpoint: Endpoints.createSignalingToken(space: space, participant: participant),
 			headers: [
@@ -78,10 +100,13 @@ extension StockMoodhoodAPIClient: MoodhoodAPIClient {
 	}
 
 	func fetchRoom(
-		userToken: MoodhoodUserToken,
 		space: String,
 		room: String
 	) async throws(MoodhoodAPIClientError) -> Room {
+		guard let userToken else {
+			throw .notAuthorized
+		}
+
 		return try await get(
 			endpoint: Endpoints.fetchRoom(space: space, room: room),
 			headers: [
@@ -90,12 +115,28 @@ extension StockMoodhoodAPIClient: MoodhoodAPIClient {
 		)
 	}
 
+	func fetchRoom(roomAlias: String) async throws(MoodhoodAPIClientError) -> Room {
+		guard let userToken else {
+			throw .notAuthorized
+		}
+
+		return try await get(
+			endpoint: Endpoints.fetchRoomByAlias(roomAlias: roomAlias),
+			headers: [
+				"Authorization": "\(userToken.tokenType) \(userToken.accessToken)",
+			]
+		)
+	}
+
 	func joinRoom(
-		userToken: MoodhoodUserToken,
 		space: String,
 		room: String,
 		participant: String
 	) async throws(MoodhoodAPIClientError) {
+		guard let userToken else {
+			throw .notAuthorized
+		}
+
 		let _: EmptyResult = try await post(
 			endpoint: Endpoints.joinRoom(space: space, room: room),
 			headers: [
