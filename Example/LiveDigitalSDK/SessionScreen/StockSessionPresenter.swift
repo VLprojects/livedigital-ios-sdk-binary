@@ -5,6 +5,15 @@ import LiveDigitalSDK
 
 
 final class StockSessionPresenter {
+	private enum Constants {
+		static let preferredInternalRoutes: [AudioRoute.Kind] = [
+			.internalLoudspeaker,
+			.internalEarSpeaker,
+			.muted,
+			.noAudio,
+		]
+	}
+
 	private weak var view: SessionView?
 	private let callManager: CallManager?
 	private let apiClient: MoodhoodAPIClient
@@ -17,6 +26,8 @@ final class StockSessionPresenter {
 	private var participantId: String?
 	private var call: Call?
 	private var peers = [PeerId: Peer]()
+	private var audioRouterInitialized = false
+	private var currentRouteKind: AudioRoute.Kind?
 
 	init(room: Room, apiClient: MoodhoodAPIClient, callManager: CallManager?, view: SessionView) {
 		self.room = room
@@ -171,6 +182,31 @@ extension StockSessionPresenter: AudioRouterDelegate {
 	}
 
 	func routesChanged(in audioRouter: AudioRouter) {
+		let availableRoutes = audioRouter.availableRoutes
+		let currentRoute = audioRouter.currentRoute
+		print("Routes changed: \(availableRoutes), current: \(currentRoute)")
+
+		if currentRoute.kind == .noAudio {
+			print("Route changed to \(currentRoute), probably during a call or timer alert")
+			// Avoid re-assigning audio route during system alert. It can cause an infinite recursion.
+			return
+		}
+
+		self.currentRouteKind = currentRoute.kind
+
+		// When user takes off his bluetooth headphones, but they are still connected,
+		// system will switch the route automatically to internal speaker by default.
+		// Internal speaker is hidden from routes list and activating it is not desired behaviour.
+		// In this case we try switching to the loudspeaker (not back to headphones!).
+		guard availableRoutes.contains(where: { $0.kind == currentRouteKind }) else {
+			selectDefaultInternalAudioRoute()
+			return
+		}
+
+		if !audioRouterInitialized {
+			audioRouterInitialized = true
+			selectDefaultAudioRoute()
+		}
 	}
 }
 
@@ -444,5 +480,28 @@ private extension StockSessionPresenter {
 		if peers[peer.id] == nil {
 			peersJoined([peer])
 		}
+	}
+
+	func selectDefaultAudioRoute() {
+		let availableRoutes = engine.audioRouter.availableRoutes
+		if let route = availableRoutes.first(where: { !Constants.preferredInternalRoutes.contains($0.kind) }) {
+			engine.audioRouter.updatePreferred(route: route)
+		} else {
+			selectDefaultInternalAudioRoute()
+		}
+	}
+
+	func selectDefaultInternalAudioRoute() {
+		let availableRoutes = engine.audioRouter.availableRoutes
+		// Constants.preferredInternalRoutes are ordered by its preference,
+		// so look for a route from the top of internalRouteKinds.
+		for kind in Constants.preferredInternalRoutes {
+			if let route = availableRoutes.first(where: { $0.kind == kind }) {
+				return engine.audioRouter.updatePreferred(route: route)
+			} else {
+				print("No route found for \(kind)")
+			}
+		}
+		print("No internal audio routes found")
 	}
 }
