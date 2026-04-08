@@ -10,7 +10,16 @@
 		E4CD703675EF048165295137 /* Pods_LiveDigitalSDKExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D970F2F152FCB07F1758161 /* Pods_LiveDigitalSDKExample.framework */; };
 		FF0C0A022F84D37D00F6BF1F /* AssetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0C0A012F84D37B00F6BF1F /* AssetColor.swift */; };
 		FF0C0A042F84D52600F6BF1F /* RoundedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0C0A032F84D51F00F6BF1F /* RoundedContainer.swift */; };
+		FF0C0A062F84D98900F6BF1F /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0C0A052F84D98700F6BF1F /* RoundButton.swift */; };
+		FF0C0A092F84FBBC00F6BF1F /* RoundButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0C0A082F84FBBB00F6BF1F /* RoundButtonConfig.swift */; };
 		FF15AD922F84CC98005CA200 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF15AD912F84CC94005CA200 /* GradientBackgroundView.swift */; };
+		FF27FF352F85023C00634930 /* RoundButtonStyleMediaCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF342F85022F00634930 /* RoundButtonStyleMediaCapture.swift */; };
+		FF27FF372F85025600634930 /* RoundButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF362F85025500634930 /* RoundButtonStyle.swift */; };
+		FF27FF392F85028400634930 /* RoundButtonStyledContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF382F85028200634930 /* RoundButtonStyledContent.swift */; };
+		FF27FF3B2F85F5DA00634930 /* RoundButtonStyleMediaSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF3A2F85F5D900634930 /* RoundButtonStyleMediaSound.swift */; };
+		FF27FF3D2F85F6A000634930 /* RoundButtonStyleAccept.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF3C2F85F69F00634930 /* RoundButtonStyleAccept.swift */; };
+		FF27FF3F2F85F6F100634930 /* RoundButtonStyleReject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF3E2F85F6ED00634930 /* RoundButtonStyleReject.swift */; };
+		FF27FF412F85FA2C00634930 /* RoundButtonStyleCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF402F85FA2800634930 /* RoundButtonStyleCustom.swift */; };
 		FF27FF432F85FB6000634930 /* AssetFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF422F85FB5A00634930 /* AssetFont.swift */; };
 		FF27FF492F85FB7200634930 /* PTRootUI-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF472F85FB7200634930 /* PTRootUI-Medium.ttf */; };
 		FF27FF4A2F85FB7200634930 /* PTRootUI-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF482F85FB7200634930 /* PTRootUI-Regular.ttf */; };
@@ -64,7 +73,16 @@
 		7A00D70263FC4BD91D4F586D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		FF0C0A012F84D37B00F6BF1F /* AssetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetColor.swift; sourceTree = "<group>"; };
 		FF0C0A032F84D51F00F6BF1F /* RoundedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedContainer.swift; sourceTree = "<group>"; };
+		FF0C0A052F84D98700F6BF1F /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		FF0C0A082F84FBBB00F6BF1F /* RoundButtonConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonConfig.swift; sourceTree = "<group>"; };
 		FF15AD912F84CC94005CA200 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
+		FF27FF342F85022F00634930 /* RoundButtonStyleMediaCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyleMediaCapture.swift; sourceTree = "<group>"; };
+		FF27FF362F85025500634930 /* RoundButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyle.swift; sourceTree = "<group>"; };
+		FF27FF382F85028200634930 /* RoundButtonStyledContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyledContent.swift; sourceTree = "<group>"; };
+		FF27FF3A2F85F5D900634930 /* RoundButtonStyleMediaSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyleMediaSound.swift; sourceTree = "<group>"; };
+		FF27FF3C2F85F69F00634930 /* RoundButtonStyleAccept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyleAccept.swift; sourceTree = "<group>"; };
+		FF27FF3E2F85F6ED00634930 /* RoundButtonStyleReject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyleReject.swift; sourceTree = "<group>"; };
+		FF27FF402F85FA2800634930 /* RoundButtonStyleCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyleCustom.swift; sourceTree = "<group>"; };
 		FF27FF422F85FB5A00634930 /* AssetFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetFont.swift; sourceTree = "<group>"; };
 		FF27FF452F85FB7200634930 /* PTRootUI-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Bold.ttf"; sourceTree = "<group>"; };
 		FF27FF462F85FB7200634930 /* PTRootUI-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Light.ttf"; sourceTree = "<group>"; };
@@ -185,6 +203,22 @@
 				0DF190EA7B43B1E668736D27 /* Pods-LiveDigitalSDKExample_Tests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		FF0C0A072F84F77900F6BF1F /* RoundButton */ = {
+			isa = PBXGroup;
+			children = (
+				FF0C0A052F84D98700F6BF1F /* RoundButton.swift */,
+				FF0C0A082F84FBBB00F6BF1F /* RoundButtonConfig.swift */,
+				FF27FF362F85025500634930 /* RoundButtonStyle.swift */,
+				FF27FF3C2F85F69F00634930 /* RoundButtonStyleAccept.swift */,
+				FF27FF402F85FA2800634930 /* RoundButtonStyleCustom.swift */,
+				FF27FF382F85028200634930 /* RoundButtonStyledContent.swift */,
+				FF27FF342F85022F00634930 /* RoundButtonStyleMediaCapture.swift */,
+				FF27FF3A2F85F5D900634930 /* RoundButtonStyleMediaSound.swift */,
+				FF27FF3E2F85F6ED00634930 /* RoundButtonStyleReject.swift */,
+			);
+			path = RoundButton;
 			sourceTree = "<group>";
 		};
 		FF15AD902F84CC75005CA200 /* Components */ = {
@@ -458,12 +492,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF27FF372F85025600634930 /* RoundButtonStyle.swift in Sources */,
 				FFFA32292D311A560043C2E7 /* MoodhoodParticipant.swift in Sources */,
+				FF27FF352F85023C00634930 /* RoundButtonStyleMediaCapture.swift in Sources */,
+				FF27FF3F2F85F6F100634930 /* RoundButtonStyleReject.swift in Sources */,
 				FFFA322F2D3131ED0043C2E7 /* EmptyResult.swift in Sources */,
 				FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */,
+				FF27FF3D2F85F6A000634930 /* RoundButtonStyleAccept.swift in Sources */,
 				FFFA32242D30EA170043C2E7 /* MoodhoodAPIClientError.swift in Sources */,
 				FFF42C812F31DD5800AE3966 /* SceneDelegate.swift in Sources */,
 				FFF42CA22F32037F00AE3966 /* Weak.swift in Sources */,
+				FF27FF392F85028400634930 /* RoundButtonStyledContent.swift in Sources */,
 				FF0C0A042F84D52600F6BF1F /* RoundedContainer.swift in Sources */,
 				FFF42C822F31DD5800AE3966 /* AppDelegate.swift in Sources */,
 				FFF42C832F31DD5800AE3966 /* PermissionState.swift in Sources */,
@@ -476,14 +515,18 @@
 				FFF42C882F31DD5800AE3966 /* QRGenerator.swift in Sources */,
 				FFF42C892F31DD5800AE3966 /* CallManager.swift in Sources */,
 				FFF42C8A2F31DD5800AE3966 /* StartVC.swift in Sources */,
+				FF27FF412F85FA2C00634930 /* RoundButtonStyleCustom.swift in Sources */,
 				FFF42C8B2F31DD5800AE3966 /* SessionVC.swift in Sources */,
+				FF0C0A062F84D98900F6BF1F /* RoundButton.swift in Sources */,
 				FFF42C8C2F31DD5800AE3966 /* PushPermissionsManager.swift in Sources */,
 				FFF42C8D2F31DD5800AE3966 /* PeerView.swift in Sources */,
 				FFF42C8E2F31DD5800AE3966 /* Call.swift in Sources */,
+				FF0C0A092F84FBBC00F6BF1F /* RoundButtonConfig.swift in Sources */,
 				FF0C0A022F84D37D00F6BF1F /* AssetColor.swift in Sources */,
 				FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */,
 				FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */,
 				FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */,
+				FF27FF3B2F85F5DA00634930 /* RoundButtonStyleMediaSound.swift in Sources */,
 				FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */,
 				FFF42C982F32006C00AE3966 /* StockSessionPresenter.swift in Sources */,
 				FFF42C992F32006C00AE3966 /* SessionView.swift in Sources */,
