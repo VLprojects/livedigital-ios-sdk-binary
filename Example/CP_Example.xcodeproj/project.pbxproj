@@ -26,6 +26,8 @@
 		FF27FF4B2F85FB7200634930 /* PTRootUI-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF452F85FB7200634930 /* PTRootUI-Bold.ttf */; };
 		FF27FF4C2F85FB7200634930 /* PTRootUI-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF462F85FB7200634930 /* PTRootUI-Light.ttf */; };
 		FF27FF4F2F85FC3F00634930 /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF4E2F85FC3F00634930 /* ColorAssets.xcassets */; };
+		FF27FF512F86005800634930 /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF502F86005300634930 /* StartScreenView.swift */; };
+		FF27FF552F8603B900634930 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF542F8603B900634930 /* Localizable.xcstrings */; };
 		FF27FF572F86598000634930 /* PermissionIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF562F86597900634930 /* PermissionIndicator.swift */; };
 		FF27FF592F865DFC00634930 /* LDToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF582F865DFB00634930 /* LDToggleStyle.swift */; };
 		FF75EF022F84D0A90050C740 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */; };
@@ -91,6 +93,8 @@
 		FF27FF472F85FB7200634930 /* PTRootUI-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Medium.ttf"; sourceTree = "<group>"; };
 		FF27FF482F85FB7200634930 /* PTRootUI-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Regular.ttf"; sourceTree = "<group>"; };
 		FF27FF4E2F85FC3F00634930 /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
+		FF27FF502F86005300634930 /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
+		FF27FF542F8603B900634930 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		FF27FF562F86597900634930 /* PermissionIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionIndicator.swift; sourceTree = "<group>"; };
 		FF27FF582F865DFB00634930 /* LDToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDToggleStyle.swift; sourceTree = "<group>"; };
 		FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
@@ -314,6 +318,7 @@
 			children = (
 				FFF42C6E2F31DD5800AE3966 /* Images.xcassets */,
 				FFF42C702F31DD5800AE3966 /* LaunchScreen.xib */,
+				FF27FF542F8603B900634930 /* Localizable.xcstrings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 		FFF42C7A2F31DD5800AE3966 /* StartScreen */ = {
 			isa = PBXGroup;
 			children = (
+				FF27FF502F86005300634930 /* StartScreenView.swift */,
 				FFF42C782F31DD5800AE3966 /* StartVC.storyboard */,
 				FFF42C792F31DD5800AE3966 /* StartVC.swift */,
 			);
@@ -419,6 +425,7 @@
 				English,
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
@@ -437,6 +444,7 @@
 			files = (
 				FF75EF022F84D0A90050C740 /* ImageAssets.xcassets in Resources */,
 				FF27FF492F85FB7200634930 /* PTRootUI-Medium.ttf in Resources */,
+				FF27FF552F8603B900634930 /* Localizable.xcstrings in Resources */,
 				FF27FF4A2F85FB7200634930 /* PTRootUI-Regular.ttf in Resources */,
 				FF27FF4F2F85FC3F00634930 /* ColorAssets.xcassets in Resources */,
 				FF27FF4B2F85FB7200634930 /* PTRootUI-Bold.ttf in Resources */,
@@ -507,6 +515,7 @@
 				FF27FF3D2F85F6A000634930 /* RoundButtonStyleAccept.swift in Sources */,
 				FFFA32242D30EA170043C2E7 /* MoodhoodAPIClientError.swift in Sources */,
 				FFF42C812F31DD5800AE3966 /* SceneDelegate.swift in Sources */,
+				FF27FF512F86005800634930 /* StartScreenView.swift in Sources */,
 				FFF42CA22F32037F00AE3966 /* Weak.swift in Sources */,
 				FF27FF392F85028400634930 /* RoundButtonStyledContent.swift in Sources */,
 				FF0C0A042F84D52600F6BF1F /* RoundedContainer.swift in Sources */,
@@ -614,6 +623,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -661,6 +671,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
@@ -684,6 +695,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "pro.vlprojects.livedigital-sdk-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = Debug;
@@ -705,6 +717,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "pro.vlprojects.livedigital-sdk-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = Release;
