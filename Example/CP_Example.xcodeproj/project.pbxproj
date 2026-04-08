@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E4CD703675EF048165295137 /* Pods_LiveDigitalSDKExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D970F2F152FCB07F1758161 /* Pods_LiveDigitalSDKExample.framework */; };
 		FF0C0A022F84D37D00F6BF1F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0C0A012F84D37B00F6BF1F /* Colors.swift */; };
+		FF0C0A042F84D52600F6BF1F /* RoundedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0C0A032F84D51F00F6BF1F /* RoundedContainer.swift */; };
+		FF15AD922F84CC98005CA200 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF15AD912F84CC94005CA200 /* GradientBackgroundView.swift */; };
 		FF75EF022F84D0A90050C740 /* UIAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF75EF012F84D0A90050C740 /* UIAssets.xcassets */; };
 		FFF42C7B2F31DD5800AE3966 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C6E2F31DD5800AE3966 /* Images.xcassets */; };
 		FFF42C7C2F31DD5800AE3966 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C702F31DD5800AE3966 /* LaunchScreen.xib */; };
@@ -55,6 +57,8 @@
 		78EA401149B94AA7EBFB46CF /* Pods_LiveDigitalSDKExample_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveDigitalSDKExample_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A00D70263FC4BD91D4F586D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		FF0C0A012F84D37B00F6BF1F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		FF0C0A032F84D51F00F6BF1F /* RoundedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedContainer.swift; sourceTree = "<group>"; };
+		FF15AD912F84CC94005CA200 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		FF75EF012F84D0A90050C740 /* UIAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = UIAssets.xcassets; sourceTree = "<group>"; };
 		FFF42C5B2F31DD5800AE3966 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF42C5C2F31DD5800AE3966 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -421,10 +425,12 @@
 				FFFA32242D30EA170043C2E7 /* MoodhoodAPIClientError.swift in Sources */,
 				FFF42C812F31DD5800AE3966 /* SceneDelegate.swift in Sources */,
 				FFF42CA22F32037F00AE3966 /* Weak.swift in Sources */,
+				FF0C0A042F84D52600F6BF1F /* RoundedContainer.swift in Sources */,
 				FFF42C822F31DD5800AE3966 /* AppDelegate.swift in Sources */,
 				FFF42C832F31DD5800AE3966 /* PermissionState.swift in Sources */,
 				FFF42C842F31DD5800AE3966 /* CallManagerObserver.swift in Sources */,
 				FFF42C852F31DD5800AE3966 /* StockQRGenerator.swift in Sources */,
+				FF15AD922F84CC98005CA200 /* GradientBackgroundView.swift in Sources */,
 				FFF42C862F31DD5800AE3966 /* FullscreenImageVC.swift in Sources */,
 				FFF42C872F31DD5800AE3966 /* StockCallManager.swift in Sources */,
 				FFF42C882F31DD5800AE3966 /* QRGenerator.swift in Sources */,
