@@ -26,6 +26,8 @@
 		FF27FF4B2F85FB7200634930 /* PTRootUI-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF452F85FB7200634930 /* PTRootUI-Bold.ttf */; };
 		FF27FF4C2F85FB7200634930 /* PTRootUI-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF462F85FB7200634930 /* PTRootUI-Light.ttf */; };
 		FF27FF4F2F85FC3F00634930 /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF4E2F85FC3F00634930 /* ColorAssets.xcassets */; };
+		FF27FF572F86598000634930 /* PermissionIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF562F86597900634930 /* PermissionIndicator.swift */; };
+		FF27FF592F865DFC00634930 /* LDToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF582F865DFB00634930 /* LDToggleStyle.swift */; };
 		FF75EF022F84D0A90050C740 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */; };
 		FFF42C7B2F31DD5800AE3966 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C6E2F31DD5800AE3966 /* Images.xcassets */; };
 		FFF42C7C2F31DD5800AE3966 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C702F31DD5800AE3966 /* LaunchScreen.xib */; };
@@ -89,6 +91,8 @@
 		FF27FF472F85FB7200634930 /* PTRootUI-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Medium.ttf"; sourceTree = "<group>"; };
 		FF27FF482F85FB7200634930 /* PTRootUI-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Regular.ttf"; sourceTree = "<group>"; };
 		FF27FF4E2F85FC3F00634930 /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
+		FF27FF562F86597900634930 /* PermissionIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionIndicator.swift; sourceTree = "<group>"; };
+		FF27FF582F865DFB00634930 /* LDToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDToggleStyle.swift; sourceTree = "<group>"; };
 		FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
 		FFF42C5B2F31DD5800AE3966 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF42C5C2F31DD5800AE3966 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -226,10 +230,12 @@
 			children = (
 				FF27FF4D2F85FC1F00634930 /* Colors */,
 				FF27FF442F85FB6400634930 /* Fonts */,
-				FF0C0A072F84F77900F6BF1F /* RoundButton */,
-				FF0C0A032F84D51F00F6BF1F /* RoundedContainer.swift */,
 				FF15AD912F84CC94005CA200 /* GradientBackgroundView.swift */,
 				FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */,
+				FF27FF582F865DFB00634930 /* LDToggleStyle.swift */,
+				FF27FF562F86597900634930 /* PermissionIndicator.swift */,
+				FF0C0A072F84F77900F6BF1F /* RoundButton */,
+				FF0C0A032F84D51F00F6BF1F /* RoundedContainer.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -525,6 +531,7 @@
 				FFF42C8C2F31DD5800AE3966 /* PushPermissionsManager.swift in Sources */,
 				FFF42C8D2F31DD5800AE3966 /* PeerView.swift in Sources */,
 				FFF42C8E2F31DD5800AE3966 /* Call.swift in Sources */,
+				FF27FF572F86598000634930 /* PermissionIndicator.swift in Sources */,
 				FF0C0A092F84FBBC00F6BF1F /* RoundButtonConfig.swift in Sources */,
 				FF0C0A022F84D37D00F6BF1F /* AssetColor.swift in Sources */,
 				FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */,
@@ -536,6 +543,7 @@
 				FFF42C992F32006C00AE3966 /* SessionView.swift in Sources */,
 				FFF42C9A2F32006C00AE3966 /* SessionPresenter.swift in Sources */,
 				FFFA322D2D3128240043C2E7 /* Room.swift in Sources */,
+				FF27FF592F865DFC00634930 /* LDToggleStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
