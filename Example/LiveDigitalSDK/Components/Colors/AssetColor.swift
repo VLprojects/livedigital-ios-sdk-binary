@@ -4,6 +4,10 @@ import SwiftUI
 
 enum AssetColor: String, CaseIterable, Identifiable {
 	case contrast = "contrast"
+	case secondaryBase = "secondary-base"
+	case secondary01 = "secondary-01"
+	case secondary02 = "secondary-02"
+	case secondary03 = "secondary-03"
 	case successBase = "success-base"
 	case success01 = "success-01"
 	case errorBase = "error-base"
