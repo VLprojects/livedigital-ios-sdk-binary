@@ -30,6 +30,7 @@
 		FF27FF552F8603B900634930 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF542F8603B900634930 /* Localizable.xcstrings */; };
 		FF27FF572F86598000634930 /* PermissionIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF562F86597900634930 /* PermissionIndicator.swift */; };
 		FF27FF592F865DFC00634930 /* LDToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF582F865DFB00634930 /* LDToggleStyle.swift */; };
+		FF27FF5B2F86776700634930 /* SessionScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF5A2F86776300634930 /* SessionScreenView.swift */; };
 		FF75EF022F84D0A90050C740 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */; };
 		FFF42C7B2F31DD5800AE3966 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C6E2F31DD5800AE3966 /* Images.xcassets */; };
 		FFF42C7C2F31DD5800AE3966 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C702F31DD5800AE3966 /* LaunchScreen.xib */; };
@@ -97,6 +98,7 @@
 		FF27FF542F8603B900634930 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		FF27FF562F86597900634930 /* PermissionIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionIndicator.swift; sourceTree = "<group>"; };
 		FF27FF582F865DFB00634930 /* LDToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDToggleStyle.swift; sourceTree = "<group>"; };
+		FF27FF5A2F86776300634930 /* SessionScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionScreenView.swift; sourceTree = "<group>"; };
 		FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
 		FFF42C5B2F31DD5800AE3966 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF42C5C2F31DD5800AE3966 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 		FFF42C772F31DD5800AE3966 /* SessionScreen */ = {
 			isa = PBXGroup;
 			children = (
+				FF27FF5A2F86776300634930 /* SessionScreenView.swift */,
 				FFF42C722F31DD5800AE3966 /* PeerView.swift */,
 				FFF42C732F31DD5800AE3966 /* PeerView.xib */,
 				FFF42C952F32006C00AE3966 /* SessionPresenter.swift */,
@@ -515,6 +518,7 @@
 				FF27FF352F85023C00634930 /* RoundButtonStyleMediaCapture.swift in Sources */,
 				FF27FF3F2F85F6F100634930 /* RoundButtonStyleReject.swift in Sources */,
 				FFFA322F2D3131ED0043C2E7 /* EmptyResult.swift in Sources */,
+				FF27FF5B2F86776700634930 /* SessionScreenView.swift in Sources */,
 				FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */,
 				FF27FF3D2F85F6A000634930 /* RoundButtonStyleAccept.swift in Sources */,
 				FFFA32242D30EA170043C2E7 /* MoodhoodAPIClientError.swift in Sources */,
