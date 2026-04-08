@@ -8,10 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		E4CD703675EF048165295137 /* Pods_LiveDigitalSDKExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D970F2F152FCB07F1758161 /* Pods_LiveDigitalSDKExample.framework */; };
-		FF0C0A022F84D37D00F6BF1F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0C0A012F84D37B00F6BF1F /* Colors.swift */; };
+		FF0C0A022F84D37D00F6BF1F /* AssetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0C0A012F84D37B00F6BF1F /* AssetColor.swift */; };
 		FF0C0A042F84D52600F6BF1F /* RoundedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0C0A032F84D51F00F6BF1F /* RoundedContainer.swift */; };
 		FF15AD922F84CC98005CA200 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF15AD912F84CC94005CA200 /* GradientBackgroundView.swift */; };
-		FF75EF022F84D0A90050C740 /* UIAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF75EF012F84D0A90050C740 /* UIAssets.xcassets */; };
+		FF27FF432F85FB6000634930 /* AssetFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF422F85FB5A00634930 /* AssetFont.swift */; };
+		FF27FF492F85FB7200634930 /* PTRootUI-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF472F85FB7200634930 /* PTRootUI-Medium.ttf */; };
+		FF27FF4A2F85FB7200634930 /* PTRootUI-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF482F85FB7200634930 /* PTRootUI-Regular.ttf */; };
+		FF27FF4B2F85FB7200634930 /* PTRootUI-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF452F85FB7200634930 /* PTRootUI-Bold.ttf */; };
+		FF27FF4C2F85FB7200634930 /* PTRootUI-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF462F85FB7200634930 /* PTRootUI-Light.ttf */; };
+		FF27FF4F2F85FC3F00634930 /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF27FF4E2F85FC3F00634930 /* ColorAssets.xcassets */; };
+		FF75EF022F84D0A90050C740 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */; };
 		FFF42C7B2F31DD5800AE3966 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C6E2F31DD5800AE3966 /* Images.xcassets */; };
 		FFF42C7C2F31DD5800AE3966 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C702F31DD5800AE3966 /* LaunchScreen.xib */; };
 		FFF42C7E2F31DD5800AE3966 /* PeerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C732F31DD5800AE3966 /* PeerView.xib */; };
@@ -56,10 +62,16 @@
 		607FACD01AFB9204008FA782 /* LiveDigitalSDKExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveDigitalSDKExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78EA401149B94AA7EBFB46CF /* Pods_LiveDigitalSDKExample_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveDigitalSDKExample_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A00D70263FC4BD91D4F586D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		FF0C0A012F84D37B00F6BF1F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		FF0C0A012F84D37B00F6BF1F /* AssetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetColor.swift; sourceTree = "<group>"; };
 		FF0C0A032F84D51F00F6BF1F /* RoundedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedContainer.swift; sourceTree = "<group>"; };
 		FF15AD912F84CC94005CA200 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
-		FF75EF012F84D0A90050C740 /* UIAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = UIAssets.xcassets; sourceTree = "<group>"; };
+		FF27FF422F85FB5A00634930 /* AssetFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetFont.swift; sourceTree = "<group>"; };
+		FF27FF452F85FB7200634930 /* PTRootUI-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Bold.ttf"; sourceTree = "<group>"; };
+		FF27FF462F85FB7200634930 /* PTRootUI-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Light.ttf"; sourceTree = "<group>"; };
+		FF27FF472F85FB7200634930 /* PTRootUI-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Medium.ttf"; sourceTree = "<group>"; };
+		FF27FF482F85FB7200634930 /* PTRootUI-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Regular.ttf"; sourceTree = "<group>"; };
+		FF27FF4E2F85FC3F00634930 /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
+		FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
 		FFF42C5B2F31DD5800AE3966 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF42C5C2F31DD5800AE3966 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FFF42C5F2F31DD5800AE3966 /* Call.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Call.swift; sourceTree = "<group>"; };
@@ -178,13 +190,35 @@
 		FF15AD902F84CC75005CA200 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				FF27FF4D2F85FC1F00634930 /* Colors */,
+				FF27FF442F85FB6400634930 /* Fonts */,
 				FF0C0A072F84F77900F6BF1F /* RoundButton */,
 				FF0C0A032F84D51F00F6BF1F /* RoundedContainer.swift */,
-				FF0C0A012F84D37B00F6BF1F /* Colors.swift */,
 				FF15AD912F84CC94005CA200 /* GradientBackgroundView.swift */,
-				FF75EF012F84D0A90050C740 /* UIAssets.xcassets */,
+				FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		FF27FF442F85FB6400634930 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FF27FF422F85FB5A00634930 /* AssetFont.swift */,
+				FF27FF452F85FB7200634930 /* PTRootUI-Bold.ttf */,
+				FF27FF462F85FB7200634930 /* PTRootUI-Light.ttf */,
+				FF27FF472F85FB7200634930 /* PTRootUI-Medium.ttf */,
+				FF27FF482F85FB7200634930 /* PTRootUI-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		FF27FF4D2F85FC1F00634930 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				FF0C0A012F84D37B00F6BF1F /* AssetColor.swift */,
+				FF27FF4E2F85FC3F00634930 /* ColorAssets.xcassets */,
+			);
+			path = Colors;
 			sourceTree = "<group>";
 		};
 		FFF42C5D2F31DD5800AE3966 /* Application */ = {
@@ -361,7 +395,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF75EF022F84D0A90050C740 /* UIAssets.xcassets in Resources */,
+				FF75EF022F84D0A90050C740 /* ImageAssets.xcassets in Resources */,
+				FF27FF492F85FB7200634930 /* PTRootUI-Medium.ttf in Resources */,
+				FF27FF4A2F85FB7200634930 /* PTRootUI-Regular.ttf in Resources */,
+				FF27FF4F2F85FC3F00634930 /* ColorAssets.xcassets in Resources */,
+				FF27FF4B2F85FB7200634930 /* PTRootUI-Bold.ttf in Resources */,
+				FF27FF4C2F85FB7200634930 /* PTRootUI-Light.ttf in Resources */,
 				FFF42C7B2F31DD5800AE3966 /* Images.xcassets in Resources */,
 				FFF42C7C2F31DD5800AE3966 /* LaunchScreen.xib in Resources */,
 				FFF42C7E2F31DD5800AE3966 /* PeerView.xib in Resources */,
@@ -430,6 +469,7 @@
 				FFF42C832F31DD5800AE3966 /* PermissionState.swift in Sources */,
 				FFF42C842F31DD5800AE3966 /* CallManagerObserver.swift in Sources */,
 				FFF42C852F31DD5800AE3966 /* StockQRGenerator.swift in Sources */,
+				FF27FF432F85FB6000634930 /* AssetFont.swift in Sources */,
 				FF15AD922F84CC98005CA200 /* GradientBackgroundView.swift in Sources */,
 				FFF42C862F31DD5800AE3966 /* FullscreenImageVC.swift in Sources */,
 				FFF42C872F31DD5800AE3966 /* StockCallManager.swift in Sources */,
@@ -440,7 +480,7 @@
 				FFF42C8C2F31DD5800AE3966 /* PushPermissionsManager.swift in Sources */,
 				FFF42C8D2F31DD5800AE3966 /* PeerView.swift in Sources */,
 				FFF42C8E2F31DD5800AE3966 /* Call.swift in Sources */,
-				FF0C0A022F84D37D00F6BF1F /* Colors.swift in Sources */,
+				FF0C0A022F84D37D00F6BF1F /* AssetColor.swift in Sources */,
 				FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */,
 				FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */,
 				FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */,
