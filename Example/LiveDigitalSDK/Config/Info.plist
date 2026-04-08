@@ -57,6 +57,13 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>PTRootUI-Bold.ttf</string>
+		<string>PTRootUI-Light.ttf</string>
+		<string>PTRootUI-Medium.ttf</string>
+		<string>PTRootUI-Regular.ttf</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
