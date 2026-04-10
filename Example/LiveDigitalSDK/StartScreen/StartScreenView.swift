@@ -3,9 +3,11 @@ import SwiftUI
 
 
 struct StartScreenView {
-	@State var apnsPermissionGranted = false
-	@State var microphonePermissionGranted = false
-	@State var cameraPermissionGranted = false
+	@ObservedObject private var vm: StartScreenVM
+
+	init(vm: StartScreenVM) {
+		self.vm = vm
+	}
 }
 
 // MARK: - View implementation
@@ -32,9 +34,12 @@ private extension StartScreenView {
 		RoundedContainer {
 			VStack {
 				Text(.copyApnsTokenHint)
+					.font(AssetFont.mainTextMedium.font)
 					.foregroundStyle(AssetColor.contrast.color)
+					.frame(maxWidth: .infinity, alignment: .leading)
 				RoundButton(
 					config: .custom(nil, String(localized: .copyApnsTokenAction)),
+					disabled: !vm.apnsPermissionGranted,
 					action: {
 					}
 				)
@@ -48,7 +53,9 @@ private extension StartScreenView {
 		RoundedContainer {
 			VStack(spacing: 20) {
 				Text(.permissionsLegend)
+					.font(AssetFont.mainTextMedium.font)
 					.foregroundStyle(AssetColor.contrast.color)
+					.frame(maxWidth: .infinity, alignment: .leading)
 				apnsPermissionBlock
 				cameraPermissionBlock
 				microphonePermissionBlock
@@ -60,8 +67,9 @@ private extension StartScreenView {
 
 	var apnsPermissionBlock: some View {
 		HStack {
-			Toggle(isOn: $apnsPermissionGranted) {
+			Toggle(isOn: apnsPermissionBinding) {
 				Text(.apnsPermissionTitle)
+					.font(AssetFont.mainTextMedium.font)
 					.foregroundStyle(AssetColor.contrast.color)
 				PermissionIndicator(type: .required)
 			}
@@ -71,8 +79,9 @@ private extension StartScreenView {
 
 	var cameraPermissionBlock: some View {
 		HStack {
-			Toggle(isOn: $cameraPermissionGranted) {
+			Toggle(isOn: cameraPermissionBinding) {
 				Text(.cameraPermissionTitle)
+					.font(AssetFont.mainTextMedium.font)
 					.foregroundStyle(AssetColor.contrast.color)
 				PermissionIndicator(type: .regular)
 			}
@@ -82,18 +91,52 @@ private extension StartScreenView {
 
 	var microphonePermissionBlock: some View {
 		HStack {
-			Toggle(isOn: $microphonePermissionGranted) {
+			Toggle(isOn: microphonePermissionBinding) {
 				Text(.microphonePermissionTitle)
+					.font(AssetFont.mainTextMedium.font)
 					.foregroundStyle(AssetColor.contrast.color)
 				PermissionIndicator(type: .regular)
 			}
 			.toggleStyle(LDToggleStyle())
 		}
 	}
-}
 
-// MARK: - Preview implementation
+	var apnsPermissionBinding: Binding<Bool> {
+		Binding(
+			get: {
+				vm.apnsPermissionGranted
+			},
+			set: { newValue in
+				if newValue {
+					vm.requestApnsPermission()
+				}
+			}
+		)
+	}
 
-#Preview {
-	StartScreenView()
+	var cameraPermissionBinding: Binding<Bool> {
+		Binding(
+			get: {
+				vm.cameraPermissionGranted
+			},
+			set: { newValue in
+				if newValue {
+					vm.requestCameraPermission()
+				}
+			}
+		)
+	}
+
+	var microphonePermissionBinding: Binding<Bool> {
+		Binding(
+			get: {
+				vm.microphonePermissionGranted
+			},
+			set: { newValue in
+				if newValue {
+					vm.requestMicrophonePermission()
+				}
+			}
+		)
+	}
 }
