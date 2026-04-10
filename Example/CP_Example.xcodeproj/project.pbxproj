@@ -31,6 +31,9 @@
 		FF27FF572F86598000634930 /* PermissionIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF562F86597900634930 /* PermissionIndicator.swift */; };
 		FF27FF592F865DFC00634930 /* LDToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF582F865DFB00634930 /* LDToggleStyle.swift */; };
 		FF27FF5B2F86776700634930 /* SessionScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF5A2F86776300634930 /* SessionScreenView.swift */; };
+		FF741A9D2F88F4F000C4C19C /* CaptureDevicePermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741A9C2F88F4E600C4C19C /* CaptureDevicePermissionsManager.swift */; };
+		FF741A9F2F88F50A00C4C19C /* StockCaptureDevicePermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741A9E2F88F50700C4C19C /* StockCaptureDevicePermissionsManager.swift */; };
+		FF741AA12F88F54E00C4C19C /* CaptureDeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AA02F88F54A00C4C19C /* CaptureDeviceType.swift */; };
 		FF75EF022F84D0A90050C740 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */; };
 		FFF42C7B2F31DD5800AE3966 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C6E2F31DD5800AE3966 /* Images.xcassets */; };
 		FFF42C7C2F31DD5800AE3966 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C702F31DD5800AE3966 /* LaunchScreen.xib */; };
@@ -99,6 +102,9 @@
 		FF27FF562F86597900634930 /* PermissionIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionIndicator.swift; sourceTree = "<group>"; };
 		FF27FF582F865DFB00634930 /* LDToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDToggleStyle.swift; sourceTree = "<group>"; };
 		FF27FF5A2F86776300634930 /* SessionScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionScreenView.swift; sourceTree = "<group>"; };
+		FF741A9C2F88F4E600C4C19C /* CaptureDevicePermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDevicePermissionsManager.swift; sourceTree = "<group>"; };
+		FF741A9E2F88F50700C4C19C /* StockCaptureDevicePermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCaptureDevicePermissionsManager.swift; sourceTree = "<group>"; };
+		FF741AA02F88F54A00C4C19C /* CaptureDeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDeviceType.swift; sourceTree = "<group>"; };
 		FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
 		FFF42C5B2F31DD5800AE3966 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF42C5C2F31DD5800AE3966 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -299,6 +305,9 @@
 		FFF42C692F31DD5800AE3966 /* Permissions */ = {
 			isa = PBXGroup;
 			children = (
+				FF741AA02F88F54A00C4C19C /* CaptureDeviceType.swift */,
+				FF741A9E2F88F50700C4C19C /* StockCaptureDevicePermissionsManager.swift */,
+				FF741A9C2F88F4E600C4C19C /* CaptureDevicePermissionsManager.swift */,
 				FFF42C672F31DD5800AE3966 /* PermissionState.swift */,
 				FFF42C682F31DD5800AE3966 /* PushPermissionsManager.swift */,
 			);
@@ -532,6 +541,7 @@
 				FFF42C842F31DD5800AE3966 /* CallManagerObserver.swift in Sources */,
 				FFF42C852F31DD5800AE3966 /* StockQRGenerator.swift in Sources */,
 				FF27FF432F85FB6000634930 /* AssetFont.swift in Sources */,
+				FF741A9F2F88F50A00C4C19C /* StockCaptureDevicePermissionsManager.swift in Sources */,
 				FF15AD922F84CC98005CA200 /* GradientBackgroundView.swift in Sources */,
 				FFF42C862F31DD5800AE3966 /* FullscreenImageVC.swift in Sources */,
 				FFF42C872F31DD5800AE3966 /* StockCallManager.swift in Sources */,
@@ -551,10 +561,12 @@
 				FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */,
 				FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */,
 				FF27FF3B2F85F5DA00634930 /* RoundButtonStyleMediaSound.swift in Sources */,
+				FF741AA12F88F54E00C4C19C /* CaptureDeviceType.swift in Sources */,
 				FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */,
 				FFF42C982F32006C00AE3966 /* StockSessionPresenter.swift in Sources */,
 				FFF42C992F32006C00AE3966 /* SessionView.swift in Sources */,
 				FFF42C9A2F32006C00AE3966 /* SessionPresenter.swift in Sources */,
+				FF741A9D2F88F4F000C4C19C /* CaptureDevicePermissionsManager.swift in Sources */,
 				FFFA322D2D3128240043C2E7 /* Room.swift in Sources */,
 				FF27FF592F865DFC00634930 /* LDToggleStyle.swift in Sources */,
 			);
