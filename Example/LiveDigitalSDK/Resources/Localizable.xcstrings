@@ -29,7 +29,7 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Камера"
           }
         }
@@ -58,13 +58,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Copy device token for APNS notifications"
+            "value" : "Copy device token for APNS notifications. This action requires push notifications permissions."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Скопируйте токен устройства для отправки пуш-уведомлений"
+            "value" : "Скопируйте токен устройства для отправки пуш-уведомлений. Действие требует разрешение на уведомления."
           }
         }
       }
