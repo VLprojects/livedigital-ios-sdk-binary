@@ -3,11 +3,26 @@ import Intents
 import SwiftUI
 
 
-final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder {
 	var window: UIWindow?
-	private let callManager = StockCallManager()
-	var startVC: UIViewController?
 
+	private let callManager: CallManager
+	private let pushPermissionsManager: PushPermissionsManager
+
+	private var callCoordinator: CallCoordinator?
+	private var startVC: UIViewController?
+
+	override init() {
+		let callManager = StockCallManager()
+		self.callManager = callManager
+		self.pushPermissionsManager = callManager
+		super.init()
+	}
+}
+
+// MARK: - UIWindowSceneDelegate implementation
+
+extension SceneDelegate: UIWindowSceneDelegate {
 	func scene(
 		_ scene: UIScene,
 		willConnectTo session: UISceneSession,
@@ -22,7 +37,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 		let startVM = StartScreenVM(
 			callManager: callManager,
-			apnsPermissionManager: callManager,
+			apnsPermissionManager: pushPermissionsManager,
 			microphonePermissionManager: StockCaptureDevicePermissionsManager(deviceType: .microphone),
 			cameraPermissionManager: StockCaptureDevicePermissionsManager(deviceType: .camera)
 		)
@@ -32,6 +47,11 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		self.startVC = startVC
 
 		window.makeKeyAndVisible()
+
+		self.callCoordinator = CallCoordinator(
+			callManager: callManager,
+			window: window
+		)
 
 		if let intent = connectionOptions.userActivities.first?.interaction?.intent {
 			callManager.startCallFromIntent(intent)

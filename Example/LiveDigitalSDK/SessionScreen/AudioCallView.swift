@@ -2,16 +2,13 @@ import Foundation
 import SwiftUI
 
 
-struct SessionScreenView {
-	@State var isSoundOn = true
-	@State var isMicrophoneOn = true
-	@State var companionName: String = "Room / Contact name"
-	@State var callStatus: String = "00:01"
+struct AudioCallView {
+	@ObservedObject var vm: AudioCallVM
 }
 
 // MARK: - View implementation
 
-extension SessionScreenView: View {
+extension AudioCallView: View {
 	var body: some View {
 		ZStack {
 			GradientBackgroundView()
@@ -30,10 +27,10 @@ extension SessionScreenView: View {
 
 // MARK: - Private methods
 
-private extension SessionScreenView {
+private extension AudioCallView {
 	var nameBlock: some View {
 		RoundedContainer {
-			Text(companionName)
+			Text(vm.companionName)
 				.font(AssetFont.mainTextMedium.font)
 				.foregroundStyle(AssetColor.contrast.color)
 				.padding(.horizontal, 20)
@@ -42,7 +39,7 @@ private extension SessionScreenView {
 
 	var statusBlock: some View {
 		RoundedContainer {
-			Text(callStatus)
+			Text(vm.callStatus)
 				.font(AssetFont.mainTextMedium.font)
 				.monospacedDigit()
 				.foregroundStyle(AssetColor.contrast.color)
@@ -65,18 +62,18 @@ private extension SessionScreenView {
 
 	var speakerButton: some View {
 		RoundButton(
-			config: .sound(isOn: isSoundOn),
+			config: .sound(isOn: vm.isSoundOn),
 			action: {
-				isSoundOn.toggle()
+				vm.toggleSound()
 			}
 		)
 	}
 
 	var microphoneButton: some View {
 		RoundButton(
-			config: .microphone(isOn: isMicrophoneOn),
+			config: .microphone(isOn: vm.isMicrophoneOn),
 			action: {
-				isMicrophoneOn.toggle()
+				vm.toggleMicrophone()
 			}
 		)
 	}
@@ -85,13 +82,8 @@ private extension SessionScreenView {
 		RoundButton(
 			config: .reject,
 			action: {
+				vm.endCall()
 			}
 		)
 	}
-}
-
-// MARK: - Preview implementation
-
-#Preview {
-	SessionScreenView()
 }
