@@ -34,6 +34,11 @@
 		FF741A9D2F88F4F000C4C19C /* CaptureDevicePermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741A9C2F88F4E600C4C19C /* CaptureDevicePermissionsManager.swift */; };
 		FF741A9F2F88F50A00C4C19C /* StockCaptureDevicePermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741A9E2F88F50700C4C19C /* StockCaptureDevicePermissionsManager.swift */; };
 		FF741AA12F88F54E00C4C19C /* CaptureDeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AA02F88F54A00C4C19C /* CaptureDeviceType.swift */; };
+		FF741AA42F88FEFA00C4C19C /* NotificationsStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AA32F88FEF400C4C19C /* NotificationsStack.swift */; };
+		FF741AA62F89006600C4C19C /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AA52F89006200C4C19C /* NotificationView.swift */; };
+		FF741AA82F8903A800C4C19C /* TopFadeMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AA72F89039E00C4C19C /* TopFadeMask.swift */; };
+		FF741AAA2F8CA1E700C4C19C /* NotificationsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AA92F8CA1E200C4C19C /* NotificationsVM.swift */; };
+		FF741AAC2F8CA1FA00C4C19C /* NotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AAB2F8CA1F900C4C19C /* NotificationContent.swift */; };
 		FF75EF022F84D0A90050C740 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */; };
 		FFDF8DCD2F88DD81005306EF /* StartScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDF8DCC2F88DD7C005306EF /* StartScreenVM.swift */; };
 		FFF42C7B2F31DD5800AE3966 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C6E2F31DD5800AE3966 /* Images.xcassets */; };
@@ -106,6 +111,11 @@
 		FF741A9C2F88F4E600C4C19C /* CaptureDevicePermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDevicePermissionsManager.swift; sourceTree = "<group>"; };
 		FF741A9E2F88F50700C4C19C /* StockCaptureDevicePermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCaptureDevicePermissionsManager.swift; sourceTree = "<group>"; };
 		FF741AA02F88F54A00C4C19C /* CaptureDeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDeviceType.swift; sourceTree = "<group>"; };
+		FF741AA32F88FEF400C4C19C /* NotificationsStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsStack.swift; sourceTree = "<group>"; };
+		FF741AA52F89006200C4C19C /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		FF741AA72F89039E00C4C19C /* TopFadeMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopFadeMask.swift; sourceTree = "<group>"; };
+		FF741AA92F8CA1E200C4C19C /* NotificationsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsVM.swift; sourceTree = "<group>"; };
+		FF741AAB2F8CA1F900C4C19C /* NotificationContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationContent.swift; sourceTree = "<group>"; };
 		FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
 		FFDF8DCC2F88DD7C005306EF /* StartScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVM.swift; sourceTree = "<group>"; };
 		FFF42C5B2F31DD5800AE3966 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -242,6 +252,7 @@
 		FF15AD902F84CC75005CA200 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				FF741AA22F88FEEA00C4C19C /* NotificationsStack */,
 				FF27FF4D2F85FC1F00634930 /* Colors */,
 				FF27FF442F85FB6400634930 /* Fonts */,
 				FF15AD912F84CC94005CA200 /* GradientBackgroundView.swift */,
@@ -273,6 +284,18 @@
 				FF27FF4E2F85FC3F00634930 /* ColorAssets.xcassets */,
 			);
 			path = Colors;
+			sourceTree = "<group>";
+		};
+		FF741AA22F88FEEA00C4C19C /* NotificationsStack */ = {
+			isa = PBXGroup;
+			children = (
+				FF741AAB2F8CA1F900C4C19C /* NotificationContent.swift */,
+				FF741AA92F8CA1E200C4C19C /* NotificationsVM.swift */,
+				FF741AA72F89039E00C4C19C /* TopFadeMask.swift */,
+				FF741AA52F89006200C4C19C /* NotificationView.swift */,
+				FF741AA32F88FEF400C4C19C /* NotificationsStack.swift */,
+			);
+			path = NotificationsStack;
 			sourceTree = "<group>";
 		};
 		FFF42C5D2F31DD5800AE3966 /* Application */ = {
@@ -524,18 +547,21 @@
 				FF27FF372F85025600634930 /* RoundButtonStyle.swift in Sources */,
 				FFFA32292D311A560043C2E7 /* MoodhoodParticipant.swift in Sources */,
 				FF27FF352F85023C00634930 /* RoundButtonStyleMediaCapture.swift in Sources */,
+				FF741AAC2F8CA1FA00C4C19C /* NotificationContent.swift in Sources */,
 				FF27FF3F2F85F6F100634930 /* RoundButtonStyleReject.swift in Sources */,
 				FFFA322F2D3131ED0043C2E7 /* EmptyResult.swift in Sources */,
 				FF27FF5B2F86776700634930 /* SessionScreenView.swift in Sources */,
 				FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */,
 				FF27FF3D2F85F6A000634930 /* RoundButtonStyleAccept.swift in Sources */,
 				FFFA32242D30EA170043C2E7 /* MoodhoodAPIClientError.swift in Sources */,
+				FF741AA62F89006600C4C19C /* NotificationView.swift in Sources */,
 				FFF42C812F31DD5800AE3966 /* SceneDelegate.swift in Sources */,
 				FF27FF512F86005800634930 /* StartScreenView.swift in Sources */,
 				FFF42CA22F32037F00AE3966 /* Weak.swift in Sources */,
 				FF27FF392F85028400634930 /* RoundButtonStyledContent.swift in Sources */,
 				FF0C0A042F84D52600F6BF1F /* RoundedContainer.swift in Sources */,
 				FFF42C822F31DD5800AE3966 /* AppDelegate.swift in Sources */,
+				FF741AA82F8903A800C4C19C /* TopFadeMask.swift in Sources */,
 				FFF42C832F31DD5800AE3966 /* PermissionState.swift in Sources */,
 				FFF42C842F31DD5800AE3966 /* CallManagerObserver.swift in Sources */,
 				FFF42C852F31DD5800AE3966 /* StockQRGenerator.swift in Sources */,
@@ -555,10 +581,12 @@
 				FFF42C8D2F31DD5800AE3966 /* PeerView.swift in Sources */,
 				FFF42C8E2F31DD5800AE3966 /* Call.swift in Sources */,
 				FF27FF572F86598000634930 /* PermissionIndicator.swift in Sources */,
+				FF741AA42F88FEFA00C4C19C /* NotificationsStack.swift in Sources */,
 				FF0C0A092F84FBBC00F6BF1F /* RoundButtonConfig.swift in Sources */,
 				FF0C0A022F84D37D00F6BF1F /* AssetColor.swift in Sources */,
 				FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */,
 				FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */,
+				FF741AAA2F8CA1E700C4C19C /* NotificationsVM.swift in Sources */,
 				FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */,
 				FF27FF3B2F85F5DA00634930 /* RoundButtonStyleMediaSound.swift in Sources */,
 				FF741AA12F88F54E00C4C19C /* CaptureDeviceType.swift in Sources */,
