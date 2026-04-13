@@ -41,6 +41,7 @@
 		FF741AAC2F8CA1FA00C4C19C /* NotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AAB2F8CA1F900C4C19C /* NotificationContent.swift */; };
 		FF741AAE2F8CA6F200C4C19C /* CallCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AAD2F8CA6ED00C4C19C /* CallCoordinator.swift */; };
 		FF741AB02F8CAFDC00C4C19C /* AudioCallVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AAF2F8CAFD800C4C19C /* AudioCallVM.swift */; };
+		FF741AB22F8CD0AB00C4C19C /* CallSessionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AB12F8CD0A800C4C19C /* CallSessionStatus.swift */; };
 		FF75EF022F84D0A90050C740 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */; };
 		FFDF8DCD2F88DD81005306EF /* StartScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDF8DCC2F88DD7C005306EF /* StartScreenVM.swift */; };
 		FFF42C7B2F31DD5800AE3966 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C6E2F31DD5800AE3966 /* Images.xcassets */; };
@@ -120,6 +121,7 @@
 		FF741AAB2F8CA1F900C4C19C /* NotificationContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationContent.swift; sourceTree = "<group>"; };
 		FF741AAD2F8CA6ED00C4C19C /* CallCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallCoordinator.swift; sourceTree = "<group>"; };
 		FF741AAF2F8CAFD800C4C19C /* AudioCallVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCallVM.swift; sourceTree = "<group>"; };
+		FF741AB12F8CD0A800C4C19C /* CallSessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSessionStatus.swift; sourceTree = "<group>"; };
 		FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
 		FFDF8DCC2F88DD7C005306EF /* StartScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVM.swift; sourceTree = "<group>"; };
 		FFF42C5B2F31DD5800AE3966 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 		FFF42C772F31DD5800AE3966 /* SessionScreen */ = {
 			isa = PBXGroup;
 			children = (
+				FF741AB12F8CD0A800C4C19C /* CallSessionStatus.swift */,
 				FF741AAF2F8CAFD800C4C19C /* AudioCallVM.swift */,
 				FF27FF5A2F86776300634930 /* AudioCallView.swift */,
 				FFF42C722F31DD5800AE3966 /* PeerView.swift */,
@@ -573,6 +576,7 @@
 				FFF42C822F31DD5800AE3966 /* AppDelegate.swift in Sources */,
 				FF741AA82F8903A800C4C19C /* TopFadeMask.swift in Sources */,
 				FF741AB02F8CAFDC00C4C19C /* AudioCallVM.swift in Sources */,
+				FF741AB22F8CD0AB00C4C19C /* CallSessionStatus.swift in Sources */,
 				FFF42C832F31DD5800AE3966 /* PermissionState.swift in Sources */,
 				FFF42C842F31DD5800AE3966 /* CallManagerObserver.swift in Sources */,
 				FF741AAE2F8CA6F200C4C19C /* CallCoordinator.swift in Sources */,

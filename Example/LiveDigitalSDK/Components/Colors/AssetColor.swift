@@ -21,6 +21,7 @@ enum AssetColor: String, CaseIterable, Identifiable {
 
 	var id: String { rawValue }
 	var color: Color { Color(rawValue) }
+	var uiColor: UIColor { UIColor(resource: .init(name: rawValue, bundle: .main)) }
 }
 
 // MARK: - Preview implementation

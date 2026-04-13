@@ -11,6 +11,8 @@ protocol CallManager {
 
 	func startCallFromIntent(_ intent: INIntent)
 	func startCallManually(to roomAlias: String)
+	func endCall(_ call: Call)
+
 	func reportCallFailed(_ call: Call)
 	func reportCallEnded(_ call: Call)
 	func reportCallAnsweredOnOtherDevice(_ call: Call)

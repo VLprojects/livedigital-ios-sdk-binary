@@ -118,6 +118,13 @@ extension StockCallManager: CallManager {
 		}
 	}
 
+	func endCall(_ call: Call) {
+		reportCallEnded(call)
+		observers.forEach { observer in
+			observer.value?.didEndCall(call)
+		}
+	}
+
 	func reportCallFailed(_ call: Call) {
 		callProvider.reportCall(with: call.id, endedAt: nil, reason: .failed)
 		calls.removeValue(forKey: call.id)

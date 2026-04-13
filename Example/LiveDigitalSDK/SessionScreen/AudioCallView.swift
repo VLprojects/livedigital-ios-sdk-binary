@@ -39,7 +39,7 @@ private extension AudioCallView {
 
 	var statusBlock: some View {
 		RoundedContainer {
-			Text(vm.callStatus)
+			Text(vm.callStatusLabel)
 				.font(AssetFont.mainTextMedium.font)
 				.monospacedDigit()
 				.foregroundStyle(AssetColor.contrast.color)
@@ -81,8 +81,9 @@ private extension AudioCallView {
 	var endCallButton: some View {
 		RoundButton(
 			config: .reject,
+			disabled: vm.canFinishSession,
 			action: {
-				vm.endCall()
+				vm.finishSession()
 			}
 		)
 	}
