@@ -21,6 +21,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		self.window = window
 
 		let startVM = StartScreenVM(
+			callManager: callManager,
 			apnsPermissionManager: callManager,
 			microphonePermissionManager: StockCaptureDevicePermissionsManager(deviceType: .microphone),
 			cameraPermissionManager: StockCaptureDevicePermissionsManager(deviceType: .camera)

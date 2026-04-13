@@ -18,6 +18,23 @@
         }
       }
     },
+    "apnsTokenCopiedNotification" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Device token copied"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Токен устройства скопирован"
+          }
+        }
+      }
+    },
     "Camera Permission Title" : {
       "extractionState" : "manual",
       "localizations" : {

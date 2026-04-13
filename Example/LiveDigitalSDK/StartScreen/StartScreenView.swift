@@ -24,6 +24,10 @@ extension StartScreenView: View {
 				}
 			}
 		}
+		.overlay(alignment: .bottom) {
+			NotificationsStack(vm: vm.notificationsVM)
+				.padding(.horizontal)
+		}
 	}
 }
 
@@ -41,6 +45,7 @@ private extension StartScreenView {
 					config: .custom(nil, String(localized: .copyApnsTokenAction)),
 					disabled: !vm.apnsPermissionGranted,
 					action: {
+						vm.copyAPNSToken()
 					}
 				)
 			}
