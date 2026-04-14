@@ -35,8 +35,12 @@ class App(tk.Tk):
         self._token_row(main, "Device token:", self.deviceToken_var).pack(fill="x", pady=5)
         self._text_row(main, "Room alias:", self.roomAlias_var).pack(fill="x", pady=5)
         self._link_row(main, "Room link:", self.roomAlias_var).pack(fill="x", pady=5)
-        self.send_btn = ttk.Button(main, text="Start call", command=self._send_push)
-        self.send_btn.pack(pady=10)
+        self.start_btn = ttk.Button(main, text="Start call", command=self._send_push_start_call)
+        self.start_btn.pack(pady=10)
+        self.end_btn = ttk.Button(main, text="End call", command=self._send_push_end_call)
+        self.end_btn.pack(pady=10)
+        self.answer_btn = ttk.Button(main, text="Answer call", command=self._send_push_answer_call)
+        self.answer_btn.pack(pady=10)
 
     def _link_row(self, parent, label, var):
         linkVariable = tk.StringVar()
@@ -156,8 +160,61 @@ class App(tk.Tk):
         self.after(30, self._update_frame)
 
     # ---------- APNS ----------
+    def _send_push_start_call(self):
+        payload = {
+            "aps": {
+                "content-available": 1
+            },
+            "type": "call_start",
+            "caller": f"Room {self.roomAlias_var.get()}",
+            "roomAlias": self.roomAlias_var.get(),
+        }
+        headers = {
+            "apns-topic": f"{self.bundleId_var.get()}.voip",
+            "apns-push-type": "voip",
+            "apns-priority": "10",
+            "apns-expiration": "0",
+            "content-type": "application/json",
+        }
+        self._send_push(payload, headers)
 
-    def _send_push(self):
+    def _send_push_end_call(self):
+        payload = {
+            "aps": {
+                "content-available": 1
+            },
+            "type": "call_end",
+            "caller": f"Room {self.roomAlias_var.get()}",
+            "roomAlias": self.roomAlias_var.get(),
+        }
+        headers = {
+            "apns-topic": f"{self.bundleId_var.get()}.voip",
+            "apns-push-type": "voip",
+            "apns-priority": "10",
+            "apns-expiration": "0",
+            "content-type": "application/json",
+        }
+        self._send_push(payload, headers)
+
+    def _send_push_answer_call(self):
+        payload = {
+            "aps": {
+                "content-available": 1
+            },
+            "type": "call_answered",
+            "caller": f"Room {self.roomAlias_var.get()}",
+            "roomAlias": self.roomAlias_var.get(),
+        }
+        headers = {
+            "apns-topic": f"{self.bundleId_var.get()}.voip",
+            "apns-push-type": "voip",
+            "apns-priority": "10",
+            "apns-expiration": "0",
+            "content-type": "application/json",
+        }
+        self._send_push(payload, headers)
+
+    def _send_push(self, payload, headers):
         cert_path = self.certFile_var.get()
         key_path = self.pkeyFile_var.get()
         if not cert_path or not key_path:
@@ -171,22 +228,9 @@ class App(tk.Tk):
             raise FileNotFoundError(f"Private key file not found: {key_path}")
         certs = (cert_path, key_path)
         with httpx.Client(http2=True, cert=certs) as client:
-            payload = {
-                "aps": {
-                    "content-available": 1
-                },
-                "caller": f"Room {self.roomAlias_var.get()}",
-                "roomAlias": self.roomAlias_var.get(),
-            }
             response = client.post(
                 f"{self.apnsHost_var.get()}/3/device/{self.deviceToken_var.get()}",
-                headers={
-                    "apns-topic": f"{self.bundleId_var.get()}.voip",
-                    "apns-push-type": "voip",
-                    "apns-priority": "10",
-                    "apns-expiration": "0",
-                    "content-type": "application/json",
-                },
+                headers=headers,
                 content=json.dumps(payload)
             )
             print(response.status_code, response.text)
