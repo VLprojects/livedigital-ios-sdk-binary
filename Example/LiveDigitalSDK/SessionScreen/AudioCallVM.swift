@@ -68,7 +68,12 @@ final class AudioCallVM: ObservableObject {
 			.map { Self.callStatusText(for: $0) }
 			.assign(to: &$callStatusLabel)
 
-		startConferenceSession()
+		switch call.direction {
+			case .incoming:
+				startConferenceSession()
+			case .outgoing:
+				self.callStatus = .dialing
+		}
 	}
 
 	deinit {
@@ -137,6 +142,14 @@ extension AudioCallVM: @MainActor CallManagerObserver {
 		}
 		self.call = call
 		updateLocalAudioEnabled(!call.isMuted)
+	}
+
+	func callWasAnswered(_ call: Call) {
+		guard call.id == self.call.id else {
+			return
+		}
+		self.call = call
+		startConferenceSession()
 	}
 
 	func didEndCall(_ call: Call) {
@@ -373,6 +386,7 @@ private extension AudioCallVM {
 
 	static func callStatusText(for status: CallSessionStatus) -> String {
 		switch status {
+			case .dialing: String(localized: .callStatusDialing)
 			case .connecting: String(localized: .callStatusConnecting)
 			case .connected(let callStart): callDurationText(Date.now.timeIntervalSince(callStart))
 			case .disconnecting: String(localized: .callStatusDisconnecting)
@@ -397,7 +411,7 @@ private extension AudioCallVM {
 		switch callStatus {
 			case .connected(let startDate):
 				startTimer(from: startDate)
-			case .connecting, .disconnecting, .disconnected:
+			case .connecting, .disconnecting, .disconnected, .dialing:
 				stopTimer()
 		}
 	}

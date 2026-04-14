@@ -189,10 +189,17 @@ private extension StockCallManager {
 		})
 	}
 
-	func finishCall(_ call: Call) {
+	func notifyCallFinished(_ call: Call) {
 		let endedCall = call.withState(.ended)
 		observers.forEach { observer in
 			observer.value?.didEndCall(endedCall)
+		}
+	}
+
+	func notifyCallAnswered(_ call: Call) {
+		let answeredCall = call.withState(.connecting)
+		observers.forEach { observer in
+			observer.value?.callWasAnswered(answeredCall)
 		}
 	}
 }
@@ -245,11 +252,14 @@ extension StockCallManager: PKPushRegistryDelegate {
 						return true
 					}
 					callProvider.reportCall(with: callId, endedAt: .now, reason: .remoteEnded)
-					finishCall(call)
+					notifyCallFinished(call)
 					return false
 				}
 			case .answered:
-				break
+				for (callId, call) in calls where call.roomAlias == roomAlias {
+					callProvider.reportOutgoingCall(with: callId, connectedAt: .now)
+					notifyCallAnswered(call)
+				}
 		}
 		completion()
 	}
@@ -286,9 +296,9 @@ extension StockCallManager: CXProviderDelegate {
 
 	func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
 		print("Call provider requested call answer with action \(action)")
-		if var call = calls[action.callUUID] {
-			call.state = .active
-			calls[call.id] = call
+		if let call = calls[action.callUUID] {
+			let activeCall = call.withState(.active)
+			calls[call.id] = activeCall
 			self.observers.forEach { observer in
 				observer.value?.didReceiveCall(call)
 			}
@@ -300,8 +310,8 @@ extension StockCallManager: CXProviderDelegate {
 
 	func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
 		print("Call provider requested call end with action \(action)")
-		if var call = calls.removeValue(forKey: action.callUUID) {
-			finishCall(call)
+		if let call = calls.removeValue(forKey: action.callUUID) {
+			notifyCallFinished(call)
 			action.fulfill()
 		} else {
 			action.fail()

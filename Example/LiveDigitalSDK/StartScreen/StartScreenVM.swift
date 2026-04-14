@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Combine
 
 
 @MainActor
@@ -7,6 +8,8 @@ final class StartScreenVM: ObservableObject {
 	@Published var apnsPermissionGranted = false
 	@Published var microphonePermissionGranted = false
 	@Published var cameraPermissionGranted = false
+	@Published var canInitiateCall = false
+	@Published var outgoingCallRoomAlias = "q3_5V3uwik"
 	let notificationsVM = NotificationsVM()
 
 	private let callManager: CallManager
@@ -26,6 +29,7 @@ final class StartScreenVM: ObservableObject {
 		self.cameraPermissionManager = cameraPermissionManager
 
 		bindPermissionsStates()
+		bindOutgoingCallState()
 	}
 }
 
@@ -49,8 +53,11 @@ internal extension StartScreenVM {
 		UINotificationFeedbackGenerator().notificationOccurred(.success)
 		notificationsVM.show(String(localized: .apnsTokenCopiedNotification))
 	}
-}
 
+	func initiateCall() {
+		callManager.startCallManually(to: outgoingCallRoomAlias)
+	}
+}
 
 // MARK: - Private methods
 
@@ -70,5 +77,17 @@ private extension StartScreenVM {
 			.map { $0 == .allowed }
 			.receive(on: DispatchQueue.main)
 			.assign(to: &$microphonePermissionGranted)
+	}
+
+	func bindOutgoingCallState() {
+		Publishers.CombineLatest(
+				$outgoingCallRoomAlias.map { !$0.isEmpty },
+				apnsPermissionManager.permissionState.map { $0 == .allowed }
+			)
+			.receive(on: DispatchQueue.main)
+			.map { haveRoom, havePermission in
+				return haveRoom && havePermission
+			}
+			.assign(to: &$canInitiateCall)
 	}
 }
