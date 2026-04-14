@@ -188,6 +188,13 @@ private extension StockCallManager {
 			}
 		})
 	}
+
+	func finishCall(_ call: Call) {
+		let endedCall = call.withState(.ended)
+		observers.forEach { observer in
+			observer.value?.didEndCall(endedCall)
+		}
+	}
 }
 
 // MARK: - PKPushRegistryDelegate implementation
@@ -218,14 +225,32 @@ extension StockCallManager: PKPushRegistryDelegate {
 			completion()
 			return
 		}
-		guard let caller = payload.dictionaryPayload["caller"] as? String,
+
+		guard let actionString = payload.dictionaryPayload["type"] as? String,
+			let action = CallPushAction(rawValue: actionString),
+			let caller = payload.dictionaryPayload["caller"] as? String,
 			let roomAlias = payload.dictionaryPayload["roomAlias"] as? String else {
 			print("Failed to parse call object from push payload")
 			completion()
 			return
 		}
-		let call = Call(id: UUID(), caller: caller, roomAlias: roomAlias, direction: .incoming, state: .connecting)
-		reportIncomingCall(call)
+
+		switch action {
+			case .start:
+				let call = Call(id: UUID(), caller: caller, roomAlias: roomAlias, direction: .incoming, state: .connecting)
+				reportIncomingCall(call)
+			case .end:
+				calls = calls.filter { (callId, call) in
+					guard call.roomAlias == roomAlias else {
+						return true
+					}
+					callProvider.reportCall(with: callId, endedAt: .now, reason: .remoteEnded)
+					finishCall(call)
+					return false
+				}
+			case .answered:
+				break
+		}
 		completion()
 	}
 }
@@ -276,10 +301,7 @@ extension StockCallManager: CXProviderDelegate {
 	func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
 		print("Call provider requested call end with action \(action)")
 		if var call = calls.removeValue(forKey: action.callUUID) {
-			call.state = .ended
-			observers.forEach { observer in
-				observer.value?.didEndCall(call)
-			}
+			finishCall(call)
 			action.fulfill()
 		} else {
 			action.fail()
