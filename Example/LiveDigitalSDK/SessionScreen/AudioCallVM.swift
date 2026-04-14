@@ -17,10 +17,11 @@ final class AudioCallVM: ObservableObject {
 	}
 
 	@Published var isSoundOn = true
-	@Published var isMicrophoneOn = false
+	@Published var isMicrophoneOn: Bool
 	@Published var canFinishSession = false
 	@Published var companionName: String
 	@Published var callStatusLabel: String
+	@Published var isInCall: Bool
 	@Published private var callStatus: CallSessionStatus {
 		didSet {
 			handleStatusChange()
@@ -47,11 +48,13 @@ final class AudioCallVM: ObservableObject {
 		self.apiClient = apiClient
 		self.room = room
 		self.call = call
+		self.isMicrophoneOn = !call.isMuted
 		self.companionName = call.caller
 
 		let callStatus: CallSessionStatus = .disconnected
 		self.callStatus = callStatus
 		self.callStatusLabel = Self.callStatusText(for: callStatus)
+		self.isInCall = Self.isInCall(for: callStatus)
 
 		let engine = StockLiveDigitalEngine(
 			environment: .production,
@@ -64,9 +67,7 @@ final class AudioCallVM: ObservableObject {
 
 		callManager?.addObserver(self)
 
-		$callStatus
-			.map { Self.callStatusText(for: $0) }
-			.assign(to: &$callStatusLabel)
+		bindCallStatus()
 
 		switch call.direction {
 			case .incoming:
@@ -84,31 +85,32 @@ final class AudioCallVM: ObservableObject {
 // MARK: - Internal methods
 
 internal extension AudioCallVM {
-	func toggleSound() {
-	}
-
 	func toggleMicrophone() {
 		updateLocalAudioEnabled(audioSource == nil)
 	}
 
 	func updateLocalAudioEnabled(_ enabled: Bool) {
+		isMicrophoneOn = enabled
+		guard let channelSession else {
+			return
+		}
+
 		if enabled, audioSource == nil {
 			startAudioSource()
 		}
-		guard let session = channelSession, let source = audioSource else {
+		guard let audioSource else {
 			print("Failed to update local audio state: channel or audio source is undefined.")
 			isMicrophoneOn = false
 			return
 		}
 
 		if enabled {
-			session.addAudioSource(source)
+			channelSession.addAudioSource(audioSource)
 		} else {
-			session.removeAudioSource(source)
-			engine.stopAudioSource(source)
-			audioSource = nil
+			channelSession.removeAudioSource(audioSource)
+			engine.stopAudioSource(audioSource)
+			self.audioSource = nil
 		}
-		isMicrophoneOn = enabled
 	}
 
 	func updatePreferred(route: AudioRoute) {
@@ -281,8 +283,6 @@ private extension AudioCallVM {
 	func startConferenceSession() {
 		callStatus = .connecting
 
-		updateLocalAudioEnabled(!call.isMuted)
-
 		Task {
 			if !apiClient.isAuthorized {
 				try await apiClient.authorizeAsGuest()
@@ -348,7 +348,7 @@ private extension AudioCallVM {
 					self.scheduleReconnect()
 			}
 
-			self.updateLocalAudioEnabled(self.audioSource != nil)
+			self.updateLocalAudioEnabled(isMicrophoneOn)
 		})
 	}
 
@@ -394,6 +394,16 @@ private extension AudioCallVM {
 		}
 	}
 
+	static func isInCall(for status: CallSessionStatus) -> Bool {
+		switch status {
+			case .dialing: false
+			case .connecting: true
+			case .connected(let date): true
+			case .disconnecting: true
+			case .disconnected: false
+		}
+	}
+
 	static func callDurationText(_ duration: TimeInterval) -> String {
 		let seconds = Int(duration.rounded(.awayFromZero))
 		let h = seconds / 3600
@@ -432,5 +442,14 @@ private extension AudioCallVM {
 	func stopTimer() {
 		callDurationTimerCancellable?.cancel()
 		callDurationTimerCancellable = nil
+	}
+
+	func bindCallStatus() {
+		$callStatus
+			.map { Self.callStatusText(for: $0) }
+			.assign(to: &$callStatusLabel)
+		$callStatus
+			.map { Self.isInCall(for: $0) }
+			.assign(to: &$isInCall)
 	}
 }

@@ -15,6 +15,9 @@ extension AudioCallView: View {
 				.ignoresSafeArea()
 
 			VStack {
+				if !vm.isInCall {
+					Spacer()
+				}
 				nameBlock
 				statusBlock
 				Spacer()
@@ -50,28 +53,19 @@ private extension AudioCallView {
 	var bottomPanelBlock: some View {
 		RoundedContainer {
 			HStack {
-				speakerButton
-				Spacer()
 				microphoneButton
 				Spacer()
 				endCallButton
 			}
 			.frame(maxWidth: .infinity)
 		}
-	}
-
-	var speakerButton: some View {
-		RoundButton(
-			config: .sound(isOn: vm.isSoundOn),
-			action: {
-				vm.toggleSound()
-			}
-		)
+		.frame(maxWidth: 440)
 	}
 
 	var microphoneButton: some View {
 		RoundButton(
 			config: .microphone(isOn: vm.isMicrophoneOn),
+			disabled: !vm.isInCall,
 			action: {
 				vm.toggleMicrophone()
 			}
