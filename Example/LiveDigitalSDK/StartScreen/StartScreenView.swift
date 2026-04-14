@@ -19,6 +19,7 @@ extension StartScreenView: View {
 				.ignoresSafeArea()
 			ScrollView {
 				VStack(spacing: 16) {
+					makeCallBlock
 					apnsTokenBlock
 					permissionsBlock
 				}
@@ -34,6 +35,46 @@ extension StartScreenView: View {
 // MARK: - Private methods
 
 private extension StartScreenView {
+	var makeCallBlock: some View {
+		RoundedContainer {
+			VStack(spacing: 20) {
+				Text(.outgoingCallHint)
+					.font(AssetFont.mainTextMedium.font)
+					.foregroundStyle(AssetColor.contrast.color)
+					.frame(maxWidth: .infinity, alignment: .leading)
+				HStack {
+					ZStack(alignment: .leading) {
+						if vm.outgoingCallRoomAlias.isEmpty {
+							Text(String(localized: .roomAliasPlaceholder))
+								.font(AssetFont.mainTextMedium.font)
+								.foregroundStyle(AssetColor.secondary02.color)
+								.frame(maxWidth: .infinity, alignment: .leading)
+						}
+						TextField(String(localized: .roomAliasPlaceholder), text: $vm.outgoingCallRoomAlias)
+							.font(AssetFont.mainTextMedium.font)
+							.foregroundStyle(AssetColor.contrast.color)
+							.frame(maxWidth: .infinity, alignment: .leading)
+							.overlay(
+								Rectangle()
+									.frame(height: 1)
+									.foregroundStyle(AssetColor.contrast.color),
+								alignment: .bottom
+							)
+					}
+					RoundButton(
+						config: .custom(nil, String(localized: .outgoingCallAction)),
+						disabled: !vm.canInitiateCall,
+						action: {
+							vm.initiateCall()
+						}
+					)
+				}
+			}
+			.frame(maxWidth: .infinity)
+		}
+		.padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+	}
+
 	var apnsTokenBlock: some View {
 		RoundedContainer {
 			VStack {

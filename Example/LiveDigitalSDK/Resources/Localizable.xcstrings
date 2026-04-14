@@ -52,6 +52,23 @@
         }
       }
     },
+    "callStatusDialing" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialing…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вызов…"
+          }
+        }
+      }
+    },
     "callStatusDisconnected" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -154,6 +171,40 @@
         }
       }
     },
+    "outgoingCallAction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Call"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позвонить"
+          }
+        }
+      }
+    },
+    "outgoingCallHint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can start an outgoing call to a given room. This action requires push notifications permissions."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы можете инициировать исходящий звонок в указанную комнату. Действие требует разрешение на уведомления."
+          }
+        }
+      }
+    },
     "Permissions Legend" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -167,6 +218,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Красный: разрешение необходимое для работы звонков.\nСерый: разрешение без которого функционал приложения может работать частично или ограничено."
+          }
+        }
+      }
+    },
+    "roomAliasPlaceholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Room alias"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Алиас комнаты"
           }
         }
       }
