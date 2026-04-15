@@ -44,6 +44,7 @@
 		FF741AB22F8CD0AB00C4C19C /* CallSessionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AB12F8CD0A800C4C19C /* CallSessionStatus.swift */; };
 		FF741AB42F8E372500C4C19C /* CallPushAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AB32F8E372000C4C19C /* CallPushAction.swift */; };
 		FF741AB62F8E674800C4C19C /* CallScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AB52F8E674500C4C19C /* CallScreenCoordinator.swift */; };
+		FF741AB82F8F53C200C4C19C /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AB72F8F53BC00C4C19C /* String+Localizable.swift */; };
 		FF75EF022F84D0A90050C740 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */; };
 		FFDF8DCD2F88DD81005306EF /* StartScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDF8DCC2F88DD7C005306EF /* StartScreenVM.swift */; };
 		FFF42C7B2F31DD5800AE3966 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C6E2F31DD5800AE3966 /* Images.xcassets */; };
@@ -126,6 +127,7 @@
 		FF741AB12F8CD0A800C4C19C /* CallSessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSessionStatus.swift; sourceTree = "<group>"; };
 		FF741AB32F8E372000C4C19C /* CallPushAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallPushAction.swift; sourceTree = "<group>"; };
 		FF741AB52F8E674500C4C19C /* CallScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallScreenCoordinator.swift; sourceTree = "<group>"; };
+		FF741AB72F8F53BC00C4C19C /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
 		FFDF8DCC2F88DD7C005306EF /* StartScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVM.swift; sourceTree = "<group>"; };
 		FFF42C5B2F31DD5800AE3966 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 		FFF42C712F31DD5800AE3966 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FF741AB72F8F53BC00C4C19C /* String+Localizable.swift */,
 				FFF42C6E2F31DD5800AE3966 /* Images.xcassets */,
 				FFF42C702F31DD5800AE3966 /* LaunchScreen.xib */,
 				FF27FF542F8603B900634930 /* Localizable.xcstrings */,
@@ -592,6 +595,7 @@
 				FFF42C892F31DD5800AE3966 /* CallManager.swift in Sources */,
 				FFF42C8A2F31DD5800AE3966 /* StartVC.swift in Sources */,
 				FF27FF412F85FA2C00634930 /* RoundButtonStyleCustom.swift in Sources */,
+				FF741AB82F8F53C200C4C19C /* String+Localizable.swift in Sources */,
 				FFF42C8B2F31DD5800AE3966 /* SessionVC.swift in Sources */,
 				FF741AB42F8E372500C4C19C /* CallPushAction.swift in Sources */,
 				FFDF8DCD2F88DD81005306EF /* StartScreenVM.swift in Sources */,

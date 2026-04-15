@@ -38,7 +38,7 @@ private extension StartScreenView {
 	var makeCallBlock: some View {
 		RoundedContainer {
 			VStack(spacing: 20) {
-				Text(.outgoingCallHint)
+				Text(String(localized: .outgoingCallHint))
 					.font(AssetFont.mainTextMedium.font)
 					.foregroundStyle(AssetColor.contrast.color)
 					.frame(maxWidth: .infinity, alignment: .leading)
@@ -78,7 +78,7 @@ private extension StartScreenView {
 	var apnsTokenBlock: some View {
 		RoundedContainer {
 			VStack {
-				Text(.copyApnsTokenHint)
+				Text(String(localized: .copyApnsTokenHint))
 					.font(AssetFont.mainTextMedium.font)
 					.foregroundStyle(AssetColor.contrast.color)
 					.frame(maxWidth: .infinity, alignment: .leading)
@@ -98,7 +98,7 @@ private extension StartScreenView {
 	var permissionsBlock: some View {
 		RoundedContainer {
 			VStack(spacing: 20) {
-				Text(.permissionsLegend)
+				Text(String(localized: .permissionsLegend))
 					.font(AssetFont.mainTextMedium.font)
 					.foregroundStyle(AssetColor.contrast.color)
 					.frame(maxWidth: .infinity, alignment: .leading)
@@ -114,7 +114,7 @@ private extension StartScreenView {
 	var apnsPermissionBlock: some View {
 		HStack {
 			Toggle(isOn: apnsPermissionBinding) {
-				Text(.apnsPermissionTitle)
+				Text(String(localized: .apnsPermissionTitle))
 					.font(AssetFont.mainTextMedium.font)
 					.foregroundStyle(AssetColor.contrast.color)
 				PermissionIndicator(type: .required)
@@ -126,7 +126,7 @@ private extension StartScreenView {
 	var cameraPermissionBlock: some View {
 		HStack {
 			Toggle(isOn: cameraPermissionBinding) {
-				Text(.cameraPermissionTitle)
+				Text(String(localized: .cameraPermissionTitle))
 					.font(AssetFont.mainTextMedium.font)
 					.foregroundStyle(AssetColor.contrast.color)
 				PermissionIndicator(type: .regular)
@@ -138,7 +138,7 @@ private extension StartScreenView {
 	var microphonePermissionBlock: some View {
 		HStack {
 			Toggle(isOn: microphonePermissionBinding) {
-				Text(.microphonePermissionTitle)
+				Text(String(localized: .microphonePermissionTitle))
 					.font(AssetFont.mainTextMedium.font)
 					.foregroundStyle(AssetColor.contrast.color)
 				PermissionIndicator(type: .regular)

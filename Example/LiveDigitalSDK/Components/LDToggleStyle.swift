@@ -30,6 +30,7 @@ extension LDToggleStyle: ToggleStyle {
 
 // MARK: - Preview implementation
 
+@available(iOS 17.0, *)
 #Preview("LDToggleStyle") {
 	@Previewable @State var isOn = false
 
