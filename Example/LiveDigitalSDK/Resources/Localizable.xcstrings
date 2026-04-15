@@ -103,6 +103,23 @@
         }
       }
     },
+    "callStatusEnded" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Call ended"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Звонок завершён"
+          }
+        }
+      }
+    },
     "Camera Permission Title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -218,6 +235,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Красный: разрешение необходимое для работы звонков.\nСерый: разрешение без которого функционал приложения может работать частично или ограничено."
+          }
+        }
+      }
+    },
+    "recallAction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recall"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторить звонок"
           }
         }
       }

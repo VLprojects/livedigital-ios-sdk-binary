@@ -38,8 +38,12 @@ extension CallCoordinator: @MainActor CallManagerObserver {
 	func didInitiateCall(_ call: Call) {
 		openRoom(for: call)
 	}
+}
 
-	func didEndCall(_ call: Call) {
+// MARK: - CallScreenCoordinator implementation
+
+extension CallCoordinator: CallScreenCoordinator {
+	func dismissCallScreen(call: Call) {
 		callScreens.removeValue(forKey: call.id)?.dismiss(animated: true)
 	}
 }
@@ -65,6 +69,7 @@ private extension CallCoordinator {
 
 	func openSession(in room: Room, call: Call) {
 		let vm = AudioCallVM(callManager: callManager, apiClient: apiClient, room: room, call: call)
+		vm.coordinator = self
 		let view = AudioCallView(vm: vm)
 		let vc = UIHostingController(rootView: view)
 		vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen

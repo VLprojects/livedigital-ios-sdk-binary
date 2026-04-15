@@ -22,6 +22,10 @@ final class AudioCallVM: ObservableObject {
 	@Published var companionName: String
 	@Published var callStatusLabel: String
 	@Published var isInCall: Bool
+	@Published var canRecall: Bool
+
+	weak var coordinator: CallScreenCoordinator?
+
 	@Published private var callStatus: CallSessionStatus {
 		didSet {
 			handleStatusChange()
@@ -55,6 +59,7 @@ final class AudioCallVM: ObservableObject {
 		self.callStatus = callStatus
 		self.callStatusLabel = Self.callStatusText(for: callStatus)
 		self.isInCall = Self.isInCall(for: callStatus)
+		self.canRecall = Self.canRecall(for: callStatus)
 
 		let engine = StockLiveDigitalEngine(
 			environment: .production,
@@ -85,6 +90,14 @@ final class AudioCallVM: ObservableObject {
 // MARK: - Internal methods
 
 internal extension AudioCallVM {
+	func recall() {
+
+	}
+
+	func dismiss() {
+		coordinator?.dismissCallScreen(call: call)
+	}
+
 	func toggleMicrophone() {
 		updateLocalAudioEnabled(audioSource == nil)
 	}
@@ -159,6 +172,7 @@ extension AudioCallVM: @MainActor CallManagerObserver {
 			return
 		}
 		self.call = call
+		self.callStatus = .callEnded
 	}
 }
 
@@ -391,6 +405,7 @@ private extension AudioCallVM {
 			case .connected(let callStart): callDurationText(Date.now.timeIntervalSince(callStart))
 			case .disconnecting: String(localized: .callStatusDisconnecting)
 			case .disconnected: String(localized: .callStatusDisconnected)
+			case .callEnded: String(localized: .callStatusEnded)
 		}
 	}
 
@@ -398,9 +413,17 @@ private extension AudioCallVM {
 		switch status {
 			case .dialing: false
 			case .connecting: true
-			case .connected(let date): true
+			case .connected: true
 			case .disconnecting: true
-			case .disconnected: false
+			case .disconnected: true
+			case .callEnded: false
+		}
+	}
+
+	static func canRecall(for status: CallSessionStatus) -> Bool {
+		switch status {
+			case .callEnded: true
+			case .dialing, .connecting, .connected, .disconnecting, .disconnected: false
 		}
 	}
 
@@ -417,11 +440,10 @@ private extension AudioCallVM {
 	}
 
 	func handleStatusChange() {
-		callStatusLabel = Self.callStatusText(for: callStatus)
 		switch callStatus {
 			case .connected(let startDate):
 				startTimer(from: startDate)
-			case .connecting, .disconnecting, .disconnected, .dialing:
+			case .connecting, .disconnecting, .disconnected, .dialing, .callEnded:
 				stopTimer()
 		}
 	}
@@ -451,5 +473,8 @@ private extension AudioCallVM {
 		$callStatus
 			.map { Self.isInCall(for: $0) }
 			.assign(to: &$isInCall)
+		$callStatus
+			.map { Self.canRecall(for: $0) }
+			.assign(to: &$canRecall)
 	}
 }

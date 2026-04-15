@@ -7,4 +7,5 @@ enum CallSessionStatus {
 	case connected(Date)
 	case disconnecting
 	case disconnected
+	case callEnded
 }
