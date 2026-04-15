@@ -43,6 +43,7 @@
 		FF741AB02F8CAFDC00C4C19C /* AudioCallVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AAF2F8CAFD800C4C19C /* AudioCallVM.swift */; };
 		FF741AB22F8CD0AB00C4C19C /* CallSessionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AB12F8CD0A800C4C19C /* CallSessionStatus.swift */; };
 		FF741AB42F8E372500C4C19C /* CallPushAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AB32F8E372000C4C19C /* CallPushAction.swift */; };
+		FF741AB62F8E674800C4C19C /* CallScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AB52F8E674500C4C19C /* CallScreenCoordinator.swift */; };
 		FF75EF022F84D0A90050C740 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */; };
 		FFDF8DCD2F88DD81005306EF /* StartScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDF8DCC2F88DD7C005306EF /* StartScreenVM.swift */; };
 		FFF42C7B2F31DD5800AE3966 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C6E2F31DD5800AE3966 /* Images.xcassets */; };
@@ -124,6 +125,7 @@
 		FF741AAF2F8CAFD800C4C19C /* AudioCallVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCallVM.swift; sourceTree = "<group>"; };
 		FF741AB12F8CD0A800C4C19C /* CallSessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSessionStatus.swift; sourceTree = "<group>"; };
 		FF741AB32F8E372000C4C19C /* CallPushAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallPushAction.swift; sourceTree = "<group>"; };
+		FF741AB52F8E674500C4C19C /* CallScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallScreenCoordinator.swift; sourceTree = "<group>"; };
 		FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
 		FFDF8DCC2F88DD7C005306EF /* StartScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVM.swift; sourceTree = "<group>"; };
 		FFF42C5B2F31DD5800AE3966 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 		FFF42C772F31DD5800AE3966 /* SessionScreen */ = {
 			isa = PBXGroup;
 			children = (
+				FF741AB52F8E674500C4C19C /* CallScreenCoordinator.swift */,
 				FF741AB12F8CD0A800C4C19C /* CallSessionStatus.swift */,
 				FF741AAF2F8CAFD800C4C19C /* AudioCallVM.swift */,
 				FF27FF5A2F86776300634930 /* AudioCallView.swift */,
@@ -612,6 +615,7 @@
 				FF741AA12F88F54E00C4C19C /* CaptureDeviceType.swift in Sources */,
 				FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */,
 				FFF42C982F32006C00AE3966 /* StockSessionPresenter.swift in Sources */,
+				FF741AB62F8E674800C4C19C /* CallScreenCoordinator.swift in Sources */,
 				FFF42C992F32006C00AE3966 /* SessionView.swift in Sources */,
 				FFF42C9A2F32006C00AE3966 /* SessionPresenter.swift in Sources */,
 				FF741A9D2F88F4F000C4C19C /* CaptureDevicePermissionsManager.swift in Sources */,

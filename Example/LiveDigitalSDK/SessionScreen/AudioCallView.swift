@@ -11,8 +11,7 @@ struct AudioCallView {
 extension AudioCallView: View {
 	var body: some View {
 		ZStack {
-			GradientBackgroundView()
-				.ignoresSafeArea()
+			backgroundBlock
 
 			VStack {
 				if !vm.isInCall {
@@ -31,6 +30,14 @@ extension AudioCallView: View {
 // MARK: - Private methods
 
 private extension AudioCallView {
+	var backgroundBlock: some View {
+		let colors = vm.canRecall
+			? [AssetColor.secondary03.color, AssetColor.secondary02.color]
+			: [AssetColor.accent02.color, AssetColor.accent01.color]
+		return GradientBackgroundView(colors: colors)
+			.ignoresSafeArea()
+	}
+
 	var nameBlock: some View {
 		RoundedContainer {
 			Text(vm.companionName)
@@ -53,14 +60,39 @@ private extension AudioCallView {
 	var bottomPanelBlock: some View {
 		RoundedContainer {
 			HStack {
-				microphoneButton
-				Spacer()
-				endCallButton
+				if vm.canRecall {
+					recallButton
+					Spacer()
+					dismissButton
+				} else {
+					microphoneButton
+					Spacer()
+					endCallButton
+				}
 			}
 			.frame(maxWidth: .infinity)
 		}
 		.frame(maxWidth: 440)
 	}
+
+	var recallButton: some View {
+		RoundButton(
+			config: .custom(Image(.refresh), String(localized: .recallAction)),
+			action: {
+				vm.recall()
+			}
+		)
+	}
+
+	var dismissButton: some View {
+		RoundButton(
+			config: .custom(Image(.closeMini), nil),
+			action: {
+				vm.dismiss()
+			}
+		)
+	}
+
 
 	var microphoneButton: some View {
 		RoundButton(
