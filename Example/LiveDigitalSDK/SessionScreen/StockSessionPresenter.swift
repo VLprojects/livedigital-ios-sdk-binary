@@ -89,11 +89,12 @@ extension StockSessionPresenter: SessionPresenter {
 			session.addVideoSource(source)
 		} else {
 			session.removeVideoSource(source)
-			engine.stopVideoSource(source)
-			if let camSource = source as? VideoSourceWithPreview {
-				camSource.localVideoView.removeFromSuperview()
+			engine.stopVideoSource(source) { [weak self] in
+				if let camSource = source as? VideoSourceWithPreview {
+					camSource.localVideoView.removeFromSuperview()
+				}
+				self?.videoSource = nil
 			}
-			videoSource = nil
 		}
 		view?.updateVideoButtonState(isOn: enabled)
 	}
@@ -135,14 +136,14 @@ extension StockSessionPresenter: SessionPresenter {
 	}
 
 	func flipCamera() {
-		if case let .failure(error) = engine.cameraManager.flipCamera() {
-			print("Failed to flip camera: \(error)")
-		}
+		engine.cameraManager.flipCamera()
 	}
 
 	func finishSession() {
 		if let videoSource {
-			engine.stopVideoSource(videoSource)
+			engine.stopVideoSource(videoSource) { [weak self] in
+				self?.videoSource = nil
+			}
 		}
 		if let audioSource {
 			engine.stopAudioSource(audioSource)
@@ -408,8 +409,7 @@ private extension StockSessionPresenter {
 				self.participantId = participant.id
 
 				self.startConferenceSession(
-					channelId: ChannelId(value: room.channelId),
-					participantId: ParticipantId(value: participant.id),
+					channelId: ChannelId(rawValue: room.channelId),
 					peerId: PeerId(rawValue: participant.id),
 					signalingToken: signalingToken.signalingToken
 				)
@@ -419,7 +419,6 @@ private extension StockSessionPresenter {
 
 	func startConferenceSession(
 		channelId: ChannelId,
-		participantId: ParticipantId,
 		peerId: PeerId,
 		signalingToken: String
 	) {
@@ -429,7 +428,6 @@ private extension StockSessionPresenter {
 		engine.connectToChannel(
 			channelId,
 			mediaRole: .host,
-			participantId: participantId,
 			signalingToken: signalingToken,
 			peerId: peerId,
 			peerPayload: [
@@ -455,15 +453,20 @@ private extension StockSessionPresenter {
 		})
 	}
 
-	func startVideoSource(_ completion: ((VideoSource?)-> Void)) {
-		switch engine.startVideoSource(position: .front) {
-			case let .success(videoSource):
-				view?.setupLocalPreview(videoSource.localVideoView)
-				completion(videoSource)
+	func startVideoSource(_ completion: @escaping ((VideoSource?)-> Void)) {
+		engine.startVideoSource(position: .front) { [weak self] result in
+			guard let self else {
+				return
+			}
+			switch result {
+				case let .success(videoSource):
+					view?.setupLocalPreview(videoSource.localVideoView)
+					completion(videoSource)
 
-			case let .failure(error):
-				print("Failed to start video source: \(error)")
-				completion(nil)
+				case let .failure(error):
+					print("Failed to start video source: \(error)")
+					completion(nil)
+			}
 		}
 	}
 
