@@ -339,8 +339,7 @@ private extension AudioCallVM {
 			self.participantId = participant.id
 
 			self.startConferenceSession(
-				channelId: ChannelId(value: room.channelId),
-				participantId: ParticipantId(value: participant.id),
+				channelId: ChannelId(rawValue: room.channelId),
 				peerId: PeerId(rawValue: participant.id),
 				signalingToken: signalingToken.signalingToken
 			)
@@ -349,7 +348,6 @@ private extension AudioCallVM {
 
 	func startConferenceSession(
 		channelId: ChannelId,
-		participantId: ParticipantId,
 		peerId: PeerId,
 		signalingToken: String
 	) {
@@ -358,7 +356,6 @@ private extension AudioCallVM {
 		engine.connectToChannel(
 			channelId,
 			mediaRole: .host,
-			participantId: participantId,
 			signalingToken: signalingToken,
 			peerId: peerId,
 			peerPayload: [
