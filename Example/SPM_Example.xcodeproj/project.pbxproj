@@ -7,24 +7,63 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* SessionVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* SessionVC.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		FF0203892F2AFF970020642D /* PushPermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0203882F2AFF800020642D /* PushPermissionsManager.swift */; };
+		FF098AFD2F8FB31400ED440A /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF098ADE2F8FB31400ED440A /* ColorAssets.xcassets */; };
+		FF098AFF2F8FB31400ED440A /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF098AF82F8FB31400ED440A /* ImageAssets.xcassets */; };
+		FF098B002F8FB31400ED440A /* PTRootUI-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF098AE42F8FB31400ED440A /* PTRootUI-Regular.ttf */; };
+		FF098B012F8FB31400ED440A /* PTRootUI-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF098AE12F8FB31400ED440A /* PTRootUI-Bold.ttf */; };
+		FF098B022F8FB31400ED440A /* PTRootUI-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF098AE22F8FB31400ED440A /* PTRootUI-Light.ttf */; };
+		FF098B032F8FB31400ED440A /* PTRootUI-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF098AE32F8FB31400ED440A /* PTRootUI-Medium.ttf */; };
+		FF098B042F8FB31400ED440A /* RoundedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AFB2F8FB31400ED440A /* RoundedContainer.swift */; };
+		FF098B052F8FB31400ED440A /* PermissionIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AFA2F8FB31400ED440A /* PermissionIndicator.swift */; };
+		FF098B062F8FB31400ED440A /* RoundButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AEE2F8FB31400ED440A /* RoundButtonStyle.swift */; };
+		FF098B072F8FB31400ED440A /* NotificationsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AE82F8FB31400ED440A /* NotificationsVM.swift */; };
+		FF098B082F8FB31400ED440A /* RoundButtonStyledContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AF12F8FB31400ED440A /* RoundButtonStyledContent.swift */; };
+		FF098B092F8FB31400ED440A /* TopFadeMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AEA2F8FB31400ED440A /* TopFadeMask.swift */; };
+		FF098B0A2F8FB31400ED440A /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AEC2F8FB31400ED440A /* RoundButton.swift */; };
+		FF098B0B2F8FB31400ED440A /* RoundButtonStyleAccept.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AEF2F8FB31400ED440A /* RoundButtonStyleAccept.swift */; };
+		FF098B0C2F8FB31400ED440A /* RoundButtonStyleCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AF02F8FB31400ED440A /* RoundButtonStyleCustom.swift */; };
+		FF098B0D2F8FB31400ED440A /* RoundButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AED2F8FB31400ED440A /* RoundButtonConfig.swift */; };
+		FF098B0E2F8FB31400ED440A /* RoundButtonStyleMediaSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AF32F8FB31400ED440A /* RoundButtonStyleMediaSound.swift */; };
+		FF098B0F2F8FB31400ED440A /* AssetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098ADD2F8FB31400ED440A /* AssetColor.swift */; };
+		FF098B102F8FB31400ED440A /* NotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AE62F8FB31400ED440A /* NotificationContent.swift */; };
+		FF098B112F8FB31400ED440A /* LDToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AF92F8FB31400ED440A /* LDToggleStyle.swift */; };
+		FF098B122F8FB31400ED440A /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AE92F8FB31400ED440A /* NotificationView.swift */; };
+		FF098B132F8FB31400ED440A /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AF72F8FB31400ED440A /* GradientBackgroundView.swift */; };
+		FF098B142F8FB31400ED440A /* RoundButtonStyleMediaCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AF22F8FB31400ED440A /* RoundButtonStyleMediaCapture.swift */; };
+		FF098B152F8FB31400ED440A /* RoundButtonStyleReject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AF42F8FB31400ED440A /* RoundButtonStyleReject.swift */; };
+		FF098B162F8FB31400ED440A /* AssetFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AE02F8FB31400ED440A /* AssetFont.swift */; };
+		FF098B172F8FB31400ED440A /* NotificationsStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AE72F8FB31400ED440A /* NotificationsStack.swift */; };
+		FF098B222F8FB32D00ED440A /* StockCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B202F8FB32D00ED440A /* StockCallManager.swift */; };
+		FF098B232F8FB32D00ED440A /* CallCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B192F8FB32D00ED440A /* CallCoordinator.swift */; };
+		FF098B242F8FB32D00ED440A /* Call.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B1C2F8FB32D00ED440A /* Call.swift */; };
+		FF098B252F8FB32D00ED440A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B1A2F8FB32D00ED440A /* SceneDelegate.swift */; };
+		FF098B262F8FB32D00ED440A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B182F8FB32D00ED440A /* AppDelegate.swift */; };
+		FF098B272F8FB32D00ED440A /* CallManagerObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B1E2F8FB32D00ED440A /* CallManagerObserver.swift */; };
+		FF098B282F8FB32D00ED440A /* CallPushAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B1F2F8FB32D00ED440A /* CallPushAction.swift */; };
+		FF098B292F8FB32D00ED440A /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B1D2F8FB32D00ED440A /* CallManager.swift */; };
+		FF098B302F8FB36B00ED440A /* CaptureDevicePermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B2A2F8FB36B00ED440A /* CaptureDevicePermissionsManager.swift */; };
+		FF098B312F8FB36B00ED440A /* CaptureDeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B2B2F8FB36B00ED440A /* CaptureDeviceType.swift */; };
+		FF098B322F8FB36B00ED440A /* PushPermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B2D2F8FB36B00ED440A /* PushPermissionsManager.swift */; };
+		FF098B332F8FB36B00ED440A /* PermissionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B2C2F8FB36B00ED440A /* PermissionState.swift */; };
+		FF098B342F8FB36B00ED440A /* StockCaptureDevicePermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B2E2F8FB36B00ED440A /* StockCaptureDevicePermissionsManager.swift */; };
+		FF098B3A2F8FB39700ED440A /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B382F8FB39700ED440A /* String+Localizable.swift */; };
+		FF098B3C2F8FB3AB00ED440A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = FF098B3B2F8FB3AB00ED440A /* Localizable.xcstrings */; };
+		FF098B412F8FB3D000ED440A /* CallSessionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B402F8FB3D000ED440A /* CallSessionStatus.swift */; };
+		FF098B422F8FB3D000ED440A /* AudioCallVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B3E2F8FB3D000ED440A /* AudioCallVM.swift */; };
+		FF098B432F8FB3D000ED440A /* AudioCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B3D2F8FB3D000ED440A /* AudioCallView.swift */; };
+		FF098B442F8FB3D000ED440A /* CallScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B3F2F8FB3D000ED440A /* CallScreenCoordinator.swift */; };
+		FF098B472F8FB3DF00ED440A /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B452F8FB3DF00ED440A /* StartScreenView.swift */; };
+		FF098B482F8FB3DF00ED440A /* StartScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B462F8FB3DF00ED440A /* StartScreenVM.swift */; };
 		FF6267EC2EEA6F4F0081A62A /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF6267EB2EEA6F4F0081A62A /* LiveDigitalSDK */; };
 		FF800AC42DBA4BD10060FAED /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC32DBA4BD10060FAED /* StartVC.swift */; };
 		FF800AC52DBA4BD10060FAED /* SessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC22DBA4BD10060FAED /* SessionVC.swift */; };
 		FF98FFB02EC1C85A003F1D90 /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF98FFAF2EC1C85A003F1D90 /* LiveDigitalSDK */; };
-		FFA56F4E2F22439A000FFD29 /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F4D2F224397000FFD29 /* CallManager.swift */; };
-		FFA56F502F2243AC000FFD29 /* StockCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F4F2F2243A7000FFD29 /* StockCallManager.swift */; };
-		FFA56F522F2343B7000FFD29 /* PermissionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F512F2343B1000FFD29 /* PermissionState.swift */; };
 		FFA56F542F236D85000FFD29 /* QRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F532F236D68000FFD29 /* QRGenerator.swift */; };
 		FFA56F562F236E04000FFD29 /* StockQRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F552F236DFB000FFD29 /* StockQRGenerator.swift */; };
 		FFAFC88A2F2717FD002E4D51 /* FullscreenImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFC8892F2717FC002E4D51 /* FullscreenImageVC.swift */; };
-		FFAFC88C2F277F1A002E4D51 /* CallManagerObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFC88B2F277F18002E4D51 /* CallManagerObserver.swift */; };
-		FFAFC88E2F277F37002E4D51 /* Call.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFC88D2F277F36002E4D51 /* Call.swift */; };
-		FFAFC8902F285315002E4D51 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFC88F2F285311002E4D51 /* SceneDelegate.swift */; };
 		FFB0FB2A2E459A6B00F787EC /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FFB0FB292E459A6B00F787EC /* LiveDigitalSDK */; };
 		FFE7933726A95E5500FF5148 /* PeerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7933626A95E5500FF5148 /* PeerView.swift */; };
 		FFE7933926A95FB400FF5148 /* PeerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE7933826A95FB400FF5148 /* PeerView.xib */; };
@@ -48,24 +87,63 @@
 		1D970F2F152FCB07F1758161 /* Pods_LiveDigitalSDKExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveDigitalSDKExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* LiveDigitalSDKExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveDigitalSDKExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SessionVC.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		78EA401149B94AA7EBFB46CF /* Pods_LiveDigitalSDKExample_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveDigitalSDKExample_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF0203882F2AFF800020642D /* PushPermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushPermissionsManager.swift; sourceTree = "<group>"; };
+		FF098ADD2F8FB31400ED440A /* AssetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetColor.swift; sourceTree = "<group>"; };
+		FF098ADE2F8FB31400ED440A /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
+		FF098AE02F8FB31400ED440A /* AssetFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetFont.swift; sourceTree = "<group>"; };
+		FF098AE12F8FB31400ED440A /* PTRootUI-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Bold.ttf"; sourceTree = "<group>"; };
+		FF098AE22F8FB31400ED440A /* PTRootUI-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Light.ttf"; sourceTree = "<group>"; };
+		FF098AE32F8FB31400ED440A /* PTRootUI-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Medium.ttf"; sourceTree = "<group>"; };
+		FF098AE42F8FB31400ED440A /* PTRootUI-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Regular.ttf"; sourceTree = "<group>"; };
+		FF098AE62F8FB31400ED440A /* NotificationContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationContent.swift; sourceTree = "<group>"; };
+		FF098AE72F8FB31400ED440A /* NotificationsStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsStack.swift; sourceTree = "<group>"; };
+		FF098AE82F8FB31400ED440A /* NotificationsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsVM.swift; sourceTree = "<group>"; };
+		FF098AE92F8FB31400ED440A /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		FF098AEA2F8FB31400ED440A /* TopFadeMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopFadeMask.swift; sourceTree = "<group>"; };
+		FF098AEC2F8FB31400ED440A /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		FF098AED2F8FB31400ED440A /* RoundButtonConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonConfig.swift; sourceTree = "<group>"; };
+		FF098AEE2F8FB31400ED440A /* RoundButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyle.swift; sourceTree = "<group>"; };
+		FF098AEF2F8FB31400ED440A /* RoundButtonStyleAccept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyleAccept.swift; sourceTree = "<group>"; };
+		FF098AF02F8FB31400ED440A /* RoundButtonStyleCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyleCustom.swift; sourceTree = "<group>"; };
+		FF098AF12F8FB31400ED440A /* RoundButtonStyledContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyledContent.swift; sourceTree = "<group>"; };
+		FF098AF22F8FB31400ED440A /* RoundButtonStyleMediaCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyleMediaCapture.swift; sourceTree = "<group>"; };
+		FF098AF32F8FB31400ED440A /* RoundButtonStyleMediaSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyleMediaSound.swift; sourceTree = "<group>"; };
+		FF098AF42F8FB31400ED440A /* RoundButtonStyleReject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyleReject.swift; sourceTree = "<group>"; };
+		FF098AF72F8FB31400ED440A /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
+		FF098AF82F8FB31400ED440A /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
+		FF098AF92F8FB31400ED440A /* LDToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDToggleStyle.swift; sourceTree = "<group>"; };
+		FF098AFA2F8FB31400ED440A /* PermissionIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionIndicator.swift; sourceTree = "<group>"; };
+		FF098AFB2F8FB31400ED440A /* RoundedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedContainer.swift; sourceTree = "<group>"; };
+		FF098B182F8FB32D00ED440A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FF098B192F8FB32D00ED440A /* CallCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallCoordinator.swift; sourceTree = "<group>"; };
+		FF098B1A2F8FB32D00ED440A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FF098B1C2F8FB32D00ED440A /* Call.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Call.swift; sourceTree = "<group>"; };
+		FF098B1D2F8FB32D00ED440A /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
+		FF098B1E2F8FB32D00ED440A /* CallManagerObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManagerObserver.swift; sourceTree = "<group>"; };
+		FF098B1F2F8FB32D00ED440A /* CallPushAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallPushAction.swift; sourceTree = "<group>"; };
+		FF098B202F8FB32D00ED440A /* StockCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCallManager.swift; sourceTree = "<group>"; };
+		FF098B2A2F8FB36B00ED440A /* CaptureDevicePermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDevicePermissionsManager.swift; sourceTree = "<group>"; };
+		FF098B2B2F8FB36B00ED440A /* CaptureDeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDeviceType.swift; sourceTree = "<group>"; };
+		FF098B2C2F8FB36B00ED440A /* PermissionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionState.swift; sourceTree = "<group>"; };
+		FF098B2D2F8FB36B00ED440A /* PushPermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushPermissionsManager.swift; sourceTree = "<group>"; };
+		FF098B2E2F8FB36B00ED440A /* StockCaptureDevicePermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCaptureDevicePermissionsManager.swift; sourceTree = "<group>"; };
+		FF098B382F8FB39700ED440A /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
+		FF098B3B2F8FB3AB00ED440A /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		FF098B3D2F8FB3D000ED440A /* AudioCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCallView.swift; sourceTree = "<group>"; };
+		FF098B3E2F8FB3D000ED440A /* AudioCallVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCallVM.swift; sourceTree = "<group>"; };
+		FF098B3F2F8FB3D000ED440A /* CallScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallScreenCoordinator.swift; sourceTree = "<group>"; };
+		FF098B402F8FB3D000ED440A /* CallSessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSessionStatus.swift; sourceTree = "<group>"; };
+		FF098B452F8FB3DF00ED440A /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
+		FF098B462F8FB3DF00ED440A /* StartScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVM.swift; sourceTree = "<group>"; };
 		FF800AC22DBA4BD10060FAED /* SessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionVC.swift; sourceTree = "<group>"; };
 		FF800AC32DBA4BD10060FAED /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
-		FFA56F4D2F224397000FFD29 /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
-		FFA56F4F2F2243A7000FFD29 /* StockCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCallManager.swift; sourceTree = "<group>"; };
-		FFA56F512F2343B1000FFD29 /* PermissionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionState.swift; sourceTree = "<group>"; };
 		FFA56F532F236D68000FFD29 /* QRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRGenerator.swift; sourceTree = "<group>"; };
 		FFA56F552F236DFB000FFD29 /* StockQRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockQRGenerator.swift; sourceTree = "<group>"; };
 		FFA56F572F237ADD000FFD29 /* LiveDigitalSDKExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiveDigitalSDKExample.entitlements; sourceTree = "<group>"; };
 		FFAFC8892F2717FC002E4D51 /* FullscreenImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenImageVC.swift; sourceTree = "<group>"; };
-		FFAFC88B2F277F18002E4D51 /* CallManagerObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManagerObserver.swift; sourceTree = "<group>"; };
-		FFAFC88D2F277F36002E4D51 /* Call.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Call.swift; sourceTree = "<group>"; };
-		FFAFC88F2F285311002E4D51 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FFE7933626A95E5500FF5148 /* PeerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerView.swift; sourceTree = "<group>"; };
 		FFE7933826A95FB400FF5148 /* PeerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeerView.xib; sourceTree = "<group>"; };
 		FFF42C562F31DA4C00AE3966 /* StartVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartVC.storyboard; sourceTree = "<group>"; };
@@ -118,16 +196,17 @@
 		607FACD21AFB9204008FA782 /* Example for LiveDigitalSDK */ = {
 			isa = PBXGroup;
 			children = (
-				FFF42C9B2F32021300AE3966 /* Utils */,
+				FF098B1B2F8FB32D00ED440A /* Application */,
+				FF098B212F8FB32D00ED440A /* Calls */,
+				FF098AFC2F8FB31400ED440A /* Components */,
 				FFF42C5A2F31DBC600AE3966 /* Config */,
-				FFF42C592F31DB9000AE3966 /* Resources */,
-				FFF42C532F31D98D00AE3966 /* Application */,
-				FFA56F4C2F224390000FFD29 /* Calls */,
 				FFFA321C2D30DFF50043C2E7 /* MoodhoodAPI */,
-				FF0203872F2AFF6F0020642D /* Permissions */,
+				FF098B2F2F8FB36B00ED440A /* Permissions */,
 				FF52173C2F2A044400725DC7 /* QRCode */,
+				FFF42C592F31DB9000AE3966 /* Resources */,
 				FFF42C542F31D9BF00AE3966 /* SessionScreen */,
 				FFF42C582F31DB3200AE3966 /* StartScreen */,
+				FFF42C9B2F32021300AE3966 /* Utils */,
 			);
 			name = "Example for LiveDigitalSDK";
 			path = LiveDigitalSDK;
@@ -142,11 +221,101 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FF0203872F2AFF6F0020642D /* Permissions */ = {
+		FF098ADF2F8FB31400ED440A /* Colors */ = {
 			isa = PBXGroup;
 			children = (
-				FFA56F512F2343B1000FFD29 /* PermissionState.swift */,
-				FF0203882F2AFF800020642D /* PushPermissionsManager.swift */,
+				FF098ADD2F8FB31400ED440A /* AssetColor.swift */,
+				FF098ADE2F8FB31400ED440A /* ColorAssets.xcassets */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		FF098AE52F8FB31400ED440A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FF098AE02F8FB31400ED440A /* AssetFont.swift */,
+				FF098AE12F8FB31400ED440A /* PTRootUI-Bold.ttf */,
+				FF098AE22F8FB31400ED440A /* PTRootUI-Light.ttf */,
+				FF098AE32F8FB31400ED440A /* PTRootUI-Medium.ttf */,
+				FF098AE42F8FB31400ED440A /* PTRootUI-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		FF098AEB2F8FB31400ED440A /* NotificationsStack */ = {
+			isa = PBXGroup;
+			children = (
+				FF098AE62F8FB31400ED440A /* NotificationContent.swift */,
+				FF098AE72F8FB31400ED440A /* NotificationsStack.swift */,
+				FF098AE82F8FB31400ED440A /* NotificationsVM.swift */,
+				FF098AE92F8FB31400ED440A /* NotificationView.swift */,
+				FF098AEA2F8FB31400ED440A /* TopFadeMask.swift */,
+			);
+			path = NotificationsStack;
+			sourceTree = "<group>";
+		};
+		FF098AF52F8FB31400ED440A /* RoundButton */ = {
+			isa = PBXGroup;
+			children = (
+				FF098AEC2F8FB31400ED440A /* RoundButton.swift */,
+				FF098AED2F8FB31400ED440A /* RoundButtonConfig.swift */,
+				FF098AEE2F8FB31400ED440A /* RoundButtonStyle.swift */,
+				FF098AEF2F8FB31400ED440A /* RoundButtonStyleAccept.swift */,
+				FF098AF02F8FB31400ED440A /* RoundButtonStyleCustom.swift */,
+				FF098AF12F8FB31400ED440A /* RoundButtonStyledContent.swift */,
+				FF098AF22F8FB31400ED440A /* RoundButtonStyleMediaCapture.swift */,
+				FF098AF32F8FB31400ED440A /* RoundButtonStyleMediaSound.swift */,
+				FF098AF42F8FB31400ED440A /* RoundButtonStyleReject.swift */,
+			);
+			path = RoundButton;
+			sourceTree = "<group>";
+		};
+		FF098AFC2F8FB31400ED440A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FF098ADF2F8FB31400ED440A /* Colors */,
+				FF098AE52F8FB31400ED440A /* Fonts */,
+				FF098AEB2F8FB31400ED440A /* NotificationsStack */,
+				FF098AF52F8FB31400ED440A /* RoundButton */,
+				FF098AF72F8FB31400ED440A /* GradientBackgroundView.swift */,
+				FF098AF82F8FB31400ED440A /* ImageAssets.xcassets */,
+				FF098AF92F8FB31400ED440A /* LDToggleStyle.swift */,
+				FF098AFA2F8FB31400ED440A /* PermissionIndicator.swift */,
+				FF098AFB2F8FB31400ED440A /* RoundedContainer.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		FF098B1B2F8FB32D00ED440A /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				FF098B182F8FB32D00ED440A /* AppDelegate.swift */,
+				FF098B192F8FB32D00ED440A /* CallCoordinator.swift */,
+				FF098B1A2F8FB32D00ED440A /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		FF098B212F8FB32D00ED440A /* Calls */ = {
+			isa = PBXGroup;
+			children = (
+				FF098B1C2F8FB32D00ED440A /* Call.swift */,
+				FF098B1D2F8FB32D00ED440A /* CallManager.swift */,
+				FF098B1E2F8FB32D00ED440A /* CallManagerObserver.swift */,
+				FF098B1F2F8FB32D00ED440A /* CallPushAction.swift */,
+				FF098B202F8FB32D00ED440A /* StockCallManager.swift */,
+			);
+			path = Calls;
+			sourceTree = "<group>";
+		};
+		FF098B2F2F8FB36B00ED440A /* Permissions */ = {
+			isa = PBXGroup;
+			children = (
+				FF098B2A2F8FB36B00ED440A /* CaptureDevicePermissionsManager.swift */,
+				FF098B2B2F8FB36B00ED440A /* CaptureDeviceType.swift */,
+				FF098B2C2F8FB36B00ED440A /* PermissionState.swift */,
+				FF098B2D2F8FB36B00ED440A /* PushPermissionsManager.swift */,
+				FF098B2E2F8FB36B00ED440A /* StockCaptureDevicePermissionsManager.swift */,
 			);
 			path = Permissions;
 			sourceTree = "<group>";
@@ -161,29 +330,13 @@
 			path = QRCode;
 			sourceTree = "<group>";
 		};
-		FFA56F4C2F224390000FFD29 /* Calls */ = {
-			isa = PBXGroup;
-			children = (
-				FFAFC88D2F277F36002E4D51 /* Call.swift */,
-				FFAFC88B2F277F18002E4D51 /* CallManagerObserver.swift */,
-				FFA56F4F2F2243A7000FFD29 /* StockCallManager.swift */,
-				FFA56F4D2F224397000FFD29 /* CallManager.swift */,
-			);
-			path = Calls;
-			sourceTree = "<group>";
-		};
-		FFF42C532F31D98D00AE3966 /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				FFAFC88F2F285311002E4D51 /* SceneDelegate.swift */,
-			);
-			path = Application;
-			sourceTree = "<group>";
-		};
 		FFF42C542F31D9BF00AE3966 /* SessionScreen */ = {
 			isa = PBXGroup;
 			children = (
+				FF098B3D2F8FB3D000ED440A /* AudioCallView.swift */,
+				FF098B3E2F8FB3D000ED440A /* AudioCallVM.swift */,
+				FF098B3F2F8FB3D000ED440A /* CallScreenCoordinator.swift */,
+				FF098B402F8FB3D000ED440A /* CallSessionStatus.swift */,
 				FFE7933626A95E5500FF5148 /* PeerView.swift */,
 				FFE7933826A95FB400FF5148 /* PeerView.xib */,
 				FFF42C912F31E0F400AE3966 /* SessionPresenter.swift */,
@@ -198,6 +351,8 @@
 		FFF42C582F31DB3200AE3966 /* StartScreen */ = {
 			isa = PBXGroup;
 			children = (
+				FF098B452F8FB3DF00ED440A /* StartScreenView.swift */,
+				FF098B462F8FB3DF00ED440A /* StartScreenVM.swift */,
 				FFF42C562F31DA4C00AE3966 /* StartVC.storyboard */,
 				FF800AC32DBA4BD10060FAED /* StartVC.swift */,
 			);
@@ -207,8 +362,10 @@
 		FFF42C592F31DB9000AE3966 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				FF098B3B2F8FB3AB00ED440A /* Localizable.xcstrings */,
+				FF098B382F8FB39700ED440A /* String+Localizable.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -319,6 +476,13 @@
 			files = (
 				FFE7933926A95FB400FF5148 /* PeerView.xib in Resources */,
 				607FACDB1AFB9204008FA782 /* SessionVC.storyboard in Resources */,
+				FF098AFD2F8FB31400ED440A /* ColorAssets.xcassets in Resources */,
+				FF098AFF2F8FB31400ED440A /* ImageAssets.xcassets in Resources */,
+				FF098B002F8FB31400ED440A /* PTRootUI-Regular.ttf in Resources */,
+				FF098B3C2F8FB3AB00ED440A /* Localizable.xcstrings in Resources */,
+				FF098B012F8FB31400ED440A /* PTRootUI-Bold.ttf in Resources */,
+				FF098B022F8FB31400ED440A /* PTRootUI-Light.ttf in Resources */,
+				FF098B032F8FB31400ED440A /* PTRootUI-Medium.ttf in Resources */,
 				FFF42C572F31DA4C00AE3966 /* StartVC.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -339,25 +503,57 @@
 				FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */,
 				FFF42C9D2F32021B00AE3966 /* Weak.swift in Sources */,
 				FFFA32242D30EA170043C2E7 /* MoodhoodAPIClientError.swift in Sources */,
-				FFA56F4E2F22439A000FFD29 /* CallManager.swift in Sources */,
-				FFAFC8902F285315002E4D51 /* SceneDelegate.swift in Sources */,
 				FFAFC88A2F2717FD002E4D51 /* FullscreenImageVC.swift in Sources */,
+				FF098B042F8FB31400ED440A /* RoundedContainer.swift in Sources */,
+				FF098B052F8FB31400ED440A /* PermissionIndicator.swift in Sources */,
+				FF098B472F8FB3DF00ED440A /* StartScreenView.swift in Sources */,
+				FF098B482F8FB3DF00ED440A /* StartScreenVM.swift in Sources */,
+				FF098B062F8FB31400ED440A /* RoundButtonStyle.swift in Sources */,
+				FF098B072F8FB31400ED440A /* NotificationsVM.swift in Sources */,
+				FF098B412F8FB3D000ED440A /* CallSessionStatus.swift in Sources */,
+				FF098B422F8FB3D000ED440A /* AudioCallVM.swift in Sources */,
+				FF098B432F8FB3D000ED440A /* AudioCallView.swift in Sources */,
+				FF098B442F8FB3D000ED440A /* CallScreenCoordinator.swift in Sources */,
+				FF098B082F8FB31400ED440A /* RoundButtonStyledContent.swift in Sources */,
+				FF098B092F8FB31400ED440A /* TopFadeMask.swift in Sources */,
+				FF098B0A2F8FB31400ED440A /* RoundButton.swift in Sources */,
+				FF098B0B2F8FB31400ED440A /* RoundButtonStyleAccept.swift in Sources */,
+				FF098B0C2F8FB31400ED440A /* RoundButtonStyleCustom.swift in Sources */,
+				FF098B0D2F8FB31400ED440A /* RoundButtonConfig.swift in Sources */,
+				FF098B0E2F8FB31400ED440A /* RoundButtonStyleMediaSound.swift in Sources */,
+				FF098B0F2F8FB31400ED440A /* AssetColor.swift in Sources */,
+				FF098B102F8FB31400ED440A /* NotificationContent.swift in Sources */,
+				FF098B112F8FB31400ED440A /* LDToggleStyle.swift in Sources */,
+				FF098B122F8FB31400ED440A /* NotificationView.swift in Sources */,
+				FF098B132F8FB31400ED440A /* GradientBackgroundView.swift in Sources */,
+				FF098B142F8FB31400ED440A /* RoundButtonStyleMediaCapture.swift in Sources */,
+				FF098B222F8FB32D00ED440A /* StockCallManager.swift in Sources */,
+				FF098B232F8FB32D00ED440A /* CallCoordinator.swift in Sources */,
+				FF098B242F8FB32D00ED440A /* Call.swift in Sources */,
+				FF098B252F8FB32D00ED440A /* SceneDelegate.swift in Sources */,
+				FF098B262F8FB32D00ED440A /* AppDelegate.swift in Sources */,
+				FF098B3A2F8FB39700ED440A /* String+Localizable.swift in Sources */,
+				FF098B272F8FB32D00ED440A /* CallManagerObserver.swift in Sources */,
+				FF098B282F8FB32D00ED440A /* CallPushAction.swift in Sources */,
+				FF098B292F8FB32D00ED440A /* CallManager.swift in Sources */,
+				FF098B302F8FB36B00ED440A /* CaptureDevicePermissionsManager.swift in Sources */,
+				FF098B312F8FB36B00ED440A /* CaptureDeviceType.swift in Sources */,
+				FF098B322F8FB36B00ED440A /* PushPermissionsManager.swift in Sources */,
+				FF098B332F8FB36B00ED440A /* PermissionState.swift in Sources */,
+				FF098B342F8FB36B00ED440A /* StockCaptureDevicePermissionsManager.swift in Sources */,
+				FF098B152F8FB31400ED440A /* RoundButtonStyleReject.swift in Sources */,
+				FF098B162F8FB31400ED440A /* AssetFont.swift in Sources */,
+				FF098B172F8FB31400ED440A /* NotificationsStack.swift in Sources */,
 				FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */,
-				FFAFC88C2F277F1A002E4D51 /* CallManagerObserver.swift in Sources */,
 				FFF42C922F31E0F800AE3966 /* SessionPresenter.swift in Sources */,
-				FFA56F502F2243AC000FFD29 /* StockCallManager.swift in Sources */,
 				FF800AC42DBA4BD10060FAED /* StartVC.swift in Sources */,
 				FFF42C902F31DEB200AE3966 /* StockSessionPresenter.swift in Sources */,
 				FF800AC52DBA4BD10060FAED /* SessionVC.swift in Sources */,
-				FFA56F522F2343B7000FFD29 /* PermissionState.swift in Sources */,
-				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */,
 				FFF42C942F31E1A400AE3966 /* SessionView.swift in Sources */,
-				FF0203892F2AFF970020642D /* PushPermissionsManager.swift in Sources */,
 				FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */,
 				FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */,
 				FFFA322D2D3128240043C2E7 /* Room.swift in Sources */,
-				FFAFC88E2F277F37002E4D51 /* Call.swift in Sources */,
 				FFA56F562F236E04000FFD29 /* StockQRGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,6 +698,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "pro.vlprojects.livedigital-sdk-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = Debug;
@@ -522,6 +719,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "pro.vlprojects.livedigital-sdk-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = Release;
