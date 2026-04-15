@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "APNS Permission Title" : {
+    "apnsPermissionTitle" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -120,7 +120,7 @@
         }
       }
     },
-    "Camera Permission Title" : {
+    "cameraPermissionTitle" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -137,7 +137,7 @@
         }
       }
     },
-    "Copy APNS Token Action" : {
+    "copyApnsTokenAction" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -154,7 +154,7 @@
         }
       }
     },
-    "Copy APNS Token Hint" : {
+    "copyApnsTokenHint" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -171,7 +171,7 @@
         }
       }
     },
-    "Microphone Permission Title" : {
+    "microphonePermissionTitle" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -222,7 +222,7 @@
         }
       }
     },
-    "Permissions Legend" : {
+    "permissionsLegend" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

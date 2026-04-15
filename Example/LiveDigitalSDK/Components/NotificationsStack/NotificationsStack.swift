@@ -37,6 +37,7 @@ extension NotificationsStack: View {
 	}
 }
 
+@available(iOS 17.0, *)
 #Preview("NotificationsStack") {
 	@Previewable @State var vm = NotificationsVM()
 
