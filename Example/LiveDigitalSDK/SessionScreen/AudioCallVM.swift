@@ -176,7 +176,22 @@ extension AudioCallVM: @MainActor CallManagerObserver {
 			return
 		}
 		self.call = call
-		self.callStatus = .callEnded
+
+		if let audioSource {
+			engine.stopAudioSource(audioSource)
+			self.audioSource = nil
+		}
+
+		if let channelSession {
+			canFinishSession = false
+			callStatus = .disconnecting
+			channelSession.stop(completion: { [weak self] in
+				self?.channelSession = nil
+				self?.callStatus = .callEnded
+			})
+		} else {
+			self.callStatus = .callEnded
+		}
 	}
 }
 
@@ -283,6 +298,7 @@ private extension AudioCallVM {
 	}
 
 	func endSession() {
+		channelSession = nil
 		callStatus = .disconnected
 		callManager?.endCall(call)
 	}
