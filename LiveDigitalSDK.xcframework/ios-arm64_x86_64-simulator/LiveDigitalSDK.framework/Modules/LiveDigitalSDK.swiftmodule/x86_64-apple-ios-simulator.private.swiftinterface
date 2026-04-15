@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
-// swift-module-flags: -target x86_64-apple-ios16.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name LiveDigitalSDK
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-compiler-version: Apple Swift version 6.3 effective-5.10 (swiftlang-6.3.0.123.5 clang-2100.0.123.102)
+// swift-module-flags: -target x86_64-apple-ios16.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name LiveDigitalSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3
 import AVFoundation
 import CoreImage.CIFilterBuiltins
 import Combine
@@ -12,28 +12,17 @@ import Foundation
 import Mediasoup
 import Swift
 import UIKit
+import UIKit.UIView
 import Vision
 import WebRTC
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
 import zlib
-public struct ChannelId : Swift.ExpressibleByStringLiteral {
-  public let value: Swift.String
-  public init(stringLiteral value: Swift.StringLiteralType)
-  public init(value: Swift.String)
-  public typealias ExtendedGraphemeClusterLiteralType = Swift.StringLiteralType
-  public typealias StringLiteralType = Swift.StringLiteralType
-  public typealias UnicodeScalarLiteralType = Swift.StringLiteralType
-}
-extension LiveDigitalSDK.ChannelId : Swift.Hashable {
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
-    get
-  }
-}
-extension LiveDigitalSDK.ChannelId : Swift.Equatable {
-  public static func == (lhs: LiveDigitalSDK.ChannelId, rhs: LiveDigitalSDK.ChannelId) -> Swift.Bool
+public struct ChannelId : Swift.RawRepresentable, Swift.Hashable {
+  public let rawValue: Swift.String
+  public init(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
 }
 extension LiveDigitalSDK.ChannelId : Swift.CustomStringConvertible {
   public var description: Swift.String {
@@ -43,9 +32,8 @@ extension LiveDigitalSDK.ChannelId : Swift.CustomStringConvertible {
 public protocol ChannelSession : AnyObject {
   var delegate: (any LiveDigitalSDK.ChannelSessionDelegate)? { get set }
   var status: LiveDigitalSDK.ChannelSessionStatus { get }
-  var node: Swift.String? { get }
   var myPeerId: LiveDigitalSDK.PeerId? { get }
-  var peerDetails: LiveDigitalSDK.JoinedPeerParameters? { get }
+  var sessionDetails: LiveDigitalSDK.SessionDetails? { get }
   var shouldShowLocalPeer: Swift.Bool { get set }
   var peers: Swift.Set<LiveDigitalSDK.Peer> { get }
   var videoSources: [any LiveDigitalSDK.VideoSource] { get }
@@ -64,7 +52,7 @@ public protocol ChannelSession : AnyObject {
   func suspendAudio(with trackLabel: LiveDigitalSDK.TrackLabel, for peer: LiveDigitalSDK.Peer)
   func proceedAudio(with trackLabel: LiveDigitalSDK.TrackLabel, for peer: LiveDigitalSDK.Peer)
   func updatePeerPayload(_ peerPayload: [Swift.String : Any])
-  func start(mediaRole: LiveDigitalSDK.MediaRole?, participantId: LiveDigitalSDK.ParticipantId?, signalingToken: Swift.String?, peerId: LiveDigitalSDK.PeerId?, peerPayload: [Swift.String : Any]?)
+  func start(mediaRole: LiveDigitalSDK.MediaRole?, peerId: LiveDigitalSDK.PeerId?, peerPayload: [Swift.String : Any]?)
   func stop(callbackQueue: Dispatch.DispatchQueue, completion: @escaping () -> Swift.Void)
   func stop(completion: @escaping () -> Swift.Void)
   func confirmActivity()
@@ -79,9 +67,7 @@ public protocol ChannelSessionDelegate : AnyObject {
 }
 public enum ChannelSessionError : Swift.Error {
   case unknown
-  case sessionDeallocated
   case connectionAttemptFailed
-  case sessionInitializationFailed
   case connectionFailed
   public static func == (a: LiveDigitalSDK.ChannelSessionError, b: LiveDigitalSDK.ChannelSessionError) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
@@ -216,7 +202,7 @@ public struct LocalDataProducerId : Swift.RawRepresentable, Swift.Hashable, Swif
   public static func random() -> LiveDigitalSDK.LocalDataProducerId
   public typealias RawValue = Swift.String
 }
-public enum MediaKind : Swift.String, Swift.CaseIterable, Swift.Sendable {
+public enum MediaKind : Swift.String, Swift.Codable, Swift.CaseIterable, Swift.Sendable {
   case audio
   case video
   public init?(rawValue: Swift.String)
@@ -229,7 +215,7 @@ public enum MediaKind : Swift.String, Swift.CaseIterable, Swift.Sendable {
     get
   }
 }
-public struct LocalProducerId : Swift.RawRepresentable {
+public struct LocalProducerId : Swift.RawRepresentable, Swift.Sendable {
   public let rawValue: Swift.String
   public init(rawValue: Swift.StringLiteralType)
   public static func random() -> LiveDigitalSDK.LocalProducerId
@@ -268,6 +254,8 @@ public struct NetworkMetricsReport {
   public let stats: LiveDigitalSDK.NetworkQualityStats
   public let bitrate: Swift.Double
   public let streamsCount: Swift.Int
+  public let activeAudioConsumers: Swift.Int
+  public let activeVideoConsumers: Swift.Int
 }
 public struct NetworkQualityStats {
   public let avgJitter: Foundation.TimeInterval
@@ -306,6 +294,9 @@ public struct SessionDetails {
 @available(tvOS, unavailable, message: "Only available in extensions.")
 final public class BroadcastLiveDigitalEngine {
   weak final public var delegate: (any LiveDigitalSDK.LiveDigitalSessionManagerDelegate)?
+  final public var currentChannelSession: (any LiveDigitalSDK.ChannelSession)? {
+    get
+  }
   final public var videoSources: [LiveDigitalSDK.VideoSourceWithoutPreview] {
     get
   }
@@ -320,19 +311,16 @@ final public class BroadcastLiveDigitalEngine {
 @available(watchOS, unavailable, message: "Only available in extensions.")
 @available(tvOS, unavailable, message: "Only available in extensions.")
 extension LiveDigitalSDK.BroadcastLiveDigitalEngine : LiveDigitalSDK.LiveDigitalSessionManager {
-  final public var currentChannelSession: (any LiveDigitalSDK.ChannelSession)? {
-    get
-  }
-  final public func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, participantId: LiveDigitalSDK.ParticipantId?, signalingToken: Swift.String?, peerId: LiveDigitalSDK.PeerId?, peerPayload: [Swift.String : Any]?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
+  final public func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, signalingToken: Swift.String, peerId: LiveDigitalSDK.PeerId?, peerPayload: [Swift.String : Any]?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
   final public func disconnectFromCurrentChannel(completion: @escaping () -> Swift.Void)
 }
 @available(iOS, unavailable, message: "Only available in extensions.")
 @available(watchOS, unavailable, message: "Only available in extensions.")
 @available(tvOS, unavailable, message: "Only available in extensions.")
 extension LiveDigitalSDK.BroadcastLiveDigitalEngine : LiveDigitalSDK.LiveDigitalBroadcastEngine {
-  final public func startVideoSource() -> Swift.Result<LiveDigitalSDK.VideoSourceWithoutPreview, LiveDigitalSDK.LiveDigitalEngineError>
-  final public func startVideoSource(encodingParameters: LiveDigitalSDK.VideoEncodingParameters, preferredCodec: LiveDigitalSDK.VideoCodec) -> Swift.Result<LiveDigitalSDK.VideoSourceWithoutPreview, LiveDigitalSDK.LiveDigitalEngineError>
-  final public func stopVideoSource(_ videoSource: LiveDigitalSDK.VideoSourceWithoutPreview)
+  final public func startVideoSource(completion: @escaping (Swift.Result<LiveDigitalSDK.VideoSourceWithoutPreview, LiveDigitalSDK.LiveDigitalEngineError>) -> Swift.Void)
+  final public func startVideoSource(encodingParameters: LiveDigitalSDK.VideoEncodingParameters, preferredCodec: LiveDigitalSDK.VideoCodec, completion: @escaping (Swift.Result<LiveDigitalSDK.VideoSourceWithoutPreview, LiveDigitalSDK.LiveDigitalEngineError>) -> Swift.Void)
+  final public func stopVideoSource(_ videoSource: LiveDigitalSDK.VideoSourceWithoutPreview, completion: @escaping () -> Swift.Void)
 }
 @available(iOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(watchOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
@@ -355,9 +343,9 @@ extension LiveDigitalSDK.CameraPreviewEngine : LiveDigitalSDK.LiveDigitalVideoFi
 @available(tvOS, unavailable, message: "Only available in extensions.")
 public protocol LiveDigitalBroadcastEngine {
   var videoSources: [LiveDigitalSDK.VideoSourceWithoutPreview] { get }
-  func startVideoSource() -> Swift.Result<LiveDigitalSDK.VideoSourceWithoutPreview, LiveDigitalSDK.LiveDigitalEngineError>
-  func startVideoSource(encodingParameters: LiveDigitalSDK.VideoEncodingParameters, preferredCodec: LiveDigitalSDK.VideoCodec) -> Swift.Result<LiveDigitalSDK.VideoSourceWithoutPreview, LiveDigitalSDK.LiveDigitalEngineError>
-  func stopVideoSource(_ videoSource: LiveDigitalSDK.VideoSourceWithoutPreview)
+  func startVideoSource(completion: @escaping (Swift.Result<LiveDigitalSDK.VideoSourceWithoutPreview, LiveDigitalSDK.LiveDigitalEngineError>) -> Swift.Void)
+  func startVideoSource(encodingParameters: LiveDigitalSDK.VideoEncodingParameters, preferredCodec: LiveDigitalSDK.VideoCodec, completion: @escaping (Swift.Result<LiveDigitalSDK.VideoSourceWithoutPreview, LiveDigitalSDK.LiveDigitalEngineError>) -> Swift.Void)
+  func stopVideoSource(_ videoSource: LiveDigitalSDK.VideoSourceWithoutPreview, completion: @escaping () -> Swift.Void)
 }
 @available(iOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(watchOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
@@ -365,10 +353,11 @@ public protocol LiveDigitalBroadcastEngine {
 public protocol LiveDigitalCameraEngine {
   var videoSources: [any LiveDigitalSDK.VideoSource] { get }
   var cameraManager: any LiveDigitalSDK.CameraManager { get }
-  func startVideoSource(position: AVFoundation.AVCaptureDevice.Position) -> Swift.Result<LiveDigitalSDK.VideoSourceWithPreview, LiveDigitalSDK.LiveDigitalEngineError>
-  func startVideoSource(encodingParameters: LiveDigitalSDK.VideoEncodingParameters, preferredCodec: LiveDigitalSDK.VideoCodec, position: AVFoundation.AVCaptureDevice.Position) -> Swift.Result<LiveDigitalSDK.VideoSourceWithPreview, LiveDigitalSDK.LiveDigitalEngineError>
-  func startVideoSource(id: LiveDigitalSDK.MediaSourceId?, encodingParameters: LiveDigitalSDK.VideoEncodingParameters, preferredCodec: LiveDigitalSDK.VideoCodec, position: AVFoundation.AVCaptureDevice.Position) -> Swift.Result<LiveDigitalSDK.VideoSourceWithPreview, LiveDigitalSDK.LiveDigitalEngineError>
-  func stopVideoSource(_ videoSource: any LiveDigitalSDK.VideoSource)
+  func startVideoSource(position: AVFoundation.AVCaptureDevice.Position, completion: @escaping (Swift.Result<LiveDigitalSDK.VideoSourceWithPreview, LiveDigitalSDK.LiveDigitalEngineError>) -> Swift.Void)
+  func startVideoSource(encodingParameters: LiveDigitalSDK.VideoEncodingParameters, preferredCodec: LiveDigitalSDK.VideoCodec, position: AVFoundation.AVCaptureDevice.Position, completion: @escaping (Swift.Result<LiveDigitalSDK.VideoSourceWithPreview, LiveDigitalSDK.LiveDigitalEngineError>) -> Swift.Void)
+  func startVideoSource(id: LiveDigitalSDK.MediaSourceId?, encodingParameters: LiveDigitalSDK.VideoEncodingParameters, preferredCodec: LiveDigitalSDK.VideoCodec, position: AVFoundation.AVCaptureDevice.Position, completion: @escaping (Swift.Result<LiveDigitalSDK.VideoSourceWithPreview, LiveDigitalSDK.LiveDigitalEngineError>) -> Swift.Void)
+  func stopVideoSource(_ videoSource: any LiveDigitalSDK.VideoSource, completion: @escaping () -> Swift.Void)
+  func stopVideoSource(_ videoSourceId: LiveDigitalSDK.MediaSourceId, completion: @escaping () -> Swift.Void)
   func addOutput(_ output: AVFoundation.AVCaptureOutput)
   func removeOutput(_ output: AVFoundation.AVCaptureOutput)
 }
@@ -377,6 +366,7 @@ public protocol LiveDigitalCameraEngine {
 @available(tvOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 public typealias LiveDigitalEngine = LiveDigitalSDK.LiveDigitalCameraEngine & LiveDigitalSDK.LiveDigitalMicrophoneEngine & LiveDigitalSDK.LiveDigitalSessionManager & LiveDigitalSDK.LiveDigitalVideoFilterEngine
 public enum LiveDigitalEngineError : Foundation.LocalizedError {
+  case alreadyConnected
   case connectionFailed
   case noCameraPermission
   case noMicrophonePermission
@@ -405,26 +395,27 @@ public protocol LiveDigitalMicrophoneEngine {
   func stopAudioSource(_ audioSource: LiveDigitalSDK.AudioSource)
 }
 public struct LiveDigitalSDKEnvironment {
-  public let loadBalancerHost: Foundation.URL
+  public let signalingHost: Foundation.URL
   public let analyticsHost: Foundation.URL
-  public init(loadBalancerHost: Foundation.URL, analyticsHost: Foundation.URL)
+  public let datacenter: LiveDigitalSDK.DatacenterType
+  public init(signalingHost: Foundation.URL, analyticsHost: Foundation.URL, datacenter: LiveDigitalSDK.DatacenterType)
 }
 extension LiveDigitalSDK.LiveDigitalSDKEnvironment {
   public static var production: LiveDigitalSDK.LiveDigitalSDKEnvironment {
     get
   }
+  public static func production(datacenterType: LiveDigitalSDK.DatacenterType) -> LiveDigitalSDK.LiveDigitalSDKEnvironment
 }
 public typealias ConnectionCompletion = (Swift.Result<any LiveDigitalSDK.ChannelSession & LiveDigitalSDK.ObservableChannelSession, LiveDigitalSDK.LiveDigitalEngineError>) -> Swift.Void
 public protocol LiveDigitalSessionManager {
   var logger: any LiveDigitalSDK.LDSDKLogger { get }
   var currentChannelSession: (any LiveDigitalSDK.ChannelSession)? { get }
-  func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, participantId: LiveDigitalSDK.ParticipantId?, signalingToken: Swift.String?, peerId: LiveDigitalSDK.PeerId?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
-  func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, participantId: LiveDigitalSDK.ParticipantId?, signalingToken: Swift.String?, peerId: LiveDigitalSDK.PeerId?, peerPayload: [Swift.String : Any]?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
+  func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, signalingToken: Swift.String, peerId: LiveDigitalSDK.PeerId?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
+  func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, signalingToken: Swift.String, peerId: LiveDigitalSDK.PeerId?, peerPayload: [Swift.String : Any]?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
   func disconnectFromCurrentChannel(completion: @escaping () -> Swift.Void)
 }
 extension LiveDigitalSDK.LiveDigitalSessionManager {
-  public func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, participantId: LiveDigitalSDK.ParticipantId?, signalingToken: Swift.String?, peerId: LiveDigitalSDK.PeerId?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
-  public func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, peerPayload: [Swift.String : Any]?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
+  public func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, signalingToken: Swift.String, peerId: LiveDigitalSDK.PeerId?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
 }
 public protocol LiveDigitalSessionManagerDelegate : AnyObject {
   func sessionManagerFailed(_ manager: any LiveDigitalSDK.LiveDigitalSessionManager, error: LiveDigitalSDK.LiveDigitalEngineError)
@@ -443,18 +434,18 @@ final public class StockLiveDigitalEngine {
   final public var audioSources: [LiveDigitalSDK.AudioSource] {
     get
   }
+  final public var currentChannelSession: (any LiveDigitalSDK.ChannelSession)? {
+    get
+  }
   final public let logger: any LiveDigitalSDK.LDSDKLogger
-  public init(environment: LiveDigitalSDK.LiveDigitalSDKEnvironment = .production, clientUniqueId: LiveDigitalSDK.ClientUniqueId = .random(), logConfig: LiveDigitalSDK.LogConfig = .defaultConfig)
+  public init(environment: LiveDigitalSDK.LiveDigitalSDKEnvironment = .production, cameraScene: UIKit.UIWindowScene? = nil, clientUniqueId: LiveDigitalSDK.ClientUniqueId = .random(), logConfig: LiveDigitalSDK.LogConfig = .defaultConfig)
   @objc deinit
 }
 @available(iOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(watchOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(tvOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 extension LiveDigitalSDK.StockLiveDigitalEngine : LiveDigitalSDK.LiveDigitalSessionManager {
-  final public var currentChannelSession: (any LiveDigitalSDK.ChannelSession)? {
-    get
-  }
-  final public func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, participantId: LiveDigitalSDK.ParticipantId?, signalingToken: Swift.String?, peerId: LiveDigitalSDK.PeerId?, peerPayload: [Swift.String : Any]?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
+  final public func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, signalingToken: Swift.String, peerId: LiveDigitalSDK.PeerId?, peerPayload: [Swift.String : Any]?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
   final public func disconnectFromCurrentChannel(completion: @escaping () -> Swift.Void)
 }
 @available(iOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
@@ -476,10 +467,11 @@ extension LiveDigitalSDK.StockLiveDigitalEngine : LiveDigitalSDK.LiveDigitalCame
   final public var videoSources: [any LiveDigitalSDK.VideoSource] {
     get
   }
-  final public func startVideoSource(position: AVFoundation.AVCaptureDevice.Position) -> Swift.Result<LiveDigitalSDK.VideoSourceWithPreview, LiveDigitalSDK.LiveDigitalEngineError>
-  final public func startVideoSource(encodingParameters: LiveDigitalSDK.VideoEncodingParameters, preferredCodec: LiveDigitalSDK.VideoCodec, position: AVFoundation.AVCaptureDevice.Position) -> Swift.Result<LiveDigitalSDK.VideoSourceWithPreview, LiveDigitalSDK.LiveDigitalEngineError>
-  final public func startVideoSource(id: LiveDigitalSDK.MediaSourceId?, encodingParameters: LiveDigitalSDK.VideoEncodingParameters, preferredCodec: LiveDigitalSDK.VideoCodec, position: AVFoundation.AVCaptureDevice.Position) -> Swift.Result<LiveDigitalSDK.VideoSourceWithPreview, LiveDigitalSDK.LiveDigitalEngineError>
-  final public func stopVideoSource(_ videoSource: any LiveDigitalSDK.VideoSource)
+  final public func startVideoSource(position: AVFoundation.AVCaptureDevice.Position, completion: @escaping (Swift.Result<LiveDigitalSDK.VideoSourceWithPreview, LiveDigitalSDK.LiveDigitalEngineError>) -> Swift.Void)
+  final public func startVideoSource(encodingParameters: LiveDigitalSDK.VideoEncodingParameters, preferredCodec: LiveDigitalSDK.VideoCodec, position: AVFoundation.AVCaptureDevice.Position, completion: @escaping (Swift.Result<LiveDigitalSDK.VideoSourceWithPreview, LiveDigitalSDK.LiveDigitalEngineError>) -> Swift.Void)
+  final public func startVideoSource(id: LiveDigitalSDK.MediaSourceId?, encodingParameters: LiveDigitalSDK.VideoEncodingParameters, preferredCodec: LiveDigitalSDK.VideoCodec, position: AVFoundation.AVCaptureDevice.Position, completion: @escaping (Swift.Result<LiveDigitalSDK.VideoSourceWithPreview, LiveDigitalSDK.LiveDigitalEngineError>) -> Swift.Void)
+  final public func stopVideoSource(_ videoSource: any LiveDigitalSDK.VideoSource, completion: @escaping () -> Swift.Void)
+  final public func stopVideoSource(_ videoSourceId: LiveDigitalSDK.MediaSourceId, completion: @escaping () -> Swift.Void)
   final public func addOutput(_ output: AVFoundation.AVCaptureOutput)
   final public func removeOutput(_ output: AVFoundation.AVCaptureOutput)
 }
@@ -563,12 +555,12 @@ public protocol CameraManager {
   var cameraPosition: Combine.Published<AVFoundation.AVCaptureDevice.Position?>.Publisher { get }
   var currentCameraPosition: AVFoundation.AVCaptureDevice.Position? { get }
   var currentFormat: LiveDigitalSDK.VideoOutputFormat? { get }
-  @discardableResult
-  func updatePreferred(format: LiveDigitalSDK.VideoOutputFormat) -> Swift.Result<Swift.Void, LiveDigitalSDK.MediaCapturerError>
-  @discardableResult
-  func updatePreferred(cameraPosition: AVFoundation.AVCaptureDevice.Position) -> Swift.Result<Swift.Void, LiveDigitalSDK.MediaCapturerError>
-  @discardableResult
-  func flipCamera() -> Swift.Result<Swift.Void, LiveDigitalSDK.MediaCapturerError>
+  func updatePreferred(format: LiveDigitalSDK.VideoOutputFormat)
+  func updatePreferred(format: LiveDigitalSDK.VideoOutputFormat, completion: @escaping (Swift.Result<Swift.Void, LiveDigitalSDK.MediaCapturerError>) -> Swift.Void)
+  func updatePreferred(cameraPosition: AVFoundation.AVCaptureDevice.Position)
+  func updatePreferred(cameraPosition: AVFoundation.AVCaptureDevice.Position, completion: @escaping (Swift.Result<Swift.Void, LiveDigitalSDK.MediaCapturerError>) -> Swift.Void)
+  func flipCamera()
+  func flipCamera(completion: @escaping (Swift.Result<Swift.Void, LiveDigitalSDK.MediaCapturerError>) -> Swift.Void)
 }
 public protocol CameraManagerDelegate : AnyObject {
   func cameraManagerSwitchedCamera(cameraManager: any LiveDigitalSDK.CameraManager, to position: AVFoundation.AVCaptureDevice.Position?)
@@ -844,6 +836,15 @@ extension LiveDigitalSDK.ClientUniqueId : Swift.CustomStringConvertible {
     get
   }
 }
+public enum DatacenterType {
+  case common
+  case p2p
+  public static func == (a: LiveDigitalSDK.DatacenterType, b: LiveDigitalSDK.DatacenterType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 public struct ActivityRequiredEventData {
   public let time: Foundation.TimeInterval
 }
@@ -871,10 +872,19 @@ public class AudioEncodingPreset {
   public init()
   @objc deinit
 }
-public struct CustomEvent {
+public struct CustomEvent : Swift.Codable, Swift.Sendable {
   public let name: Swift.String
   public let peerId: LiveDigitalSDK.PeerId?
-  public let data: [Swift.String : Any]
+  public let data: [Swift.String : LiveDigitalSDK.PayloadValue]
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension Swift.Dictionary where Key == Swift.String, Value == LiveDigitalSDK.PayloadValue {
+  public var rawValues: [Swift.String : Any] {
+    get
+  }
+  public init(with rawMap: [Swift.String : Any])
+  public func stringValue() -> Swift.String?
 }
 public struct JoinedPeerParameters {
   public let channelId: Swift.String
@@ -891,38 +901,59 @@ public enum MediaRole {
     get
   }
 }
-public struct ParticipantId {
-  public let value: Swift.String
-  public init(value: Swift.String)
-}
-extension LiveDigitalSDK.ParticipantId : Swift.ExpressibleByStringLiteral {
-  public init(stringLiteral value: Swift.StringLiteralType)
-  public typealias ExtendedGraphemeClusterLiteralType = Swift.StringLiteralType
-  public typealias StringLiteralType = Swift.StringLiteralType
-  public typealias UnicodeScalarLiteralType = Swift.StringLiteralType
-}
-extension LiveDigitalSDK.ParticipantId : Swift.Hashable {
+public enum PayloadValue : Swift.Hashable, Swift.Sendable {
+  case null
+  case bool(Swift.Bool)
+  case int(Swift.Int)
+  case float(Swift.Double)
+  case string(Swift.String)
+  case array([LiveDigitalSDK.PayloadValue])
+  case map([Swift.String : LiveDigitalSDK.PayloadValue])
+  public static func == (a: LiveDigitalSDK.PayloadValue, b: LiveDigitalSDK.PayloadValue) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
 }
-extension LiveDigitalSDK.ParticipantId : Swift.Equatable {
-  public static func == (a: LiveDigitalSDK.ParticipantId, b: LiveDigitalSDK.ParticipantId) -> Swift.Bool
+extension LiveDigitalSDK.PayloadValue : Swift.ExpressibleByNilLiteral {
+  public init(nilLiteral: ())
 }
-extension LiveDigitalSDK.ParticipantId : Swift.CustomStringConvertible {
-  public var description: Swift.String {
-    get
-  }
+extension LiveDigitalSDK.PayloadValue : Swift.ExpressibleByBooleanLiteral {
+  public init(booleanLiteral value: Swift.Bool)
+  public typealias BooleanLiteralType = Swift.Bool
+}
+extension LiveDigitalSDK.PayloadValue : Swift.ExpressibleByIntegerLiteral {
+  public init(integerLiteral value: Swift.Int)
+  public typealias IntegerLiteralType = Swift.Int
+}
+extension LiveDigitalSDK.PayloadValue : Swift.ExpressibleByFloatLiteral {
+  public init(floatLiteral value: Swift.Double)
+  public typealias FloatLiteralType = Swift.Double
+}
+extension LiveDigitalSDK.PayloadValue : Swift.ExpressibleByStringLiteral {
+  public init(stringLiteral value: Swift.String)
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+}
+extension LiveDigitalSDK.PayloadValue : Swift.ExpressibleByArrayLiteral {
+  public init(arrayLiteral elements: LiveDigitalSDK.PayloadValue...)
+  public typealias ArrayLiteralElement = LiveDigitalSDK.PayloadValue
+}
+extension LiveDigitalSDK.PayloadValue : Swift.ExpressibleByDictionaryLiteral {
+  public init(dictionaryLiteral elements: (Swift.String, LiveDigitalSDK.PayloadValue)...)
+  public typealias Key = Swift.String
+  public typealias Value = LiveDigitalSDK.PayloadValue
+}
+extension LiveDigitalSDK.PayloadValue : Swift.Codable {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 @_hasMissingDesignatedInitializers public class Peer {
-  public var id: LiveDigitalSDK.PeerId {
-    get
-  }
-  public var uid: Swift.String? {
-    get
-  }
-  public var payload: [Swift.String : Any]? {
+  final public let id: LiveDigitalSDK.PeerId
+  final public let uid: Swift.String?
+  final public let isMyPeer: Swift.Bool
+  public var payload: [Swift.String : LiveDigitalSDK.PayloadValue]? {
     get
   }
   public var deadTracks: Swift.Set<LiveDigitalSDK.TrackDescriptor> {
@@ -940,7 +971,7 @@ extension LiveDigitalSDK.ParticipantId : Swift.CustomStringConvertible {
   @objc deinit
 }
 extension LiveDigitalSDK.Peer {
-  public static func mock(id: LiveDigitalSDK.PeerId, uid: Swift.String? = nil, payload: [Swift.String : Any]?, tracks: [LiveDigitalSDK.TrackLabel : LiveDigitalSDK.MediaKind], logger: any LiveDigitalSDK.LDSDKLogger) -> LiveDigitalSDK.Peer
+  public static func mock(id: LiveDigitalSDK.PeerId, uid: Swift.String? = nil, isMyPeer: Swift.Bool, canConsume: Swift.Bool, payload: [Swift.String : LiveDigitalSDK.PayloadValue]?, tracks: [LiveDigitalSDK.TrackLabel : LiveDigitalSDK.MediaKind], logger: any LiveDigitalSDK.LDSDKLogger) -> LiveDigitalSDK.Peer
   public func consumingAudio(track: LiveDigitalSDK.TrackLabel) -> Swift.Bool
   public func consumingVideo(track: LiveDigitalSDK.TrackLabel) -> Swift.Bool
   public func producing(_ trackLabel: LiveDigitalSDK.TrackLabel) -> Swift.Bool
@@ -960,9 +991,11 @@ extension LiveDigitalSDK.Peer : Swift.Hashable {
     get
   }
 }
-public struct PeerAppData {
+public struct PeerAppData : Swift.Codable, Swift.Sendable {
   public let peerId: LiveDigitalSDK.PeerId
-  public let appData: [Swift.String : Any]
+  public let appData: [Swift.String : LiveDigitalSDK.PayloadValue]
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct PeerId : Swift.RawRepresentable, Swift.Sendable, Swift.Hashable, Swift.Equatable {
   public let rawValue: Swift.String
@@ -989,7 +1022,7 @@ public struct PeerTrackId : Swift.Hashable {
     get
   }
 }
-public enum ChannelGroup : Swift.Hashable {
+public enum ChannelGroup : Swift.Sendable, Swift.Hashable {
   case moderator
   case user
   case other(Swift.String)
@@ -998,11 +1031,6 @@ public enum ChannelGroup : Swift.Hashable {
   public var hashValue: Swift.Int {
     get
   }
-}
-public struct ChannelProducePermissionsChange {
-  public let groups: Swift.Set<LiveDigitalSDK.ChannelGroup>
-  public let producePermissions: Swift.Set<LiveDigitalSDK.TrackLabel>
-  public let changedProducePermissions: Swift.Set<LiveDigitalSDK.TrackLabel>
 }
 public struct PeerGroupsChange {
   public let peer: LiveDigitalSDK.PeerId
@@ -1116,7 +1144,7 @@ extension LiveDigitalSDK.ExistentialLDSDKLogger : LiveDigitalSDK.LDSDKLogger {
   final public func logWarn(_ message: @autoclosure @escaping () -> Swift.String, _ error: (any Swift.Error)? = nil, file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line, payload: [Swift.String : any Swift.Encodable]? = nil)
   final public func logError(_ message: @autoclosure @escaping () -> Swift.String, _ error: (any Swift.Error)? = nil, file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line, payload: [Swift.String : any Swift.Encodable]? = nil)
 }
-public enum LDSDKLogLevel : Swift.Comparable {
+public enum LDSDKLogLevel : Swift.Comparable, Swift.Sendable {
   case verbose
   case debug
   case info
@@ -1129,7 +1157,7 @@ public enum LDSDKLogLevel : Swift.Comparable {
     get
   }
 }
-public protocol LDSDKLogger {
+public protocol LDSDKLogger : Swift.Sendable {
   func setMeta(_ meta: [Swift.String : any Swift.Encodable]?)
   func addMeta(_ newMeta: [Swift.String : any Swift.Encodable])
   func logVerbose(_ message: @autoclosure @escaping () -> Swift.String, _ error: (any Swift.Error)?, file: Swift.StaticString, function: Swift.StaticString, line: Swift.UInt, payload: [Swift.String : any Swift.Encodable]?)
@@ -1157,6 +1185,8 @@ extension LiveDigitalSDK.MediaCapturerError : Swift.Equatable {}
 extension LiveDigitalSDK.MediaCapturerError : Swift.Hashable {}
 extension LiveDigitalSDK.AudioCodec : Swift.Hashable {}
 extension LiveDigitalSDK.VideoCodec : Swift.Hashable {}
+extension LiveDigitalSDK.DatacenterType : Swift.Equatable {}
+extension LiveDigitalSDK.DatacenterType : Swift.Hashable {}
 extension LiveDigitalSDK.MediaRole : Swift.Equatable {}
 extension LiveDigitalSDK.MediaRole : Swift.Hashable {}
 extension LiveDigitalSDK.LDSDKLogLevel : Swift.Hashable {}

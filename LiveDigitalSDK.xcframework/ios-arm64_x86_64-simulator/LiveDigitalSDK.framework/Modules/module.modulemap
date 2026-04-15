@@ -9,9 +9,9 @@ framework module LiveDigitalSDK {
 	header "VLMTLVideoView.h"
 	header "RTCGeneratorVideoCapturer.h"
 	header "RTCSampleBufferCapturer.h"
+	header "VLRTCCameraVideoCapturer.h"
 }
 
 module LiveDigitalSDK.Swift {
   header "LiveDigitalSDK-Swift.h"
-  requires objc
 }

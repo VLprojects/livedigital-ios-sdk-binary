@@ -39,6 +39,10 @@ RTC_OBJC_EXPORT
  */
 @property(nonatomic) BOOL mirrored;
 
+/** @abstract Enables/disables video mirroring across Y axis (vertical flip).
+ */
+@property(nonatomic) BOOL verticallyMirrored;
+
 /** @abstract Wrapped RTCVideoRotation, or nil.
  */
 @property(nonatomic, nullable) NSValue* rotationOverride;

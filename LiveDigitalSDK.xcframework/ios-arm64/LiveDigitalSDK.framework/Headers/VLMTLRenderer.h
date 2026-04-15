@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic) BOOL mirrored;
 
+/** @abstract Enables/disables video mirroring across Y axis (vertical flip).
+ */
+@property(nonatomic) BOOL verticallyMirrored;
+
 /**
  * Method to be implemented to perform actual rendering of the provided frame.
  *
