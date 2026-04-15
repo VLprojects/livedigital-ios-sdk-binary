@@ -239,13 +239,13 @@
         }
       }
     },
-    "recallAction" : {
+    "redialAction" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recall"
+            "value" : "Redial"
           }
         },
         "ru" : {

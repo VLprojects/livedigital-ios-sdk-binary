@@ -91,6 +91,16 @@ extension StockCallManager: CallManager {
 		observers.removeAll { $0.value === observer }
 	}
 
+	func toggleMicrophone(muted: Bool, in call: Call) {
+		let muteAction = CXSetMutedCallAction(call: call.id, muted: muted)
+		let transaction = CXTransaction(action: muteAction)
+		callController.request(transaction) { error in
+			if let error {
+				print("CallKit failed to toggle mute state:", error)
+			}
+		}
+	}
+
 	func startCallFromIntent(_ intent: INIntent) {
 		// Even on modern iOS versions we receive deprecated intents when user taps a record in recent calls,
 		// so we have to handle deprecated INStartVideoCallIntent / INStartAudioCallIntent.
@@ -119,6 +129,16 @@ extension StockCallManager: CallManager {
 	}
 
 	func endCall(_ call: Call) {
+		reportCallEnded(call)
+		observers.forEach { observer in
+			observer.value?.didEndCall(call)
+		}
+	}
+
+	func endCall(_ callId: UUID) {
+		guard let call = calls[callId] else {
+			return
+		}
 		reportCallEnded(call)
 		observers.forEach { observer in
 			observer.value?.didEndCall(call)

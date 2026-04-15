@@ -1,7 +1,7 @@
 import Foundation
 
 
-enum CallSessionStatus {
+enum CallSessionStatus: Equatable {
 	case dialing
 	case connecting
 	case connected(Date)

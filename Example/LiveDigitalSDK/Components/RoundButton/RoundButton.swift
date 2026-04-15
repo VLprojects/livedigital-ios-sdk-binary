@@ -84,7 +84,7 @@ extension Button {
 		RoundedContainer {
 			HStack(spacing: 16) {
 				RoundButton(config: .custom(Image(.closeMini), nil), disabled: false, action: {})
-				RoundButton(config: .custom(Image(.refresh), "Recall"), disabled: false, action: {})
+				RoundButton(config: .custom(Image(.refresh), "Redial"), disabled: false, action: {})
 			}
 		}
 	}
