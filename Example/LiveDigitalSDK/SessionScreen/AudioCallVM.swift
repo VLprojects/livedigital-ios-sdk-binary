@@ -22,7 +22,7 @@ final class AudioCallVM: ObservableObject {
 	@Published var companionName: String
 	@Published var callStatusLabel: String
 	@Published var isInCall: Bool
-	@Published var canRecall: Bool
+	@Published var canRedial: Bool
 
 	weak var coordinator: CallScreenCoordinator?
 
@@ -59,7 +59,7 @@ final class AudioCallVM: ObservableObject {
 		self.callStatus = callStatus
 		self.callStatusLabel = Self.callStatusText(for: callStatus)
 		self.isInCall = Self.isInCall(for: callStatus)
-		self.canRecall = Self.canRecall(for: callStatus)
+		self.canRedial = Self.canRedial(for: callStatus)
 
 		let engine = StockLiveDigitalEngine(
 			environment: .production,
@@ -90,8 +90,8 @@ final class AudioCallVM: ObservableObject {
 // MARK: - Internal methods
 
 internal extension AudioCallVM {
-	func recall() {
-
+	func redial() {
+		coordinator?.redial(to: room)
 	}
 
 	func dismiss() {
@@ -99,7 +99,10 @@ internal extension AudioCallVM {
 	}
 
 	func toggleMicrophone() {
-		updateLocalAudioEnabled(audioSource == nil)
+		// If we change microphone state directly, its state will be inconsistent with CallKit call state.
+		// So we have to change CallKit mute state via callManager and wait for callback to actually toggle the mic.
+		let newMutedState = audioSource != nil
+		callManager?.toggleMicrophone(muted: newMutedState, in: call)
 	}
 
 	func updateLocalAudioEnabled(_ enabled: Bool) {
@@ -133,6 +136,7 @@ internal extension AudioCallVM {
 	func finishSession() {
 		if let audioSource {
 			engine.stopAudioSource(audioSource)
+			self.audioSource = nil
 		}
 
 		if let channelSession {
@@ -160,7 +164,7 @@ extension AudioCallVM: @MainActor CallManagerObserver {
 	}
 
 	func callWasAnswered(_ call: Call) {
-		guard call.id == self.call.id else {
+		guard call.id == self.call.id, callStatus == .dialing else {
 			return
 		}
 		self.call = call
@@ -280,7 +284,6 @@ private extension AudioCallVM {
 
 	func endSession() {
 		callStatus = .disconnected
-		callManager?.removeObserver(self)
 		callManager?.endCall(call)
 	}
 
@@ -420,7 +423,7 @@ private extension AudioCallVM {
 		}
 	}
 
-	static func canRecall(for status: CallSessionStatus) -> Bool {
+	static func canRedial(for status: CallSessionStatus) -> Bool {
 		switch status {
 			case .callEnded: true
 			case .dialing, .connecting, .connected, .disconnecting, .disconnected: false
@@ -474,7 +477,7 @@ private extension AudioCallVM {
 			.map { Self.isInCall(for: $0) }
 			.assign(to: &$isInCall)
 		$callStatus
-			.map { Self.canRecall(for: $0) }
-			.assign(to: &$canRecall)
+			.map { Self.canRedial(for: $0) }
+			.assign(to: &$canRedial)
 	}
 }

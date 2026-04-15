@@ -31,7 +31,7 @@ extension AudioCallView: View {
 
 private extension AudioCallView {
 	var backgroundBlock: some View {
-		let colors = vm.canRecall
+		let colors = vm.canRedial
 			? [AssetColor.secondary03.color, AssetColor.secondary02.color]
 			: [AssetColor.accent02.color, AssetColor.accent01.color]
 		return GradientBackgroundView(colors: colors)
@@ -60,8 +60,8 @@ private extension AudioCallView {
 	var bottomPanelBlock: some View {
 		RoundedContainer {
 			HStack {
-				if vm.canRecall {
-					recallButton
+				if vm.canRedial {
+					redialButton
 					Spacer()
 					dismissButton
 				} else {
@@ -75,11 +75,11 @@ private extension AudioCallView {
 		.frame(maxWidth: 440)
 	}
 
-	var recallButton: some View {
+	var redialButton: some View {
 		RoundButton(
-			config: .custom(Image(.refresh), String(localized: .recallAction)),
+			config: .custom(Image(.refresh), String(localized: .redialAction)),
 			action: {
-				vm.recall()
+				vm.redial()
 			}
 		)
 	}

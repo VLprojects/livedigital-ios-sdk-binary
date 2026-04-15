@@ -18,6 +18,7 @@ final class CallCoordinator {
 	private let window: UIWindow
 	private weak var spinner: UIView?
 	private var callScreens = [UUID: UIViewController]()
+	private var redialRooms = [String: Room]()
 
 	init(callManager: CallManager, window: UIWindow) {
 		self.callManager = callManager
@@ -32,10 +33,19 @@ final class CallCoordinator {
 
 extension CallCoordinator: @MainActor CallManagerObserver {
 	func didReceiveCall(_ call: Call) {
+		dismissCurrentCalls()
 		openRoom(for: call)
 	}
 
+	func didEndCall(_ call: Call) {
+		if UIApplication.shared.applicationState != .active {
+			// Avoid presenting "redial" screen if user has ended the call via system caller UI
+			callScreens.removeValue(forKey: call.id)?.dismiss(animated: false)
+		}
+	}
+
 	func didInitiateCall(_ call: Call) {
+		dismissCurrentCalls()
 		openRoom(for: call)
 	}
 }
@@ -46,24 +56,48 @@ extension CallCoordinator: CallScreenCoordinator {
 	func dismissCallScreen(call: Call) {
 		callScreens.removeValue(forKey: call.id)?.dismiss(animated: true)
 	}
+
+	func redial(to room: Room) {
+		dismissCurrentCalls()
+
+		// We must initiate all calls via callManager because of CallKit architecture.
+		// Outgoing calls are started indirectly via CallKit callback method and then via `didInitiateCall` method.
+		// So we can not pass Room object to the `openRoom` method via this call stack which includes CallKit.
+		// To avoid refetching Room, we save it to a temporary storage while waiting for `didInitiateCall` call.
+		redialRooms[room.alias] = room
+		callManager.startCallManually(to: room.alias)
+	}
 }
 
 // MARK: - Private methods
 
 private extension CallCoordinator {
+	func dismissCurrentCalls() {
+		for (callId, callScreen) in callScreens {
+			callManager.endCall(callId)
+			callScreen.dismiss(animated: true)
+		}
+		callScreens.removeAll()
+	}
+
 	func openRoom(for call: Call) {
-		startActivityIndicator()
-		Task {
-			do {
-				if !apiClient.isAuthorized {
-					try await self.apiClient.authorizeAsGuest()
+		if let room = redialRooms[call.roomAlias] {
+			redialRooms.removeValue(forKey: call.roomAlias)
+			openSession(in: room, call: call)
+		} else {
+			startActivityIndicator()
+			Task {
+				do {
+					if !apiClient.isAuthorized {
+						try await self.apiClient.authorizeAsGuest()
+					}
+					let room = try await self.apiClient.fetchRoom(roomAlias: call.roomAlias)
+					self.openSession(in: room, call: call)
+				} catch {
+					callManager.reportCallEnded(call)
 				}
-				let room = try await self.apiClient.fetchRoom(roomAlias: call.roomAlias)
-				self.openSession(in: room, call: call)
-			} catch {
-				callManager.reportCallEnded(call)
+				self.stopActivityIndicator()
 			}
-			self.stopActivityIndicator()
 		}
 	}
 
