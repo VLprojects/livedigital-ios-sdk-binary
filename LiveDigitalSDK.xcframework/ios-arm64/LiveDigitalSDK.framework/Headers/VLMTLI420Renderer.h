@@ -18,5 +18,12 @@
 
 
 NS_AVAILABLE(10_11, 9_0)
+
+/// A Metal-based renderer optimized for I420 (YUV) pixel buffers.
+///
+/// `VLMTLI420Renderer` renders video frames in I420 format using Metal.
+/// It is typically used in WebRTC pipelines where frames are delivered
+/// as planar YUV buffers and need efficient GPU-backed display.
 @interface VLMTLI420Renderer : VLMTLRenderer
+
 @end

@@ -18,32 +18,30 @@
 #import <WebRTC/RTCVideoFrame.h>
 
 NS_ASSUME_NONNULL_BEGIN
-/**
- * Protocol defining ability to render RTCVideoFrame in Metal enabled views.
- */
+
+/// A protocol for rendering `RTCVideoFrame` instances into Metal-backed views.
+///
+/// Types conforming to `VLMTLRenderer` receive video frames from the WebRTC
+/// pipeline and render them into one or more destination views.
 @protocol VLMTLRenderer <NSObject>
 
-/** @abstract Enables/disables video mirroring across X axis.
- */
+/// Indicates whether the rendered video is mirrored horizontally.
 @property(nonatomic) BOOL mirrored;
 
-/** @abstract Enables/disables video mirroring across Y axis (vertical flip).
- */
+/// Indicates whether the rendered video is mirrored vertically.
 @property(nonatomic) BOOL verticallyMirrored;
 
-/**
- * Method to be implemented to perform actual rendering of the provided frame.
- *
- * @param frame The frame to be rendered.
- */
+/// Renders the provided video frame.
+///
+/// - Parameter frame: The frame to render.
 - (void)drawFrame:(RTC_OBJC_TYPE(RTCVideoFrame) *)frame;
 
-/**
- * Sets the provided view as rendering destination if possible.
- *
- * If not possible method returns NO and callers of the method are responisble for performing
- * cleanups.
- */
+/// Adds a view as a rendering destination, if supported.
+///
+/// - Parameter view: The view that should receive rendered video output.
+/// - Returns: `YES` if the view was accepted as a rendering destination;
+///   otherwise `NO`. If the method returns `NO`, the caller is responsible
+///   for any required cleanup.
 
 #if TARGET_OS_IOS
 - (BOOL)addRenderingDestination:(__kindof UIView *)view;
@@ -53,15 +51,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-/**
- * Implementation of RTCMTLRenderer protocol.
- */
+/// Default Metal-backed implementation of the `VLMTLRenderer` protocol.
 NS_AVAILABLE(10_11, 9_0)
 @interface VLMTLRenderer : NSObject <VLMTLRenderer>
 
-/** @abstract   A wrapped RTCVideoRotation, or nil.
-    @discussion When not nil, the rotation of the actual frame is ignored when rendering.
- */
+/// An optional wrapped `RTCVideoRotation` value that overrides frame rotation.
+///
+/// When set, the renderer ignores the rotation metadata carried by incoming
+/// frames and uses this value instead.
 @property(atomic, nullable) NSValue *rotationOverride;
 
 @end

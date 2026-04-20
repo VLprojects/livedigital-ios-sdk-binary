@@ -19,9 +19,10 @@ import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
 import zlib
-public struct ChannelId : Swift.RawRepresentable, Swift.Hashable {
+public struct ChannelId : Swift.RawRepresentable, Swift.Sendable, Swift.Hashable, Swift.Equatable {
   public let rawValue: Swift.String
   public init(rawValue: Swift.String)
+  public static func random() -> LiveDigitalSDK.ChannelId
   public typealias RawValue = Swift.String
 }
 extension LiveDigitalSDK.ChannelId : Swift.CustomStringConvertible {
@@ -65,7 +66,7 @@ public protocol ChannelSessionDelegate : AnyObject {
   func channelSessionShouldSuspendVideo(_ channelSession: any LiveDigitalSDK.ChannelSession, with trackLabel: LiveDigitalSDK.TrackLabel, from peer: LiveDigitalSDK.Peer) -> Swift.Bool
   func channelSessionShouldSuspendAudio(_ channelSession: any LiveDigitalSDK.ChannelSession, with trackLabel: LiveDigitalSDK.TrackLabel, from peer: LiveDigitalSDK.Peer) -> Swift.Bool
 }
-public enum ChannelSessionError : Swift.Error {
+public enum ChannelSessionError : Swift.Error, Swift.Sendable {
   case unknown
   case connectionAttemptFailed
   case connectionFailed
@@ -144,21 +145,19 @@ extension LiveDigitalSDK.ChannelSessionObserver {
   public func gotNetworkMetricsReports(_ reports: [LiveDigitalSDK.NetworkMetricsReport], sessionDetails: LiveDigitalSDK.SessionDetails)
   public func gotConsistencyIssues(_ issues: [LiveDigitalSDK.SessionStateConsistencyIssue])
 }
-public enum ChannelSessionStatus {
+public enum ChannelSessionStatus : Swift.Sendable, Swift.Hashable, Swift.Equatable {
   case stopped
   case starting
   case restarting
   case started
   case stopping
+  public static func == (a: LiveDigitalSDK.ChannelSessionStatus, b: LiveDigitalSDK.ChannelSessionStatus) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
 }
-extension LiveDigitalSDK.ChannelSessionStatus : Swift.Equatable {
-  public static func == (a: LiveDigitalSDK.ChannelSessionStatus, b: LiveDigitalSDK.ChannelSessionStatus) -> Swift.Bool
-}
-public enum SessionStateConsistencyIssue : Swift.Hashable, Swift.Equatable {
+public enum SessionStateConsistencyIssue : Swift.Sendable, Swift.Hashable, Swift.Equatable {
   case missingPeer(LiveDigitalSDK.PeerId)
   case missingProducer(LiveDigitalSDK.ProducerId)
   case incorrectProducerState(LiveDigitalSDK.ProducerId)
@@ -170,60 +169,44 @@ public enum SessionStateConsistencyIssue : Swift.Hashable, Swift.Equatable {
     get
   }
 }
-public struct ConsumerId : Swift.RawRepresentable {
+public struct ConsumerId : Swift.RawRepresentable, Swift.Sendable, Swift.Hashable, Swift.Equatable {
   public let rawValue: Swift.String
   public init(rawValue: Swift.String)
   public static func random() -> LiveDigitalSDK.ConsumerId
   public typealias RawValue = Swift.String
 }
-extension LiveDigitalSDK.ConsumerId : Swift.Hashable {
-}
-extension LiveDigitalSDK.ConsumerId : Swift.Equatable {
-}
-public struct LocalConsumerId : Swift.RawRepresentable {
+public struct LocalConsumerId : Swift.RawRepresentable, Swift.Sendable, Swift.Hashable, Swift.Equatable {
   public let rawValue: Swift.String
   public init(rawValue: Swift.String)
   public static func random() -> LiveDigitalSDK.LocalConsumerId
   public typealias RawValue = Swift.String
 }
-extension LiveDigitalSDK.LocalConsumerId : Swift.Hashable {
-}
-extension LiveDigitalSDK.LocalConsumerId : Swift.Equatable {
-}
-public struct DataProducerId : Swift.RawRepresentable, Swift.Hashable, Swift.Equatable {
+public struct DataProducerId : Swift.RawRepresentable, Swift.Sendable, Swift.Hashable, Swift.Equatable {
   public let rawValue: Swift.String
   public init(rawValue: Swift.String)
   public static func random() -> LiveDigitalSDK.DataProducerId
   public typealias RawValue = Swift.String
 }
-public struct LocalDataProducerId : Swift.RawRepresentable, Swift.Hashable, Swift.Equatable {
+public struct LocalDataProducerId : Swift.RawRepresentable, Swift.Sendable, Swift.Hashable, Swift.Equatable {
   public let rawValue: Swift.String
   public init(rawValue: Swift.String)
   public static func random() -> LiveDigitalSDK.LocalDataProducerId
   public typealias RawValue = Swift.String
 }
-public enum MediaKind : Swift.String, Swift.Codable, Swift.CaseIterable, Swift.Sendable {
+public enum MediaKind : Swift.String, Swift.Sendable, Swift.Hashable, Swift.Codable {
   case audio
   case video
   public init?(rawValue: Swift.String)
-  public typealias AllCases = [LiveDigitalSDK.MediaKind]
   public typealias RawValue = Swift.String
-  nonisolated public static var allCases: [LiveDigitalSDK.MediaKind] {
-    get
-  }
   public var rawValue: Swift.String {
     get
   }
 }
-public struct LocalProducerId : Swift.RawRepresentable, Swift.Sendable {
+public struct LocalProducerId : Swift.RawRepresentable, Swift.Sendable, Swift.Hashable, Swift.Equatable {
   public let rawValue: Swift.String
   public init(rawValue: Swift.StringLiteralType)
   public static func random() -> LiveDigitalSDK.LocalProducerId
   public typealias RawValue = Swift.StringLiteralType
-}
-extension LiveDigitalSDK.LocalProducerId : Swift.Hashable {
-}
-extension LiveDigitalSDK.LocalProducerId : Swift.Equatable {
 }
 public struct ProducerId : Swift.RawRepresentable, Swift.Sendable, Swift.Hashable, Swift.Equatable {
   public let rawValue: Swift.String
@@ -231,7 +214,7 @@ public struct ProducerId : Swift.RawRepresentable, Swift.Sendable, Swift.Hashabl
   public static func random() -> LiveDigitalSDK.ProducerId
   public typealias RawValue = Swift.String
 }
-public struct MOSValue : Swift.RawRepresentable {
+public struct MOSValue : Swift.RawRepresentable, Swift.Sendable {
   public var rawValue: Swift.Double
   public var roundedValue: Swift.Double {
     get
@@ -247,7 +230,7 @@ extension LiveDigitalSDK.MOSValue : Swift.CustomStringConvertible {
     get
   }
 }
-public struct NetworkMetricsReport {
+public struct NetworkMetricsReport : Swift.Sendable {
   public let time: Foundation.Date
   public let direction: LiveDigitalSDK.NetworkReportDirection
   public let mos: LiveDigitalSDK.MOSValue
@@ -257,12 +240,12 @@ public struct NetworkMetricsReport {
   public let activeAudioConsumers: Swift.Int
   public let activeVideoConsumers: Swift.Int
 }
-public struct NetworkQualityStats {
+public struct NetworkQualityStats : Swift.Sendable {
   public let avgJitter: Foundation.TimeInterval
   public let rtt: Foundation.TimeInterval
   public let packetsLoss: Swift.Double
 }
-public enum NetworkReportDirection {
+public enum NetworkReportDirection : Swift.Sendable, Swift.Hashable, Swift.Equatable {
   case inbound
   case outbound
   public static func == (a: LiveDigitalSDK.NetworkReportDirection, b: LiveDigitalSDK.NetworkReportDirection) -> Swift.Bool
@@ -270,16 +253,6 @@ public enum NetworkReportDirection {
   public var hashValue: Swift.Int {
     get
   }
-}
-public protocol NetworkReportsObserver : AnyObject {
-  func gotNetworkMetricsReports(_ results: [LiveDigitalSDK.ReportCalculatorResult])
-}
-public struct ReportCalculatorResult {
-  public let time: Foundation.Date
-  public let direction: LiveDigitalSDK.NetworkReportDirection
-  public let mos: LiveDigitalSDK.MOSValue
-  public let stats: LiveDigitalSDK.NetworkQualityStats
-  public let bitrate: Swift.Double
 }
 public protocol ObservableChannelSession {
   func subscribe(_ observer: any LiveDigitalSDK.ChannelSessionObserver)
@@ -293,8 +266,7 @@ public struct SessionDetails {
 @available(watchOS, unavailable, message: "Only available in extensions.")
 @available(tvOS, unavailable, message: "Only available in extensions.")
 final public class BroadcastLiveDigitalEngine {
-  weak final public var delegate: (any LiveDigitalSDK.LiveDigitalSessionManagerDelegate)?
-  final public var currentChannelSession: (any LiveDigitalSDK.ChannelSession)? {
+  final public var currentChannelSession: (any LiveDigitalSDK.ChannelSession & LiveDigitalSDK.ObservableChannelSession)? {
     get
   }
   final public var videoSources: [LiveDigitalSDK.VideoSourceWithoutPreview] {
@@ -364,10 +336,11 @@ public protocol LiveDigitalCameraEngine {
 @available(iOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(watchOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(tvOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
-public typealias LiveDigitalEngine = LiveDigitalSDK.LiveDigitalCameraEngine & LiveDigitalSDK.LiveDigitalMicrophoneEngine & LiveDigitalSDK.LiveDigitalSessionManager & LiveDigitalSDK.LiveDigitalVideoFilterEngine
-public enum LiveDigitalEngineError : Foundation.LocalizedError {
+public protocol LiveDigitalEngine : LiveDigitalSDK.LiveDigitalCameraEngine, LiveDigitalSDK.LiveDigitalMicrophoneEngine, LiveDigitalSDK.LiveDigitalSessionManager, LiveDigitalSDK.LiveDigitalVideoFilterEngine {
+  var logger: any LiveDigitalSDK.LDSDKLogger { get }
+}
+public enum LiveDigitalEngineError : Foundation.LocalizedError, Swift.Sendable {
   case alreadyConnected
-  case connectionFailed
   case noCameraPermission
   case noMicrophonePermission
   case cameraNotAvailable
@@ -408,8 +381,7 @@ extension LiveDigitalSDK.LiveDigitalSDKEnvironment {
 }
 public typealias ConnectionCompletion = (Swift.Result<any LiveDigitalSDK.ChannelSession & LiveDigitalSDK.ObservableChannelSession, LiveDigitalSDK.LiveDigitalEngineError>) -> Swift.Void
 public protocol LiveDigitalSessionManager {
-  var logger: any LiveDigitalSDK.LDSDKLogger { get }
-  var currentChannelSession: (any LiveDigitalSDK.ChannelSession)? { get }
+  var currentChannelSession: (any LiveDigitalSDK.ChannelSession & LiveDigitalSDK.ObservableChannelSession)? { get }
   func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, signalingToken: Swift.String, peerId: LiveDigitalSDK.PeerId?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
   func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, signalingToken: Swift.String, peerId: LiveDigitalSDK.PeerId?, peerPayload: [Swift.String : Any]?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
   func disconnectFromCurrentChannel(completion: @escaping () -> Swift.Void)
@@ -417,24 +389,18 @@ public protocol LiveDigitalSessionManager {
 extension LiveDigitalSDK.LiveDigitalSessionManager {
   public func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, signalingToken: Swift.String, peerId: LiveDigitalSDK.PeerId?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
 }
-public protocol LiveDigitalSessionManagerDelegate : AnyObject {
-  func sessionManagerFailed(_ manager: any LiveDigitalSDK.LiveDigitalSessionManager, error: LiveDigitalSDK.LiveDigitalEngineError)
-}
-extension LiveDigitalSDK.LiveDigitalSessionManagerDelegate {
-  public func sessionManagerFailed(_ manager: any LiveDigitalSDK.LiveDigitalSessionManager, error: LiveDigitalSDK.LiveDigitalEngineError)
-}
 @available(iOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(watchOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(tvOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 final public class StockLiveDigitalEngine {
-  weak final public var delegate: (any LiveDigitalSDK.AudioRouterDelegate & LiveDigitalSDK.CameraManagerDelegate & LiveDigitalSDK.LiveDigitalSessionManagerDelegate)?
+  weak final public var delegate: (any LiveDigitalSDK.AudioRouterDelegate & LiveDigitalSDK.CameraManagerDelegate)?
   final public var videoSourcesWithPreview: [LiveDigitalSDK.VideoSourceWithPreview] {
     get
   }
   final public var audioSources: [LiveDigitalSDK.AudioSource] {
     get
   }
-  final public var currentChannelSession: (any LiveDigitalSDK.ChannelSession)? {
+  final public var currentChannelSession: (any LiveDigitalSDK.ChannelSession & LiveDigitalSDK.ObservableChannelSession)? {
     get
   }
   final public let logger: any LiveDigitalSDK.LDSDKLogger
@@ -501,13 +467,18 @@ extension LiveDigitalSDK.StockLiveDigitalEngine : LiveDigitalSDK.AudioRouterDele
   final public func routesChanged(in audioRouter: any LiveDigitalSDK.AudioRouter)
   final public func needRestartAudio()
 }
+@available(iOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
+@available(watchOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
+@available(tvOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
+extension LiveDigitalSDK.StockLiveDigitalEngine : LiveDigitalSDK.LiveDigitalEngine {
+}
 public protocol LiveDigitalVideoFilterEngine : AnyObject {
   var filter: (any LiveDigitalSDK.VideoSourceFilter)? { get set }
 }
 public enum LiveDigital {
   public static func version() -> Swift.String
 }
-public struct AudioRoute {
+public struct AudioRoute : Swift.Sendable {
   public let kind: LiveDigitalSDK.AudioRoute.Kind
 }
 extension LiveDigitalSDK.AudioRoute : Swift.Hashable {
@@ -525,7 +496,7 @@ extension LiveDigitalSDK.AudioRoute : Swift.CustomStringConvertible {
   }
 }
 extension LiveDigitalSDK.AudioRoute {
-  public enum Kind {
+  public enum Kind : Swift.Sendable {
     case internalEarSpeaker
     case internalLoudspeaker
     case headset
@@ -570,7 +541,7 @@ extension LiveDigitalSDK.CameraManagerDelegate {
   public func cameraManagerSwitchedCamera(cameraManager: any LiveDigitalSDK.CameraManager, to position: AVFoundation.AVCaptureDevice.Position?)
   public func cameraManagerFailed(cameraManager: any LiveDigitalSDK.CameraManager, error: LiveDigitalSDK.MediaCapturerError)
 }
-public enum MediaCapturerError : Swift.Error {
+public enum MediaCapturerError : Swift.Error, Swift.Sendable {
   case noCameraPermission
   case noMicrophonePermission
   case noCamera
@@ -583,22 +554,28 @@ public enum MediaCapturerError : Swift.Error {
     get
   }
 }
-public struct VideoOutputFormat {
+public struct VideoOutputFormat : Swift.Equatable {
+  public let size: LiveDigitalSDK.VideoSize
+  public let framerate: Swift.Int32
   public init(size: LiveDigitalSDK.VideoSize, framerate: Swift.Int)
   public init(size: LiveDigitalSDK.VideoSize, framerate: Swift.Int32)
-}
-extension LiveDigitalSDK.VideoOutputFormat : Swift.Equatable {
   public static func == (a: LiveDigitalSDK.VideoOutputFormat, b: LiveDigitalSDK.VideoOutputFormat) -> Swift.Bool
 }
-public struct VideoSize {
+public struct VideoSize : Swift.Sendable, Swift.Hashable, Swift.Equatable {
+  public let width: Swift.Int32
+  public let height: Swift.Int32
   public init(size: CoreFoundation.CGSize)
   public init(width: Swift.Int, height: Swift.Int)
   public init(width: Swift.Int32, height: Swift.Int32)
-}
-extension LiveDigitalSDK.VideoSize : Swift.Equatable {
+  public func scaled(downBy factor: Swift.Int) -> LiveDigitalSDK.VideoSize
+  public func scaled(downBy factor: Swift.Int32) -> LiveDigitalSDK.VideoSize
   public static func == (a: LiveDigitalSDK.VideoSize, b: LiveDigitalSDK.VideoSize) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
 }
-public enum AudioCodec {
+public enum AudioCodec : Swift.Sendable, Swift.Hashable, Swift.Equatable {
   case opus
   public static func == (a: LiveDigitalSDK.AudioCodec, b: LiveDigitalSDK.AudioCodec) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
@@ -681,7 +658,7 @@ public protocol TrackSource {
   var trackLabel: LiveDigitalSDK.TrackLabel { get }
   var kind: LiveDigitalSDK.MediaKind { get }
 }
-public enum VideoCodec {
+public enum VideoCodec : Swift.Sendable, Swift.Hashable {
   case h264
   case vp8
   case vp9
@@ -836,7 +813,7 @@ extension LiveDigitalSDK.ClientUniqueId : Swift.CustomStringConvertible {
     get
   }
 }
-public enum DatacenterType {
+public enum DatacenterType : Swift.Sendable, Swift.Hashable, Swift.Equatable {
   case common
   case p2p
   public static func == (a: LiveDigitalSDK.DatacenterType, b: LiveDigitalSDK.DatacenterType) -> Swift.Bool
@@ -848,29 +825,15 @@ public enum DatacenterType {
 public struct ActivityRequiredEventData {
   public let time: Foundation.TimeInterval
 }
-public class AudioEncodingParameters {
+public struct AudioEncodingParameters : Swift.Sendable {
   public init(presets: [LiveDigitalSDK.AudioEncodingPreset])
-  @objc deinit
 }
-public class AudioEncodingPreset {
-  public var isActive: Swift.Bool {
-    get
-    set
-  }
-  public var minBitrateBPS: Swift.Int? {
-    get
-    set
-  }
-  public var maxBitrateBPS: Swift.Int? {
-    get
-    set
-  }
-  public var networkPriority: WebRTC.RTCPriority {
-    get
-    set
-  }
-  public init()
-  @objc deinit
+public struct AudioEncodingPreset : Swift.Sendable {
+  public var isActive: Swift.Bool?
+  public var minBitrateBPS: Swift.Int?
+  public var maxBitrateBPS: Swift.Int?
+  public var networkPriority: WebRTC.RTCPriority?
+  public init(isActive: Swift.Bool? = nil, minBitrateBPS: Swift.Int? = nil, maxBitrateBPS: Swift.Int? = nil, networkPriority: WebRTC.RTCPriority? = nil)
 }
 public struct CustomEvent : Swift.Codable, Swift.Sendable {
   public let name: Swift.String
@@ -886,13 +849,18 @@ extension Swift.Dictionary where Key == Swift.String, Value == LiveDigitalSDK.Pa
   public init(with rawMap: [Swift.String : Any])
   public func stringValue() -> Swift.String?
 }
-public struct JoinedPeerParameters {
-  public let channelId: Swift.String
+public struct JoinedPeerParameters : Swift.Sendable, Swift.Hashable, Swift.Equatable {
+  public let channelId: LiveDigitalSDK.ChannelId
   public let appId: Swift.String
   public let role: LiveDigitalSDK.MediaRole
   public let peerId: LiveDigitalSDK.PeerId
+  public static func == (a: LiveDigitalSDK.JoinedPeerParameters, b: LiveDigitalSDK.JoinedPeerParameters) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
 }
-public enum MediaRole {
+public enum MediaRole : Swift.Sendable, Swift.Hashable, Swift.Equatable {
   case host
   case audience
   public static func == (a: LiveDigitalSDK.MediaRole, b: LiveDigitalSDK.MediaRole) -> Swift.Bool
@@ -909,6 +877,12 @@ public enum PayloadValue : Swift.Hashable, Swift.Sendable {
   case string(Swift.String)
   case array([LiveDigitalSDK.PayloadValue])
   case map([Swift.String : LiveDigitalSDK.PayloadValue])
+  public var rawValue: Any {
+    get
+  }
+  public init(with rawMap: [Swift.String : Any])
+  public init(with rawArray: [Any])
+  public init(with rawValue: Any)
   public static func == (a: LiveDigitalSDK.PayloadValue, b: LiveDigitalSDK.PayloadValue) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -949,36 +923,36 @@ extension LiveDigitalSDK.PayloadValue : Swift.Codable {
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
 }
-@_hasMissingDesignatedInitializers public class Peer {
+@_hasMissingDesignatedInitializers final public class Peer {
   final public let id: LiveDigitalSDK.PeerId
   final public let uid: Swift.String?
   final public let isMyPeer: Swift.Bool
-  public var payload: [Swift.String : LiveDigitalSDK.PayloadValue]? {
+  final public var payload: [Swift.String : LiveDigitalSDK.PayloadValue]? {
     get
   }
-  public var deadTracks: Swift.Set<LiveDigitalSDK.TrackDescriptor> {
+  final public var deadTracks: Swift.Set<LiveDigitalSDK.TrackDescriptor> {
     get
   }
-  public var producePermissions: Swift.Set<LiveDigitalSDK.TrackLabel>? {
+  final public var producePermissions: Swift.Set<LiveDigitalSDK.TrackLabel>? {
     get
   }
-  public var groups: Swift.Set<LiveDigitalSDK.ChannelGroup>? {
+  final public var groups: Swift.Set<LiveDigitalSDK.ChannelGroup>? {
     get
   }
-  public var tracks: [LiveDigitalSDK.TrackDescriptor] {
+  final public var tracks: [LiveDigitalSDK.TrackDescriptor] {
     get
   }
   @objc deinit
 }
 extension LiveDigitalSDK.Peer {
   public static func mock(id: LiveDigitalSDK.PeerId, uid: Swift.String? = nil, isMyPeer: Swift.Bool, canConsume: Swift.Bool, payload: [Swift.String : LiveDigitalSDK.PayloadValue]?, tracks: [LiveDigitalSDK.TrackLabel : LiveDigitalSDK.MediaKind], logger: any LiveDigitalSDK.LDSDKLogger) -> LiveDigitalSDK.Peer
-  public func consumingAudio(track: LiveDigitalSDK.TrackLabel) -> Swift.Bool
-  public func consumingVideo(track: LiveDigitalSDK.TrackLabel) -> Swift.Bool
-  public func producing(_ trackLabel: LiveDigitalSDK.TrackLabel) -> Swift.Bool
-  public func layers(for trackLabel: LiveDigitalSDK.TrackLabel) -> [LiveDigitalSDK.VideoLayer]?
+  final public func consumingAudio(track: LiveDigitalSDK.TrackLabel) -> Swift.Bool
+  final public func consumingVideo(track: LiveDigitalSDK.TrackLabel) -> Swift.Bool
+  final public func producing(_ trackLabel: LiveDigitalSDK.TrackLabel) -> Swift.Bool
+  final public func layers(for trackLabel: LiveDigitalSDK.TrackLabel) -> [LiveDigitalSDK.VideoLayer]?
 }
 extension LiveDigitalSDK.Peer : Swift.CustomStringConvertible {
-  public var description: Swift.String {
+  final public var description: Swift.String {
     get
   }
 }
@@ -986,8 +960,8 @@ extension LiveDigitalSDK.Peer : Swift.Equatable {
   public static func == (lhs: LiveDigitalSDK.Peer, rhs: LiveDigitalSDK.Peer) -> Swift.Bool
 }
 extension LiveDigitalSDK.Peer : Swift.Hashable {
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
+  final public func hash(into hasher: inout Swift.Hasher)
+  final public var hashValue: Swift.Int {
     get
   }
 }
@@ -997,7 +971,7 @@ public struct PeerAppData : Swift.Codable, Swift.Sendable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct PeerId : Swift.RawRepresentable, Swift.Sendable, Swift.Hashable, Swift.Equatable {
+public struct PeerId : Swift.RawRepresentable, Swift.Sendable, Swift.Codable, Swift.Hashable, Swift.Equatable {
   public let rawValue: Swift.String
   public init(rawValue: Swift.String)
   public static func random() -> LiveDigitalSDK.PeerId
@@ -1008,11 +982,7 @@ extension LiveDigitalSDK.PeerId : Swift.CustomStringConvertible {
     get
   }
 }
-extension LiveDigitalSDK.PeerId : Swift.Codable {
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
-}
-public struct PeerTrackId : Swift.Hashable {
+public struct PeerTrackId : Swift.Sendable, Swift.Hashable, Swift.Equatable {
   public let peer: LiveDigitalSDK.PeerId
   public let track: LiveDigitalSDK.TrackLabel
   public init(peer: LiveDigitalSDK.PeerId, track: LiveDigitalSDK.TrackLabel)
@@ -1031,14 +1001,6 @@ public enum ChannelGroup : Swift.Sendable, Swift.Hashable {
   public var hashValue: Swift.Int {
     get
   }
-}
-public struct PeerGroupsChange {
-  public let peer: LiveDigitalSDK.PeerId
-  public let groups: Swift.Set<LiveDigitalSDK.ChannelGroup>
-}
-public struct PeerProducePermissions {
-  public let peerId: LiveDigitalSDK.PeerId
-  public let producePermissions: Swift.Set<LiveDigitalSDK.TrackLabel>
 }
 public struct TrackDescriptor : Swift.Hashable, Swift.Equatable {
   public let id: LiveDigitalSDK.ProducerId
@@ -1061,51 +1023,32 @@ public struct TrackTrafficReport : Swift.Hashable {
     get
   }
 }
-public class VideoEncodingParameters {
+public struct VideoEncodingParameters : Swift.Sendable {
+  public let presets: [LiveDigitalSDK.VideoEncodingPreset]
+  public let scalabilityMode: Swift.String?
+  public let startBitrateBPS: Swift.Int?
   public init(presets: [LiveDigitalSDK.VideoEncodingPreset], scalabilityMode: Swift.String?, startBitrateBPS: Swift.Int?)
-  @objc deinit
 }
-public class VideoEncodingPreset {
-  public var isActive: Swift.Bool {
-    get
-    set
-  }
-  public var minBitrateBPS: Swift.Int? {
-    get
-    set
-  }
-  public var maxBitrateBPS: Swift.Int? {
-    get
-    set
-  }
-  public var maxFramerate: Swift.Int? {
-    get
-    set
-  }
-  public var numTemporalLayers: Swift.Int? {
-    get
-    set
-  }
-  public var scaleResolutionDownBy: Swift.Int? {
-    get
-    set
-  }
-  public var networkPriority: WebRTC.RTCPriority {
-    get
-    set
-  }
-  public init()
-  @objc deinit
+public struct VideoEncodingPreset : Swift.Sendable {
+  public var isActive: Swift.Bool?
+  public var minBitrateBPS: Swift.Int?
+  public var maxBitrateBPS: Swift.Int?
+  public var maxFramerate: Swift.Int?
+  public var numTemporalLayers: Swift.Int?
+  public var scaleResolutionDownBy: Swift.Int?
+  public var networkPriority: WebRTC.RTCPriority?
+  public init(isActive: Swift.Bool? = nil, minBitrateBPS: Swift.Int? = nil, maxBitrateBPS: Swift.Int? = nil, maxFramerate: Swift.Int? = nil, numTemporalLayers: Swift.Int? = nil, scaleResolutionDownBy: Swift.Int? = nil, networkPriority: WebRTC.RTCPriority? = nil)
 }
-public enum VideoLayer {
+public enum VideoLayer : Swift.Sendable {
   case low(LiveDigitalSDK.VideoLayer.Properties)
   case medium(LiveDigitalSDK.VideoLayer.Properties)
   case high(LiveDigitalSDK.VideoLayer.Properties)
-  public struct Properties {
+  public struct Properties : Swift.Sendable {
+    public let maxBitrate: Swift.Int?
+    public let maxFramerate: Swift.Int?
+    public let size: LiveDigitalSDK.VideoSize
+    public init(maxBitrate: Swift.Int? = nil, maxFramerate: Swift.Int? = nil, size: LiveDigitalSDK.VideoSize)
   }
-}
-public protocol SpeakerObserver {
-  func activeSpeakersChanged(_ speakers: [LiveDigitalSDK.PeerId])
 }
 extension AVFAudio.AVAudioSession.RouteChangeReason : @retroactive Swift.CustomStringConvertible {
   public var description: Swift.String {
@@ -1173,20 +1116,9 @@ public enum LogConfig {
 }
 extension LiveDigitalSDK.ChannelSessionError : Swift.Equatable {}
 extension LiveDigitalSDK.ChannelSessionError : Swift.Hashable {}
-extension LiveDigitalSDK.ChannelSessionStatus : Swift.Hashable {}
-extension LiveDigitalSDK.MediaKind : Swift.Equatable {}
-extension LiveDigitalSDK.MediaKind : Swift.Hashable {}
 extension LiveDigitalSDK.MediaKind : Swift.RawRepresentable {}
-extension LiveDigitalSDK.NetworkReportDirection : Swift.Equatable {}
-extension LiveDigitalSDK.NetworkReportDirection : Swift.Hashable {}
 extension LiveDigitalSDK.LiveDigitalEngineError : Swift.Equatable {}
 extension LiveDigitalSDK.LiveDigitalEngineError : Swift.Hashable {}
 extension LiveDigitalSDK.MediaCapturerError : Swift.Equatable {}
 extension LiveDigitalSDK.MediaCapturerError : Swift.Hashable {}
-extension LiveDigitalSDK.AudioCodec : Swift.Hashable {}
-extension LiveDigitalSDK.VideoCodec : Swift.Hashable {}
-extension LiveDigitalSDK.DatacenterType : Swift.Equatable {}
-extension LiveDigitalSDK.DatacenterType : Swift.Hashable {}
-extension LiveDigitalSDK.MediaRole : Swift.Equatable {}
-extension LiveDigitalSDK.MediaRole : Swift.Hashable {}
 extension LiveDigitalSDK.LDSDKLogLevel : Swift.Hashable {}

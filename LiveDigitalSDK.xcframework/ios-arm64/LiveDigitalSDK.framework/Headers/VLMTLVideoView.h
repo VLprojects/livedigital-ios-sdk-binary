@@ -16,39 +16,37 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- * VLMTLVideoView is thin wrapper around MTKView.
- *
- * It has id<RTCVideoRenderer> property that renders video frames in the view's
- * bounds using Metal.
- */
+/// A Metal-backed video view for rendering WebRTC frames.
+///
+/// `VLMTLVideoView` is a lightweight `UIView` wrapper around an internal
+/// Metal rendering surface. It conforms to `RTCVideoRenderer`, allowing it
+/// to receive and display WebRTC video frames directly.
+///
+/// The view supports common rendering options such as content mode,
+/// enable/disable state, mirroring, vertical flipping, and rotation override.
 NS_CLASS_AVAILABLE_IOS(9)
-
 RTC_OBJC_EXPORT
 @interface RTC_OBJC_TYPE (VLMTLVideoView) : UIView<RTC_OBJC_TYPE(RTCVideoRenderer)>
 
+/// The delegate notified about view-related rendering updates.
 @property(nonatomic, weak) id<RTC_OBJC_TYPE(RTCVideoViewDelegate)> delegate;
 
+/// The content mode used to lay out the rendered video within the view bounds.
 @property(nonatomic) UIViewContentMode videoContentMode;
 
-/** @abstract Enables/disables rendering.
- */
+/// Indicates whether the view is actively rendering video frames.
 @property(nonatomic, getter=isEnabled) BOOL enabled;
 
-/** @abstract Enables/disables video mirroring across X axis.
- */
+/// Indicates whether the rendered video is mirrored horizontally.
 @property(nonatomic) BOOL mirrored;
 
-/** @abstract Enables/disables video mirroring across Y axis (vertical flip).
- */
+/// Indicates whether the rendered video is mirrored vertically.
 @property(nonatomic) BOOL verticallyMirrored;
 
-/** @abstract Wrapped RTCVideoRotation, or nil.
- */
+/// An optional wrapped `RTCVideoRotation` value that overrides frame rotation.
 @property(nonatomic, nullable) NSValue* rotationOverride;
 
-/** @abstract Size of last rendered frame with rotation applied.
- */
+/// Returns the size of the last rendered frame after rotation has been applied.
 - (CGSize)drawableSize;
 
 @end

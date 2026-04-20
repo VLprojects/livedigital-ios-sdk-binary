@@ -370,6 +370,27 @@ extern "C" {
 
 #if defined(__OBJC__)
 
+/// A video filter that applies background blur using person segmentation.
+/// This filter uses Vision-based person segmentation to generate a mask
+/// separating the foreground (person) from the background. The background
+/// is then blurred while preserving the foreground region.
+/// Processing pipeline:
+/// <ul>
+///   <li>
+///     Performs person segmentation on incoming frames
+///   </li>
+///   <li>
+///     Generates a mask for the detected person
+///   </li>
+///   <li>
+///     Applies a blur to the background using Core Image filters
+///   </li>
+///   <li>
+///     Blends the original frame with the blurred background using the mask
+///   </li>
+/// </ul>
+/// The filter operates asynchronously for mask generation and reuses the last
+/// available mask for subsequent frames to maintain performance.
 SWIFT_CLASS("_TtC14LiveDigitalSDK23BlurredBackgroundFilter")
 @interface BlurredBackgroundFilter : NSObject
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
@@ -382,6 +403,23 @@ SWIFT_CLASS("_TtC14LiveDigitalSDK23BlurredBackgroundFilter")
 - (void)capturer:(RTCVideoCapturer * _Nonnull)capturer didCaptureVideoFrame:(RTCVideoFrame * _Nonnull)frame;
 @end
 
+/// A video filter that replaces the background with a solid color using person segmentation.
+/// This filter uses Vision-based person segmentation to separate the foreground (person)
+/// from the background. The background is replaced with a configurable solid color
+/// while preserving the foreground region.
+/// Processing pipeline:
+/// <ul>
+///   <li>
+///     Performs person segmentation on incoming frames
+///   </li>
+///   <li>
+///     Generates a mask for the detected person
+///   </li>
+///   <li>
+///     Blends the original frame with a solid color background using the mask
+///   </li>
+/// </ul>
+/// If segmentation fails, the original frame is returned.
 SWIFT_CLASS("_TtC14LiveDigitalSDK28ColorVirtualBackgroundFilter")
 @interface ColorVirtualBackgroundFilter : NSObject
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
@@ -392,6 +430,23 @@ SWIFT_CLASS("_TtC14LiveDigitalSDK28ColorVirtualBackgroundFilter")
 - (void)capturer:(RTCVideoCapturer * _Nonnull)capturer didCaptureVideoFrame:(RTCVideoFrame * _Nonnull)frame;
 @end
 
+/// A video filter that replaces the background with a static image using person segmentation.
+/// This filter uses Vision-based person segmentation to separate the foreground (person)
+/// from the background. The background is replaced with a provided image while preserving
+/// the foreground region.
+/// Processing pipeline:
+/// <ul>
+///   <li>
+///     Performs person segmentation on incoming frames
+///   </li>
+///   <li>
+///     Generates a mask for the detected person
+///   </li>
+///   <li>
+///     Composites the original frame with the background image using the mask
+///   </li>
+/// </ul>
+/// If segmentation fails, the original frame is returned.
 SWIFT_CLASS("_TtC14LiveDigitalSDK28ImageVirtualBackgroundFilter")
 @interface ImageVirtualBackgroundFilter : NSObject
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;

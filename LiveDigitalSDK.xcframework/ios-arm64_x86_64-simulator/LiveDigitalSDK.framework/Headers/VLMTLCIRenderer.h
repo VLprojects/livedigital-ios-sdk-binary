@@ -17,6 +17,14 @@
 #endif
 
 
+/// A Metal-based renderer that uses Core Image for frame processing.
+///
+/// `VLMTLCIRenderer` renders video frames using a Core Image pipeline
+/// backed by Metal. It is suitable for workflows that require image
+/// processing, filtering, or color transformations before display.
+///
+/// Compared to lower-level renderers, it provides more flexibility at the
+/// cost of additional processing overhead.
 NS_AVAILABLE(10_11, 9_0)
 @interface VLMTLCIRenderer : VLMTLRenderer
 

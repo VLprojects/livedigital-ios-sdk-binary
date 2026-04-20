@@ -17,10 +17,14 @@
 #endif
 
 
-/** @abstract RGB/BGR renderer.
- *  @discussion This renderer handles both kCVPixelFormatType_32BGRA and
- * kCVPixelFormatType_32ARGB.
- */
+/// A Metal-based renderer for RGB and BGR pixel buffers.
+///
+/// `VLMTLRGBRenderer` renders video frames provided in common packed RGB formats,
+/// including `kCVPixelFormatType_32BGRA` and `kCVPixelFormatType_32ARGB`.
+///
+/// This renderer is typically used when frames are already in an RGB-compatible
+/// format (e.g., post-processed frames, screenshots, or custom pipelines),
+/// avoiding the need for YUV conversion.
 NS_AVAILABLE(10_11, 9_0)
 @interface VLMTLRGBRenderer : VLMTLRenderer
 
