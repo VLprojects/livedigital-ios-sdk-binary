@@ -160,11 +160,6 @@ extension StockSessionPresenter: SessionPresenter {
 	}
 }
 
-// MARK: - LiveDigitalSessionManagerDelegate implementation
-
-extension StockSessionPresenter: LiveDigitalSessionManagerDelegate {
-}
-
 // MARK: - CameraManagerDelegate implementation
 
 extension StockSessionPresenter: CameraManagerDelegate {
