@@ -274,11 +274,6 @@ extension AudioCallVM: @MainActor ChannelSessionDelegate {
 extension AudioCallVM: CameraManagerDelegate {
 }
 
-// MARK: - LiveDigitalSessionManagerDelegate implementation
-
-extension AudioCallVM: LiveDigitalSessionManagerDelegate {
-}
-
 // MARK: - ChannelSessionObserver implementation
 
 extension AudioCallVM: @MainActor ChannelSessionObserver {
