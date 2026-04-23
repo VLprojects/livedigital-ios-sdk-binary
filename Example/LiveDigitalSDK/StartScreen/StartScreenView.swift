@@ -24,6 +24,7 @@ extension StartScreenView: View {
 					permissionsBlock
 				}
 			}
+			.frame(maxWidth: 600)
 		}
 		.overlay(alignment: .bottom) {
 			NotificationsStack(vm: vm.notificationsVM)

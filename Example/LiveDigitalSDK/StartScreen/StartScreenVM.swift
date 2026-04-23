@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import LiveDigitalSDK
 
 
 @MainActor
@@ -30,6 +31,7 @@ final class StartScreenVM: ObservableObject {
 
 		bindPermissionsStates()
 		bindOutgoingCallState()
+		notificationsVM.show("LiveDigitalSDK version: \(LiveDigital.version())")
 	}
 }
 
