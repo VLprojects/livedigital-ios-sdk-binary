@@ -47168,14 +47168,14 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/Mediasoup\/Transport\/StockReceiveTransport.swift",
       "kind": "StringLiteral",
-      "offset": 5153,
+      "offset": 5226,
       "length": 47,
       "value": "\"Data consumer for \""
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/Mediasoup\/Transport\/StockReceiveTransport.swift",
       "kind": "StringLiteral",
-      "offset": 5191,
+      "offset": 5264,
       "length": 7,
       "value": "\" created\""
     },
