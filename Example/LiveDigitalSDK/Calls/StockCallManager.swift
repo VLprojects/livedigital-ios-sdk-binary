@@ -20,7 +20,7 @@ final class StockCallManager: NSObject {
 	override init() {
 		let providerConfig = CXProviderConfiguration()
 		providerConfig.includesCallsInRecents = true
-		providerConfig.supportsVideo = true
+		providerConfig.supportsVideo = false
 		providerConfig.maximumCallsPerCallGroup = 1
 		providerConfig.supportedHandleTypes = [.generic]
 		self.callProvider = CXProvider(configuration: providerConfig)
@@ -119,7 +119,7 @@ extension StockCallManager: CallManager {
 		let callId = UUID()
 		let callHandle = CXHandle(type: .generic, value: roomAlias)
 		let startAction = CXStartCallAction(call: callId, handle: callHandle)
-		startAction.isVideo = true
+		startAction.isVideo = false
 		let transaction = CXTransaction(action: startAction)
 		callController.request(transaction) { error in
 			if let error {
@@ -191,7 +191,7 @@ private extension StockCallManager {
 		let update = CXCallUpdate()
 		update.remoteHandle = CXHandle(type: .generic, value: call.roomAlias)
 		update.localizedCallerName = call.caller
-		update.hasVideo = true
+		update.hasVideo = false
 		update.supportsHolding = false
 		update.supportsDTMF = false
 		update.supportsGrouping = false
