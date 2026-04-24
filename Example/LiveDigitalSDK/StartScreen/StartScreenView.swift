@@ -30,6 +30,28 @@ extension StartScreenView: View {
 			NotificationsStack(vm: vm.notificationsVM)
 				.padding(.horizontal)
 		}
+		.fullScreenCover(isPresented: Binding(get: {
+			vm.presentedImage != nil
+		}, set: { value in
+			if !value {
+				vm.presentedImage = nil
+			}
+		}), content: {
+			if let image = vm.presentedImage {
+				ZStack {
+					Color.black
+						.ignoresSafeArea()
+					image
+						.interpolation(.none)
+						.aspectRatio(contentMode: .fit)
+						.frame(maxWidth: .infinity, maxHeight: .infinity)
+				}
+				.contentShape(Rectangle())
+				.onTapGesture {
+					vm.presentedImage = nil
+				}
+			}
+		})
 	}
 }
 
@@ -83,13 +105,22 @@ private extension StartScreenView {
 					.font(AssetFont.mainTextMedium.font)
 					.foregroundStyle(AssetColor.contrast.color)
 					.frame(maxWidth: .infinity, alignment: .leading)
-				RoundButton(
-					config: .custom(nil, String(localized: .copyApnsTokenAction)),
-					disabled: !vm.apnsPermissionGranted,
-					action: {
-						vm.copyAPNSToken()
-					}
-				)
+				HStack {
+					RoundButton(
+						config: .custom(nil, String(localized: .copyApnsTokenAction)),
+						disabled: !vm.apnsPermissionGranted,
+						action: {
+							vm.copyAPNSToken()
+						}
+					)
+					RoundButton(
+						config: .custom(Image(systemName: "qrcode.viewfinder"), nil),
+						disabled: !vm.apnsPermissionGranted,
+						action: {
+							vm.presentAPNSToken()
+						}
+					)
+				}
 			}
 			.frame(maxWidth: .infinity)
 		}

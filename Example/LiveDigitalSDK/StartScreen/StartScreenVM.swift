@@ -10,6 +10,7 @@ final class StartScreenVM: ObservableObject {
 	@Published var microphonePermissionGranted = false
 	@Published var cameraPermissionGranted = false
 	@Published var canInitiateCall = false
+	@Published var presentedImage: Image?
 	@Published var outgoingCallRoomAlias = "q3_5V3uwik"
 	let notificationsVM = NotificationsVM()
 
@@ -17,6 +18,7 @@ final class StartScreenVM: ObservableObject {
 	private let apnsPermissionManager: PushPermissionsManager
 	private let microphonePermissionManager: CaptureDevicePermissionsManager
 	private let cameraPermissionManager: CaptureDevicePermissionsManager
+	private let qrGenerator: QRGenerator = StockQRGenerator()
 
 	init(
 		callManager: CallManager,
@@ -54,6 +56,13 @@ internal extension StartScreenVM {
 		UIPasteboard.general.string = callManager.deviceTokenCurrentValue
 		UINotificationFeedbackGenerator().notificationOccurred(.success)
 		notificationsVM.show(String(localized: .apnsTokenCopiedNotification))
+	}
+
+	func presentAPNSToken() {
+		guard let tokenString = callManager.deviceTokenCurrentValue else {
+			return
+		}
+		presentedImage = qrGenerator.generate(from: tokenString)
 	}
 
 	func initiateCall() {
