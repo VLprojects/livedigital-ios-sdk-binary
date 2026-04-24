@@ -5,6 +5,7 @@ import CallKit
 import AVFAudio
 import UIKit
 import Intents
+import LiveDigitalSDK
 
 
 final class StockCallManager: NSObject {
@@ -300,6 +301,9 @@ extension StockCallManager: CXProviderDelegate {
 
 	func provider(_ provider: CXProvider, perform action: CXStartCallAction) {
 		print("Call provider requested call start with action \(action)")
+
+		StockLiveDigitalEngine.callAudioCoordinator.prepareSession()
+
 		let call = Call(
 			id: action.callUUID,
 			caller: action.handle.value,
@@ -316,6 +320,9 @@ extension StockCallManager: CXProviderDelegate {
 
 	func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
 		print("Call provider requested call answer with action \(action)")
+
+		StockLiveDigitalEngine.callAudioCoordinator.prepareSession()
+
 		if let call = calls[action.callUUID] {
 			let activeCall = call.withState(.active)
 			calls[call.id] = activeCall
@@ -358,6 +365,9 @@ extension StockCallManager: CXProviderDelegate {
 
 	func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
 		print("Call provider did activate \(audioSession)")
+
+		StockLiveDigitalEngine.callAudioCoordinator.callKitDidActivate(audioSession)
+
 		for observer in observers {
 			observer.value?.didUpdateAudioSession(audioSession, active: true)
 		}
@@ -365,6 +375,9 @@ extension StockCallManager: CXProviderDelegate {
 
 	func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
 		print("Call provider did deactivate \(audioSession)")
+
+		StockLiveDigitalEngine.callAudioCoordinator.callKitDidDeactivate(audioSession)
+
 		for observer in observers {
 			observer.value?.didUpdateAudioSession(audioSession, active: false)
 		}

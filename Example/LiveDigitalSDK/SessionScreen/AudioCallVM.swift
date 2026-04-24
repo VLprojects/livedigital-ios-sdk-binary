@@ -63,7 +63,8 @@ final class AudioCallVM: ObservableObject {
 
 		let engine = StockLiveDigitalEngine(
 			environment: .production,
-			clientUniqueId: LiveDigitalSDK.ClientUniqueId(rawValue: clientUniqueId)
+			clientUniqueId: LiveDigitalSDK.ClientUniqueId(rawValue: clientUniqueId),
+			useCallKitAudio: true
 		)
 		self.engine = engine
 		engine.delegate = self
