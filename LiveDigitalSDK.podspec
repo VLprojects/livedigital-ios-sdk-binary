@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name = 'LiveDigitalSDK'
-	s.version = '3.1.1'
+	s.version = '3.2.0'
 	s.summary = 'SDK for iOS to access LiveDigital media service'
 	s.homepage = 'https://github.com/VLprojects/livedigital-ios-sdk-binary'
 	s.license = { :type => 'MIT', :file => 'LICENSE' }

@@ -6090,6 +6090,13 @@
       },
       {
         "kind": "Import",
+        "name": "WebRTC",
+        "printedName": "WebRTC",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -8552,6 +8559,134 @@
       },
       {
         "kind": "Import",
+        "name": "WebRTC",
+        "printedName": "WebRTC",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CallAudioCoordinator",
+        "printedName": "CallAudioCoordinator",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "prepareSession",
+            "printedName": "prepareSession()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK20CallAudioCoordinatorP14prepareSessionyyF",
+            "mangledName": "$s14LiveDigitalSDK20CallAudioCoordinatorP14prepareSessionyyF",
+            "moduleName": "LiveDigitalSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.CallAudioCoordinator>",
+            "sugared_genericSig": "<Self where Self : LiveDigitalSDK.CallAudioCoordinator>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "callKitDidActivate",
+            "printedName": "callKitDidActivate(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "AVAudioSession",
+                "printedName": "AVFAudio.AVAudioSession",
+                "usr": "c:objc(cs)AVAudioSession"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK20CallAudioCoordinatorP18callKitDidActivateyySo14AVAudioSessionCF",
+            "mangledName": "$s14LiveDigitalSDK20CallAudioCoordinatorP18callKitDidActivateyySo14AVAudioSessionCF",
+            "moduleName": "LiveDigitalSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.CallAudioCoordinator>",
+            "sugared_genericSig": "<Self where Self : LiveDigitalSDK.CallAudioCoordinator>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "callKitDidDeactivate",
+            "printedName": "callKitDidDeactivate(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "AVAudioSession",
+                "printedName": "AVFAudio.AVAudioSession",
+                "usr": "c:objc(cs)AVAudioSession"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK20CallAudioCoordinatorP20callKitDidDeactivateyySo14AVAudioSessionCF",
+            "mangledName": "$s14LiveDigitalSDK20CallAudioCoordinatorP20callKitDidDeactivateyySo14AVAudioSessionCF",
+            "moduleName": "LiveDigitalSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.CallAudioCoordinator>",
+            "sugared_genericSig": "<Self where Self : LiveDigitalSDK.CallAudioCoordinator>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:14LiveDigitalSDK20CallAudioCoordinatorP",
+        "mangledName": "$s14LiveDigitalSDK20CallAudioCoordinatorP",
+        "moduleName": "LiveDigitalSDK",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "Import",
         "name": "AVFoundation",
         "printedName": "AVFoundation",
         "declKind": "Import",
@@ -8901,6 +9036,30 @@
         "printedName": "Foundation",
         "declKind": "Import",
         "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "WebRTC",
+        "printedName": "WebRTC",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "Utils",
+        "printedName": "Utils",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK",
+        "declAttributes": [
+          "AccessControl"
+        ]
       },
       {
         "kind": "Import",
@@ -10222,6 +10381,45 @@
           },
           {
             "kind": "Function",
+            "name": "prepareAudioSession",
+            "printedName": "prepareAudioSession(logger:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any LiveDigitalSDK.LDSDKLogger)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LDSDKLogger",
+                    "printedName": "any LiveDigitalSDK.LDSDKLogger",
+                    "usr": "s:14LiveDigitalSDK11LDSDKLoggerP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK0aB16MicrophoneEngineP19prepareAudioSession6loggeryAA11LDSDKLogger_pSg_tFZ",
+            "mangledName": "$s14LiveDigitalSDK0aB16MicrophoneEngineP19prepareAudioSession6loggeryAA11LDSDKLogger_pSg_tFZ",
+            "moduleName": "LiveDigitalSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.LiveDigitalMicrophoneEngine>",
+            "sugared_genericSig": "<Self where Self : LiveDigitalSDK.LiveDigitalMicrophoneEngine>",
+            "static": true,
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "startAudioSource",
             "printedName": "startAudioSource()",
             "children": [
@@ -11193,6 +11391,52 @@
         "children": [
           {
             "kind": "Var",
+            "name": "callAudioCoordinator",
+            "printedName": "callAudioCoordinator",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CallAudioCoordinator",
+                "printedName": "any LiveDigitalSDK.CallAudioCoordinator",
+                "usr": "s:14LiveDigitalSDK20CallAudioCoordinatorP"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:14LiveDigitalSDK05StockaB6EngineC20callAudioCoordinatorAA04CallgH0_pvpZ",
+            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC20callAudioCoordinatorAA04CallgH0_pvpZ",
+            "moduleName": "LiveDigitalSDK",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallAudioCoordinator",
+                    "printedName": "any LiveDigitalSDK.CallAudioCoordinator",
+                    "usr": "s:14LiveDigitalSDK20CallAudioCoordinatorP"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:14LiveDigitalSDK05StockaB6EngineC20callAudioCoordinatorAA04CallgH0_pvgZ",
+                "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC20callAudioCoordinatorAA04CallgH0_pvgZ",
+                "moduleName": "LiveDigitalSDK",
+                "static": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "delegate",
             "printedName": "delegate",
             "children": [
@@ -11549,7 +11793,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(environment:cameraScene:clientUniqueId:logConfig:)",
+            "printedName": "init(environment:cameraScene:clientUniqueId:useCallKitAudio:logConfig:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -11588,6 +11832,13 @@
               },
               {
                 "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
                 "name": "LogConfig",
                 "printedName": "LiveDigitalSDK.LogConfig",
                 "hasDefaultArg": true,
@@ -11595,8 +11846,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:14LiveDigitalSDK05StockaB6EngineC11environment11cameraScene14clientUniqueId9logConfigAcA0aB14SDKEnvironmentV_So08UIWindowH0CSgAA06ClientjK0VAA03LogM0Otcfc",
-            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC11environment11cameraScene14clientUniqueId9logConfigAcA0aB14SDKEnvironmentV_So08UIWindowH0CSgAA06ClientjK0VAA03LogM0Otcfc",
+            "usr": "s:14LiveDigitalSDK05StockaB6EngineC11environment11cameraScene14clientUniqueId15useCallKitAudio9logConfigAcA0aB14SDKEnvironmentV_So08UIWindowH0CSgAA06ClientjK0VSbAA03LogQ0Otcfc",
+            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC11environment11cameraScene14clientUniqueId15useCallKitAudio9logConfigAcA0aB14SDKEnvironmentV_So08UIWindowH0CSgAA06ClientjK0VSbAA03LogQ0Otcfc",
             "moduleName": "LiveDigitalSDK",
             "declAttributes": [
               "AccessControl",
@@ -12425,7 +12676,6 @@
                     "usr": "s:14LiveDigitalSDK11LDSDKLoggerP"
                   }
                 ],
-                "hasDefaultArg": true,
                 "usr": "s:Sq"
               }
             ],
@@ -46893,6 +47143,13 @@
       "value": "false"
     },
     {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/Mediasoup\/Device\/StockDevice.swift",
+      "kind": "BooleanLiteral",
+      "offset": 370,
+      "length": 5,
+      "value": "false"
+    },
+    {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/Mediasoup\/Device\/StockDeviceLoader.swift",
       "kind": "IntegerLiteral",
       "offset": 146,
@@ -47245,14 +47502,14 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/StockChannelSession.swift",
       "kind": "BooleanLiteral",
-      "offset": 1515,
+      "offset": 1590,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/StockChannelSession.swift",
       "kind": "BooleanLiteral",
-      "offset": 1551,
+      "offset": 1626,
       "length": 5,
       "value": "false"
     },
@@ -47306,6 +47563,13 @@
       "value": "\"pro.vlprojects.LiveDigitalSDK.PreviewSamplesQueue\""
     },
     {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/LiveDigitalCallAudioCoordinator.swift",
+      "kind": "IntegerLiteral",
+      "offset": 551,
+      "length": 1,
+      "value": "0"
+    },
+    {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
       "offset": 1554,
@@ -47353,6 +47617,13 @@
       "offset": 1925,
       "length": 6,
       "value": "90000"
+    },
+    {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
+      "kind": "BooleanLiteral",
+      "offset": 3705,
+      "length": 5,
+      "value": "false"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
@@ -47420,7 +47691,7 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
       "kind": "BooleanLiteral",
-      "offset": 21476,
+      "offset": 22327,
       "length": 5,
       "value": "false"
     },
