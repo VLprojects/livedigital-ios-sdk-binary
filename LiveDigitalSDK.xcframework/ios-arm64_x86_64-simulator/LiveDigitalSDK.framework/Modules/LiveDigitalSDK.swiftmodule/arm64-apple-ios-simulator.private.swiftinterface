@@ -294,6 +294,11 @@ extension LiveDigitalSDK.BroadcastLiveDigitalEngine : LiveDigitalSDK.LiveDigital
   final public func startVideoSource(encodingParameters: LiveDigitalSDK.VideoEncodingParameters, preferredCodec: LiveDigitalSDK.VideoCodec, completion: @escaping (Swift.Result<LiveDigitalSDK.VideoSourceWithoutPreview, LiveDigitalSDK.LiveDigitalEngineError>) -> Swift.Void)
   final public func stopVideoSource(_ videoSource: LiveDigitalSDK.VideoSourceWithoutPreview, completion: @escaping () -> Swift.Void)
 }
+public protocol CallAudioCoordinator {
+  func prepareSession()
+  func callKitDidActivate(_ audioSession: AVFAudio.AVAudioSession)
+  func callKitDidDeactivate(_ audioSession: AVFAudio.AVAudioSession)
+}
 @available(iOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(watchOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(tvOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
@@ -363,6 +368,7 @@ public enum LiveDigitalEngineError : Foundation.LocalizedError, Swift.Sendable {
 public protocol LiveDigitalMicrophoneEngine {
   var audioSources: [LiveDigitalSDK.AudioSource] { get }
   var audioRouter: any LiveDigitalSDK.AudioRouter { get }
+  static func prepareAudioSession(logger: (any LiveDigitalSDK.LDSDKLogger)?)
   func startAudioSource() -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
   func startAudioSource(encodingParameters: LiveDigitalSDK.AudioEncodingParameters) -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
   func stopAudioSource(_ audioSource: LiveDigitalSDK.AudioSource)
@@ -393,6 +399,9 @@ extension LiveDigitalSDK.LiveDigitalSessionManager {
 @available(watchOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(tvOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 final public class StockLiveDigitalEngine {
+  public static var callAudioCoordinator: any LiveDigitalSDK.CallAudioCoordinator {
+    get
+  }
   weak final public var delegate: (any LiveDigitalSDK.AudioRouterDelegate & LiveDigitalSDK.CameraManagerDelegate)?
   final public var videoSourcesWithPreview: [LiveDigitalSDK.VideoSourceWithPreview] {
     get
@@ -404,7 +413,7 @@ final public class StockLiveDigitalEngine {
     get
   }
   final public let logger: any LiveDigitalSDK.LDSDKLogger
-  public init(environment: LiveDigitalSDK.LiveDigitalSDKEnvironment = .production, cameraScene: UIKit.UIWindowScene? = nil, clientUniqueId: LiveDigitalSDK.ClientUniqueId = .random(), logConfig: LiveDigitalSDK.LogConfig = .defaultConfig)
+  public init(environment: LiveDigitalSDK.LiveDigitalSDKEnvironment = .production, cameraScene: UIKit.UIWindowScene? = nil, clientUniqueId: LiveDigitalSDK.ClientUniqueId = .random(), useCallKitAudio: Swift.Bool = false, logConfig: LiveDigitalSDK.LogConfig = .defaultConfig)
   @objc deinit
 }
 @available(iOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
@@ -448,7 +457,7 @@ extension LiveDigitalSDK.StockLiveDigitalEngine : LiveDigitalSDK.LiveDigitalMicr
   final public var audioRouter: any LiveDigitalSDK.AudioRouter {
     get
   }
-  public static func prepareAudioSession(logger: (any LiveDigitalSDK.LDSDKLogger)? = nil)
+  public static func prepareAudioSession(logger: (any LiveDigitalSDK.LDSDKLogger)?)
   final public func startAudioSource() -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
   final public func startAudioSource(encodingParameters: LiveDigitalSDK.AudioEncodingParameters) -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
   final public func stopAudioSource(_ audioSource: LiveDigitalSDK.AudioSource)
