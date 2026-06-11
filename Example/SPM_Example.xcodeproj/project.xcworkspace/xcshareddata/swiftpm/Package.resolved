@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/VLprojects/livedigital-ios-sdk-binary.git",
       "state" : {
-        "revision" : "ed033a3c7a19bd049474a7cd182d6d549ee8d3bb",
-        "version" : "3.3.0"
+        "revision" : "ac5e44c25aa07a48a008d1e05d421b99fa0736bd",
+        "version" : "3.3.1"
       }
     },
     {
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/VLprojects/mediasoup-client-swift.git",
       "state" : {
-        "revision" : "7f60eac7126f350e7a9442e609b69c3450390aec",
-        "version" : "0.11.0"
+        "revision" : "ecbda047001577c2d2abd0e6e7b718e2b4d175fc",
+        "version" : "0.13.0"
       }
     }
   ],
