@@ -60,6 +60,8 @@
 		FF6267EC2EEA6F4F0081A62A /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF6267EB2EEA6F4F0081A62A /* LiveDigitalSDK */; };
 		FF800AC42DBA4BD10060FAED /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC32DBA4BD10060FAED /* StartVC.swift */; };
 		FF800AC52DBA4BD10060FAED /* SessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC22DBA4BD10060FAED /* SessionVC.swift */; };
+		FF8D37D62FDA620E0084F833 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37D52FDA620B0084F833 /* APIClient.swift */; };
+		FF8D37D82FDA623F0084F833 /* StockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37D72FDA623A0084F833 /* StockAPIClient.swift */; };
 		FF98FFB02EC1C85A003F1D90 /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF98FFAF2EC1C85A003F1D90 /* LiveDigitalSDK */; };
 		FFA56F542F236D85000FFD29 /* QRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F532F236D68000FFD29 /* QRGenerator.swift */; };
 		FFA56F562F236E04000FFD29 /* StockQRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F552F236DFB000FFD29 /* StockQRGenerator.swift */; };
@@ -75,7 +77,7 @@
 		FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */; };
 		FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */; };
 		FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */; };
-		FFFA32242D30EA170043C2E7 /* MoodhoodAPIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA32232D30EA150043C2E7 /* MoodhoodAPIClientError.swift */; };
+		FFFA32242D30EA170043C2E7 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA32232D30EA150043C2E7 /* APIClientError.swift */; };
 		FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA32262D30EB010043C2E7 /* MoodhoodUserToken.swift */; };
 		FFFA32292D311A560043C2E7 /* MoodhoodParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA32282D311A510043C2E7 /* MoodhoodParticipant.swift */; };
 		FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA322A2D3120160043C2E7 /* SignalingToken.swift */; };
@@ -140,6 +142,8 @@
 		FF098B462F8FB3DF00ED440A /* StartScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVM.swift; sourceTree = "<group>"; };
 		FF800AC22DBA4BD10060FAED /* SessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionVC.swift; sourceTree = "<group>"; };
 		FF800AC32DBA4BD10060FAED /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
+		FF8D37D52FDA620B0084F833 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		FF8D37D72FDA623A0084F833 /* StockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockAPIClient.swift; sourceTree = "<group>"; };
 		FFA56F532F236D68000FFD29 /* QRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRGenerator.swift; sourceTree = "<group>"; };
 		FFA56F552F236DFB000FFD29 /* StockQRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockQRGenerator.swift; sourceTree = "<group>"; };
 		FFA56F572F237ADD000FFD29 /* LiveDigitalSDKExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiveDigitalSDKExample.entitlements; sourceTree = "<group>"; };
@@ -154,7 +158,7 @@
 		FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMoodhoodAPIClient.swift; sourceTree = "<group>"; };
 		FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIClient.swift; sourceTree = "<group>"; };
 		FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIEnvironment.swift; sourceTree = "<group>"; };
-		FFFA32232D30EA150043C2E7 /* MoodhoodAPIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIClientError.swift; sourceTree = "<group>"; };
+		FFFA32232D30EA150043C2E7 /* APIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
 		FFFA32262D30EB010043C2E7 /* MoodhoodUserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodUserToken.swift; sourceTree = "<group>"; };
 		FFFA32282D311A510043C2E7 /* MoodhoodParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodParticipant.swift; sourceTree = "<group>"; };
 		FFFA322A2D3120160043C2E7 /* SignalingToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalingToken.swift; sourceTree = "<group>"; };
@@ -196,10 +200,12 @@
 		607FACD21AFB9204008FA782 /* Example for LiveDigitalSDK */ = {
 			isa = PBXGroup;
 			children = (
+				FF8D37D42FDA62020084F833 /* APIClient */,
 				FF098B1B2F8FB32D00ED440A /* Application */,
 				FF098B212F8FB32D00ED440A /* Calls */,
 				FF098AFC2F8FB31400ED440A /* Components */,
 				FFF42C5A2F31DBC600AE3966 /* Config */,
+				FF8D37D32FDA61C60084F833 /* CRSAPI */,
 				FFFA321C2D30DFF50043C2E7 /* MoodhoodAPI */,
 				FF098B2F2F8FB36B00ED440A /* Permissions */,
 				FF52173C2F2A044400725DC7 /* QRCode */,
@@ -330,6 +336,23 @@
 			path = QRCode;
 			sourceTree = "<group>";
 		};
+		FF8D37D32FDA61C60084F833 /* CRSAPI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CRSAPI;
+			sourceTree = "<group>";
+		};
+		FF8D37D42FDA62020084F833 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				FFFA32232D30EA150043C2E7 /* APIClientError.swift */,
+				FF8D37D72FDA623A0084F833 /* StockAPIClient.swift */,
+				FF8D37D52FDA620B0084F833 /* APIClient.swift */,
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
 		FFF42C542F31D9BF00AE3966 /* SessionScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,7 +414,6 @@
 			isa = PBXGroup;
 			children = (
 				FFFA32252D30EAF70043C2E7 /* Models */,
-				FFFA32232D30EA150043C2E7 /* MoodhoodAPIClientError.swift */,
 				FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */,
 				FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */,
 				FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */,
@@ -502,7 +524,7 @@
 				FFFA322F2D3131ED0043C2E7 /* EmptyResult.swift in Sources */,
 				FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */,
 				FFF42C9D2F32021B00AE3966 /* Weak.swift in Sources */,
-				FFFA32242D30EA170043C2E7 /* MoodhoodAPIClientError.swift in Sources */,
+				FFFA32242D30EA170043C2E7 /* APIClientError.swift in Sources */,
 				FFAFC88A2F2717FD002E4D51 /* FullscreenImageVC.swift in Sources */,
 				FF098B042F8FB31400ED440A /* RoundedContainer.swift in Sources */,
 				FF098B052F8FB31400ED440A /* PermissionIndicator.swift in Sources */,
@@ -519,6 +541,8 @@
 				FF098B0A2F8FB31400ED440A /* RoundButton.swift in Sources */,
 				FF098B0B2F8FB31400ED440A /* RoundButtonStyleAccept.swift in Sources */,
 				FF098B0C2F8FB31400ED440A /* RoundButtonStyleCustom.swift in Sources */,
+				FF8D37D82FDA623F0084F833 /* StockAPIClient.swift in Sources */,
+				FF8D37D62FDA620E0084F833 /* APIClient.swift in Sources */,
 				FF098B0D2F8FB31400ED440A /* RoundButtonConfig.swift in Sources */,
 				FF098B0E2F8FB31400ED440A /* RoundButtonStyleMediaSound.swift in Sources */,
 				FF098B0F2F8FB31400ED440A /* AssetColor.swift in Sources */,

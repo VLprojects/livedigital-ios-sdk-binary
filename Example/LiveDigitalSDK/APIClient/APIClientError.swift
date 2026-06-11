@@ -1,7 +1,7 @@
 import Foundation
 
 
-enum MoodhoodAPIClientError: Error {
+enum APIClientError: Error {
 	case clientDeallocated
 	case notAuthorized
 	case failedToComposeRequest

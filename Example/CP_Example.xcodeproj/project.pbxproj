@@ -46,6 +46,8 @@
 		FF741AB62F8E674800C4C19C /* CallScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AB52F8E674500C4C19C /* CallScreenCoordinator.swift */; };
 		FF741AB82F8F53C200C4C19C /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AB72F8F53BC00C4C19C /* String+Localizable.swift */; };
 		FF75EF022F84D0A90050C740 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */; };
+		FF8D37DE2FDA67560084F833 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37DB2FDA67560084F833 /* APIClient.swift */; };
+		FF8D37DF2FDA67560084F833 /* StockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37DC2FDA67560084F833 /* StockAPIClient.swift */; };
 		FFDF8DCD2F88DD81005306EF /* StartScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDF8DCC2F88DD7C005306EF /* StartScreenVM.swift */; };
 		FFF42C7B2F31DD5800AE3966 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C6E2F31DD5800AE3966 /* Images.xcassets */; };
 		FFF42C7C2F31DD5800AE3966 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C702F31DD5800AE3966 /* LaunchScreen.xib */; };
@@ -129,6 +131,8 @@
 		FF741AB52F8E674500C4C19C /* CallScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallScreenCoordinator.swift; sourceTree = "<group>"; };
 		FF741AB72F8F53BC00C4C19C /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
+		FF8D37DB2FDA67560084F833 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		FF8D37DC2FDA67560084F833 /* StockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockAPIClient.swift; sourceTree = "<group>"; };
 		FFDF8DCC2F88DD7C005306EF /* StartScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVM.swift; sourceTree = "<group>"; };
 		FFF42C5B2F31DD5800AE3966 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF42C5C2F31DD5800AE3966 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,9 +204,10 @@
 		607FACD21AFB9204008FA782 /* Example for LiveDigitalSDK */ = {
 			isa = PBXGroup;
 			children = (
-				FF15AD902F84CC75005CA200 /* Components */,
+				FF8D37DD2FDA67560084F833 /* APIClient */,
 				FFF42C5D2F31DD5800AE3966 /* Application */,
 				FFF42C632F31DD5800AE3966 /* Calls */,
+				FF15AD902F84CC75005CA200 /* Components */,
 				FFF42C662F31DD5800AE3966 /* Config */,
 				FFFA321C2D30DFF50043C2E7 /* MoodhoodAPI */,
 				FFF42C692F31DD5800AE3966 /* Permissions */,
@@ -308,6 +313,15 @@
 				FF741AA32F88FEF400C4C19C /* NotificationsStack.swift */,
 			);
 			path = NotificationsStack;
+			sourceTree = "<group>";
+		};
+		FF8D37DD2FDA67560084F833 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				FF8D37DB2FDA67560084F833 /* APIClient.swift */,
+				FF8D37DC2FDA67560084F833 /* StockAPIClient.swift */,
+			);
+			path = APIClient;
 			sourceTree = "<group>";
 		};
 		FFF42C5D2F31DD5800AE3966 /* Application */ = {
@@ -524,9 +538,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LiveDigitalSDKExample/Pods-LiveDigitalSDKExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LiveDigitalSDKExample/Pods-LiveDigitalSDKExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -621,6 +639,8 @@
 				FF741A9D2F88F4F000C4C19C /* CaptureDevicePermissionsManager.swift in Sources */,
 				FFFA322D2D3128240043C2E7 /* Room.swift in Sources */,
 				FF27FF592F865DFC00634930 /* LDToggleStyle.swift in Sources */,
+				FF8D37DE2FDA67560084F833 /* APIClient.swift in Sources */,
+				FF8D37DF2FDA67560084F833 /* StockAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,7 +5,7 @@ protocol MoodhoodAPIClient {
 	var isAuthorized: Bool { get }
 
 	@discardableResult
-	func authorizeAsGuest() async throws(MoodhoodAPIClientError) -> MoodhoodUserToken
+	func authorizeAsGuest() async throws(APIClientError) -> MoodhoodUserToken
 
 	func unauthorize()
 
@@ -15,25 +15,25 @@ protocol MoodhoodAPIClient {
 		clientUniqueId: String,
 		role: String,
 		name: String
-	) async throws(MoodhoodAPIClientError) -> MoodhoodParticipant
+	) async throws(APIClientError) -> MoodhoodParticipant
 
 	func createSignalingToken(
 		space: String,
 		participant: String
-	) async throws(MoodhoodAPIClientError) -> SignalingToken
+	) async throws(APIClientError) -> SignalingToken
 
 	func fetchRoom(
 		roomAlias: String
-	) async throws(MoodhoodAPIClientError) -> Room
+	) async throws(APIClientError) -> Room
 
 	func fetchRoom(
 		space: String,
 		room: String
-	) async throws(MoodhoodAPIClientError) -> Room
+	) async throws(APIClientError) -> Room
 
 	func joinRoom(
 		space: String,
 		room: String,
 		participant: String
-	) async throws(MoodhoodAPIClientError)
+	) async throws(APIClientError)
 }
