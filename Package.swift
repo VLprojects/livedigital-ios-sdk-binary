@@ -1,8 +1,8 @@
 // swift-tools-version:5.8
 import PackageDescription
 
-let version = "3.3.0"
-let checksum = "1c872c04ecd54e5a7893635652f9914eb0dd216452a029c4c95070a4dc7c6fef"
+let version = "3.3.1"
+let checksum = "7af9df43a99a975811b885a8ac9d5d44b2f7961de14f6847fe52959e81ee3d60"
 
 let package = Package(
 	name: "LiveDigitalSDK",
