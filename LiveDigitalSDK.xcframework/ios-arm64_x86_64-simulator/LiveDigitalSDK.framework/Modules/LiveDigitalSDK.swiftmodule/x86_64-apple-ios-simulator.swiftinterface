@@ -1,12 +1,13 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.3 effective-5.10 (swiftlang-6.3.0.123.5 clang-2100.0.123.102)
+// swift-compiler-version: Apple Swift version 6.3.2 effective-5.10 (swiftlang-6.3.2.1.108 clang-2100.1.1.101)
 // swift-module-flags: -target x86_64-apple-ios16.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name LiveDigitalSDK
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.2
 import AVFoundation
 import CoreImage.CIFilterBuiltins
 import Combine
 import CoreImage
 import CoreVideo
+import Dispatch
 import Foundation
 @_exported import LiveDigitalSDK
 import Mediasoup
@@ -31,7 +32,6 @@ extension LiveDigitalSDK.ChannelId : Swift.CustomStringConvertible {
   }
 }
 public protocol ChannelSession : AnyObject {
-  var delegate: (any LiveDigitalSDK.ChannelSessionDelegate)? { get set }
   var status: LiveDigitalSDK.ChannelSessionStatus { get }
   var myPeerId: LiveDigitalSDK.PeerId? { get }
   var sessionDetails: LiveDigitalSDK.SessionDetails? { get }
@@ -61,10 +61,10 @@ public protocol ChannelSession : AnyObject {
   func restartConnections()
   func generateTracksTrafficReport(completion: @escaping (Swift.Set<LiveDigitalSDK.TrackTrafficReport>) -> Swift.Void)
 }
-public protocol ChannelSessionDelegate : AnyObject {
-  func sessionNeedsRestart(_ channelSession: any LiveDigitalSDK.ChannelSession)
-  func channelSessionShouldSuspendVideo(_ channelSession: any LiveDigitalSDK.ChannelSession, with trackLabel: LiveDigitalSDK.TrackLabel, from peer: LiveDigitalSDK.Peer) -> Swift.Bool
-  func channelSessionShouldSuspendAudio(_ channelSession: any LiveDigitalSDK.ChannelSession, with trackLabel: LiveDigitalSDK.TrackLabel, from peer: LiveDigitalSDK.Peer) -> Swift.Bool
+@_Concurrency.MainActor public protocol ChannelSessionDelegate : AnyObject {
+  @_Concurrency.MainActor func sessionNeedsRestart(_ channelSession: any LiveDigitalSDK.ChannelSession)
+  @_Concurrency.MainActor func channelSessionShouldSuspendVideo(_ channelSession: any LiveDigitalSDK.ChannelSession, with trackLabel: LiveDigitalSDK.TrackLabel, from peer: LiveDigitalSDK.Peer) -> Swift.Bool
+  @_Concurrency.MainActor func channelSessionShouldSuspendAudio(_ channelSession: any LiveDigitalSDK.ChannelSession, with trackLabel: LiveDigitalSDK.TrackLabel, from peer: LiveDigitalSDK.Peer) -> Swift.Bool
 }
 public enum ChannelSessionError : Swift.Error, Swift.Sendable {
   case unknown
@@ -175,6 +175,11 @@ public struct ConsumerId : Swift.RawRepresentable, Swift.Sendable, Swift.Hashabl
   public static func random() -> LiveDigitalSDK.ConsumerId
   public typealias RawValue = Swift.String
 }
+extension LiveDigitalSDK.ConsumerId : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
 public struct LocalConsumerId : Swift.RawRepresentable, Swift.Sendable, Swift.Hashable, Swift.Equatable {
   public let rawValue: Swift.String
   public init(rawValue: Swift.String)
@@ -213,6 +218,11 @@ public struct ProducerId : Swift.RawRepresentable, Swift.Sendable, Swift.Hashabl
   public init(rawValue: Swift.String)
   public static func random() -> LiveDigitalSDK.ProducerId
   public typealias RawValue = Swift.String
+}
+extension LiveDigitalSDK.ProducerId : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
 }
 public struct MOSValue : Swift.RawRepresentable, Swift.Sendable {
   public var rawValue: Swift.Double
@@ -254,7 +264,8 @@ public enum NetworkReportDirection : Swift.Sendable, Swift.Hashable, Swift.Equat
     get
   }
 }
-public protocol ObservableChannelSession {
+public protocol ObservableChannelSession : AnyObject {
+  var delegate: (any LiveDigitalSDK.ChannelSessionDelegate)? { get set }
   func subscribe(_ observer: any LiveDigitalSDK.ChannelSessionObserver)
   func unsubscribe(_ observer: any LiveDigitalSDK.ChannelSessionObserver)
 }
