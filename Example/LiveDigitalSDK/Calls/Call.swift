@@ -8,6 +8,17 @@ struct Call {
 	let direction: CallDirection
 	var state: CallState
 	var isMuted: Bool = false
+
+	func withState(_ newState: CallState) -> Call {
+		Call(
+			id: id,
+			caller: caller,
+			roomAlias: roomAlias,
+			direction: direction,
+			state: newState,
+			isMuted: isMuted
+		)
+	}
 }
 
 

@@ -68,7 +68,7 @@ final class StartVC: UIViewController {
 		guard let token = callManager?.deviceTokenCurrentValue else {
 			return
 		}
-		guard let image = qrGenerator.generate(from: token) else {
+		guard let image: UIImage = qrGenerator.generate(from: token) else {
 			return
 		}
 		let vc = FullscreenImageVC(image: image)

@@ -5,6 +5,7 @@ import CallKit
 import AVFAudio
 import UIKit
 import Intents
+import LiveDigitalSDK
 
 
 final class StockCallManager: NSObject {
@@ -20,7 +21,7 @@ final class StockCallManager: NSObject {
 	override init() {
 		let providerConfig = CXProviderConfiguration()
 		providerConfig.includesCallsInRecents = true
-		providerConfig.supportsVideo = true
+		providerConfig.supportsVideo = false
 		providerConfig.maximumCallsPerCallGroup = 1
 		providerConfig.supportedHandleTypes = [.generic]
 		self.callProvider = CXProvider(configuration: providerConfig)
@@ -91,6 +92,16 @@ extension StockCallManager: CallManager {
 		observers.removeAll { $0.value === observer }
 	}
 
+	func toggleMicrophone(muted: Bool, in call: Call) {
+		let muteAction = CXSetMutedCallAction(call: call.id, muted: muted)
+		let transaction = CXTransaction(action: muteAction)
+		callController.request(transaction) { error in
+			if let error {
+				print("CallKit failed to toggle mute state:", error)
+			}
+		}
+	}
+
 	func startCallFromIntent(_ intent: INIntent) {
 		// Even on modern iOS versions we receive deprecated intents when user taps a record in recent calls,
 		// so we have to handle deprecated INStartVideoCallIntent / INStartAudioCallIntent.
@@ -109,12 +120,29 @@ extension StockCallManager: CallManager {
 		let callId = UUID()
 		let callHandle = CXHandle(type: .generic, value: roomAlias)
 		let startAction = CXStartCallAction(call: callId, handle: callHandle)
-		startAction.isVideo = true
+		startAction.isVideo = false
 		let transaction = CXTransaction(action: startAction)
 		callController.request(transaction) { error in
 			if let error {
 				print("CallKit start failed:", error)
 			}
+		}
+	}
+
+	func endCall(_ call: Call) {
+		reportCallEnded(call)
+		observers.forEach { observer in
+			observer.value?.didEndCall(call)
+		}
+	}
+
+	func endCall(_ callId: UUID) {
+		guard let call = calls[callId] else {
+			return
+		}
+		reportCallEnded(call)
+		observers.forEach { observer in
+			observer.value?.didEndCall(call)
 		}
 	}
 
@@ -164,7 +192,7 @@ private extension StockCallManager {
 		let update = CXCallUpdate()
 		update.remoteHandle = CXHandle(type: .generic, value: call.roomAlias)
 		update.localizedCallerName = call.caller
-		update.hasVideo = true
+		update.hasVideo = false
 		update.supportsHolding = false
 		update.supportsDTMF = false
 		update.supportsGrouping = false
@@ -180,6 +208,20 @@ private extension StockCallManager {
 				print("Successfully reported incoming call \(call)")
 			}
 		})
+	}
+
+	func notifyCallFinished(_ call: Call) {
+		let endedCall = call.withState(.ended)
+		observers.forEach { observer in
+			observer.value?.didEndCall(endedCall)
+		}
+	}
+
+	func notifyCallAnswered(_ call: Call) {
+		let answeredCall = call.withState(.connecting)
+		observers.forEach { observer in
+			observer.value?.callWasAnswered(answeredCall)
+		}
 	}
 }
 
@@ -211,14 +253,35 @@ extension StockCallManager: PKPushRegistryDelegate {
 			completion()
 			return
 		}
-		guard let caller = payload.dictionaryPayload["caller"] as? String,
+
+		guard let actionString = payload.dictionaryPayload["type"] as? String,
+			let action = CallPushAction(rawValue: actionString),
+			let caller = payload.dictionaryPayload["caller"] as? String,
 			let roomAlias = payload.dictionaryPayload["roomAlias"] as? String else {
 			print("Failed to parse call object from push payload")
 			completion()
 			return
 		}
-		let call = Call(id: UUID(), caller: caller, roomAlias: roomAlias, direction: .incoming, state: .connecting)
-		reportIncomingCall(call)
+
+		switch action {
+			case .start:
+				let call = Call(id: UUID(), caller: caller, roomAlias: roomAlias, direction: .incoming, state: .connecting)
+				reportIncomingCall(call)
+			case .end:
+				calls = calls.filter { (callId, call) in
+					guard call.roomAlias == roomAlias else {
+						return true
+					}
+					callProvider.reportCall(with: callId, endedAt: .now, reason: .remoteEnded)
+					notifyCallFinished(call)
+					return false
+				}
+			case .answered:
+				for (callId, call) in calls where call.roomAlias == roomAlias {
+					callProvider.reportOutgoingCall(with: callId, connectedAt: .now)
+					notifyCallAnswered(call)
+				}
+		}
 		completion()
 	}
 }
@@ -238,6 +301,9 @@ extension StockCallManager: CXProviderDelegate {
 
 	func provider(_ provider: CXProvider, perform action: CXStartCallAction) {
 		print("Call provider requested call start with action \(action)")
+
+		StockLiveDigitalEngine.callAudioCoordinator.prepareSession()
+
 		let call = Call(
 			id: action.callUUID,
 			caller: action.handle.value,
@@ -254,9 +320,12 @@ extension StockCallManager: CXProviderDelegate {
 
 	func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
 		print("Call provider requested call answer with action \(action)")
-		if var call = calls[action.callUUID] {
-			call.state = .active
-			calls[call.id] = call
+
+		StockLiveDigitalEngine.callAudioCoordinator.prepareSession()
+
+		if let call = calls[action.callUUID] {
+			let activeCall = call.withState(.active)
+			calls[call.id] = activeCall
 			self.observers.forEach { observer in
 				observer.value?.didReceiveCall(call)
 			}
@@ -268,11 +337,8 @@ extension StockCallManager: CXProviderDelegate {
 
 	func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
 		print("Call provider requested call end with action \(action)")
-		if var call = calls.removeValue(forKey: action.callUUID) {
-			call.state = .ended
-			observers.forEach { observer in
-				observer.value?.didEndCall(call)
-			}
+		if let call = calls.removeValue(forKey: action.callUUID) {
+			notifyCallFinished(call)
 			action.fulfill()
 		} else {
 			action.fail()
@@ -299,6 +365,9 @@ extension StockCallManager: CXProviderDelegate {
 
 	func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
 		print("Call provider did activate \(audioSession)")
+
+		StockLiveDigitalEngine.callAudioCoordinator.callKitDidActivate(audioSession)
+
 		for observer in observers {
 			observer.value?.didUpdateAudioSession(audioSession, active: true)
 		}
@@ -306,6 +375,9 @@ extension StockCallManager: CXProviderDelegate {
 
 	func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
 		print("Call provider did deactivate \(audioSession)")
+
+		StockLiveDigitalEngine.callAudioCoordinator.callKitDidDeactivate(audioSession)
+
 		for observer in observers {
 			observer.value?.didUpdateAudioSession(audioSession, active: false)
 		}
