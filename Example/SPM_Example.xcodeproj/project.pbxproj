@@ -62,6 +62,7 @@
 		FF800AC52DBA4BD10060FAED /* SessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC22DBA4BD10060FAED /* SessionVC.swift */; };
 		FF8D37D62FDA620E0084F833 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37D52FDA620B0084F833 /* APIClient.swift */; };
 		FF8D37D82FDA623F0084F833 /* StockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37D72FDA623A0084F833 /* StockAPIClient.swift */; };
+		FF8D37F72FDABAB10084F833 /* CurlRequestPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37F62FDABAB10084F833 /* CurlRequestPrinter.swift */; };
 		FF98FFB02EC1C85A003F1D90 /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF98FFAF2EC1C85A003F1D90 /* LiveDigitalSDK */; };
 		FFA56F542F236D85000FFD29 /* QRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F532F236D68000FFD29 /* QRGenerator.swift */; };
 		FFA56F562F236E04000FFD29 /* StockQRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F552F236DFB000FFD29 /* StockQRGenerator.swift */; };
@@ -144,6 +145,7 @@
 		FF800AC32DBA4BD10060FAED /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
 		FF8D37D52FDA620B0084F833 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		FF8D37D72FDA623A0084F833 /* StockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockAPIClient.swift; sourceTree = "<group>"; };
+		FF8D37F62FDABAB10084F833 /* CurlRequestPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurlRequestPrinter.swift; sourceTree = "<group>"; };
 		FFA56F532F236D68000FFD29 /* QRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRGenerator.swift; sourceTree = "<group>"; };
 		FFA56F552F236DFB000FFD29 /* StockQRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockQRGenerator.swift; sourceTree = "<group>"; };
 		FFA56F572F237ADD000FFD29 /* LiveDigitalSDKExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiveDigitalSDKExample.entitlements; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				FFFA32232D30EA150043C2E7 /* APIClientError.swift */,
 				FF8D37D72FDA623A0084F833 /* StockAPIClient.swift */,
 				FF8D37D52FDA620B0084F833 /* APIClient.swift */,
+				FF8D37F62FDABAB10084F833 /* CurlRequestPrinter.swift */,
 			);
 			path = APIClient;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */,
 				FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */,
 				FFFA322D2D3128240043C2E7 /* Room.swift in Sources */,
+				FF8D37F72FDABAB10084F833 /* CurlRequestPrinter.swift in Sources */,
 				FFA56F562F236E04000FFD29 /* StockQRGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

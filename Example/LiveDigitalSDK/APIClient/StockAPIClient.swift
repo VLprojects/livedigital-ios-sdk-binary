@@ -9,10 +9,28 @@ final class StockAPIClient {
 	}()
 
 	private let decoder = JSONDecoder()
+	private let curlPrinter = CurlRequestPrinter()
 	private let baseURL: URL
 
 	init(baseURL: URL) {
 		self.baseURL = baseURL
+
+		decoder.dateDecodingStrategy = .custom({ decoder in
+			let formatter = ISO8601DateFormatter()
+			formatter.formatOptions = [
+				.withInternetDateTime,
+				.withFractionalSeconds
+			]
+			let container = try decoder.singleValueContainer()
+			let string = try container.decode(String.self)
+			guard let date = formatter.date(from: string) else {
+				throw DecodingError.dataCorruptedError(
+					in: container,
+					debugDescription: "Invalid date: \(string)"
+				)
+			}
+			return date
+		})
 	}
 }
 
@@ -32,6 +50,21 @@ extension StockAPIClient: APIClient {
 		headers: [String: String]
 	) async throws(APIClientError) -> ModelType {
 		try await request(endpoint: endpoint, method: "GET", headers: headers)
+	}
+
+	func put<ModelType: Decodable>(
+		endpoint: String,
+		headers: [String: String],
+		parameters: [String: Any]?
+	) async throws(APIClientError) -> ModelType {
+		try await request(endpoint: endpoint, method: "PUT", headers: headers, parameters: parameters)
+	}
+
+	func delete<ModelType: Decodable>(
+		endpoint: String,
+		headers: [String: String]
+	) async throws(APIClientError) -> ModelType {
+		try await request(endpoint: endpoint, method: "DELETE", headers: headers)
 	}
 }
 
@@ -61,7 +94,7 @@ private extension StockAPIClient {
 		}
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-		print("Sending request: \(method) \(requestURL), headers: \(request.allHTTPHeaderFields ?? [:]), body: \(parameters ?? [:])")
+		curlPrinter.print(request)
 
 		let (data, response) = try await data(for: request)
 		if ModelType.self == EmptyResult.self {
@@ -79,7 +112,7 @@ private extension StockAPIClient {
 			throw APIClientError.noResponse
 		}
 		guard httpResponse.statusCode / 100 == 2 else {
-			throw APIClientError.invalidResponse(httpResponse)
+			throw APIClientError.invalidResponse(httpResponse, data)
 		}
 		guard let data else {
 			throw APIClientError.noResponse
@@ -87,7 +120,7 @@ private extension StockAPIClient {
 		do {
 			return try decoder.decode(ResponseType.self, from: data)
 		} catch {
-			throw APIClientError.failedToParseResponse
+			throw APIClientError.failedToParseResponse(data)
 		}
 	}
 
@@ -99,7 +132,7 @@ private extension StockAPIClient {
 			throw APIClientError.noResponse
 		}
 		guard httpResponse.statusCode / 100 == 2 else {
-			throw APIClientError.invalidResponse(httpResponse)
+			throw APIClientError.invalidResponse(httpResponse, data)
 		}
 
 		return EmptyResult() as! ResponseType
