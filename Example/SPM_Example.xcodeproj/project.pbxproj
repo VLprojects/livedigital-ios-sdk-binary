@@ -62,6 +62,10 @@
 		FF800AC52DBA4BD10060FAED /* SessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC22DBA4BD10060FAED /* SessionVC.swift */; };
 		FF8D37D62FDA620E0084F833 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37D52FDA620B0084F833 /* APIClient.swift */; };
 		FF8D37D82FDA623F0084F833 /* StockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37D72FDA623A0084F833 /* StockAPIClient.swift */; };
+		FF8D37EF2FDA9A980084F833 /* DeviceEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37EE2FDA9A970084F833 /* DeviceEnvironment.swift */; };
+		FF8D37F12FDA9DE50084F833 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37F02FDA9DE20084F833 /* Defaults.swift */; };
+		FF8D37F32FDA9DF20084F833 /* Defaults+StoredValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37F22FDA9DE90084F833 /* Defaults+StoredValue.swift */; };
+		FF8D37F52FDAAE5A0084F833 /* DeviceEnvironmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37F42FDAAE570084F833 /* DeviceEnvironmentProvider.swift */; };
 		FF8D37F72FDABAB10084F833 /* CurlRequestPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37F62FDABAB10084F833 /* CurlRequestPrinter.swift */; };
 		FF98FFB02EC1C85A003F1D90 /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF98FFAF2EC1C85A003F1D90 /* LiveDigitalSDK */; };
 		FFA56F542F236D85000FFD29 /* QRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F532F236D68000FFD29 /* QRGenerator.swift */; };
@@ -145,6 +149,10 @@
 		FF800AC32DBA4BD10060FAED /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
 		FF8D37D52FDA620B0084F833 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		FF8D37D72FDA623A0084F833 /* StockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockAPIClient.swift; sourceTree = "<group>"; };
+		FF8D37EE2FDA9A970084F833 /* DeviceEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceEnvironment.swift; sourceTree = "<group>"; };
+		FF8D37F02FDA9DE20084F833 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		FF8D37F22FDA9DE90084F833 /* Defaults+StoredValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Defaults+StoredValue.swift"; sourceTree = "<group>"; };
+		FF8D37F42FDAAE570084F833 /* DeviceEnvironmentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceEnvironmentProvider.swift; sourceTree = "<group>"; };
 		FF8D37F62FDABAB10084F833 /* CurlRequestPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurlRequestPrinter.swift; sourceTree = "<group>"; };
 		FFA56F532F236D68000FFD29 /* QRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRGenerator.swift; sourceTree = "<group>"; };
 		FFA56F552F236DFB000FFD29 /* StockQRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockQRGenerator.swift; sourceTree = "<group>"; };
@@ -408,6 +416,10 @@
 		FFF42C9B2F32021300AE3966 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FF8D37F42FDAAE570084F833 /* DeviceEnvironmentProvider.swift */,
+				FF8D37F22FDA9DE90084F833 /* Defaults+StoredValue.swift */,
+				FF8D37F02FDA9DE20084F833 /* Defaults.swift */,
+				FF8D37EE2FDA9A970084F833 /* DeviceEnvironment.swift */,
 				FFF42C9C2F32021900AE3966 /* Weak.swift */,
 			);
 			path = Utils;
@@ -536,6 +548,7 @@
 				FF098B062F8FB31400ED440A /* RoundButtonStyle.swift in Sources */,
 				FF098B072F8FB31400ED440A /* NotificationsVM.swift in Sources */,
 				FF098B412F8FB3D000ED440A /* CallSessionStatus.swift in Sources */,
+				FF8D37F12FDA9DE50084F833 /* Defaults.swift in Sources */,
 				FF098B422F8FB3D000ED440A /* AudioCallVM.swift in Sources */,
 				FF098B432F8FB3D000ED440A /* AudioCallView.swift in Sources */,
 				FF098B442F8FB3D000ED440A /* CallScreenCoordinator.swift in Sources */,
@@ -579,8 +592,11 @@
 				FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */,
 				FFF42C942F31E1A400AE3966 /* SessionView.swift in Sources */,
 				FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */,
+				FF8D37EF2FDA9A980084F833 /* DeviceEnvironment.swift in Sources */,
 				FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */,
 				FFFA322D2D3128240043C2E7 /* Room.swift in Sources */,
+				FF8D37F52FDAAE5A0084F833 /* DeviceEnvironmentProvider.swift in Sources */,
+				FF8D37F32FDA9DF20084F833 /* Defaults+StoredValue.swift in Sources */,
 				FF8D37F72FDABAB10084F833 /* CurlRequestPrinter.swift in Sources */,
 				FFA56F562F236E04000FFD29 /* StockQRGenerator.swift in Sources */,
 			);
