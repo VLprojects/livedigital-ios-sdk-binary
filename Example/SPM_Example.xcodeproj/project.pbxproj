@@ -57,6 +57,8 @@
 		FF098B442F8FB3D000ED440A /* CallScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B3F2F8FB3D000ED440A /* CallScreenCoordinator.swift */; };
 		FF098B472F8FB3DF00ED440A /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B452F8FB3DF00ED440A /* StartScreenView.swift */; };
 		FF098B482F8FB3DF00ED440A /* StartScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B462F8FB3DF00ED440A /* StartScreenVM.swift */; };
+		FF29302A2FE11420003F799A /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2930292FE11407003F799A /* AppConfig.swift */; };
+		FF29302C2FE11450003F799A /* AppConfig+StoredValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29302B2FE1144A003F799A /* AppConfig+StoredValue.swift */; };
 		FF6267EC2EEA6F4F0081A62A /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF6267EB2EEA6F4F0081A62A /* LiveDigitalSDK */; };
 		FF781B0B2FE0E08C00173D67 /* APNSTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF781B0A2FE0E08500173D67 /* APNSTokenProvider.swift */; };
 		FF800AC42DBA4BD10060FAED /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC32DBA4BD10060FAED /* StartVC.swift */; };
@@ -152,6 +154,8 @@
 		FF098B402F8FB3D000ED440A /* CallSessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSessionStatus.swift; sourceTree = "<group>"; };
 		FF098B452F8FB3DF00ED440A /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
 		FF098B462F8FB3DF00ED440A /* StartScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVM.swift; sourceTree = "<group>"; };
+		FF2930292FE11407003F799A /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		FF29302B2FE1144A003F799A /* AppConfig+StoredValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfig+StoredValue.swift"; sourceTree = "<group>"; };
 		FF781B0A2FE0E08500173D67 /* APNSTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSTokenProvider.swift; sourceTree = "<group>"; };
 		FF800AC22DBA4BD10060FAED /* SessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionVC.swift; sourceTree = "<group>"; };
 		FF800AC32DBA4BD10060FAED /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
@@ -453,6 +457,8 @@
 		FFF42C9B2F32021300AE3966 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FF29302B2FE1144A003F799A /* AppConfig+StoredValue.swift */,
+				FF2930292FE11407003F799A /* AppConfig.swift */,
 				FF8D37F42FDAAE570084F833 /* DeviceEnvironmentProvider.swift */,
 				FF8D37F22FDA9DE90084F833 /* Defaults+StoredValue.swift */,
 				FF8D37F02FDA9DE20084F833 /* Defaults.swift */,
@@ -579,6 +585,7 @@
 				FFFA32242D30EA170043C2E7 /* APIClientError.swift in Sources */,
 				FFAFC88A2F2717FD002E4D51 /* FullscreenImageVC.swift in Sources */,
 				FF8D37E32FDA67B20084F833 /* StockCRSAPIClient.swift in Sources */,
+				FF29302C2FE11450003F799A /* AppConfig+StoredValue.swift in Sources */,
 				FF8D37E52FDA6FA00084F833 /* CRSAPIEnvironment.swift in Sources */,
 				FF098B042F8FB31400ED440A /* RoundedContainer.swift in Sources */,
 				FF098B052F8FB31400ED440A /* PermissionIndicator.swift in Sources */,
@@ -598,6 +605,7 @@
 				FF098B0B2F8FB31400ED440A /* RoundButtonStyleAccept.swift in Sources */,
 				FF098B0C2F8FB31400ED440A /* RoundButtonStyleCustom.swift in Sources */,
 				FF8D37D82FDA623F0084F833 /* StockAPIClient.swift in Sources */,
+				FF29302A2FE11420003F799A /* AppConfig.swift in Sources */,
 				FF8D37D62FDA620E0084F833 /* APIClient.swift in Sources */,
 				FF098B0D2F8FB31400ED440A /* RoundButtonConfig.swift in Sources */,
 				FF098B0E2F8FB31400ED440A /* RoundButtonStyleMediaSound.swift in Sources */,
