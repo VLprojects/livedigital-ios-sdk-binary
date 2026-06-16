@@ -15,6 +15,7 @@ final class StartScreenVM: ObservableObject {
 	let notificationsVM = NotificationsVM()
 
 	private let callManager: CallManager
+	private let apnsTokenProvider: APNSTokenProvider
 	private let apnsPermissionManager: PushPermissionsManager
 	private let microphonePermissionManager: CaptureDevicePermissionsManager
 	private let cameraPermissionManager: CaptureDevicePermissionsManager
@@ -22,11 +23,13 @@ final class StartScreenVM: ObservableObject {
 
 	init(
 		callManager: CallManager,
+		apnsTokenProvider: APNSTokenProvider,
 		apnsPermissionManager: PushPermissionsManager,
 		microphonePermissionManager: CaptureDevicePermissionsManager,
 		cameraPermissionManager: CaptureDevicePermissionsManager
 	) {
 		self.callManager = callManager
+		self.apnsTokenProvider = apnsTokenProvider
 		self.apnsPermissionManager = apnsPermissionManager
 		self.microphonePermissionManager = microphonePermissionManager
 		self.cameraPermissionManager = cameraPermissionManager
@@ -53,13 +56,13 @@ internal extension StartScreenVM {
 	}
 
 	func copyAPNSToken() {
-		UIPasteboard.general.string = callManager.deviceTokenCurrentValue
+		UIPasteboard.general.string = apnsTokenProvider.deviceTokenCurrentValue
 		UINotificationFeedbackGenerator().notificationOccurred(.success)
 		notificationsVM.show(String(localized: .apnsTokenCopiedNotification))
 	}
 
 	func presentAPNSToken() {
-		guard let tokenString = callManager.deviceTokenCurrentValue else {
+		guard let tokenString = apnsTokenProvider.deviceTokenCurrentValue else {
 			return
 		}
 		presentedImage = qrGenerator.generate(from: tokenString)

@@ -70,9 +70,9 @@ extension StockCallManager: PushPermissionsManager {
 	}
 }
 
-// MARK: - CallManager implementation
+// MARK: - APNSTokenProvider implementation
 
-extension StockCallManager: CallManager {
+extension StockCallManager: APNSTokenProvider {
 	var deviceToken: AnyPublisher<String?, Never> {
 		deviceTokenSubject.eraseToAnyPublisher()
 	}
@@ -80,7 +80,11 @@ extension StockCallManager: CallManager {
 	var deviceTokenCurrentValue: String? {
 		deviceTokenSubject.value
 	}
+}
 
+// MARK: - CallManager implementation
+
+extension StockCallManager: CallManager {
 	func addObserver(_ observer: any CallManagerObserver) {
 		observers.append(Weak(value: observer))
 		for call in calls.values where call.direction == .outgoing && call.state == .connecting {
