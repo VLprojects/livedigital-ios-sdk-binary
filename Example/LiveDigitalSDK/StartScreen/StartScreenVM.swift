@@ -12,6 +12,9 @@ final class StartScreenVM: ObservableObject {
 	@Published var canInitiateCall = false
 	@Published var presentedImage: Image?
 	@Published var outgoingCallRoomAlias = "q3_5V3uwik"
+	@Published var phoneNumber: String
+	@Published var isSignedIn: Bool
+
 	let notificationsVM = NotificationsVM()
 
 	private let callManager: CallManager
@@ -20,6 +23,8 @@ final class StartScreenVM: ObservableObject {
 	private let microphonePermissionManager: CaptureDevicePermissionsManager
 	private let cameraPermissionManager: CaptureDevicePermissionsManager
 	private let qrGenerator: QRGenerator = StockQRGenerator()
+
+	private let accountManager: AccountManager
 
 	init(
 		callManager: CallManager,
@@ -33,6 +38,17 @@ final class StartScreenVM: ObservableObject {
 		self.apnsPermissionManager = apnsPermissionManager
 		self.microphonePermissionManager = microphonePermissionManager
 		self.cameraPermissionManager = cameraPermissionManager
+
+		self.accountManager = FakeAccountManager(
+			apnsTokenProvider: apnsTokenProvider
+		)
+
+		self.isSignedIn = accountManager.isSignedIn
+		self.phoneNumber = Defaults.phoneNumber ?? ""
+
+		accountManager.isSignedInPublisher
+			.receive(on: RunLoop.main)
+			.assign(to: &$isSignedIn)
 
 		bindPermissionsStates()
 		bindOutgoingCallState()
@@ -66,6 +82,30 @@ internal extension StartScreenVM {
 			return
 		}
 		presentedImage = qrGenerator.generate(from: tokenString)
+	}
+
+	func toggleAuthorization() {
+		Task { @MainActor in
+			if accountManager.isSignedIn {
+				do {
+					try await accountManager.signOut()
+					self.notificationsVM.show("Successfully unregistered")
+					print("Successfully unregistered")
+				} catch {
+					self.notificationsVM.show("Failed to unregister: \(error)")
+					print("Failed to unregister: \(error)")
+				}
+			} else {
+				do {
+					let registeredDevice = try await accountManager.signIn(phone: self.phoneNumber)
+					self.notificationsVM.show("Successfully registered: \(registeredDevice)")
+					print("Successfully registered: \(registeredDevice)")
+				} catch {
+					self.notificationsVM.show("Failed to register: \(error)")
+					print("Failed to register: \(error)")
+				}
+			}
+		}
 	}
 
 	func initiateCall() {

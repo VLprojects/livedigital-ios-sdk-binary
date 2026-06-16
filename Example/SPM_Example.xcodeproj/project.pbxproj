@@ -60,6 +60,8 @@
 		FF29302A2FE11420003F799A /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2930292FE11407003F799A /* AppConfig.swift */; };
 		FF29302C2FE11450003F799A /* AppConfig+StoredValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29302B2FE1144A003F799A /* AppConfig+StoredValue.swift */; };
 		FF6267EC2EEA6F4F0081A62A /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF6267EB2EEA6F4F0081A62A /* LiveDigitalSDK */; };
+		FF781B072FDFF19100173D67 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF781B062FDFF18500173D67 /* AccountManager.swift */; };
+		FF781B092FE0DCB200173D67 /* FakeAccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF781B082FE0DCA800173D67 /* FakeAccountManager.swift */; };
 		FF781B0B2FE0E08C00173D67 /* APNSTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF781B0A2FE0E08500173D67 /* APNSTokenProvider.swift */; };
 		FF800AC42DBA4BD10060FAED /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC32DBA4BD10060FAED /* StartVC.swift */; };
 		FF800AC52DBA4BD10060FAED /* SessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC22DBA4BD10060FAED /* SessionVC.swift */; };
@@ -156,6 +158,8 @@
 		FF098B462F8FB3DF00ED440A /* StartScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVM.swift; sourceTree = "<group>"; };
 		FF2930292FE11407003F799A /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		FF29302B2FE1144A003F799A /* AppConfig+StoredValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfig+StoredValue.swift"; sourceTree = "<group>"; };
+		FF781B062FDFF18500173D67 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		FF781B082FE0DCA800173D67 /* FakeAccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAccountManager.swift; sourceTree = "<group>"; };
 		FF781B0A2FE0E08500173D67 /* APNSTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSTokenProvider.swift; sourceTree = "<group>"; };
 		FF800AC22DBA4BD10060FAED /* SessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionVC.swift; sourceTree = "<group>"; };
 		FF800AC32DBA4BD10060FAED /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
@@ -367,8 +371,10 @@
 		FF781B052FDFF17500173D67 /* APNS */ = {
 			isa = PBXGroup;
 			children = (
+				FF781B062FDFF18500173D67 /* AccountManager.swift */,
 				FF8D37E62FDA70A40084F833 /* APNSEnvironment.swift */,
 				FF098B1F2F8FB32D00ED440A /* CallPushAction.swift */,
+				FF781B082FE0DCA800173D67 /* FakeAccountManager.swift */,
 				FF781B0A2FE0E08500173D67 /* APNSTokenProvider.swift */,
 			);
 			path = APNS;
@@ -585,6 +591,7 @@
 				FFFA32242D30EA170043C2E7 /* APIClientError.swift in Sources */,
 				FFAFC88A2F2717FD002E4D51 /* FullscreenImageVC.swift in Sources */,
 				FF8D37E32FDA67B20084F833 /* StockCRSAPIClient.swift in Sources */,
+				FF781B072FDFF19100173D67 /* AccountManager.swift in Sources */,
 				FF29302C2FE11450003F799A /* AppConfig+StoredValue.swift in Sources */,
 				FF8D37E52FDA6FA00084F833 /* CRSAPIEnvironment.swift in Sources */,
 				FF098B042F8FB31400ED440A /* RoundedContainer.swift in Sources */,
@@ -640,6 +647,7 @@
 				FFF42C902F31DEB200AE3966 /* StockSessionPresenter.swift in Sources */,
 				FF800AC52DBA4BD10060FAED /* SessionVC.swift in Sources */,
 				FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */,
+				FF781B092FE0DCB200173D67 /* FakeAccountManager.swift in Sources */,
 				FFF42C942F31E1A400AE3966 /* SessionView.swift in Sources */,
 				FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */,
 				FF8D37EF2FDA9A980084F833 /* DeviceEnvironment.swift in Sources */,

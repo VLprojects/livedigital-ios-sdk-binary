@@ -5,6 +5,7 @@ struct Defaults {
 	enum Keys: String {
 		case deviceId
 		case phoneNumber
+		case isSignedIn
 	}
 
 	@StoredValue(key: .deviceId)
@@ -12,4 +13,7 @@ struct Defaults {
 
 	@StoredValue(key: .phoneNumber)
 	static var phoneNumber: String?
+
+	@StoredValue(key: .isSignedIn)
+	static var isSignedIn: Bool?
 }
