@@ -31,6 +31,24 @@
 		FF27FF572F86598000634930 /* PermissionIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF562F86597900634930 /* PermissionIndicator.swift */; };
 		FF27FF592F865DFC00634930 /* LDToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF582F865DFB00634930 /* LDToggleStyle.swift */; };
 		FF27FF5B2F86776700634930 /* AudioCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27FF5A2F86776300634930 /* AudioCallView.swift */; };
+		FF29302F2FE2575D003F799A /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29302D2FE2575D003F799A /* APIClientError.swift */; };
+		FF2930302FE2575D003F799A /* CurlRequestPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29302E2FE2575D003F799A /* CurlRequestPrinter.swift */; };
+		FF2930372FE25765003F799A /* APNSTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2930332FE25765003F799A /* APNSTokenProvider.swift */; };
+		FF2930382FE25765003F799A /* FakeAccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2930352FE25765003F799A /* FakeAccountManager.swift */; };
+		FF2930392FE25765003F799A /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2930312FE25765003F799A /* AccountManager.swift */; };
+		FF29303A2FE25765003F799A /* APNSEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2930322FE25765003F799A /* APNSEnvironment.swift */; };
+		FF29303B2FE25765003F799A /* CallPushAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2930342FE25765003F799A /* CallPushAction.swift */; };
+		FF2930432FE257A9003F799A /* TokenInvalidationReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29303D2FE257A9003F799A /* TokenInvalidationReason.swift */; };
+		FF2930442FE257A9003F799A /* RegisteredDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29303C2FE257A9003F799A /* RegisteredDevice.swift */; };
+		FF2930452FE257A9003F799A /* CRSAPIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2930402FE257A9003F799A /* CRSAPIEnvironment.swift */; };
+		FF2930462FE257A9003F799A /* CRSAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29303F2FE257A9003F799A /* CRSAPIClient.swift */; };
+		FF2930472FE257A9003F799A /* StockCRSAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2930412FE257A9003F799A /* StockCRSAPIClient.swift */; };
+		FF29304E2FE25800003F799A /* DeviceEnvironmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29304D2FE25800003F799A /* DeviceEnvironmentProvider.swift */; };
+		FF29304F2FE25800003F799A /* DeviceEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29304C2FE25800003F799A /* DeviceEnvironment.swift */; };
+		FF2930502FE25800003F799A /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29304A2FE25800003F799A /* Defaults.swift */; };
+		FF2930512FE25800003F799A /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2930482FE25800003F799A /* AppConfig.swift */; };
+		FF2930522FE25800003F799A /* AppConfig+StoredValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2930492FE25800003F799A /* AppConfig+StoredValue.swift */; };
+		FF2930532FE25800003F799A /* Defaults+StoredValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29304B2FE25800003F799A /* Defaults+StoredValue.swift */; };
 		FF741A9D2F88F4F000C4C19C /* CaptureDevicePermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741A9C2F88F4E600C4C19C /* CaptureDevicePermissionsManager.swift */; };
 		FF741A9F2F88F50A00C4C19C /* StockCaptureDevicePermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741A9E2F88F50700C4C19C /* StockCaptureDevicePermissionsManager.swift */; };
 		FF741AA12F88F54E00C4C19C /* CaptureDeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AA02F88F54A00C4C19C /* CaptureDeviceType.swift */; };
@@ -42,7 +60,6 @@
 		FF741AAE2F8CA6F200C4C19C /* CallCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AAD2F8CA6ED00C4C19C /* CallCoordinator.swift */; };
 		FF741AB02F8CAFDC00C4C19C /* AudioCallVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AAF2F8CAFD800C4C19C /* AudioCallVM.swift */; };
 		FF741AB22F8CD0AB00C4C19C /* CallSessionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AB12F8CD0A800C4C19C /* CallSessionStatus.swift */; };
-		FF741AB42F8E372500C4C19C /* CallPushAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AB32F8E372000C4C19C /* CallPushAction.swift */; };
 		FF741AB62F8E674800C4C19C /* CallScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AB52F8E674500C4C19C /* CallScreenCoordinator.swift */; };
 		FF741AB82F8F53C200C4C19C /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF741AB72F8F53BC00C4C19C /* String+Localizable.swift */; };
 		FF75EF022F84D0A90050C740 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */; };
@@ -75,7 +92,6 @@
 		FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */; };
 		FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */; };
 		FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */; };
-		FFFA32242D30EA170043C2E7 /* MoodhoodAPIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA32232D30EA150043C2E7 /* MoodhoodAPIClientError.swift */; };
 		FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA32262D30EB010043C2E7 /* MoodhoodUserToken.swift */; };
 		FFFA32292D311A560043C2E7 /* MoodhoodParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA32282D311A510043C2E7 /* MoodhoodParticipant.swift */; };
 		FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA322A2D3120160043C2E7 /* SignalingToken.swift */; };
@@ -116,6 +132,24 @@
 		FF27FF562F86597900634930 /* PermissionIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionIndicator.swift; sourceTree = "<group>"; };
 		FF27FF582F865DFB00634930 /* LDToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDToggleStyle.swift; sourceTree = "<group>"; };
 		FF27FF5A2F86776300634930 /* AudioCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCallView.swift; sourceTree = "<group>"; };
+		FF29302D2FE2575D003F799A /* APIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
+		FF29302E2FE2575D003F799A /* CurlRequestPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurlRequestPrinter.swift; sourceTree = "<group>"; };
+		FF2930312FE25765003F799A /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		FF2930322FE25765003F799A /* APNSEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSEnvironment.swift; sourceTree = "<group>"; };
+		FF2930332FE25765003F799A /* APNSTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSTokenProvider.swift; sourceTree = "<group>"; };
+		FF2930342FE25765003F799A /* CallPushAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallPushAction.swift; sourceTree = "<group>"; };
+		FF2930352FE25765003F799A /* FakeAccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAccountManager.swift; sourceTree = "<group>"; };
+		FF29303C2FE257A9003F799A /* RegisteredDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredDevice.swift; sourceTree = "<group>"; };
+		FF29303D2FE257A9003F799A /* TokenInvalidationReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInvalidationReason.swift; sourceTree = "<group>"; };
+		FF29303F2FE257A9003F799A /* CRSAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRSAPIClient.swift; sourceTree = "<group>"; };
+		FF2930402FE257A9003F799A /* CRSAPIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRSAPIEnvironment.swift; sourceTree = "<group>"; };
+		FF2930412FE257A9003F799A /* StockCRSAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCRSAPIClient.swift; sourceTree = "<group>"; };
+		FF2930482FE25800003F799A /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		FF2930492FE25800003F799A /* AppConfig+StoredValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfig+StoredValue.swift"; sourceTree = "<group>"; };
+		FF29304A2FE25800003F799A /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		FF29304B2FE25800003F799A /* Defaults+StoredValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Defaults+StoredValue.swift"; sourceTree = "<group>"; };
+		FF29304C2FE25800003F799A /* DeviceEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceEnvironment.swift; sourceTree = "<group>"; };
+		FF29304D2FE25800003F799A /* DeviceEnvironmentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceEnvironmentProvider.swift; sourceTree = "<group>"; };
 		FF741A9C2F88F4E600C4C19C /* CaptureDevicePermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDevicePermissionsManager.swift; sourceTree = "<group>"; };
 		FF741A9E2F88F50700C4C19C /* StockCaptureDevicePermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCaptureDevicePermissionsManager.swift; sourceTree = "<group>"; };
 		FF741AA02F88F54A00C4C19C /* CaptureDeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDeviceType.swift; sourceTree = "<group>"; };
@@ -127,7 +161,6 @@
 		FF741AAD2F8CA6ED00C4C19C /* CallCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallCoordinator.swift; sourceTree = "<group>"; };
 		FF741AAF2F8CAFD800C4C19C /* AudioCallVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCallVM.swift; sourceTree = "<group>"; };
 		FF741AB12F8CD0A800C4C19C /* CallSessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSessionStatus.swift; sourceTree = "<group>"; };
-		FF741AB32F8E372000C4C19C /* CallPushAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallPushAction.swift; sourceTree = "<group>"; };
 		FF741AB52F8E674500C4C19C /* CallScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallScreenCoordinator.swift; sourceTree = "<group>"; };
 		FF741AB72F8F53BC00C4C19C /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
@@ -162,7 +195,6 @@
 		FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMoodhoodAPIClient.swift; sourceTree = "<group>"; };
 		FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIClient.swift; sourceTree = "<group>"; };
 		FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIEnvironment.swift; sourceTree = "<group>"; };
-		FFFA32232D30EA150043C2E7 /* MoodhoodAPIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIClientError.swift; sourceTree = "<group>"; };
 		FFFA32262D30EB010043C2E7 /* MoodhoodUserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodUserToken.swift; sourceTree = "<group>"; };
 		FFFA32282D311A510043C2E7 /* MoodhoodParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodParticipant.swift; sourceTree = "<group>"; };
 		FFFA322A2D3120160043C2E7 /* SignalingToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalingToken.swift; sourceTree = "<group>"; };
@@ -205,10 +237,12 @@
 			isa = PBXGroup;
 			children = (
 				FF8D37DD2FDA67560084F833 /* APIClient */,
+				FF2930362FE25765003F799A /* APNS */,
 				FFF42C5D2F31DD5800AE3966 /* Application */,
 				FFF42C632F31DD5800AE3966 /* Calls */,
 				FF15AD902F84CC75005CA200 /* Components */,
 				FFF42C662F31DD5800AE3966 /* Config */,
+				FF2930422FE257A9003F799A /* CRSAPI */,
 				FFFA321C2D30DFF50043C2E7 /* MoodhoodAPI */,
 				FFF42C692F31DD5800AE3966 /* Permissions */,
 				FFF42C6D2F31DD5800AE3966 /* QRCode */,
@@ -269,12 +303,12 @@
 		FF15AD902F84CC75005CA200 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				FF741AA22F88FEEA00C4C19C /* NotificationsStack */,
 				FF27FF4D2F85FC1F00634930 /* Colors */,
 				FF27FF442F85FB6400634930 /* Fonts */,
 				FF15AD912F84CC94005CA200 /* GradientBackgroundView.swift */,
 				FF75EF012F84D0A90050C740 /* ImageAssets.xcassets */,
 				FF27FF582F865DFB00634930 /* LDToggleStyle.swift */,
+				FF741AA22F88FEEA00C4C19C /* NotificationsStack */,
 				FF27FF562F86597900634930 /* PermissionIndicator.swift */,
 				FF0C0A072F84F77900F6BF1F /* RoundButton */,
 				FF0C0A032F84D51F00F6BF1F /* RoundedContainer.swift */,
@@ -303,6 +337,38 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
+		FF2930362FE25765003F799A /* APNS */ = {
+			isa = PBXGroup;
+			children = (
+				FF2930312FE25765003F799A /* AccountManager.swift */,
+				FF2930322FE25765003F799A /* APNSEnvironment.swift */,
+				FF2930332FE25765003F799A /* APNSTokenProvider.swift */,
+				FF2930342FE25765003F799A /* CallPushAction.swift */,
+				FF2930352FE25765003F799A /* FakeAccountManager.swift */,
+			);
+			path = APNS;
+			sourceTree = "<group>";
+		};
+		FF29303E2FE257A9003F799A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FF29303C2FE257A9003F799A /* RegisteredDevice.swift */,
+				FF29303D2FE257A9003F799A /* TokenInvalidationReason.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FF2930422FE257A9003F799A /* CRSAPI */ = {
+			isa = PBXGroup;
+			children = (
+				FF29303F2FE257A9003F799A /* CRSAPIClient.swift */,
+				FF2930402FE257A9003F799A /* CRSAPIEnvironment.swift */,
+				FF29303E2FE257A9003F799A /* Models */,
+				FF2930412FE257A9003F799A /* StockCRSAPIClient.swift */,
+			);
+			path = CRSAPI;
+			sourceTree = "<group>";
+		};
 		FF741AA22F88FEEA00C4C19C /* NotificationsStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,6 +385,8 @@
 			isa = PBXGroup;
 			children = (
 				FF8D37DB2FDA67560084F833 /* APIClient.swift */,
+				FF29302D2FE2575D003F799A /* APIClientError.swift */,
+				FF29302E2FE2575D003F799A /* CurlRequestPrinter.swift */,
 				FF8D37DC2FDA67560084F833 /* StockAPIClient.swift */,
 			);
 			path = APIClient;
@@ -327,8 +395,8 @@
 		FFF42C5D2F31DD5800AE3966 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				FF741AAD2F8CA6ED00C4C19C /* CallCoordinator.swift */,
 				FFF42C5B2F31DD5800AE3966 /* AppDelegate.swift */,
+				FF741AAD2F8CA6ED00C4C19C /* CallCoordinator.swift */,
 				FFF42C5C2F31DD5800AE3966 /* SceneDelegate.swift */,
 			);
 			path = Application;
@@ -337,7 +405,6 @@
 		FFF42C632F31DD5800AE3966 /* Calls */ = {
 			isa = PBXGroup;
 			children = (
-				FF741AB32F8E372000C4C19C /* CallPushAction.swift */,
 				FFF42C5F2F31DD5800AE3966 /* Call.swift */,
 				FFF42C602F31DD5800AE3966 /* CallManager.swift */,
 				FFF42C612F31DD5800AE3966 /* CallManagerObserver.swift */,
@@ -358,11 +425,11 @@
 		FFF42C692F31DD5800AE3966 /* Permissions */ = {
 			isa = PBXGroup;
 			children = (
-				FF741AA02F88F54A00C4C19C /* CaptureDeviceType.swift */,
-				FF741A9E2F88F50700C4C19C /* StockCaptureDevicePermissionsManager.swift */,
 				FF741A9C2F88F4E600C4C19C /* CaptureDevicePermissionsManager.swift */,
+				FF741AA02F88F54A00C4C19C /* CaptureDeviceType.swift */,
 				FFF42C672F31DD5800AE3966 /* PermissionState.swift */,
 				FFF42C682F31DD5800AE3966 /* PushPermissionsManager.swift */,
+				FF741A9E2F88F50700C4C19C /* StockCaptureDevicePermissionsManager.swift */,
 			);
 			path = Permissions;
 			sourceTree = "<group>";
@@ -380,10 +447,10 @@
 		FFF42C712F31DD5800AE3966 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FF741AB72F8F53BC00C4C19C /* String+Localizable.swift */,
 				FFF42C6E2F31DD5800AE3966 /* Images.xcassets */,
 				FFF42C702F31DD5800AE3966 /* LaunchScreen.xib */,
 				FF27FF542F8603B900634930 /* Localizable.xcstrings */,
+				FF741AB72F8F53BC00C4C19C /* String+Localizable.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -391,10 +458,10 @@
 		FFF42C772F31DD5800AE3966 /* SessionScreen */ = {
 			isa = PBXGroup;
 			children = (
+				FF27FF5A2F86776300634930 /* AudioCallView.swift */,
+				FF741AAF2F8CAFD800C4C19C /* AudioCallVM.swift */,
 				FF741AB52F8E674500C4C19C /* CallScreenCoordinator.swift */,
 				FF741AB12F8CD0A800C4C19C /* CallSessionStatus.swift */,
-				FF741AAF2F8CAFD800C4C19C /* AudioCallVM.swift */,
-				FF27FF5A2F86776300634930 /* AudioCallView.swift */,
 				FFF42C722F31DD5800AE3966 /* PeerView.swift */,
 				FFF42C732F31DD5800AE3966 /* PeerView.xib */,
 				FFF42C952F32006C00AE3966 /* SessionPresenter.swift */,
@@ -409,8 +476,8 @@
 		FFF42C7A2F31DD5800AE3966 /* StartScreen */ = {
 			isa = PBXGroup;
 			children = (
-				FFDF8DCC2F88DD7C005306EF /* StartScreenVM.swift */,
 				FF27FF502F86005300634930 /* StartScreenView.swift */,
+				FFDF8DCC2F88DD7C005306EF /* StartScreenVM.swift */,
 				FFF42C782F31DD5800AE3966 /* StartVC.storyboard */,
 				FFF42C792F31DD5800AE3966 /* StartVC.swift */,
 			);
@@ -420,6 +487,12 @@
 		FFF42CA12F32037F00AE3966 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FF2930482FE25800003F799A /* AppConfig.swift */,
+				FF2930492FE25800003F799A /* AppConfig+StoredValue.swift */,
+				FF29304A2FE25800003F799A /* Defaults.swift */,
+				FF29304B2FE25800003F799A /* Defaults+StoredValue.swift */,
+				FF29304C2FE25800003F799A /* DeviceEnvironment.swift */,
+				FF29304D2FE25800003F799A /* DeviceEnvironmentProvider.swift */,
 				FFF42CA02F32037F00AE3966 /* Weak.swift */,
 			);
 			path = Utils;
@@ -429,9 +502,8 @@
 			isa = PBXGroup;
 			children = (
 				FFFA32252D30EAF70043C2E7 /* Models */,
-				FFFA32232D30EA150043C2E7 /* MoodhoodAPIClientError.swift */,
-				FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */,
 				FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */,
+				FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */,
 				FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */,
 			);
 			path = MoodhoodAPI;
@@ -441,10 +513,10 @@
 			isa = PBXGroup;
 			children = (
 				FFFA322E2D3131EC0043C2E7 /* EmptyResult.swift */,
-				FFFA322C2D3128220043C2E7 /* Room.swift */,
-				FFFA322A2D3120160043C2E7 /* SignalingToken.swift */,
 				FFFA32282D311A510043C2E7 /* MoodhoodParticipant.swift */,
 				FFFA32262D30EB010043C2E7 /* MoodhoodUserToken.swift */,
+				FFFA322C2D3128220043C2E7 /* Room.swift */,
+				FFFA322A2D3120160043C2E7 /* SignalingToken.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -587,22 +659,39 @@
 				FF27FF3F2F85F6F100634930 /* RoundButtonStyleReject.swift in Sources */,
 				FFFA322F2D3131ED0043C2E7 /* EmptyResult.swift in Sources */,
 				FF27FF5B2F86776700634930 /* AudioCallView.swift in Sources */,
+				FF29304E2FE25800003F799A /* DeviceEnvironmentProvider.swift in Sources */,
+				FF29304F2FE25800003F799A /* DeviceEnvironment.swift in Sources */,
+				FF2930502FE25800003F799A /* Defaults.swift in Sources */,
+				FF2930512FE25800003F799A /* AppConfig.swift in Sources */,
+				FF2930522FE25800003F799A /* AppConfig+StoredValue.swift in Sources */,
+				FF2930532FE25800003F799A /* Defaults+StoredValue.swift in Sources */,
 				FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */,
 				FF27FF3D2F85F6A000634930 /* RoundButtonStyleAccept.swift in Sources */,
-				FFFA32242D30EA170043C2E7 /* MoodhoodAPIClientError.swift in Sources */,
 				FF741AA62F89006600C4C19C /* NotificationView.swift in Sources */,
 				FFF42C812F31DD5800AE3966 /* SceneDelegate.swift in Sources */,
+				FF29302F2FE2575D003F799A /* APIClientError.swift in Sources */,
+				FF2930302FE2575D003F799A /* CurlRequestPrinter.swift in Sources */,
 				FF27FF512F86005800634930 /* StartScreenView.swift in Sources */,
 				FFF42CA22F32037F00AE3966 /* Weak.swift in Sources */,
 				FF27FF392F85028400634930 /* RoundButtonStyledContent.swift in Sources */,
 				FF0C0A042F84D52600F6BF1F /* RoundedContainer.swift in Sources */,
 				FFF42C822F31DD5800AE3966 /* AppDelegate.swift in Sources */,
 				FF741AA82F8903A800C4C19C /* TopFadeMask.swift in Sources */,
+				FF2930432FE257A9003F799A /* TokenInvalidationReason.swift in Sources */,
+				FF2930442FE257A9003F799A /* RegisteredDevice.swift in Sources */,
+				FF2930452FE257A9003F799A /* CRSAPIEnvironment.swift in Sources */,
+				FF2930462FE257A9003F799A /* CRSAPIClient.swift in Sources */,
+				FF2930472FE257A9003F799A /* StockCRSAPIClient.swift in Sources */,
 				FF741AB02F8CAFDC00C4C19C /* AudioCallVM.swift in Sources */,
 				FF741AB22F8CD0AB00C4C19C /* CallSessionStatus.swift in Sources */,
 				FFF42C832F31DD5800AE3966 /* PermissionState.swift in Sources */,
 				FFF42C842F31DD5800AE3966 /* CallManagerObserver.swift in Sources */,
 				FF741AAE2F8CA6F200C4C19C /* CallCoordinator.swift in Sources */,
+				FF2930372FE25765003F799A /* APNSTokenProvider.swift in Sources */,
+				FF2930382FE25765003F799A /* FakeAccountManager.swift in Sources */,
+				FF2930392FE25765003F799A /* AccountManager.swift in Sources */,
+				FF29303A2FE25765003F799A /* APNSEnvironment.swift in Sources */,
+				FF29303B2FE25765003F799A /* CallPushAction.swift in Sources */,
 				FFF42C852F31DD5800AE3966 /* StockQRGenerator.swift in Sources */,
 				FF27FF432F85FB6000634930 /* AssetFont.swift in Sources */,
 				FF741A9F2F88F50A00C4C19C /* StockCaptureDevicePermissionsManager.swift in Sources */,
@@ -615,7 +704,6 @@
 				FF27FF412F85FA2C00634930 /* RoundButtonStyleCustom.swift in Sources */,
 				FF741AB82F8F53C200C4C19C /* String+Localizable.swift in Sources */,
 				FFF42C8B2F31DD5800AE3966 /* SessionVC.swift in Sources */,
-				FF741AB42F8E372500C4C19C /* CallPushAction.swift in Sources */,
 				FFDF8DCD2F88DD81005306EF /* StartScreenVM.swift in Sources */,
 				FF0C0A062F84D98900F6BF1F /* RoundButton.swift in Sources */,
 				FFF42C8C2F31DD5800AE3966 /* PushPermissionsManager.swift in Sources */,
