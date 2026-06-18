@@ -97,11 +97,7 @@ private extension StockAPIClient {
 		curlPrinter.print(request)
 
 		let (data, response) = try await data(for: request)
-		if ModelType.self == EmptyResult.self {
-			return try handleEmptyResponse(data: data, response: response)
-		} else {
-			return try handleResponse(data: data, response: response)
-		}
+		return try handleResponse(data: data, response: response)
 	}
 
 	func handleResponse<ResponseType: Decodable>(
@@ -118,24 +114,18 @@ private extension StockAPIClient {
 			throw APIClientError.noResponse
 		}
 		do {
-			return try decoder.decode(ResponseType.self, from: data)
+			if ResponseType.self == EmptyResult.self {
+				if let emptyResult = EmptyResult() as? ResponseType {
+					return emptyResult
+				} else {
+					throw APIClientError.failedToParseResponse(data)
+				}
+			} else {
+				return try decoder.decode(ResponseType.self, from: data)
+			}
 		} catch {
 			throw APIClientError.failedToParseResponse(data)
 		}
-	}
-
-	func handleEmptyResponse<ResponseType: Decodable>(
-		data: Data?,
-		response: URLResponse?
-	) throws(APIClientError) -> ResponseType {
-		guard let httpResponse = response as? HTTPURLResponse else {
-			throw APIClientError.noResponse
-		}
-		guard httpResponse.statusCode / 100 == 2 else {
-			throw APIClientError.invalidResponse(httpResponse, data)
-		}
-
-		return EmptyResult() as! ResponseType
 	}
 
 	func data(for request: URLRequest) async throws(APIClientError) -> (Data, URLResponse) {
