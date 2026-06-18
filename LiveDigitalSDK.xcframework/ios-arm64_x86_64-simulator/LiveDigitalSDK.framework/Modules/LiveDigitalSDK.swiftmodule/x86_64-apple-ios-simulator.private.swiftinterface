@@ -169,6 +169,11 @@ public enum SessionStateConsistencyIssue : Swift.Sendable, Swift.Hashable, Swift
     get
   }
 }
+extension LiveDigitalSDK.SessionStateConsistencyIssue : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
 public struct ConsumerId : Swift.RawRepresentable, Swift.Sendable, Swift.Hashable, Swift.Equatable {
   public let rawValue: Swift.String
   public init(rawValue: Swift.String)
@@ -310,6 +315,15 @@ public protocol CallAudioCoordinator {
   func callKitDidActivate(_ audioSession: AVFAudio.AVAudioSession)
   func callKitDidDeactivate(_ audioSession: AVFAudio.AVAudioSession)
 }
+public enum CallType {
+  case audioOnly
+  case canUseVideo
+  public static func == (a: LiveDigitalSDK.CallType, b: LiveDigitalSDK.CallType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 @available(iOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(watchOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(tvOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
@@ -379,7 +393,7 @@ public enum LiveDigitalEngineError : Foundation.LocalizedError, Swift.Sendable {
 public protocol LiveDigitalMicrophoneEngine {
   var audioSources: [LiveDigitalSDK.AudioSource] { get }
   var audioRouter: any LiveDigitalSDK.AudioRouter { get }
-  static func prepareAudioSession(logger: (any LiveDigitalSDK.LDSDKLogger)?)
+  static func prepareAudioSession(callType: LiveDigitalSDK.CallType, logger: (any LiveDigitalSDK.LDSDKLogger)?)
   func startAudioSource() -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
   func startAudioSource(encodingParameters: LiveDigitalSDK.AudioEncodingParameters) -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
   func stopAudioSource(_ audioSource: LiveDigitalSDK.AudioSource)
@@ -424,7 +438,7 @@ final public class StockLiveDigitalEngine {
     get
   }
   final public let logger: any LiveDigitalSDK.LDSDKLogger
-  public init(environment: LiveDigitalSDK.LiveDigitalSDKEnvironment = .production, cameraScene: UIKit.UIWindowScene? = nil, clientUniqueId: LiveDigitalSDK.ClientUniqueId = .random(), useCallKitAudio: Swift.Bool = false, logConfig: LiveDigitalSDK.LogConfig = .defaultConfig)
+  public init(environment: LiveDigitalSDK.LiveDigitalSDKEnvironment = .production, cameraScene: UIKit.UIWindowScene? = nil, clientUniqueId: LiveDigitalSDK.ClientUniqueId = .random(), callType: LiveDigitalSDK.CallType = .canUseVideo, useCallKitAudio: Swift.Bool = false, logConfig: LiveDigitalSDK.LogConfig = .defaultConfig)
   @objc deinit
 }
 @available(iOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
@@ -468,7 +482,7 @@ extension LiveDigitalSDK.StockLiveDigitalEngine : LiveDigitalSDK.LiveDigitalMicr
   final public var audioRouter: any LiveDigitalSDK.AudioRouter {
     get
   }
-  public static func prepareAudioSession(logger: (any LiveDigitalSDK.LDSDKLogger)?)
+  public static func prepareAudioSession(callType: LiveDigitalSDK.CallType, logger: (any LiveDigitalSDK.LDSDKLogger)?)
   final public func startAudioSource() -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
   final public func startAudioSource(encodingParameters: LiveDigitalSDK.AudioEncodingParameters) -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
   final public func stopAudioSource(_ audioSource: LiveDigitalSDK.AudioSource)
@@ -529,6 +543,12 @@ extension LiveDigitalSDK.AudioRoute {
 }
 extension LiveDigitalSDK.AudioRoute.Kind : Swift.Equatable {
   public static func == (lhs: LiveDigitalSDK.AudioRoute.Kind, rhs: LiveDigitalSDK.AudioRoute.Kind) -> Swift.Bool
+}
+extension LiveDigitalSDK.AudioRoute.Kind : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
 }
 public protocol AudioRouter {
   var currentRoute: LiveDigitalSDK.AudioRoute { get }
@@ -1107,6 +1127,9 @@ extension LiveDigitalSDK.ExistentialLDSDKLogger : LiveDigitalSDK.LDSDKLogger {
   final public func logWarn(_ message: @autoclosure @escaping () -> Swift.String, _ error: (any Swift.Error)? = nil, file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line, payload: [Swift.String : any Swift.Encodable]? = nil)
   final public func logError(_ message: @autoclosure @escaping () -> Swift.String, _ error: (any Swift.Error)? = nil, file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line, payload: [Swift.String : any Swift.Encodable]? = nil)
 }
+extension LiveDigitalSDK.ExistentialLDSDKLogger : Mediasoup.LogHandler {
+  final public func onLog(level: Mediasoup.LogLevel, payload: Swift.String)
+}
 public enum LDSDKLogLevel : Swift.Comparable, Swift.Sendable {
   case verbose
   case debug
@@ -1137,6 +1160,8 @@ public enum LogConfig {
 extension LiveDigitalSDK.ChannelSessionError : Swift.Equatable {}
 extension LiveDigitalSDK.ChannelSessionError : Swift.Hashable {}
 extension LiveDigitalSDK.MediaKind : Swift.RawRepresentable {}
+extension LiveDigitalSDK.CallType : Swift.Equatable {}
+extension LiveDigitalSDK.CallType : Swift.Hashable {}
 extension LiveDigitalSDK.LiveDigitalEngineError : Swift.Equatable {}
 extension LiveDigitalSDK.LiveDigitalEngineError : Swift.Hashable {}
 extension LiveDigitalSDK.MediaCapturerError : Swift.Equatable {}

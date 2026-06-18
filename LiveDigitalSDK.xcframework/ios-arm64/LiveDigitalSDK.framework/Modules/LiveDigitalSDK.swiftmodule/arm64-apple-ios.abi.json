@@ -5026,6 +5026,48 @@
             "static": true,
             "implicit": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "description",
+            "printedName": "description",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:14LiveDigitalSDK28SessionStateConsistencyIssueO11descriptionSSvp",
+            "mangledName": "$s14LiveDigitalSDK28SessionStateConsistencyIssueO11descriptionSSvp",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:14LiveDigitalSDK28SessionStateConsistencyIssueO11descriptionSSvg",
+                "mangledName": "$s14LiveDigitalSDK28SessionStateConsistencyIssueO11descriptionSSvg",
+                "moduleName": "LiveDigitalSDK",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
           }
         ],
         "declKind": "Enum",
@@ -5043,6 +5085,13 @@
             "printedName": "Copyable",
             "usr": "s:s8CopyableP",
             "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
           },
           {
             "kind": "Conformance",
@@ -5097,6 +5146,13 @@
         "declAttributes": [
           "AccessControl"
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "Combine",
+        "printedName": "Combine",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
       },
       {
         "kind": "Import",
@@ -8780,6 +8836,234 @@
         "moduleName": "LiveDigitalSDK"
       },
       {
+        "kind": "TypeDecl",
+        "name": "CallType",
+        "printedName": "CallType",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "audioOnly",
+            "printedName": "audioOnly",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(LiveDigitalSDK.CallType.Type) -> LiveDigitalSDK.CallType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallType",
+                    "printedName": "LiveDigitalSDK.CallType",
+                    "usr": "s:14LiveDigitalSDK8CallTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "LiveDigitalSDK.CallType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CallType",
+                        "printedName": "LiveDigitalSDK.CallType",
+                        "usr": "s:14LiveDigitalSDK8CallTypeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:14LiveDigitalSDK8CallTypeO9audioOnlyyA2CmF",
+            "mangledName": "$s14LiveDigitalSDK8CallTypeO9audioOnlyyA2CmF",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "canUseVideo",
+            "printedName": "canUseVideo",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(LiveDigitalSDK.CallType.Type) -> LiveDigitalSDK.CallType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallType",
+                    "printedName": "LiveDigitalSDK.CallType",
+                    "usr": "s:14LiveDigitalSDK8CallTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "LiveDigitalSDK.CallType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CallType",
+                        "printedName": "LiveDigitalSDK.CallType",
+                        "usr": "s:14LiveDigitalSDK8CallTypeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:14LiveDigitalSDK8CallTypeO11canUseVideoyA2CmF",
+            "mangledName": "$s14LiveDigitalSDK8CallTypeO11canUseVideoyA2CmF",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CallType",
+                "printedName": "LiveDigitalSDK.CallType",
+                "usr": "s:14LiveDigitalSDK8CallTypeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CallType",
+                "printedName": "LiveDigitalSDK.CallType",
+                "usr": "s:14LiveDigitalSDK8CallTypeO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK8CallTypeO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s14LiveDigitalSDK8CallTypeO2eeoiySbAC_ACtFZ",
+            "moduleName": "LiveDigitalSDK",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:14LiveDigitalSDK8CallTypeO9hashValueSivp",
+            "mangledName": "$s14LiveDigitalSDK8CallTypeO9hashValueSivp",
+            "moduleName": "LiveDigitalSDK",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:14LiveDigitalSDK8CallTypeO9hashValueSivg",
+                "mangledName": "$s14LiveDigitalSDK8CallTypeO9hashValueSivg",
+                "moduleName": "LiveDigitalSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK8CallTypeO4hash4intoys6HasherVz_tF",
+            "mangledName": "$s14LiveDigitalSDK8CallTypeO4hash4intoys6HasherVz_tF",
+            "moduleName": "LiveDigitalSDK",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:14LiveDigitalSDK8CallTypeO",
+        "mangledName": "$s14LiveDigitalSDK8CallTypeO",
+        "moduleName": "LiveDigitalSDK",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
         "kind": "Import",
         "name": "AVFoundation",
         "printedName": "AVFoundation",
@@ -10476,12 +10760,18 @@
           {
             "kind": "Function",
             "name": "prepareAudioSession",
-            "printedName": "prepareAudioSession(logger:)",
+            "printedName": "prepareAudioSession(callType:logger:)",
             "children": [
               {
                 "kind": "TypeNominal",
                 "name": "Void",
                 "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CallType",
+                "printedName": "LiveDigitalSDK.CallType",
+                "usr": "s:14LiveDigitalSDK8CallTypeO"
               },
               {
                 "kind": "TypeNominal",
@@ -10499,8 +10789,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14LiveDigitalSDK0aB16MicrophoneEngineP19prepareAudioSession6loggeryAA11LDSDKLogger_pSg_tFZ",
-            "mangledName": "$s14LiveDigitalSDK0aB16MicrophoneEngineP19prepareAudioSession6loggeryAA11LDSDKLogger_pSg_tFZ",
+            "usr": "s:14LiveDigitalSDK0aB16MicrophoneEngineP19prepareAudioSession8callType6loggeryAA04CallJ0O_AA11LDSDKLogger_pSgtFZ",
+            "mangledName": "$s14LiveDigitalSDK0aB16MicrophoneEngineP19prepareAudioSession8callType6loggeryAA04CallJ0O_AA11LDSDKLogger_pSgtFZ",
             "moduleName": "LiveDigitalSDK",
             "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.LiveDigitalMicrophoneEngine>",
             "sugared_genericSig": "<Self where Self : LiveDigitalSDK.LiveDigitalMicrophoneEngine>",
@@ -11420,6 +11710,13 @@
       },
       {
         "kind": "Import",
+        "name": "WebRTC",
+        "printedName": "WebRTC",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "Import",
         "name": "LDLogging",
         "printedName": "LDLogging",
         "declKind": "Import",
@@ -11887,7 +12184,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(environment:cameraScene:clientUniqueId:useCallKitAudio:logConfig:)",
+            "printedName": "init(environment:cameraScene:clientUniqueId:callType:useCallKitAudio:logConfig:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -11926,6 +12223,13 @@
               },
               {
                 "kind": "TypeNominal",
+                "name": "CallType",
+                "printedName": "LiveDigitalSDK.CallType",
+                "hasDefaultArg": true,
+                "usr": "s:14LiveDigitalSDK8CallTypeO"
+              },
+              {
+                "kind": "TypeNominal",
                 "name": "Bool",
                 "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
@@ -11940,8 +12244,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:14LiveDigitalSDK05StockaB6EngineC11environment11cameraScene14clientUniqueId15useCallKitAudio9logConfigAcA0aB14SDKEnvironmentV_So08UIWindowH0CSgAA06ClientjK0VSbAA03LogQ0Otcfc",
-            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC11environment11cameraScene14clientUniqueId15useCallKitAudio9logConfigAcA0aB14SDKEnvironmentV_So08UIWindowH0CSgAA06ClientjK0VSbAA03LogQ0Otcfc",
+            "usr": "s:14LiveDigitalSDK05StockaB6EngineC11environment11cameraScene14clientUniqueId8callType15useCallKitAudio9logConfigAcA0aB14SDKEnvironmentV_So08UIWindowH0CSgAA06ClientjK0VAA0oM0OSbAA03LogS0Otcfc",
+            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC11environment11cameraScene14clientUniqueId8callType15useCallKitAudio9logConfigAcA0aB14SDKEnvironmentV_So08UIWindowH0CSgAA06ClientjK0VAA0oM0OSbAA03LogS0Otcfc",
             "moduleName": "LiveDigitalSDK",
             "declAttributes": [
               "AccessControl",
@@ -12751,12 +13055,18 @@
           {
             "kind": "Function",
             "name": "prepareAudioSession",
-            "printedName": "prepareAudioSession(logger:)",
+            "printedName": "prepareAudioSession(callType:logger:)",
             "children": [
               {
                 "kind": "TypeNominal",
                 "name": "Void",
                 "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CallType",
+                "printedName": "LiveDigitalSDK.CallType",
+                "usr": "s:14LiveDigitalSDK8CallTypeO"
               },
               {
                 "kind": "TypeNominal",
@@ -12774,8 +13084,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14LiveDigitalSDK05StockaB6EngineC19prepareAudioSession6loggeryAA11LDSDKLogger_pSg_tFZ",
-            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC19prepareAudioSession6loggeryAA11LDSDKLogger_pSg_tFZ",
+            "usr": "s:14LiveDigitalSDK05StockaB6EngineC19prepareAudioSession8callType6loggeryAA04CallJ0O_AA11LDSDKLogger_pSgtFZ",
+            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC19prepareAudioSession8callType6loggeryAA04CallJ0O_AA11LDSDKLogger_pSgtFZ",
             "moduleName": "LiveDigitalSDK",
             "static": true,
             "declAttributes": [
@@ -13316,6 +13626,20 @@
             "mangledName": "$ss9EscapableP"
           }
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "WebRTC",
+        "printedName": "WebRTC",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
       },
       {
         "kind": "Import",
@@ -13949,6 +14273,75 @@
                 ],
                 "isFromExtension": true,
                 "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Function",
+                "name": "hash",
+                "printedName": "hash(into:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hasher",
+                    "printedName": "Swift.Hasher",
+                    "paramValueOwnership": "InOut",
+                    "usr": "s:s6HasherV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:14LiveDigitalSDK10AudioRouteV4KindO4hash4intoys6HasherVz_tF",
+                "mangledName": "$s14LiveDigitalSDK10AudioRouteV4KindO4hash4intoys6HasherVz_tF",
+                "moduleName": "LiveDigitalSDK",
+                "declAttributes": [
+                  "AccessControl"
+                ],
+                "isFromExtension": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Var",
+                "name": "hashValue",
+                "printedName": "hashValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:14LiveDigitalSDK10AudioRouteV4KindO9hashValueSivp",
+                "mangledName": "$s14LiveDigitalSDK10AudioRouteV4KindO9hashValueSivp",
+                "moduleName": "LiveDigitalSDK",
+                "implicit": true,
+                "isFromExtension": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:14LiveDigitalSDK10AudioRouteV4KindO9hashValueSivg",
+                    "mangledName": "$s14LiveDigitalSDK10AudioRouteV4KindO9hashValueSivg",
+                    "moduleName": "LiveDigitalSDK",
+                    "implicit": true,
+                    "isFromExtension": true,
+                    "accessorKind": "get"
+                  }
+                ]
               }
             ],
             "declKind": "Enum",
@@ -13980,6 +14373,13 @@
                 "printedName": "Escapable",
                 "usr": "s:s9EscapableP",
                 "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
               },
               {
                 "kind": "Conformance",
@@ -14057,6 +14457,20 @@
             "mangledName": "$ss16SendableMetatypeP"
           }
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
       },
       {
         "kind": "Import",
@@ -15098,8 +15512,8 @@
       },
       {
         "kind": "Import",
-        "name": "AVFoundation",
-        "printedName": "AVFoundation",
+        "name": "Foundation",
+        "printedName": "Foundation",
         "declKind": "Import",
         "moduleName": "LiveDigitalSDK"
       },
@@ -15107,6 +15521,20 @@
         "kind": "Import",
         "name": "WebRTC",
         "printedName": "WebRTC",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "Combine",
+        "printedName": "Combine",
         "declKind": "Import",
         "moduleName": "LiveDigitalSDK"
       },
@@ -15624,6 +16052,13 @@
         "kind": "Import",
         "name": "UIKit",
         "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
         "declKind": "Import",
         "moduleName": "LiveDigitalSDK"
       },
@@ -33400,6 +33835,13 @@
         "moduleName": "LiveDigitalSDK"
       },
       {
+        "kind": "Import",
+        "name": "Mediasoup",
+        "printedName": "Mediasoup",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
         "kind": "TypeDecl",
         "name": "ExistentialLDSDKLogger",
         "printedName": "ExistentialLDSDKLogger",
@@ -34047,6 +34489,40 @@
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "onLog",
+            "printedName": "onLog(level:payload:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "LogLevel",
+                "printedName": "Mediasoup.LogLevel",
+                "usr": "s:9Mediasoup8LogLevelO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK22ExistentialLDSDKLoggerC5onLog5level7payloady9Mediasoup0G5LevelO_SStF",
+            "mangledName": "$s14LiveDigitalSDK22ExistentialLDSDKLoggerC5onLog5level7payloady9Mediasoup0G5LevelO_SStF",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Class",
@@ -34059,6 +34535,13 @@
           "RawDocComment"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "LogHandler",
+            "printedName": "LogHandler",
+            "usr": "s:9Mediasoup10LogHandlerP",
+            "mangledName": "$s9Mediasoup10LogHandlerP"
+          },
           {
             "kind": "Conformance",
             "name": "LDSDKLogger",
@@ -46719,17 +47202,24 @@
           },
           {
             "kind": "Conformance",
-            "name": "Hashable",
-            "printedName": "Hashable",
-            "usr": "s:SH",
-            "mangledName": "$sSH"
-          },
-          {
-            "kind": "Conformance",
             "name": "SendableMetatype",
             "printedName": "SendableMetatype",
             "usr": "s:s16SendableMetatypeP",
             "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "BitwiseCopyable",
+            "printedName": "BitwiseCopyable",
+            "usr": "s:s15BitwiseCopyableP",
+            "mangledName": "$ss15BitwiseCopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -47063,78 +47553,92 @@
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
+      "kind": "IntegerLiteral",
+      "offset": 486,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "StringLiteral",
-      "offset": 860,
+      "offset": 910,
       "length": 35,
       "value": "\"Session status changed: \""
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "StringLiteral",
-      "offset": 894,
+      "offset": 944,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "BooleanLiteral",
-      "offset": 945,
+      "offset": 995,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "BooleanLiteral",
-      "offset": 1035,
+      "offset": 1085,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "BooleanLiteral",
-      "offset": 1198,
+      "offset": 1248,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "BooleanLiteral",
-      "offset": 2137,
+      "offset": 2187,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "BooleanLiteral",
-      "offset": 2176,
+      "offset": 2226,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "BooleanLiteral",
-      "offset": 2420,
+      "offset": 2470,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConsistencyIssues\/StockChannelStateChecker.swift",
       "kind": "IntegerLiteral",
-      "offset": 161,
+      "offset": 176,
       "length": 1,
       "value": "3"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConsistencyIssues\/StockChannelStateChecker.swift",
       "kind": "FloatLiteral",
-      "offset": 217,
+      "offset": 232,
       "length": 3,
       "value": "2.6"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConsistencyIssues\/StockChannelStateChecker.swift",
+      "kind": "IntegerLiteral",
+      "offset": 288,
+      "length": 1,
+      "value": "3"
+    },
+    {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConsistencyIssues\/StockChannelStateChecker.swift",
       "kind": "BooleanLiteral",
-      "offset": 408,
+      "offset": 514,
       "length": 5,
       "value": "false"
     },
@@ -47309,7 +47813,7 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/Mediasoup\/Producer\/MockMediaProducer.swift",
       "kind": "IntegerLiteral",
-      "offset": 358,
+      "offset": 402,
       "length": 1,
       "value": "0"
     },
@@ -47686,129 +48190,143 @@
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
+      "kind": "StringLiteral",
+      "offset": 1510,
+      "length": 8,
+      "value": "\"ARDAMS\""
+    },
+    {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1554,
+      "offset": 1650,
       "length": 7,
       "value": "150000"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1591,
+      "offset": 1687,
       "length": 1,
       "value": "4"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1676,
+      "offset": 1772,
       "length": 7,
       "value": "200000"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1713,
+      "offset": 1809,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1798,
+      "offset": 1894,
       "length": 7,
       "value": "350000"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1835,
+      "offset": 1931,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1925,
+      "offset": 2021,
       "length": 6,
       "value": "90000"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "BooleanLiteral",
-      "offset": 3705,
+      "offset": 4016,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareAudioCapturer.swift",
       "kind": "StringLiteral",
-      "offset": 486,
-      "length": 8,
-      "value": "\"ARDAMS\""
-    },
-    {
-      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
-      "kind": "StringLiteral",
-      "offset": 523,
-      "length": 10,
-      "value": "\"ARDAMSv0\""
-    },
-    {
-      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
-      "kind": "StringLiteral",
-      "offset": 569,
-      "length": 13,
-      "value": "\"local-video\""
-    },
-    {
-      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
-      "kind": "StringLiteral",
-      "offset": 612,
+      "offset": 442,
       "length": 10,
       "value": "\"ARDAMSa0\""
     },
     {
-      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareAudioCapturer.swift",
+      "kind": "FloatLiteral",
+      "offset": 789,
+      "length": 4,
+      "value": "0.25"
+    },
+    {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareAudioCapturer.swift",
       "kind": "IntegerLiteral",
-      "offset": 942,
+      "offset": 852,
+      "length": 1,
+      "value": "5"
+    },
+    {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareAudioCapturer.swift",
+      "kind": "BooleanLiteral",
+      "offset": 990,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareAudioCapturer.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1035,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareAudioCapturer.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1346,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareVideoCapturer.swift",
+      "kind": "StringLiteral",
+      "offset": 485,
+      "length": 10,
+      "value": "\"ARDAMSv0\""
+    },
+    {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareVideoCapturer.swift",
+      "kind": "StringLiteral",
+      "offset": 531,
+      "length": 13,
+      "value": "\"local-video\""
+    },
+    {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareVideoCapturer.swift",
+      "kind": "IntegerLiteral",
+      "offset": 865,
       "length": 3,
       "value": "720"
     },
     {
-      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareVideoCapturer.swift",
       "kind": "IntegerLiteral",
-      "offset": 955,
+      "offset": 878,
       "length": 3,
       "value": "960"
     },
     {
-      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareVideoCapturer.swift",
       "kind": "IntegerLiteral",
-      "offset": 975,
+      "offset": 898,
       "length": 2,
       "value": "16"
-    },
-    {
-      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
-      "kind": "BooleanLiteral",
-      "offset": 1212,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
-      "kind": "BooleanLiteral",
-      "offset": 2375,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/HardwareMediaCapturer.swift",
-      "kind": "BooleanLiteral",
-      "offset": 22416,
-      "length": 5,
-      "value": "false"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/MockFileMediaCapturer.swift",
@@ -47862,49 +48380,42 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/MockGeneratorMediaCapturer.swift",
       "kind": "StringLiteral",
-      "offset": 209,
-      "length": 8,
-      "value": "\"ARDAMS\""
-    },
-    {
-      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/MockGeneratorMediaCapturer.swift",
-      "kind": "StringLiteral",
-      "offset": 246,
+      "offset": 208,
       "length": 10,
       "value": "\"ARDAMSv0\""
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/MockGeneratorMediaCapturer.swift",
       "kind": "StringLiteral",
-      "offset": 285,
+      "offset": 247,
       "length": 10,
       "value": "\"ARDAMSa0\""
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/MockGeneratorMediaCapturer.swift",
       "kind": "IntegerLiteral",
-      "offset": 440,
+      "offset": 402,
       "length": 3,
       "value": "720"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/MockGeneratorMediaCapturer.swift",
       "kind": "IntegerLiteral",
-      "offset": 453,
+      "offset": 415,
       "length": 4,
       "value": "1280"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/MockGeneratorMediaCapturer.swift",
       "kind": "IntegerLiteral",
-      "offset": 474,
+      "offset": 436,
       "length": 2,
       "value": "12"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/MediaCapturer\/MockGeneratorMediaCapturer.swift",
       "kind": "BooleanLiteral",
-      "offset": 1399,
+      "offset": 1361,
       "length": 5,
       "value": "false"
     },
@@ -48320,6 +48831,13 @@
       "offset": 96,
       "length": 10,
       "value": "\"audience\""
+    },
+    {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/SignalingEntities\/Peer.swift",
+      "kind": "IntegerLiteral",
+      "offset": 697,
+      "length": 1,
+      "value": "5"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/SignalingEntities\/RTPCapabilities.swift",
