@@ -129,7 +129,9 @@ private extension StartScreenView {
 	}
 
 	var crsAuthBlock: some View {
-		RoundedContainer {
+		let numberImputDisabled = !vm.apnsPermissionGranted || vm.isSignedIn || vm.authorizationInProgress
+		let authActionDisabled = !vm.apnsPermissionGranted || vm.authorizationInProgress
+		return RoundedContainer {
 			VStack(spacing: 20) {
 				Text(String(localized: .registerInCRSServiceHint))
 					.font(AssetFont.mainTextMedium.font)
@@ -153,15 +155,15 @@ private extension StartScreenView {
 									.foregroundStyle(AssetColor.contrast.color),
 								alignment: .bottom
 							)
-							.disabled(vm.isSignedIn)
-							.opacity(vm.isSignedIn ? 0.5 : 1)
+							.disabled(numberImputDisabled)
+							.opacity(numberImputDisabled ? 0.5 : 1)
 					}
 
 					RoundButton(
 						config: vm.isSignedIn ?
 							.custom(Image(systemName: "person.fill.checkmark"), String(localized: .signOut)):
 							.custom(Image(systemName: "person"), String(localized: .signIn)),
-						disabled: !vm.apnsPermissionGranted,
+						disabled: authActionDisabled,
 						action: {
 							vm.toggleAuthorization()
 						}

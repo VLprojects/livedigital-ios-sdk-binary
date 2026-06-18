@@ -7,6 +7,7 @@ import LiveDigitalSDK
 @MainActor
 final class StartScreenVM: ObservableObject {
 	@Published var apnsPermissionGranted = false
+	@Published var authorizationInProgress = false
 	@Published var microphonePermissionGranted = false
 	@Published var cameraPermissionGranted = false
 	@Published var canInitiateCall = false
@@ -86,6 +87,10 @@ internal extension StartScreenVM {
 
 	func toggleAuthorization() {
 		Task { @MainActor in
+			self.authorizationInProgress = true
+			defer {
+				self.authorizationInProgress = false
+			}
 			if accountManager.isSignedIn {
 				do {
 					try await accountManager.signOut()
