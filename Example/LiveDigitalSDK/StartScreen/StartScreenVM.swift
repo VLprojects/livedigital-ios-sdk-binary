@@ -24,8 +24,8 @@ final class StartScreenVM: ObservableObject {
 	private let microphonePermissionManager: CaptureDevicePermissionsManager
 	private let cameraPermissionManager: CaptureDevicePermissionsManager
 	private let qrGenerator: QRGenerator = StockQRGenerator()
-
 	private let accountManager: AccountManager
+	private var cancellables = Set<AnyCancellable>()
 
 	init(
 		callManager: CallManager,
@@ -54,6 +54,8 @@ final class StartScreenVM: ObservableObject {
 		bindPermissionsStates()
 		bindOutgoingCallState()
 		notificationsVM.show("LiveDigitalSDK version: \(LiveDigital.version())")
+
+		applyInitialStateOnCRS()
 	}
 }
 
@@ -87,29 +89,7 @@ internal extension StartScreenVM {
 
 	func toggleAuthorization() {
 		Task { @MainActor in
-			self.authorizationInProgress = true
-			defer {
-				self.authorizationInProgress = false
-			}
-			if accountManager.isSignedIn {
-				do {
-					try await accountManager.signOut()
-					self.notificationsVM.show("Successfully unregistered")
-					print("Successfully unregistered")
-				} catch {
-					self.notificationsVM.show("Failed to unregister: \(error)")
-					print("Failed to unregister: \(error)")
-				}
-			} else {
-				do {
-					let registeredDevice = try await accountManager.signIn(phone: self.phoneNumber)
-					self.notificationsVM.show("Successfully registered: \(registeredDevice)")
-					print("Successfully registered: \(registeredDevice)")
-				} catch {
-					self.notificationsVM.show("Failed to register: \(error)")
-					print("Failed to register: \(error)")
-				}
-			}
+			await accountManager.isSignedIn ? signOut() : signIn()
 		}
 	}
 
@@ -121,6 +101,32 @@ internal extension StartScreenVM {
 // MARK: - Private methods
 
 private extension StartScreenVM {
+	func signIn() async {
+		authorizationInProgress = true
+		do {
+			let registeredDevice = try await accountManager.signIn(phone: self.phoneNumber)
+			notificationsVM.show("Successfully registered: \(registeredDevice)")
+			print("Successfully registered: \(registeredDevice)")
+		} catch {
+			notificationsVM.show("Failed to register: \(error)")
+			print("Failed to register: \(error)")
+		}
+		authorizationInProgress = false
+	}
+
+	func signOut() async {
+		authorizationInProgress = true
+		do {
+			try await accountManager.signOut()
+			notificationsVM.show("Successfully unregistered")
+			print("Successfully unregistered")
+		} catch {
+			notificationsVM.show("Failed to unregister: \(error)")
+			print("Failed to unregister: \(error)")
+		}
+		authorizationInProgress = false
+	}
+
 	func bindPermissionsStates() {
 		apnsPermissionManager.permissionState
 			.map { $0 == .allowed }
@@ -148,5 +154,22 @@ private extension StartScreenVM {
 				return haveRoom && havePermission
 			}
 			.assign(to: &$canInitiateCall)
+	}
+
+	/// Refresh APNS token in CRS on app start.
+	func applyInitialStateOnCRS() {
+		apnsPermissionManager.permissionState
+			.first { $0 != .unknown }
+			.sink { [weak self] state in
+				guard let self else {
+					return
+				}
+				if state == .allowed, self.accountManager.isSignedIn {
+					Task { @MainActor in
+						await self.signIn()
+					}
+				}
+			}
+			.store(in: &cancellables)
 	}
 }
