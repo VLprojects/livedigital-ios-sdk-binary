@@ -42,7 +42,6 @@ final class AudioCallVM: ObservableObject {
 	private var participantId: String?
 	private var call: Call
 	private var peers = [PeerId: Peer]()
-	private var audioRouterInitialized = false
 	private var currentRouteKind: AudioRoute.Kind?
 	private var reconnectTimer: Timer?
 	private var callDurationTimerCancellable: AnyCancellable?
@@ -214,20 +213,6 @@ extension AudioCallVM: @MainActor AudioRouterDelegate {
 		}
 
 		self.currentRouteKind = currentRoute.kind
-
-		// When user takes off his bluetooth headphones, but they are still connected,
-		// system will switch the route automatically to internal speaker by default.
-		// Internal speaker is hidden from routes list and activating it is not desired behaviour.
-		// In this case we try switching to the loudspeaker (not back to headphones!).
-		guard availableRoutes.contains(where: { $0.kind == currentRouteKind }) else {
-			selectDefaultInternalAudioRoute()
-			return
-		}
-
-		if !audioRouterInitialized {
-			audioRouterInitialized = true
-			selectDefaultAudioRoute()
-		}
 	}
 }
 
@@ -385,29 +370,6 @@ private extension AudioCallVM {
 			case let .failure(error):
 				print("Failed to start audio source: \(error)")
 		}
-	}
-
-	func selectDefaultAudioRoute() {
-		let availableRoutes = engine.audioRouter.availableRoutes
-		if let route = availableRoutes.first(where: { !Config.preferredInternalRoutes.contains($0.kind) }) {
-			engine.audioRouter.updatePreferred(route: route)
-		} else {
-			selectDefaultInternalAudioRoute()
-		}
-	}
-
-	func selectDefaultInternalAudioRoute() {
-		let availableRoutes = engine.audioRouter.availableRoutes
-		// Constants.preferredInternalRoutes are ordered by its preference,
-		// so look for a route from the top of internalRouteKinds.
-		for kind in Config.preferredInternalRoutes {
-			if let route = availableRoutes.first(where: { $0.kind == kind }) {
-				return engine.audioRouter.updatePreferred(route: route)
-			} else {
-				print("No route found for \(kind)")
-			}
-		}
-		print("No internal audio routes found")
 	}
 
 	static func callStatusText(for status: CallSessionStatus) -> String {
