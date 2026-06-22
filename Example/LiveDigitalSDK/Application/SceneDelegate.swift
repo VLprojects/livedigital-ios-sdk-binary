@@ -7,6 +7,7 @@ final class SceneDelegate: UIResponder {
 	var window: UIWindow?
 
 	private let callManager: CallManager
+	private let apnsTokenProvider: APNSTokenProvider
 	private let pushPermissionsManager: PushPermissionsManager
 
 	private var callCoordinator: CallCoordinator?
@@ -15,6 +16,7 @@ final class SceneDelegate: UIResponder {
 	override init() {
 		let callManager = StockCallManager()
 		self.callManager = callManager
+		self.apnsTokenProvider = callManager
 		self.pushPermissionsManager = callManager
 		super.init()
 	}
@@ -37,6 +39,7 @@ extension SceneDelegate: UIWindowSceneDelegate {
 
 		let startVM = StartScreenVM(
 			callManager: callManager,
+			apnsTokenProvider: apnsTokenProvider,
 			apnsPermissionManager: pushPermissionsManager,
 			microphonePermissionManager: StockCaptureDevicePermissionsManager(deviceType: .microphone),
 			cameraPermissionManager: StockCaptureDevicePermissionsManager(deviceType: .camera)

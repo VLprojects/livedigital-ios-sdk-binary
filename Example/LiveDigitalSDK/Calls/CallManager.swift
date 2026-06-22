@@ -3,9 +3,6 @@ import Intents
 
 
 protocol CallManager {
-	var deviceToken: AnyPublisher<String?, Never> { get }
-	var deviceTokenCurrentValue: String? { get }
-
 	func addObserver(_ observer: any CallManagerObserver)
 	func removeObserver(_ observer: any CallManagerObserver)
 

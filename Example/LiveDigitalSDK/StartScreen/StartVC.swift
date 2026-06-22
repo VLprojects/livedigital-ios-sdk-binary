@@ -16,7 +16,7 @@ final class StartVC: UIViewController {
 		)
 	}
 
-	var callManager: (CallManager & PushPermissionsManager)?
+	var callManager: (CallManager & PushPermissionsManager & APNSTokenProvider)?
 
 	@IBOutlet private var roomAliasInput: UITextField!
 	@IBOutlet private var versionLabel: UILabel!

@@ -21,6 +21,7 @@ extension StartScreenView: View {
 				VStack(spacing: 16) {
 					makeCallBlock
 					apnsTokenBlock
+					crsAuthBlock
 					permissionsBlock
 				}
 			}
@@ -118,6 +119,53 @@ private extension StartScreenView {
 						disabled: !vm.apnsPermissionGranted,
 						action: {
 							vm.presentAPNSToken()
+						}
+					)
+				}
+			}
+			.frame(maxWidth: .infinity)
+		}
+		.padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+	}
+
+	var crsAuthBlock: some View {
+		let numberImputDisabled = !vm.apnsPermissionGranted || vm.isSignedIn || vm.authorizationInProgress
+		let authActionDisabled = !vm.apnsPermissionGranted || vm.authorizationInProgress
+		return RoundedContainer {
+			VStack(spacing: 20) {
+				Text(String(localized: .registerInCRSServiceHint))
+					.font(AssetFont.mainTextMedium.font)
+					.foregroundStyle(AssetColor.contrast.color)
+					.frame(maxWidth: .infinity, alignment: .leading)
+				HStack {
+					ZStack(alignment: .leading) {
+						if vm.phoneNumber.isEmpty {
+							Text(String(localized: .phoneNumberPlaceholder))
+								.font(AssetFont.mainTextMedium.font)
+								.foregroundStyle(AssetColor.secondary02.color)
+								.frame(maxWidth: .infinity, alignment: .leading)
+						}
+						TextField(String(localized: .phoneNumberPlaceholder), text: $vm.phoneNumber)
+							.font(AssetFont.mainTextMedium.font)
+							.foregroundStyle(AssetColor.contrast.color)
+							.frame(maxWidth: .infinity, alignment: .leading)
+							.overlay(
+								Rectangle()
+									.frame(height: 1)
+									.foregroundStyle(AssetColor.contrast.color),
+								alignment: .bottom
+							)
+							.disabled(numberImputDisabled)
+							.opacity(numberImputDisabled ? 0.5 : 1)
+					}
+
+					RoundButton(
+						config: vm.isSignedIn ?
+							.custom(Image(systemName: "person.fill.checkmark"), String(localized: .signOut)):
+							.custom(Image(systemName: "person"), String(localized: .signIn)),
+						disabled: authActionDisabled,
+						action: {
+							vm.toggleAuthorization()
 						}
 					)
 				}

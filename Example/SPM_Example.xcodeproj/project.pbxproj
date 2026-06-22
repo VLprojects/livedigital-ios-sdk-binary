@@ -57,9 +57,27 @@
 		FF098B442F8FB3D000ED440A /* CallScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B3F2F8FB3D000ED440A /* CallScreenCoordinator.swift */; };
 		FF098B472F8FB3DF00ED440A /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B452F8FB3DF00ED440A /* StartScreenView.swift */; };
 		FF098B482F8FB3DF00ED440A /* StartScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B462F8FB3DF00ED440A /* StartScreenVM.swift */; };
+		FF29302A2FE11420003F799A /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2930292FE11407003F799A /* AppConfig.swift */; };
+		FF29302C2FE11450003F799A /* AppConfig+StoredValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29302B2FE1144A003F799A /* AppConfig+StoredValue.swift */; };
 		FF6267EC2EEA6F4F0081A62A /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF6267EB2EEA6F4F0081A62A /* LiveDigitalSDK */; };
+		FF781B072FDFF19100173D67 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF781B062FDFF18500173D67 /* AccountManager.swift */; };
+		FF781B092FE0DCB200173D67 /* FakeAccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF781B082FE0DCA800173D67 /* FakeAccountManager.swift */; };
+		FF781B0B2FE0E08C00173D67 /* APNSTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF781B0A2FE0E08500173D67 /* APNSTokenProvider.swift */; };
 		FF800AC42DBA4BD10060FAED /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC32DBA4BD10060FAED /* StartVC.swift */; };
 		FF800AC52DBA4BD10060FAED /* SessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC22DBA4BD10060FAED /* SessionVC.swift */; };
+		FF8D37D62FDA620E0084F833 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37D52FDA620B0084F833 /* APIClient.swift */; };
+		FF8D37D82FDA623F0084F833 /* StockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37D72FDA623A0084F833 /* StockAPIClient.swift */; };
+		FF8D37E12FDA679A0084F833 /* CRSAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37E02FDA67910084F833 /* CRSAPIClient.swift */; };
+		FF8D37E32FDA67B20084F833 /* StockCRSAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37E22FDA67AD0084F833 /* StockCRSAPIClient.swift */; };
+		FF8D37E52FDA6FA00084F833 /* CRSAPIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37E42FDA6F9B0084F833 /* CRSAPIEnvironment.swift */; };
+		FF8D37E72FDA70AA0084F833 /* APNSEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37E62FDA70A40084F833 /* APNSEnvironment.swift */; };
+		FF8D37EB2FDA74A30084F833 /* RegisteredDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37EA2FDA749F0084F833 /* RegisteredDevice.swift */; };
+		FF8D37ED2FDA74F00084F833 /* TokenInvalidationReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37EC2FDA74EA0084F833 /* TokenInvalidationReason.swift */; };
+		FF8D37EF2FDA9A980084F833 /* DeviceEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37EE2FDA9A970084F833 /* DeviceEnvironment.swift */; };
+		FF8D37F12FDA9DE50084F833 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37F02FDA9DE20084F833 /* Defaults.swift */; };
+		FF8D37F32FDA9DF20084F833 /* Defaults+StoredValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37F22FDA9DE90084F833 /* Defaults+StoredValue.swift */; };
+		FF8D37F52FDAAE5A0084F833 /* DeviceEnvironmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37F42FDAAE570084F833 /* DeviceEnvironmentProvider.swift */; };
+		FF8D37F72FDABAB10084F833 /* CurlRequestPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37F62FDABAB10084F833 /* CurlRequestPrinter.swift */; };
 		FF98FFB02EC1C85A003F1D90 /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF98FFAF2EC1C85A003F1D90 /* LiveDigitalSDK */; };
 		FFA56F542F236D85000FFD29 /* QRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F532F236D68000FFD29 /* QRGenerator.swift */; };
 		FFA56F562F236E04000FFD29 /* StockQRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F552F236DFB000FFD29 /* StockQRGenerator.swift */; };
@@ -75,7 +93,7 @@
 		FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */; };
 		FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */; };
 		FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */; };
-		FFFA32242D30EA170043C2E7 /* MoodhoodAPIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA32232D30EA150043C2E7 /* MoodhoodAPIClientError.swift */; };
+		FFFA32242D30EA170043C2E7 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA32232D30EA150043C2E7 /* APIClientError.swift */; };
 		FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA32262D30EB010043C2E7 /* MoodhoodUserToken.swift */; };
 		FFFA32292D311A560043C2E7 /* MoodhoodParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA32282D311A510043C2E7 /* MoodhoodParticipant.swift */; };
 		FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA322A2D3120160043C2E7 /* SignalingToken.swift */; };
@@ -138,8 +156,26 @@
 		FF098B402F8FB3D000ED440A /* CallSessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSessionStatus.swift; sourceTree = "<group>"; };
 		FF098B452F8FB3DF00ED440A /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
 		FF098B462F8FB3DF00ED440A /* StartScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVM.swift; sourceTree = "<group>"; };
+		FF2930292FE11407003F799A /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		FF29302B2FE1144A003F799A /* AppConfig+StoredValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfig+StoredValue.swift"; sourceTree = "<group>"; };
+		FF781B062FDFF18500173D67 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		FF781B082FE0DCA800173D67 /* FakeAccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAccountManager.swift; sourceTree = "<group>"; };
+		FF781B0A2FE0E08500173D67 /* APNSTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSTokenProvider.swift; sourceTree = "<group>"; };
 		FF800AC22DBA4BD10060FAED /* SessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionVC.swift; sourceTree = "<group>"; };
 		FF800AC32DBA4BD10060FAED /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
+		FF8D37D52FDA620B0084F833 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		FF8D37D72FDA623A0084F833 /* StockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockAPIClient.swift; sourceTree = "<group>"; };
+		FF8D37E02FDA67910084F833 /* CRSAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRSAPIClient.swift; sourceTree = "<group>"; };
+		FF8D37E22FDA67AD0084F833 /* StockCRSAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCRSAPIClient.swift; sourceTree = "<group>"; };
+		FF8D37E42FDA6F9B0084F833 /* CRSAPIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRSAPIEnvironment.swift; sourceTree = "<group>"; };
+		FF8D37E62FDA70A40084F833 /* APNSEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSEnvironment.swift; sourceTree = "<group>"; };
+		FF8D37EA2FDA749F0084F833 /* RegisteredDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredDevice.swift; sourceTree = "<group>"; };
+		FF8D37EC2FDA74EA0084F833 /* TokenInvalidationReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInvalidationReason.swift; sourceTree = "<group>"; };
+		FF8D37EE2FDA9A970084F833 /* DeviceEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceEnvironment.swift; sourceTree = "<group>"; };
+		FF8D37F02FDA9DE20084F833 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		FF8D37F22FDA9DE90084F833 /* Defaults+StoredValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Defaults+StoredValue.swift"; sourceTree = "<group>"; };
+		FF8D37F42FDAAE570084F833 /* DeviceEnvironmentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceEnvironmentProvider.swift; sourceTree = "<group>"; };
+		FF8D37F62FDABAB10084F833 /* CurlRequestPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurlRequestPrinter.swift; sourceTree = "<group>"; };
 		FFA56F532F236D68000FFD29 /* QRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRGenerator.swift; sourceTree = "<group>"; };
 		FFA56F552F236DFB000FFD29 /* StockQRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockQRGenerator.swift; sourceTree = "<group>"; };
 		FFA56F572F237ADD000FFD29 /* LiveDigitalSDKExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiveDigitalSDKExample.entitlements; sourceTree = "<group>"; };
@@ -154,7 +190,7 @@
 		FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMoodhoodAPIClient.swift; sourceTree = "<group>"; };
 		FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIClient.swift; sourceTree = "<group>"; };
 		FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIEnvironment.swift; sourceTree = "<group>"; };
-		FFFA32232D30EA150043C2E7 /* MoodhoodAPIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodAPIClientError.swift; sourceTree = "<group>"; };
+		FFFA32232D30EA150043C2E7 /* APIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
 		FFFA32262D30EB010043C2E7 /* MoodhoodUserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodUserToken.swift; sourceTree = "<group>"; };
 		FFFA32282D311A510043C2E7 /* MoodhoodParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodhoodParticipant.swift; sourceTree = "<group>"; };
 		FFFA322A2D3120160043C2E7 /* SignalingToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalingToken.swift; sourceTree = "<group>"; };
@@ -196,10 +232,13 @@
 		607FACD21AFB9204008FA782 /* Example for LiveDigitalSDK */ = {
 			isa = PBXGroup;
 			children = (
+				FF8D37D42FDA62020084F833 /* APIClient */,
+				FF781B052FDFF17500173D67 /* APNS */,
 				FF098B1B2F8FB32D00ED440A /* Application */,
 				FF098B212F8FB32D00ED440A /* Calls */,
 				FF098AFC2F8FB31400ED440A /* Components */,
 				FFF42C5A2F31DBC600AE3966 /* Config */,
+				FF8D37D32FDA61C60084F833 /* CRSAPI */,
 				FFFA321C2D30DFF50043C2E7 /* MoodhoodAPI */,
 				FF098B2F2F8FB36B00ED440A /* Permissions */,
 				FF52173C2F2A044400725DC7 /* QRCode */,
@@ -302,7 +341,6 @@
 				FF098B1C2F8FB32D00ED440A /* Call.swift */,
 				FF098B1D2F8FB32D00ED440A /* CallManager.swift */,
 				FF098B1E2F8FB32D00ED440A /* CallManagerObserver.swift */,
-				FF098B1F2F8FB32D00ED440A /* CallPushAction.swift */,
 				FF098B202F8FB32D00ED440A /* StockCallManager.swift */,
 			);
 			path = Calls;
@@ -328,6 +366,49 @@
 				FFAFC8892F2717FC002E4D51 /* FullscreenImageVC.swift */,
 			);
 			path = QRCode;
+			sourceTree = "<group>";
+		};
+		FF781B052FDFF17500173D67 /* APNS */ = {
+			isa = PBXGroup;
+			children = (
+				FF781B062FDFF18500173D67 /* AccountManager.swift */,
+				FF8D37E62FDA70A40084F833 /* APNSEnvironment.swift */,
+				FF098B1F2F8FB32D00ED440A /* CallPushAction.swift */,
+				FF781B082FE0DCA800173D67 /* FakeAccountManager.swift */,
+				FF781B0A2FE0E08500173D67 /* APNSTokenProvider.swift */,
+			);
+			path = APNS;
+			sourceTree = "<group>";
+		};
+		FF8D37D32FDA61C60084F833 /* CRSAPI */ = {
+			isa = PBXGroup;
+			children = (
+				FF8D37E92FDA74990084F833 /* Models */,
+				FF8D37E42FDA6F9B0084F833 /* CRSAPIEnvironment.swift */,
+				FF8D37E22FDA67AD0084F833 /* StockCRSAPIClient.swift */,
+				FF8D37E02FDA67910084F833 /* CRSAPIClient.swift */,
+			);
+			path = CRSAPI;
+			sourceTree = "<group>";
+		};
+		FF8D37D42FDA62020084F833 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				FFFA32232D30EA150043C2E7 /* APIClientError.swift */,
+				FF8D37D72FDA623A0084F833 /* StockAPIClient.swift */,
+				FF8D37D52FDA620B0084F833 /* APIClient.swift */,
+				FF8D37F62FDABAB10084F833 /* CurlRequestPrinter.swift */,
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
+		FF8D37E92FDA74990084F833 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FF8D37EC2FDA74EA0084F833 /* TokenInvalidationReason.swift */,
+				FF8D37EA2FDA749F0084F833 /* RegisteredDevice.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		FFF42C542F31D9BF00AE3966 /* SessionScreen */ = {
@@ -382,6 +463,12 @@
 		FFF42C9B2F32021300AE3966 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FF29302B2FE1144A003F799A /* AppConfig+StoredValue.swift */,
+				FF2930292FE11407003F799A /* AppConfig.swift */,
+				FF8D37F42FDAAE570084F833 /* DeviceEnvironmentProvider.swift */,
+				FF8D37F22FDA9DE90084F833 /* Defaults+StoredValue.swift */,
+				FF8D37F02FDA9DE20084F833 /* Defaults.swift */,
+				FF8D37EE2FDA9A970084F833 /* DeviceEnvironment.swift */,
 				FFF42C9C2F32021900AE3966 /* Weak.swift */,
 			);
 			path = Utils;
@@ -391,7 +478,6 @@
 			isa = PBXGroup;
 			children = (
 				FFFA32252D30EAF70043C2E7 /* Models */,
-				FFFA32232D30EA150043C2E7 /* MoodhoodAPIClientError.swift */,
 				FFFA321F2D30E0200043C2E7 /* MoodhoodAPIEnvironment.swift */,
 				FFFA321D2D30DFFF0043C2E7 /* MoodhoodAPIClient.swift */,
 				FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */,
@@ -502,15 +588,21 @@
 				FFFA322F2D3131ED0043C2E7 /* EmptyResult.swift in Sources */,
 				FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */,
 				FFF42C9D2F32021B00AE3966 /* Weak.swift in Sources */,
-				FFFA32242D30EA170043C2E7 /* MoodhoodAPIClientError.swift in Sources */,
+				FFFA32242D30EA170043C2E7 /* APIClientError.swift in Sources */,
 				FFAFC88A2F2717FD002E4D51 /* FullscreenImageVC.swift in Sources */,
+				FF8D37E32FDA67B20084F833 /* StockCRSAPIClient.swift in Sources */,
+				FF781B072FDFF19100173D67 /* AccountManager.swift in Sources */,
+				FF29302C2FE11450003F799A /* AppConfig+StoredValue.swift in Sources */,
+				FF8D37E52FDA6FA00084F833 /* CRSAPIEnvironment.swift in Sources */,
 				FF098B042F8FB31400ED440A /* RoundedContainer.swift in Sources */,
 				FF098B052F8FB31400ED440A /* PermissionIndicator.swift in Sources */,
 				FF098B472F8FB3DF00ED440A /* StartScreenView.swift in Sources */,
 				FF098B482F8FB3DF00ED440A /* StartScreenVM.swift in Sources */,
 				FF098B062F8FB31400ED440A /* RoundButtonStyle.swift in Sources */,
+				FF8D37ED2FDA74F00084F833 /* TokenInvalidationReason.swift in Sources */,
 				FF098B072F8FB31400ED440A /* NotificationsVM.swift in Sources */,
 				FF098B412F8FB3D000ED440A /* CallSessionStatus.swift in Sources */,
+				FF8D37F12FDA9DE50084F833 /* Defaults.swift in Sources */,
 				FF098B422F8FB3D000ED440A /* AudioCallVM.swift in Sources */,
 				FF098B432F8FB3D000ED440A /* AudioCallView.swift in Sources */,
 				FF098B442F8FB3D000ED440A /* CallScreenCoordinator.swift in Sources */,
@@ -519,6 +611,9 @@
 				FF098B0A2F8FB31400ED440A /* RoundButton.swift in Sources */,
 				FF098B0B2F8FB31400ED440A /* RoundButtonStyleAccept.swift in Sources */,
 				FF098B0C2F8FB31400ED440A /* RoundButtonStyleCustom.swift in Sources */,
+				FF8D37D82FDA623F0084F833 /* StockAPIClient.swift in Sources */,
+				FF29302A2FE11420003F799A /* AppConfig.swift in Sources */,
+				FF8D37D62FDA620E0084F833 /* APIClient.swift in Sources */,
 				FF098B0D2F8FB31400ED440A /* RoundButtonConfig.swift in Sources */,
 				FF098B0E2F8FB31400ED440A /* RoundButtonStyleMediaSound.swift in Sources */,
 				FF098B0F2F8FB31400ED440A /* AssetColor.swift in Sources */,
@@ -527,6 +622,7 @@
 				FF098B122F8FB31400ED440A /* NotificationView.swift in Sources */,
 				FF098B132F8FB31400ED440A /* GradientBackgroundView.swift in Sources */,
 				FF098B142F8FB31400ED440A /* RoundButtonStyleMediaCapture.swift in Sources */,
+				FF781B0B2FE0E08C00173D67 /* APNSTokenProvider.swift in Sources */,
 				FF098B222F8FB32D00ED440A /* StockCallManager.swift in Sources */,
 				FF098B232F8FB32D00ED440A /* CallCoordinator.swift in Sources */,
 				FF098B242F8FB32D00ED440A /* Call.swift in Sources */,
@@ -537,6 +633,7 @@
 				FF098B282F8FB32D00ED440A /* CallPushAction.swift in Sources */,
 				FF098B292F8FB32D00ED440A /* CallManager.swift in Sources */,
 				FF098B302F8FB36B00ED440A /* CaptureDevicePermissionsManager.swift in Sources */,
+				FF8D37E72FDA70AA0084F833 /* APNSEnvironment.swift in Sources */,
 				FF098B312F8FB36B00ED440A /* CaptureDeviceType.swift in Sources */,
 				FF098B322F8FB36B00ED440A /* PushPermissionsManager.swift in Sources */,
 				FF098B332F8FB36B00ED440A /* PermissionState.swift in Sources */,
@@ -550,10 +647,17 @@
 				FFF42C902F31DEB200AE3966 /* StockSessionPresenter.swift in Sources */,
 				FF800AC52DBA4BD10060FAED /* SessionVC.swift in Sources */,
 				FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */,
+				FF781B092FE0DCB200173D67 /* FakeAccountManager.swift in Sources */,
 				FFF42C942F31E1A400AE3966 /* SessionView.swift in Sources */,
 				FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */,
+				FF8D37EF2FDA9A980084F833 /* DeviceEnvironment.swift in Sources */,
 				FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */,
 				FFFA322D2D3128240043C2E7 /* Room.swift in Sources */,
+				FF8D37EB2FDA74A30084F833 /* RegisteredDevice.swift in Sources */,
+				FF8D37E12FDA679A0084F833 /* CRSAPIClient.swift in Sources */,
+				FF8D37F52FDAAE5A0084F833 /* DeviceEnvironmentProvider.swift in Sources */,
+				FF8D37F32FDA9DF20084F833 /* Defaults+StoredValue.swift in Sources */,
+				FF8D37F72FDABAB10084F833 /* CurlRequestPrinter.swift in Sources */,
 				FFA56F562F236E04000FFD29 /* StockQRGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

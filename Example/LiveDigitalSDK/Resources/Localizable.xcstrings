@@ -239,6 +239,23 @@
         }
       }
     },
+    "phoneNumberPlaceholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+79998887777"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "+79998887777"
+          }
+        }
+      }
+    },
     "redialAction" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -256,6 +273,23 @@
         }
       }
     },
+    "registerInCRSServiceHint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bind your device and phone number in CRS service"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Свяжите ваше устройство с номером телефона в CRS сервисе"
+          }
+        }
+      }
+    },
     "roomAliasPlaceholder" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -269,6 +303,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Алиас комнаты"
+          }
+        }
+      }
+    },
+    "signIn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign In"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Войти"
+          }
+        }
+      }
+    },
+    "signOut" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign Out"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выйти"
           }
         }
       }
