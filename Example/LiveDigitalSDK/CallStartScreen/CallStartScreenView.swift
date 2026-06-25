@@ -2,17 +2,17 @@ import Foundation
 import SwiftUI
 
 
-struct StartScreenView {
-	@ObservedObject private var vm: StartScreenVM
+struct CallStartScreenView {
+	@ObservedObject private var vm: CallStartScreenVM
 
-	init(vm: StartScreenVM) {
+	init(vm: CallStartScreenVM) {
 		self.vm = vm
 	}
 }
 
 // MARK: - View implementation
 
-extension StartScreenView: View {
+extension CallStartScreenView: View {
 	var body: some View {
 		ZStack {
 			GradientBackgroundView()
@@ -58,7 +58,7 @@ extension StartScreenView: View {
 
 // MARK: - Private methods
 
-private extension StartScreenView {
+private extension CallStartScreenView {
 	var makeCallBlock: some View {
 		RoundedContainer {
 			VStack(spacing: 20) {

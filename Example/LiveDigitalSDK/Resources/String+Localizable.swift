@@ -32,6 +32,9 @@ extension L10n {
 	static let permissionsLegend = L10n("permissionsLegend")
 	static let redialAction = L10n("redialAction")
 	static let roomAliasPlaceholder = L10n("roomAliasPlaceholder")
+	static let flowSelectionHint = L10n("flowSelectionHint")
+	static let selectCallWorkflow = L10n("selectCallWorkflow")
+	static let selectConferenceWorkflow = L10n("selectConferenceWorkflow")
 }
 
 /// A backport of type-safe localizable strings for iOS 15.

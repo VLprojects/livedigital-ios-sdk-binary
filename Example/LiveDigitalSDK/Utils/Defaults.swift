@@ -6,6 +6,7 @@ struct Defaults {
 		case deviceId
 		case phoneNumber
 		case isSignedIn
+		case appWorkflow
 	}
 
 	@StoredValue(key: .deviceId)
@@ -16,4 +17,7 @@ struct Defaults {
 
 	@StoredValue(key: .isSignedIn)
 	static var isSignedIn: Bool?
+
+	@StoredValue(key: .appWorkflow)
+	static var appWorkflow: AppWorkflow?
 }

@@ -14,11 +14,16 @@ extension Defaults {
 
 		var wrappedValue: T? {
 			get {
-				let storedValue = UserDefaults.standard.object(forKey: key.rawValue) as? T
-				return storedValue ?? defaultValue
+				guard let data = UserDefaults.standard.value(forKey: key.rawValue) as? Data,
+					let decodedData = try? JSONDecoder().decode(T.self, from: data) else {
+						return defaultValue
+				}
+				return decodedData
 			}
 			set {
-				UserDefaults.standard.set(newValue, forKey: key.rawValue)
+				if let encoded = try? JSONEncoder().encode(newValue) {
+					UserDefaults.standard.set(encoded, forKey: key.rawValue)
+				}
 				UserDefaults.standard.synchronize()
 			}
 		}

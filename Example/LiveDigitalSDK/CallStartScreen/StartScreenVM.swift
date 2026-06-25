@@ -5,7 +5,7 @@ import LiveDigitalSDK
 
 
 @MainActor
-final class StartScreenVM: ObservableObject {
+final class CallStartScreenVM: ObservableObject {
 	@Published var apnsPermissionGranted = false
 	@Published var authorizationInProgress = false
 	@Published var microphonePermissionGranted = false
@@ -61,7 +61,7 @@ final class StartScreenVM: ObservableObject {
 
 // MARK: - Internal methods
 
-internal extension StartScreenVM {
+internal extension CallStartScreenVM {
 	func requestApnsPermission() {
 		apnsPermissionManager.requestPermission()
 	}
@@ -100,7 +100,7 @@ internal extension StartScreenVM {
 
 // MARK: - Private methods
 
-private extension StartScreenVM {
+private extension CallStartScreenVM {
 	func signIn() async {
 		authorizationInProgress = true
 		do {
