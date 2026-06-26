@@ -16,10 +16,19 @@ final class CallFlowCoordinator {
 		self.callManager = callManager
 		self.window = window
 
+		guard let baseURL = URL(string: AppConfig.callSignalingBaseURL) else {
+			fatalError("Failed to parse URL from value \(AppConfig.callSignalingBaseURL)")
+		}
+
 		self.engine = StockLiveDigitalEngine(
-			environment: .production,
+			environment: .init(
+				signalingHost: baseURL,
+				analyticsHost: baseURL,
+				datacenter: .common
+			),
 			clientUniqueId: LiveDigitalSDK.ClientUniqueId(rawValue: DeviceEnvironmentProvider.environment.deviceId),
-			useCallKitAudio: true
+			useCallKitAudio: true,
+			logConfig: .standard(consoleLogLevel: .verbose, remoteLogLevel: .info, meta: nil)
 		)
 
 		callManager.addObserver(self)
@@ -37,7 +46,10 @@ extension CallFlowCoordinator: @MainActor CallManagerObserver {
 	func didDeclineCall(_ call: Call) {
 		Task {
 			do {
-				try await engine.declineCall(callId: SIPCallId(rawValue: call.id.uuidString), token: call.signalingToken)
+				try await engine.declineCall(
+					callId: SIPCallId(rawValue: call.id.uuidString),
+					token: call.signalingToken
+				)
 				print("Successfully declined call \(call.id)")
 			} catch {
 				print("Failed to decline call \(call.id): \(error)")
