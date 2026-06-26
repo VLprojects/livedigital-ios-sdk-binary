@@ -30,7 +30,7 @@ final class AudioCallVM: ObservableObject {
 	private var reconnectTimer: Timer?
 	private var callDurationTimer = CallDurationTimer()
 
-	init(callManager: CallManager?, call: Call) {
+	init(callManager: CallManager?, engine: StockLiveDigitalEngine, call: Call) {
 		self.callManager = callManager
 		self.call = call
 		self.isMicrophoneOn = !call.isMuted
@@ -40,11 +40,6 @@ final class AudioCallVM: ObservableObject {
 		self.callDurationTimer.callStatus = callStatus
 		self.canRedial = Self.canRedial(for: callStatus)
 
-		let engine = StockLiveDigitalEngine(
-			environment: .production,
-			clientUniqueId: LiveDigitalSDK.ClientUniqueId(rawValue: deviceEnvironment.deviceId),
-			useCallKitAudio: true
-		)
 		self.engine = engine
 		engine.delegate = self
 

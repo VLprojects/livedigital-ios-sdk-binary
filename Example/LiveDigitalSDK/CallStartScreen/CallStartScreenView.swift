@@ -67,24 +67,6 @@ private extension CallStartScreenView {
 					.foregroundStyle(AssetColor.contrast.color)
 					.frame(maxWidth: .infinity, alignment: .leading)
 				HStack {
-					ZStack(alignment: .leading) {
-						if vm.outgoingCallRoomAlias.isEmpty {
-							Text(String(localized: .roomAliasPlaceholder))
-								.font(AssetFont.mainTextMedium.font)
-								.foregroundStyle(AssetColor.secondary02.color)
-								.frame(maxWidth: .infinity, alignment: .leading)
-						}
-						TextField(String(localized: .roomAliasPlaceholder), text: $vm.outgoingCallRoomAlias)
-							.font(AssetFont.mainTextMedium.font)
-							.foregroundStyle(AssetColor.contrast.color)
-							.frame(maxWidth: .infinity, alignment: .leading)
-							.overlay(
-								Rectangle()
-									.frame(height: 1)
-									.foregroundStyle(AssetColor.contrast.color),
-								alignment: .bottom
-							)
-					}
 					RoundButton(
 						config: .custom(nil, String(localized: .outgoingCallAction)),
 						disabled: !vm.canInitiateCall,

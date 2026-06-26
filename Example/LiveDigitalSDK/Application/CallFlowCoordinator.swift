@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import SwiftUI
+import LiveDigitalSDK
 
 
 @MainActor
@@ -9,10 +10,17 @@ final class CallFlowCoordinator {
 	private let window: UIWindow
 	private weak var spinner: UIView?
 	private var callScreens = [UUID: UIViewController]()
+	private let engine: StockLiveDigitalEngine
 
 	init(callManager: CallManager, window: UIWindow) {
 		self.callManager = callManager
 		self.window = window
+
+		self.engine = StockLiveDigitalEngine(
+			environment: .production,
+			clientUniqueId: LiveDigitalSDK.ClientUniqueId(rawValue: DeviceEnvironmentProvider.environment.deviceId),
+			useCallKitAudio: true
+		)
 
 		callManager.addObserver(self)
 	}
@@ -24,6 +32,17 @@ extension CallFlowCoordinator: @MainActor CallManagerObserver {
 	func didReceiveCall(_ call: Call) {
 		dismissCurrentCalls()
 		openCall(call)
+	}
+
+	func didDeclineCall(_ call: Call) {
+		Task {
+			do {
+				try await engine.declineCall(callId: SIPCallId(rawValue: call.id.uuidString), token: call.signalingToken)
+				print("Successfully declined call \(call.id)")
+			} catch {
+				print("Failed to decline call \(call.id): \(error)")
+			}
+		}
 	}
 
 	func didEndCall(_ call: Call) {
@@ -69,7 +88,7 @@ private extension CallFlowCoordinator {
 	}
 
 	func openCall(_ call: Call) {
-		let vm = AudioCallVM(callManager: callManager, call: call)
+		let vm = AudioCallVM(callManager: callManager, engine: engine, call: call)
 		vm.coordinator = self
 		let view = AudioCallView(vm: vm)
 		let vc = UIHostingController(rootView: view)

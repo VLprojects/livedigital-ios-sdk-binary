@@ -221,6 +221,13 @@ private extension StockCallManager {
 		}
 	}
 
+	func notifyCallDeclined(_ call: Call) {
+		let endedCall = call.withState(.ended)
+		observers.forEach { observer in
+			observer.value?.didDeclineCall(endedCall)
+		}
+	}
+
 	func notifyCallAnswered(_ call: Call) {
 		let answeredCall = call.withState(.connecting)
 		observers.forEach { observer in
@@ -286,7 +293,7 @@ extension StockCallManager: PKPushRegistryDelegate {
 					caller: caller,
 					signalingToken: signalingToken,
 					direction: .incoming,
-					state: .connecting
+					state: .new
 				)
 				reportIncomingCall(call)
 
@@ -371,6 +378,10 @@ extension StockCallManager: CXProviderDelegate {
 	func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
 		print("Call provider requested call end with action \(action)")
 		if let call = calls.removeValue(forKey: action.callUUID) {
+			if call.direction == .incoming, call.state == .new  {
+				notifyCallDeclined(call)
+			}
+
 			notifyCallFinished(call)
 			action.fulfill()
 		} else {

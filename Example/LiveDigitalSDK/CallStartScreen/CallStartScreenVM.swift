@@ -12,7 +12,6 @@ final class CallStartScreenVM: ObservableObject {
 	@Published var cameraPermissionGranted = false
 	@Published var canInitiateCall = false
 	@Published var presentedImage: Image?
-	@Published var outgoingCallRoomAlias = "q3_5V3uwik"
 	@Published var phoneNumber: String
 	@Published var isSignedIn: Bool
 
@@ -94,7 +93,8 @@ internal extension CallStartScreenVM {
 	}
 
 	func initiateCall() {
-		callManager.startCallManually(to: outgoingCallRoomAlias)
+		// TODO: Implement me!
+		// callManager.startCallManually(to: outgoingCallRoomAlias)
 	}
 }
 
@@ -145,14 +145,9 @@ private extension CallStartScreenVM {
 	}
 
 	func bindOutgoingCallState() {
-		Publishers.CombineLatest(
-				$outgoingCallRoomAlias.map { !$0.isEmpty },
-				apnsPermissionManager.permissionState.map { $0 == .allowed }
-			)
+		apnsPermissionManager.permissionState
+			.map { $0 == .allowed }
 			.receive(on: DispatchQueue.main)
-			.map { haveRoom, havePermission in
-				return haveRoom && havePermission
-			}
 			.assign(to: &$canInitiateCall)
 	}
 

@@ -262,13 +262,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You can start an outgoing call to a given room. This action requires push notifications permissions."
+            "value" : "Initiate an outgoing call"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вы можете инициировать исходящий звонок в указанную комнату. Действие требует разрешение на уведомления."
+            "value" : "Вы можете инициировать исходящий звонок в указанную комнату"
           }
         }
       }
