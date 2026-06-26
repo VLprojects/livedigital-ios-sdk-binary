@@ -66,6 +66,7 @@
 		FF55D49E2FED85500054752B /* ConferenceSessionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55D49D2FED85420054752B /* ConferenceSessionVM.swift */; };
 		FF55D4A02FED85720054752B /* ConferenceScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55D49F2FED856B0054752B /* ConferenceScreenCoordinator.swift */; };
 		FF55D4A22FED858C0054752B /* ConferenceSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55D4A12FED85840054752B /* ConferenceSessionView.swift */; };
+		FF55D4A52FEE21F70054752B /* CallDurationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55D4A42FEE21F30054752B /* CallDurationTimer.swift */; };
 		FF6267EC2EEA6F4F0081A62A /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF6267EB2EEA6F4F0081A62A /* LiveDigitalSDK */; };
 		FF781B072FDFF19100173D67 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF781B062FDFF18500173D67 /* AccountManager.swift */; };
 		FF781B092FE0DCB200173D67 /* FakeAccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF781B082FE0DCA800173D67 /* FakeAccountManager.swift */; };
@@ -165,6 +166,7 @@
 		FF55D49D2FED85420054752B /* ConferenceSessionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceSessionVM.swift; sourceTree = "<group>"; };
 		FF55D49F2FED856B0054752B /* ConferenceScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceScreenCoordinator.swift; sourceTree = "<group>"; };
 		FF55D4A12FED85840054752B /* ConferenceSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceSessionView.swift; sourceTree = "<group>"; };
+		FF55D4A42FEE21F30054752B /* CallDurationTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDurationTimer.swift; sourceTree = "<group>"; };
 		FF781B062FDFF18500173D67 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		FF781B082FE0DCA800173D67 /* FakeAccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAccountManager.swift; sourceTree = "<group>"; };
 		FF781B0A2FE0E08500173D67 /* APNSTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSTokenProvider.swift; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 		FFF42C9B2F32021300AE3966 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FF55D4A42FEE21F30054752B /* CallDurationTimer.swift */,
 				FF29302B2FE1144A003F799A /* AppConfig+StoredValue.swift */,
 				FF2930292FE11407003F799A /* AppConfig.swift */,
 				FF8D37F42FDAAE570084F833 /* DeviceEnvironmentProvider.swift */,
@@ -639,6 +642,7 @@
 				FF098B0D2F8FB31400ED440A /* RoundButtonConfig.swift in Sources */,
 				FF098B0E2F8FB31400ED440A /* RoundButtonStyleMediaSound.swift in Sources */,
 				FF098B0F2F8FB31400ED440A /* AssetColor.swift in Sources */,
+				FF55D4A52FEE21F70054752B /* CallDurationTimer.swift in Sources */,
 				FF098B102F8FB31400ED440A /* NotificationContent.swift in Sources */,
 				FF098B112F8FB31400ED440A /* LDToggleStyle.swift in Sources */,
 				FF098B122F8FB31400ED440A /* NotificationView.swift in Sources */,

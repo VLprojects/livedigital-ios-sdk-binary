@@ -14,17 +14,11 @@ final class AudioCallVM: ObservableObject {
 	@Published var isMicrophoneOn: Bool
 	@Published var canFinishSession = false
 	@Published var companionName: String
-	@Published var callStatusLabel: String
-	@Published var isInCall: Bool
+	@Published var callStatusLabel = String()
+	@Published var isInCall = false
 	@Published var canRedial: Bool
 
 	weak var coordinator: CallScreenCoordinator?
-
-	@Published private var callStatus: CallSessionStatus {
-		didSet {
-			handleStatusChange()
-		}
-	}
 
 	private let callManager: CallManager?
 	private let apiClient: MoodhoodAPIClient
@@ -38,7 +32,7 @@ final class AudioCallVM: ObservableObject {
 	private var peers = [PeerId: Peer]()
 	private var currentRouteKind: AudioRoute.Kind?
 	private var reconnectTimer: Timer?
-	private var callDurationTimerCancellable: AnyCancellable?
+	private var callDurationTimer = CallDurationTimer()
 
 	init(callManager: CallManager?, apiClient: MoodhoodAPIClient, room: Room, call: Call) {
 		self.callManager = callManager
@@ -49,9 +43,7 @@ final class AudioCallVM: ObservableObject {
 		self.companionName = call.caller
 
 		let callStatus: CallSessionStatus = .disconnected
-		self.callStatus = callStatus
-		self.callStatusLabel = Self.callStatusText(for: callStatus)
-		self.isInCall = Self.isInCall(for: callStatus)
+		self.callDurationTimer.callStatus = callStatus
 		self.canRedial = Self.canRedial(for: callStatus)
 
 		let engine = StockLiveDigitalEngine(
@@ -72,7 +64,7 @@ final class AudioCallVM: ObservableObject {
 			case .incoming:
 				startConferenceSession()
 			case .outgoing:
-				self.callStatus = .dialing
+				self.callDurationTimer.callStatus = .dialing
 		}
 	}
 
@@ -135,7 +127,7 @@ internal extension AudioCallVM {
 
 		if let channelSession {
 			canFinishSession = false
-			callStatus = .disconnecting
+			callDurationTimer.callStatus = .disconnecting
 			channelSession.stop(completion: { [weak self] in
 				self?.endSession()
 			})
@@ -158,7 +150,7 @@ extension AudioCallVM: @MainActor CallManagerObserver {
 	}
 
 	func callWasAnswered(_ call: Call) {
-		guard call.id == self.call.id, callStatus == .dialing else {
+		guard call.id == self.call.id, callDurationTimer.callStatus == .dialing else {
 			return
 		}
 		self.call = call
@@ -178,13 +170,13 @@ extension AudioCallVM: @MainActor CallManagerObserver {
 
 		if let channelSession {
 			canFinishSession = false
-			callStatus = .disconnecting
+			callDurationTimer.callStatus = .disconnecting
 			channelSession.stop(completion: { [weak self] in
 				self?.channelSession = nil
-				self?.callStatus = .callEnded
+				self?.callDurationTimer.callStatus = .callEnded
 			})
 		} else {
-			self.callStatus = .callEnded
+			callDurationTimer.callStatus = .callEnded
 		}
 	}
 }
@@ -276,7 +268,7 @@ private extension AudioCallVM {
 
 	func endSession() {
 		channelSession = nil
-		callStatus = .disconnected
+		callDurationTimer.callStatus = .disconnected
 		callManager?.endCall(call)
 	}
 
@@ -291,7 +283,7 @@ private extension AudioCallVM {
 	}
 
 	func startConferenceSession() {
-		callStatus = .connecting
+		callDurationTimer.callStatus = .connecting
 
 		Task {
 			if !apiClient.isAuthorized {
@@ -328,7 +320,7 @@ private extension AudioCallVM {
 		peerId: PeerId,
 		signalingToken: String
 	) {
-		callStatus = .connecting
+		callDurationTimer.callStatus = .connecting
 
 		engine.connectToChannel(
 			channelId,
@@ -348,10 +340,10 @@ private extension AudioCallVM {
 					self.channelSession = channelSession
 					channelSession.subscribe(self)
 					channelSession.delegate = self
-					self.callStatus = .connected(.now)
+					self.callDurationTimer.callStatus = .connected(.now)
 				case let .failure(error):
 					print("Failed to start session with error: \(error)")
-					self.callStatus = .disconnected
+					self.callDurationTimer.callStatus = .disconnected
 					self.scheduleReconnect()
 			}
 
@@ -368,28 +360,6 @@ private extension AudioCallVM {
 		}
 	}
 
-	static func callStatusText(for status: CallSessionStatus) -> String {
-		switch status {
-			case .dialing: String(localized: .callStatusDialing)
-			case .connecting: String(localized: .callStatusConnecting)
-			case .connected(let callStart): callDurationText(Date.now.timeIntervalSince(callStart))
-			case .disconnecting: String(localized: .callStatusDisconnecting)
-			case .disconnected: String(localized: .callStatusDisconnected)
-			case .callEnded: String(localized: .callStatusEnded)
-		}
-	}
-
-	static func isInCall(for status: CallSessionStatus) -> Bool {
-		switch status {
-			case .dialing: false
-			case .connecting: true
-			case .connected: true
-			case .disconnecting: true
-			case .disconnected: true
-			case .callEnded: false
-		}
-	}
-
 	static func canRedial(for status: CallSessionStatus) -> Bool {
 		switch status {
 			case .callEnded: true
@@ -397,53 +367,12 @@ private extension AudioCallVM {
 		}
 	}
 
-	static func callDurationText(_ duration: TimeInterval) -> String {
-		let seconds = Int(duration.rounded(.awayFromZero))
-		let h = seconds / 3600
-		let m = (seconds % 3600) / 60
-		let s = seconds % 60
-		if h > 0 {
-			return String(format: "%d:%02d:%02d", h, m, s)
-		} else {
-			return String(format: "%02d:%02d", m, s)
-		}
-	}
-
-	func handleStatusChange() {
-		switch callStatus {
-			case .connected(let startDate):
-				startTimer(from: startDate)
-			case .connecting, .disconnecting, .disconnected, .dialing, .callEnded:
-				stopTimer()
-		}
-	}
-
-	func startTimer(from startDate: Date) {
-		callDurationTimerCancellable?.cancel()
-
-		callDurationTimerCancellable = Timer
-			.publish(every: 1, on: .main, in: .common)
-			.autoconnect()
-			.map { _ in Date().timeIntervalSince(startDate) }
-			.sink { [weak self] elapsed in
-				guard let self else { return }
-				self.callStatusLabel = Self.callDurationText(elapsed)
-			}
-	}
-
-	func stopTimer() {
-		callDurationTimerCancellable?.cancel()
-		callDurationTimerCancellable = nil
-	}
-
 	func bindCallStatus() {
-		$callStatus
-			.map { Self.callStatusText(for: $0) }
-			.assign(to: &$callStatusLabel)
-		$callStatus
-			.map { Self.isInCall(for: $0) }
-			.assign(to: &$isInCall)
-		$callStatus
+		callDurationTimer.$callStatusLabel.assign(to: &$callStatusLabel)
+
+		callDurationTimer.$isInCall.assign(to: &$isInCall)
+
+		callDurationTimer.$callStatus
 			.map { Self.canRedial(for: $0) }
 			.assign(to: &$canRedial)
 	}
