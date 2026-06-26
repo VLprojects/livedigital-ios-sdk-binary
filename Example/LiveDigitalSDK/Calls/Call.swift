@@ -4,7 +4,7 @@ import Foundation
 struct Call {
 	let id: UUID
 	let caller: String
-	let roomAlias: String
+	let signalingToken: String
 	let direction: CallDirection
 	var state: CallState
 	var isMuted: Bool = false
@@ -13,7 +13,7 @@ struct Call {
 		Call(
 			id: id,
 			caller: caller,
-			roomAlias: roomAlias,
+			signalingToken: signalingToken,
 			direction: direction,
 			state: newState,
 			isMuted: isMuted

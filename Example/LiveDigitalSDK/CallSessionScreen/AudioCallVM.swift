@@ -1,6 +1,5 @@
 import Foundation
 import LiveDigitalSDK
-import UIKit.UIDevice
 import Combine
 
 
@@ -21,23 +20,18 @@ final class AudioCallVM: ObservableObject {
 	weak var coordinator: CallScreenCoordinator?
 
 	private let callManager: CallManager?
-	private let apiClient: MoodhoodAPIClient
-	private let room: Room
 	private let engine: LiveDigitalEngine
-	private let clientUniqueId: String = UUID().uuidString
+	private let deviceEnvironment = DeviceEnvironmentProvider.environment
 	private var channelSession: ChannelSession?
 	private var audioSource: AudioSource?
-	private var participantId: String?
 	private var call: Call
 	private var peers = [PeerId: Peer]()
 	private var currentRouteKind: AudioRoute.Kind?
 	private var reconnectTimer: Timer?
 	private var callDurationTimer = CallDurationTimer()
 
-	init(callManager: CallManager?, apiClient: MoodhoodAPIClient, room: Room, call: Call) {
+	init(callManager: CallManager?, call: Call) {
 		self.callManager = callManager
-		self.apiClient = apiClient
-		self.room = room
 		self.call = call
 		self.isMicrophoneOn = !call.isMuted
 		self.companionName = call.caller
@@ -48,7 +42,7 @@ final class AudioCallVM: ObservableObject {
 
 		let engine = StockLiveDigitalEngine(
 			environment: .production,
-			clientUniqueId: LiveDigitalSDK.ClientUniqueId(rawValue: clientUniqueId),
+			clientUniqueId: LiveDigitalSDK.ClientUniqueId(rawValue: deviceEnvironment.deviceId),
 			useCallKitAudio: true
 		)
 		self.engine = engine
@@ -77,7 +71,7 @@ final class AudioCallVM: ObservableObject {
 
 internal extension AudioCallVM {
 	func redial() {
-		coordinator?.redial(to: room)
+		coordinator?.redial(after: call)
 	}
 
 	func dismiss() {
@@ -262,8 +256,8 @@ extension AudioCallVM: @MainActor ChannelSessionObserver {
 
 private extension AudioCallVM {
 	func updateLoggerMeta() {
-		engine.logger.addMeta(["roomId": room.id])
-		engine.logger.addMeta(["spaceId": room.spaceId])
+		engine.logger.addMeta(["deviceId": deviceEnvironment.deviceId])
+		engine.logger.addMeta(["deviceName": deviceEnvironment.deviceName])
 	}
 
 	func endSession() {
@@ -285,50 +279,10 @@ private extension AudioCallVM {
 	func startConferenceSession() {
 		callDurationTimer.callStatus = .connecting
 
-		Task {
-			if !apiClient.isAuthorized {
-				try await apiClient.authorizeAsGuest()
-			}
-
-			let participant = try await apiClient.createParticipant(
-				space: room.spaceId,
-				room: room.id,
-				clientUniqueId: clientUniqueId,
-				role: "host",
-				name: UIDevice.current.name
-			)
-			print("Created participant: \(participant)")
-
-			let signalingToken = try await apiClient.createSignalingToken(
-				space: room.spaceId,
-				participant: participant.id
-			)
-			print("Created signaling token: \(signalingToken)")
-
-			self.participantId = participant.id
-
-			self.startConferenceSession(
-				channelId: ChannelId(rawValue: room.channelId),
-				peerId: PeerId(rawValue: participant.id),
-				signalingToken: signalingToken.signalingToken
-			)
-		}
-	}
-
-	func startConferenceSession(
-		channelId: ChannelId,
-		peerId: PeerId,
-		signalingToken: String
-	) {
-		callDurationTimer.callStatus = .connecting
-
 		engine.connectToChannel(
-			channelId,
-			mediaRole: .host,
-			signalingToken: signalingToken,
-			peerId: peerId,
+			signalingToken: call.signalingToken,
 			peerPayload: [
-				"name": UIDevice.current.name
+				"name": deviceEnvironment.deviceName
 			],
 			completion: { [weak self] result in
 			guard let self = self else {

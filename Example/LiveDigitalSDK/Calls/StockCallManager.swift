@@ -194,7 +194,7 @@ private extension StockCallManager {
 
 	func reportIncomingCall(_ call: Call) {
 		let update = CXCallUpdate()
-		update.remoteHandle = CXHandle(type: .generic, value: call.roomAlias)
+		update.remoteHandle = CXHandle(type: .generic, value: call.caller)
 		update.localizedCallerName = call.caller
 		update.hasVideo = false
 		update.supportsHolding = false
@@ -252,39 +252,67 @@ extension StockCallManager: PKPushRegistryDelegate {
 		for type: PKPushType,
 		completion: @escaping () -> Void
 	) {
-		print("Did receive incoming push with type \(type), payload: \(payload)")
+		print("Did receive incoming push with type \(type), payload: \(payload.dictionaryPayload)")
 		guard type == .voIP else {
+			print("Failed to handle push: invalid push type: \(type.rawValue)")
 			completion()
 			return
 		}
 
-		guard let actionString = payload.dictionaryPayload["type"] as? String,
-			let action = CallPushAction(rawValue: actionString),
-			let caller = payload.dictionaryPayload["caller"] as? String,
-			let roomAlias = payload.dictionaryPayload["roomAlias"] as? String else {
-			print("Failed to parse call object from push payload")
+		guard let actionString = payload.dictionaryPayload["kind"] as? String,
+			let action = CallPushAction(rawValue: actionString) else {
+			print("Failed to parse call object from push payload: no action")
+			completion()
+			return
+		}
+
+		guard let callIdString = payload.dictionaryPayload["sessionId"] as? String,
+			let callId = UUID(uuidString: callIdString) else {
+			print("Failed to parse call object from push payload: no callId")
 			completion()
 			return
 		}
 
 		switch action {
 			case .start:
-				let call = Call(id: UUID(), caller: caller, roomAlias: roomAlias, direction: .incoming, state: .connecting)
+				guard let caller = payload.dictionaryPayload["caller"] as? String,
+					let signalingToken = payload.dictionaryPayload["signalingToken"] as? String else {
+					print("Failed to parse call object from push payload")
+					completion()
+					return
+				}
+				let call = Call(
+					id: callId,
+					caller: caller,
+					signalingToken: signalingToken,
+					direction: .incoming,
+					state: .connecting
+				)
 				reportIncomingCall(call)
+
 			case .end:
-				calls = calls.filter { (callId, call) in
-					guard call.roomAlias == roomAlias else {
-						return true
-					}
-					callProvider.reportCall(with: callId, endedAt: .now, reason: .remoteEnded)
+				callProvider.reportCall(with: callId, endedAt: .now, reason: .remoteEnded)
+				if let call = calls[callId] {
 					notifyCallFinished(call)
-					return false
+					calls.removeValue(forKey: callId)
+				} else {
+					print("Call \(callId) not found locally")
 				}
+
 			case .answered:
-				for (callId, call) in calls where call.roomAlias == roomAlias {
-					callProvider.reportOutgoingCall(with: callId, connectedAt: .now)
+				callProvider.reportOutgoingCall(with: callId, connectedAt: .now)
+				if let call = calls[callId] {
 					notifyCallAnswered(call)
+				} else {
+					print("Call \(callId) not found locally")
 				}
+
+			case .cancelled:
+				break
+
+			case .declinedByCallee:
+				break
+
 		}
 		completion()
 	}
@@ -311,7 +339,8 @@ extension StockCallManager: CXProviderDelegate {
 		let call = Call(
 			id: action.callUUID,
 			caller: action.handle.value,
-			roomAlias: action.handle.value,
+			// TODO: Implement me!
+			signalingToken: "",
 			direction: .outgoing,
 			state: .active
 		)
