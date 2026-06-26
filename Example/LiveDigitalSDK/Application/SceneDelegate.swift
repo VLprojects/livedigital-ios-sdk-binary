@@ -9,7 +9,8 @@ final class SceneDelegate: UIResponder {
 	private let callManager: CallManager
 	private let apnsTokenProvider: APNSTokenProvider
 	private let pushPermissionsManager: PushPermissionsManager
-	private var callCoordinator: CallCoordinator?
+	private var callFlowCoordinator: CallFlowCoordinator?
+	private var conferenceFlowCoordinator: ConferenceFlowCoordinator?
 
 	override init() {
 		let callManager = StockCallManager()
@@ -90,12 +91,27 @@ private extension SceneDelegate {
 		let startView = CallStartScreenView(vm: startVM)
 		let startVC = UIHostingController(rootView: startView)
 		window.rootViewController = startVC
-		self.callCoordinator = CallCoordinator(
+		self.callFlowCoordinator = CallFlowCoordinator(
 			callManager: callManager,
 			window: window
 		)
 	}
 
 	func startConferenceFlow() {
+		guard let window else {
+			print("Failed to start conference flow: no window")
+			return
+		}
+
+		let startVM = ConferenceStartScreenVM(
+			microphonePermissionManager: StockCaptureDevicePermissionsManager(deviceType: .microphone),
+			cameraPermissionManager: StockCaptureDevicePermissionsManager(deviceType: .camera)
+		)
+		let startView = ConferenceStartScreenView(vm: startVM)
+		let startVC = UIHostingController(rootView: startView)
+		window.rootViewController = startVC
+		let coordinator = ConferenceFlowCoordinator(window: window)
+		startVM.coordinator = coordinator
+		self.conferenceFlowCoordinator = coordinator
 	}
 }

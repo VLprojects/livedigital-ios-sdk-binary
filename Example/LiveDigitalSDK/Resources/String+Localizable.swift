@@ -29,6 +29,8 @@ extension L10n {
 	static let microphonePermissionTitle = L10n("microphonePermissionTitle")
 	static let outgoingCallAction = L10n("outgoingCallAction")
 	static let outgoingCallHint = L10n("outgoingCallHint")
+	static let openRoomHint = L10n("openRoomHint")
+	static let openRoomAction = L10n("openRoomAction")
 	static let permissionsLegend = L10n("permissionsLegend")
 	static let redialAction = L10n("redialAction")
 	static let roomAliasPlaceholder = L10n("roomAliasPlaceholder")

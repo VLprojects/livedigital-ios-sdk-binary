@@ -4,7 +4,7 @@ import SwiftUI
 
 
 @MainActor
-final class CallCoordinator {
+final class CallFlowCoordinator {
 	private enum Constants {
 		static let apiEnvironment = MoodhoodAPIEnvironment(
 			apiHost: URL(string: "https://moodhood-api.livedigital.space")!,
@@ -31,7 +31,7 @@ final class CallCoordinator {
 
 // MARK: - CallManagerObserver implementation
 
-extension CallCoordinator: @MainActor CallManagerObserver {
+extension CallFlowCoordinator: @MainActor CallManagerObserver {
 	func didReceiveCall(_ call: Call) {
 		dismissCurrentCalls()
 		openRoom(for: call)
@@ -52,7 +52,7 @@ extension CallCoordinator: @MainActor CallManagerObserver {
 
 // MARK: - CallScreenCoordinator implementation
 
-extension CallCoordinator: CallScreenCoordinator {
+extension CallFlowCoordinator: CallScreenCoordinator {
 	func dismissCallScreen(call: Call) {
 		callScreens.removeValue(forKey: call.id)?.dismiss(animated: true)
 	}
@@ -71,7 +71,7 @@ extension CallCoordinator: CallScreenCoordinator {
 
 // MARK: - Private methods
 
-private extension CallCoordinator {
+private extension CallFlowCoordinator {
 	func dismissCurrentCalls() {
 		for (callId, callScreen) in callScreens {
 			callManager.endCall(callId)

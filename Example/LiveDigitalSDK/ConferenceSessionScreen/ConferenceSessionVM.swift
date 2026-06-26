@@ -5,26 +5,19 @@ import Combine
 
 
 @MainActor
-final class AudioCallVM: ObservableObject {
+final class ConferenceSessionVM: ObservableObject {
 	private enum Config {
 		static let reconnectInterval: TimeInterval = 3
-		static let preferredInternalRoutes: [AudioRoute.Kind] = [
-			.internalLoudspeaker,
-			.internalEarSpeaker,
-			.muted,
-			.noAudio,
-		]
 	}
 
 	@Published var isSoundOn = true
 	@Published var isMicrophoneOn: Bool
 	@Published var canFinishSession = false
-	@Published var companionName: String
+	@Published var roomName: String
 	@Published var callStatusLabel: String
 	@Published var isInCall: Bool
-	@Published var canRedial: Bool
 
-	weak var coordinator: CallScreenCoordinator?
+	weak var coordinator: ConferenceScreenCoordinator?
 
 	@Published private var callStatus: CallSessionStatus {
 		didSet {
@@ -32,7 +25,6 @@ final class AudioCallVM: ObservableObject {
 		}
 	}
 
-	private let callManager: CallManager?
 	private let apiClient: MoodhoodAPIClient
 	private let room: Room
 	private let engine: LiveDigitalEngine
@@ -40,46 +32,33 @@ final class AudioCallVM: ObservableObject {
 	private var channelSession: ChannelSession?
 	private var audioSource: AudioSource?
 	private var participantId: String?
-	private var call: Call
 	private var peers = [PeerId: Peer]()
 	private var currentRouteKind: AudioRoute.Kind?
 	private var reconnectTimer: Timer?
 	private var callDurationTimerCancellable: AnyCancellable?
 
-	init(callManager: CallManager?, apiClient: MoodhoodAPIClient, room: Room, call: Call) {
-		self.callManager = callManager
+	init(apiClient: MoodhoodAPIClient, room: Room) {
 		self.apiClient = apiClient
 		self.room = room
-		self.call = call
-		self.isMicrophoneOn = !call.isMuted
-		self.companionName = call.caller
+		self.isMicrophoneOn = true
+		self.roomName = room.name
 
 		let callStatus: CallSessionStatus = .disconnected
 		self.callStatus = callStatus
 		self.callStatusLabel = Self.callStatusText(for: callStatus)
 		self.isInCall = Self.isInCall(for: callStatus)
-		self.canRedial = Self.canRedial(for: callStatus)
 
 		let engine = StockLiveDigitalEngine(
 			environment: .production,
 			clientUniqueId: LiveDigitalSDK.ClientUniqueId(rawValue: clientUniqueId),
-			useCallKitAudio: true
+			useCallKitAudio: false
 		)
 		self.engine = engine
 		engine.delegate = self
 
 		updateLoggerMeta()
-
-		callManager?.addObserver(self)
-
 		bindCallStatus()
-
-		switch call.direction {
-			case .incoming:
-				startConferenceSession()
-			case .outgoing:
-				self.callStatus = .dialing
-		}
+		startConferenceSession()
 	}
 
 	deinit {
@@ -89,44 +68,13 @@ final class AudioCallVM: ObservableObject {
 
 // MARK: - Internal methods
 
-internal extension AudioCallVM {
-	func redial() {
-		coordinator?.redial(to: room)
-	}
-
+internal extension ConferenceSessionVM {
 	func dismiss() {
-		coordinator?.dismissCallScreen(call: call)
+		coordinator?.dismissCallScreen()
 	}
 
 	func toggleMicrophone() {
-		// If we change microphone state directly, its state will be inconsistent with CallKit call state.
-		// So we have to change CallKit mute state via callManager and wait for callback to actually toggle the mic.
-		let newMutedState = audioSource != nil
-		callManager?.toggleMicrophone(muted: newMutedState, in: call)
-	}
-
-	func updateLocalAudioEnabled(_ enabled: Bool) {
-		isMicrophoneOn = enabled
-		guard let channelSession else {
-			return
-		}
-
-		if enabled, audioSource == nil {
-			startAudioSource()
-		}
-		guard let audioSource else {
-			print("Failed to update local audio state: channel or audio source is undefined.")
-			isMicrophoneOn = false
-			return
-		}
-
-		if enabled {
-			channelSession.addAudioSource(audioSource)
-		} else {
-			channelSession.removeAudioSource(audioSource)
-			engine.stopAudioSource(audioSource)
-			self.audioSource = nil
-		}
+		updateLocalAudioEnabled(!isMicrophoneOn)
 	}
 
 	func updatePreferred(route: AudioRoute) {
@@ -152,52 +100,9 @@ internal extension AudioCallVM {
 
 }
 
-// MARK: - CallManagerObserver implementation
-
-extension AudioCallVM: @MainActor CallManagerObserver {
-	func didUpdateCallMuteState(_ call: Call) {
-		guard call.id == self.call.id else {
-			return
-		}
-		self.call = call
-		updateLocalAudioEnabled(!call.isMuted)
-	}
-
-	func callWasAnswered(_ call: Call) {
-		guard call.id == self.call.id, callStatus == .dialing else {
-			return
-		}
-		self.call = call
-		startConferenceSession()
-	}
-
-	func didEndCall(_ call: Call) {
-		guard call.id == self.call.id else {
-			return
-		}
-		self.call = call
-
-		if let audioSource {
-			engine.stopAudioSource(audioSource)
-			self.audioSource = nil
-		}
-
-		if let channelSession {
-			canFinishSession = false
-			callStatus = .disconnecting
-			channelSession.stop(completion: { [weak self] in
-				self?.channelSession = nil
-				self?.callStatus = .callEnded
-			})
-		} else {
-			self.callStatus = .callEnded
-		}
-	}
-}
-
 // MARK: - AudioRouterDelegate implementation
 
-extension AudioCallVM: @MainActor AudioRouterDelegate {
+extension ConferenceSessionVM: @MainActor AudioRouterDelegate {
 	func needRestartAudio() {
 	}
 
@@ -218,7 +123,7 @@ extension AudioCallVM: @MainActor AudioRouterDelegate {
 
 // MARK: - ChannelSessionDelegate implementation
 
-extension AudioCallVM: @MainActor ChannelSessionDelegate {
+extension ConferenceSessionVM: @MainActor ChannelSessionDelegate {
 	func sessionNeedsRestart(_ channelSession: ChannelSession) {
 		let sessionIsRunning = switch channelSession.status {
 			case .starting, .started, .restarting: true
@@ -243,6 +148,7 @@ extension AudioCallVM: @MainActor ChannelSessionDelegate {
 		with trackLabel: TrackLabel,
 		from peer: Peer
 	) -> Bool {
+		// In audio call we don't need to decode incoming video.
 		return true
 	}
 
@@ -251,18 +157,19 @@ extension AudioCallVM: @MainActor ChannelSessionDelegate {
 		with trackLabel: TrackLabel,
 		from peer: Peer
 	) -> Bool {
+		// In audio call we enable all incoming audio.
 		return false
 	}
 }
 
 // MARK: - CameraManagerDelegate implementation
 
-extension AudioCallVM: CameraManagerDelegate {
+extension ConferenceSessionVM: CameraManagerDelegate {
 }
 
 // MARK: - ChannelSessionObserver implementation
 
-extension AudioCallVM: @MainActor ChannelSessionObserver {
+extension ConferenceSessionVM: @MainActor ChannelSessionObserver {
 	func channelSessionNeedsUpdateState(_ channelSession: any LiveDigitalSDK.ChannelSession) {
 		// Session was recovered after connection loss.
 		// Some events may have been missed.
@@ -272,7 +179,7 @@ extension AudioCallVM: @MainActor ChannelSessionObserver {
 
 // MARK: - Private methods
 
-private extension AudioCallVM {
+private extension ConferenceSessionVM {
 	func updateLoggerMeta() {
 		engine.logger.addMeta(["roomId": room.id])
 		engine.logger.addMeta(["spaceId": room.spaceId])
@@ -281,7 +188,7 @@ private extension AudioCallVM {
 	func endSession() {
 		channelSession = nil
 		callStatus = .disconnected
-		callManager?.endCall(call)
+		coordinator?.dismissCallScreen()
 	}
 
 	func scheduleReconnect() {
@@ -291,6 +198,30 @@ private extension AudioCallVM {
 				self?.reconnectTimer = nil
 				self?.startConferenceSession()
 			}
+		}
+	}
+
+	func updateLocalAudioEnabled(_ enabled: Bool) {
+		isMicrophoneOn = enabled
+		guard let channelSession else {
+			return
+		}
+
+		if enabled, audioSource == nil {
+			startAudioSource()
+		}
+		guard let audioSource else {
+			print("Failed to update local audio state: channel or audio source is undefined.")
+			isMicrophoneOn = false
+			return
+		}
+
+		if enabled {
+			channelSession.addAudioSource(audioSource)
+		} else {
+			channelSession.removeAudioSource(audioSource)
+			engine.stopAudioSource(audioSource)
+			self.audioSource = nil
 		}
 	}
 
@@ -394,13 +325,6 @@ private extension AudioCallVM {
 		}
 	}
 
-	static func canRedial(for status: CallSessionStatus) -> Bool {
-		switch status {
-			case .callEnded: true
-			case .dialing, .connecting, .connected, .disconnecting, .disconnected: false
-		}
-	}
-
 	static func callDurationText(_ duration: TimeInterval) -> String {
 		let seconds = Int(duration.rounded(.awayFromZero))
 		let h = seconds / 3600
@@ -447,8 +371,5 @@ private extension AudioCallVM {
 		$callStatus
 			.map { Self.isInCall(for: $0) }
 			.assign(to: &$isInCall)
-		$callStatus
-			.map { Self.canRedial(for: $0) }
-			.assign(to: &$canRedial)
 	}
 }

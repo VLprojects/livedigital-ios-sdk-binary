@@ -182,7 +182,7 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Выберите сценарий для example приложения. Выбор будет сохранён. Если вы захотите изменить выбор, нужно переустановить приложение."
           }
         }
@@ -201,6 +201,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Микрофон"
+          }
+        }
+      }
+    },
+    "openRoomAction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join room"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Войти"
+          }
+        }
+      }
+    },
+    "openRoomHint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open a room by alias"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подключитесь к комнате по алиасу"
           }
         }
       }
@@ -335,7 +369,7 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Звонки"
           }
         }
@@ -352,7 +386,7 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Работа в конференц-комнате"
           }
         }
