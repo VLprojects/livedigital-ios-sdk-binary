@@ -33,7 +33,7 @@ extension LiveDigitalSDK.ChannelId : Swift.CustomStringConvertible {
 }
 public protocol ChannelSession : AnyObject {
   var status: LiveDigitalSDK.ChannelSessionStatus { get }
-  var myPeerId: LiveDigitalSDK.PeerId? { get }
+  var myPeerId: LiveDigitalSDK.PeerId { get }
   var sessionDetails: LiveDigitalSDK.SessionDetails? { get }
   var shouldShowLocalPeer: Swift.Bool { get set }
   var peers: Swift.Set<LiveDigitalSDK.Peer> { get }
@@ -53,7 +53,7 @@ public protocol ChannelSession : AnyObject {
   func suspendAudio(with trackLabel: LiveDigitalSDK.TrackLabel, for peer: LiveDigitalSDK.Peer)
   func proceedAudio(with trackLabel: LiveDigitalSDK.TrackLabel, for peer: LiveDigitalSDK.Peer)
   func updatePeerPayload(_ peerPayload: [Swift.String : Any])
-  func start(mediaRole: LiveDigitalSDK.MediaRole?, peerId: LiveDigitalSDK.PeerId?, peerPayload: [Swift.String : Any]?)
+  func start(peerPayload: [Swift.String : Any]?)
   func stop(callbackQueue: Dispatch.DispatchQueue, completion: @escaping () -> Swift.Void)
   func stop(completion: @escaping () -> Swift.Void)
   func confirmActivity()
@@ -299,7 +299,7 @@ final public class BroadcastLiveDigitalEngine {
 @available(watchOS, unavailable, message: "Only available in extensions.")
 @available(tvOS, unavailable, message: "Only available in extensions.")
 extension LiveDigitalSDK.BroadcastLiveDigitalEngine : LiveDigitalSDK.LiveDigitalSessionManager {
-  final public func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, signalingToken: Swift.String, peerId: LiveDigitalSDK.PeerId?, peerPayload: [Swift.String : Any]?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
+  final public func connectToChannel(signalingToken: Swift.String, peerPayload: [Swift.String : Any]?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
   final public func disconnectFromCurrentChannel(completion: @escaping () -> Swift.Void)
 }
 @available(iOS, unavailable, message: "Only available in extensions.")
@@ -371,6 +371,7 @@ public protocol LiveDigitalEngine : LiveDigitalSDK.LiveDigitalCameraEngine, Live
 }
 public enum LiveDigitalEngineError : Foundation.LocalizedError, Swift.Sendable {
   case alreadyConnected
+  case invalidSignalingToken
   case noCameraPermission
   case noMicrophonePermission
   case cameraNotAvailable
@@ -413,12 +414,21 @@ extension LiveDigitalSDK.LiveDigitalSDKEnvironment {
 public typealias ConnectionCompletion = (Swift.Result<any LiveDigitalSDK.ChannelSession & LiveDigitalSDK.ObservableChannelSession, LiveDigitalSDK.LiveDigitalEngineError>) -> Swift.Void
 public protocol LiveDigitalSessionManager {
   var currentChannelSession: (any LiveDigitalSDK.ChannelSession & LiveDigitalSDK.ObservableChannelSession)? { get }
-  func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, signalingToken: Swift.String, peerId: LiveDigitalSDK.PeerId?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
-  func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, signalingToken: Swift.String, peerId: LiveDigitalSDK.PeerId?, peerPayload: [Swift.String : Any]?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
+  func connectToChannel(signalingToken: Swift.String, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
+  func connectToChannel(signalingToken: Swift.String, peerPayload: [Swift.String : Any]?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
   func disconnectFromCurrentChannel(completion: @escaping () -> Swift.Void)
 }
 extension LiveDigitalSDK.LiveDigitalSessionManager {
-  public func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, signalingToken: Swift.String, peerId: LiveDigitalSDK.PeerId?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
+  public func connectToChannel(signalingToken: Swift.String, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
+}
+public protocol SIPCallManager {
+  func initiateCall() async throws(LiveDigitalSDK.SIPCallManagerError) -> LiveDigitalSDK.SIPCallId
+  func declineCall(callId: LiveDigitalSDK.SIPCallId, token: Swift.String) async throws(LiveDigitalSDK.SIPCallManagerError)
+}
+public enum SIPCallManagerError : Swift.Error {
+  case noActiveSession
+  case networkError
+  case actionFailed(any Swift.Error)
 }
 @available(iOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(watchOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
@@ -445,7 +455,7 @@ final public class StockLiveDigitalEngine {
 @available(watchOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(tvOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 extension LiveDigitalSDK.StockLiveDigitalEngine : LiveDigitalSDK.LiveDigitalSessionManager {
-  final public func connectToChannel(_ channelId: LiveDigitalSDK.ChannelId, mediaRole: LiveDigitalSDK.MediaRole?, signalingToken: Swift.String, peerId: LiveDigitalSDK.PeerId?, peerPayload: [Swift.String : Any]?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
+  final public func connectToChannel(signalingToken: Swift.String, peerPayload: [Swift.String : Any]?, completion: @escaping LiveDigitalSDK.ConnectionCompletion)
   final public func disconnectFromCurrentChannel(completion: @escaping () -> Swift.Void)
 }
 @available(iOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
@@ -505,6 +515,10 @@ extension LiveDigitalSDK.StockLiveDigitalEngine : LiveDigitalSDK.AudioRouterDele
 @available(watchOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 @available(tvOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
 extension LiveDigitalSDK.StockLiveDigitalEngine : LiveDigitalSDK.LiveDigitalEngine {
+}
+extension LiveDigitalSDK.StockLiveDigitalEngine : LiveDigitalSDK.SIPCallManager {
+  final public func initiateCall() async throws(LiveDigitalSDK.SIPCallManagerError) -> LiveDigitalSDK.SIPCallId
+  final public func declineCall(callId: LiveDigitalSDK.SIPCallId, token: Swift.String) async throws(LiveDigitalSDK.SIPCallManagerError)
 }
 public protocol LiveDigitalVideoFilterEngine : AnyObject {
   var filter: (any LiveDigitalSDK.VideoSourceFilter)? { get set }
@@ -1039,6 +1053,17 @@ public enum ChannelGroup : Swift.Sendable, Swift.Hashable {
   public static func == (a: LiveDigitalSDK.ChannelGroup, b: LiveDigitalSDK.ChannelGroup) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SIPCallId : Swift.RawRepresentable, Swift.Sendable, Swift.Codable, Swift.Hashable, Swift.Equatable {
+  public let rawValue: Swift.String
+  public init(rawValue: Swift.String)
+  public static func random() -> LiveDigitalSDK.SIPCallId
+  public typealias RawValue = Swift.String
+}
+extension LiveDigitalSDK.SIPCallId : Swift.CustomStringConvertible {
+  public var description: Swift.String {
     get
   }
 }

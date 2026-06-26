@@ -301,22 +301,14 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "LiveDigitalSDK.PeerId?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "PeerId",
-                    "printedName": "LiveDigitalSDK.PeerId",
-                    "usr": "s:14LiveDigitalSDK6PeerIdV"
-                  }
-                ],
-                "usr": "s:Sq"
+                "name": "PeerId",
+                "printedName": "LiveDigitalSDK.PeerId",
+                "usr": "s:14LiveDigitalSDK6PeerIdV"
               }
             ],
             "declKind": "Var",
-            "usr": "s:14LiveDigitalSDK14ChannelSessionP8myPeerIdAA0gH0VSgvp",
-            "mangledName": "$s14LiveDigitalSDK14ChannelSessionP8myPeerIdAA0gH0VSgvp",
+            "usr": "s:14LiveDigitalSDK14ChannelSessionP8myPeerIdAA0gH0Vvp",
+            "mangledName": "$s14LiveDigitalSDK14ChannelSessionP8myPeerIdAA0gH0Vvp",
             "moduleName": "LiveDigitalSDK",
             "protocolReq": true,
             "declAttributes": [
@@ -330,22 +322,14 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "LiveDigitalSDK.PeerId?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "PeerId",
-                        "printedName": "LiveDigitalSDK.PeerId",
-                        "usr": "s:14LiveDigitalSDK6PeerIdV"
-                      }
-                    ],
-                    "usr": "s:Sq"
+                    "name": "PeerId",
+                    "printedName": "LiveDigitalSDK.PeerId",
+                    "usr": "s:14LiveDigitalSDK6PeerIdV"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14LiveDigitalSDK14ChannelSessionP8myPeerIdAA0gH0VSgvg",
-                "mangledName": "$s14LiveDigitalSDK14ChannelSessionP8myPeerIdAA0gH0VSgvg",
+                "usr": "s:14LiveDigitalSDK14ChannelSessionP8myPeerIdAA0gH0Vvg",
+                "mangledName": "$s14LiveDigitalSDK14ChannelSessionP8myPeerIdAA0gH0Vvg",
                 "moduleName": "LiveDigitalSDK",
                 "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.ChannelSession>",
                 "sugared_genericSig": "<Self where Self : LiveDigitalSDK.ChannelSession>",
@@ -1212,40 +1196,12 @@
           {
             "kind": "Function",
             "name": "start",
-            "printedName": "start(mediaRole:peerId:peerPayload:)",
+            "printedName": "start(peerPayload:)",
             "children": [
               {
                 "kind": "TypeNominal",
                 "name": "Void",
                 "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "LiveDigitalSDK.MediaRole?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "MediaRole",
-                    "printedName": "LiveDigitalSDK.MediaRole",
-                    "usr": "s:14LiveDigitalSDK9MediaRoleO"
-                  }
-                ],
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "LiveDigitalSDK.PeerId?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "PeerId",
-                    "printedName": "LiveDigitalSDK.PeerId",
-                    "usr": "s:14LiveDigitalSDK6PeerIdV"
-                  }
-                ],
-                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
@@ -1276,8 +1232,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14LiveDigitalSDK14ChannelSessionP5start9mediaRole6peerId0I7PayloadyAA05MediaH0OSg_AA04PeerJ0VSgSDySSypGSgtF",
-            "mangledName": "$s14LiveDigitalSDK14ChannelSessionP5start9mediaRole6peerId0I7PayloadyAA05MediaH0OSg_AA04PeerJ0VSgSDySSypGSgtF",
+            "usr": "s:14LiveDigitalSDK14ChannelSessionP5start11peerPayloadySDySSypGSg_tF",
+            "mangledName": "$s14LiveDigitalSDK14ChannelSessionP5start11peerPayloadySDySSypGSg_tF",
             "moduleName": "LiveDigitalSDK",
             "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.ChannelSession>",
             "sugared_genericSig": "<Self where Self : LiveDigitalSDK.ChannelSession>",
@@ -8702,6 +8658,16 @@
       },
       {
         "kind": "Import",
+        "name": "JWTDecode",
+        "printedName": "JWTDecode",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -10141,6 +10107,46 @@
           },
           {
             "kind": "Var",
+            "name": "invalidSignalingToken",
+            "printedName": "invalidSignalingToken",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(LiveDigitalSDK.LiveDigitalEngineError.Type) -> LiveDigitalSDK.LiveDigitalEngineError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LiveDigitalEngineError",
+                    "printedName": "LiveDigitalSDK.LiveDigitalEngineError",
+                    "usr": "s:14LiveDigitalSDK0aB11EngineErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "LiveDigitalSDK.LiveDigitalEngineError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LiveDigitalEngineError",
+                        "printedName": "LiveDigitalSDK.LiveDigitalEngineError",
+                        "usr": "s:14LiveDigitalSDK0aB11EngineErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:14LiveDigitalSDK0aB11EngineErrorO21invalidSignalingTokenyA2CmF",
+            "mangledName": "$s14LiveDigitalSDK0aB11EngineErrorO21invalidSignalingTokenyA2CmF",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "noCameraPermission",
             "printedName": "noCameraPermission",
             "children": [
@@ -11305,7 +11311,7 @@
           {
             "kind": "Function",
             "name": "connectToChannel",
-            "printedName": "connectToChannel(_:mediaRole:signalingToken:peerId:completion:)",
+            "printedName": "connectToChannel(signalingToken:completion:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -11314,43 +11320,9 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "ChannelId",
-                "printedName": "LiveDigitalSDK.ChannelId",
-                "usr": "s:14LiveDigitalSDK9ChannelIdV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "LiveDigitalSDK.MediaRole?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "MediaRole",
-                    "printedName": "LiveDigitalSDK.MediaRole",
-                    "usr": "s:14LiveDigitalSDK9MediaRoleO"
-                  }
-                ],
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
                 "name": "String",
                 "printedName": "Swift.String",
                 "usr": "s:SS"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "LiveDigitalSDK.PeerId?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "PeerId",
-                    "printedName": "LiveDigitalSDK.PeerId",
-                    "usr": "s:14LiveDigitalSDK6PeerIdV"
-                  }
-                ],
-                "usr": "s:Sq"
               },
               {
                 "kind": "TypeFunc",
@@ -11385,8 +11357,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14LiveDigitalSDK0aB14SessionManagerP16connectToChannel_9mediaRole14signalingToken6peerId10completionyAA0hN0V_AA05MediaJ0OSgSSAA04PeerN0VSgys6ResultOyAA0hD0_AA010ObservablehD0pAA0aB11EngineErrorOGctF",
-            "mangledName": "$s14LiveDigitalSDK0aB14SessionManagerP16connectToChannel_9mediaRole14signalingToken6peerId10completionyAA0hN0V_AA05MediaJ0OSgSSAA04PeerN0VSgys6ResultOyAA0hD0_AA010ObservablehD0pAA0aB11EngineErrorOGctF",
+            "usr": "s:14LiveDigitalSDK0aB14SessionManagerP16connectToChannel14signalingToken10completionySS_ys6ResultOyAA0hD0_AA010ObservablehD0pAA0aB11EngineErrorOGctF",
+            "mangledName": "$s14LiveDigitalSDK0aB14SessionManagerP16connectToChannel14signalingToken10completionySS_ys6ResultOyAA0hD0_AA010ObservablehD0pAA0aB11EngineErrorOGctF",
             "moduleName": "LiveDigitalSDK",
             "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.LiveDigitalSessionManager>",
             "sugared_genericSig": "<Self where Self : LiveDigitalSDK.LiveDigitalSessionManager>",
@@ -11400,7 +11372,7 @@
           {
             "kind": "Function",
             "name": "connectToChannel",
-            "printedName": "connectToChannel(_:mediaRole:signalingToken:peerId:peerPayload:completion:)",
+            "printedName": "connectToChannel(signalingToken:peerPayload:completion:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -11409,43 +11381,9 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "ChannelId",
-                "printedName": "LiveDigitalSDK.ChannelId",
-                "usr": "s:14LiveDigitalSDK9ChannelIdV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "LiveDigitalSDK.MediaRole?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "MediaRole",
-                    "printedName": "LiveDigitalSDK.MediaRole",
-                    "usr": "s:14LiveDigitalSDK9MediaRoleO"
-                  }
-                ],
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
                 "name": "String",
                 "printedName": "Swift.String",
                 "usr": "s:SS"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "LiveDigitalSDK.PeerId?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "PeerId",
-                    "printedName": "LiveDigitalSDK.PeerId",
-                    "usr": "s:14LiveDigitalSDK6PeerIdV"
-                  }
-                ],
-                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
@@ -11507,8 +11445,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14LiveDigitalSDK0aB14SessionManagerP16connectToChannel_9mediaRole14signalingToken6peerId0M7Payload10completionyAA0hN0V_AA05MediaJ0OSgSSAA04PeerN0VSgSDySSypGSgys6ResultOyAA0hD0_AA010ObservablehD0pAA0aB11EngineErrorOGctF",
-            "mangledName": "$s14LiveDigitalSDK0aB14SessionManagerP16connectToChannel_9mediaRole14signalingToken6peerId0M7Payload10completionyAA0hN0V_AA05MediaJ0OSgSSAA04PeerN0VSgSDySSypGSgys6ResultOyAA0hD0_AA010ObservablehD0pAA0aB11EngineErrorOGctF",
+            "usr": "s:14LiveDigitalSDK0aB14SessionManagerP16connectToChannel14signalingToken11peerPayload10completionySS_SDySSypGSgys6ResultOyAA0hD0_AA010ObservablehD0pAA0aB11EngineErrorOGctF",
+            "mangledName": "$s14LiveDigitalSDK0aB14SessionManagerP16connectToChannel14signalingToken11peerPayload10completionySS_SDySSypGSgys6ResultOyAA0hD0_AA010ObservablehD0pAA0aB11EngineErrorOGctF",
             "moduleName": "LiveDigitalSDK",
             "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.LiveDigitalSessionManager>",
             "sugared_genericSig": "<Self where Self : LiveDigitalSDK.LiveDigitalSessionManager>",
@@ -11563,7 +11501,7 @@
           {
             "kind": "Function",
             "name": "connectToChannel",
-            "printedName": "connectToChannel(_:mediaRole:signalingToken:peerId:completion:)",
+            "printedName": "connectToChannel(signalingToken:completion:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -11572,43 +11510,9 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "ChannelId",
-                "printedName": "LiveDigitalSDK.ChannelId",
-                "usr": "s:14LiveDigitalSDK9ChannelIdV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "LiveDigitalSDK.MediaRole?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "MediaRole",
-                    "printedName": "LiveDigitalSDK.MediaRole",
-                    "usr": "s:14LiveDigitalSDK9MediaRoleO"
-                  }
-                ],
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
                 "name": "String",
                 "printedName": "Swift.String",
                 "usr": "s:SS"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "LiveDigitalSDK.PeerId?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "PeerId",
-                    "printedName": "LiveDigitalSDK.PeerId",
-                    "usr": "s:14LiveDigitalSDK6PeerIdV"
-                  }
-                ],
-                "usr": "s:Sq"
               },
               {
                 "kind": "TypeFunc",
@@ -11643,8 +11547,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14LiveDigitalSDK0aB14SessionManagerPAAE16connectToChannel_9mediaRole14signalingToken6peerId10completionyAA0hN0V_AA05MediaJ0OSgSSAA04PeerN0VSgys6ResultOyAA0hD0_AA010ObservablehD0pAA0aB11EngineErrorOGctF",
-            "mangledName": "$s14LiveDigitalSDK0aB14SessionManagerPAAE16connectToChannel_9mediaRole14signalingToken6peerId10completionyAA0hN0V_AA05MediaJ0OSgSSAA04PeerN0VSgys6ResultOyAA0hD0_AA010ObservablehD0pAA0aB11EngineErrorOGctF",
+            "usr": "s:14LiveDigitalSDK0aB14SessionManagerPAAE16connectToChannel14signalingToken10completionySS_ys6ResultOyAA0hD0_AA010ObservablehD0pAA0aB11EngineErrorOGctF",
+            "mangledName": "$s14LiveDigitalSDK0aB14SessionManagerPAAE16connectToChannel14signalingToken10completionySS_ys6ResultOyAA0hD0_AA010ObservablehD0pAA0aB11EngineErrorOGctF",
             "moduleName": "LiveDigitalSDK",
             "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.LiveDigitalSessionManager>",
             "sugared_genericSig": "<Self where Self : LiveDigitalSDK.LiveDigitalSessionManager>",
@@ -11677,6 +11581,290 @@
             "printedName": "Copyable",
             "usr": "s:s8CopyableP",
             "mangledName": "$ss8CopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SIPCallManager",
+        "printedName": "SIPCallManager",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "initiateCall",
+            "printedName": "initiateCall()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SIPCallId",
+                "printedName": "LiveDigitalSDK.SIPCallId",
+                "usr": "s:14LiveDigitalSDK9SIPCallIdV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK14SIPCallManagerP12initiateCallAA0D2IdVyYaAA0dE5ErrorOYKF",
+            "mangledName": "$s14LiveDigitalSDK14SIPCallManagerP12initiateCallAA0D2IdVyYaAA0dE5ErrorOYKF",
+            "moduleName": "LiveDigitalSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.SIPCallManager>",
+            "sugared_genericSig": "<Self where Self : LiveDigitalSDK.SIPCallManager>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "declineCall",
+            "printedName": "declineCall(callId:token:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SIPCallId",
+                "printedName": "LiveDigitalSDK.SIPCallId",
+                "usr": "s:14LiveDigitalSDK9SIPCallIdV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK14SIPCallManagerP11declineCall6callId5tokenyAA0dI0V_SStYaAA0dE5ErrorOYKF",
+            "mangledName": "$s14LiveDigitalSDK14SIPCallManagerP11declineCall6callId5tokenyAA0dI0V_SStYaAA0dE5ErrorOYKF",
+            "moduleName": "LiveDigitalSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.SIPCallManager>",
+            "sugared_genericSig": "<Self where Self : LiveDigitalSDK.SIPCallManager>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:14LiveDigitalSDK14SIPCallManagerP",
+        "mangledName": "$s14LiveDigitalSDK14SIPCallManagerP",
+        "moduleName": "LiveDigitalSDK",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SIPCallManagerError",
+        "printedName": "SIPCallManagerError",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "noActiveSession",
+            "printedName": "noActiveSession",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(LiveDigitalSDK.SIPCallManagerError.Type) -> LiveDigitalSDK.SIPCallManagerError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SIPCallManagerError",
+                    "printedName": "LiveDigitalSDK.SIPCallManagerError",
+                    "usr": "s:14LiveDigitalSDK19SIPCallManagerErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "LiveDigitalSDK.SIPCallManagerError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SIPCallManagerError",
+                        "printedName": "LiveDigitalSDK.SIPCallManagerError",
+                        "usr": "s:14LiveDigitalSDK19SIPCallManagerErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:14LiveDigitalSDK19SIPCallManagerErrorO15noActiveSessionyA2CmF",
+            "mangledName": "$s14LiveDigitalSDK19SIPCallManagerErrorO15noActiveSessionyA2CmF",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "networkError",
+            "printedName": "networkError",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(LiveDigitalSDK.SIPCallManagerError.Type) -> LiveDigitalSDK.SIPCallManagerError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SIPCallManagerError",
+                    "printedName": "LiveDigitalSDK.SIPCallManagerError",
+                    "usr": "s:14LiveDigitalSDK19SIPCallManagerErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "LiveDigitalSDK.SIPCallManagerError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SIPCallManagerError",
+                        "printedName": "LiveDigitalSDK.SIPCallManagerError",
+                        "usr": "s:14LiveDigitalSDK19SIPCallManagerErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:14LiveDigitalSDK19SIPCallManagerErrorO07networkF0yA2CmF",
+            "mangledName": "$s14LiveDigitalSDK19SIPCallManagerErrorO07networkF0yA2CmF",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "actionFailed",
+            "printedName": "actionFailed",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(LiveDigitalSDK.SIPCallManagerError.Type) -> (any Swift.Error) -> LiveDigitalSDK.SIPCallManagerError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(any Swift.Error) -> LiveDigitalSDK.SIPCallManagerError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SIPCallManagerError",
+                        "printedName": "LiveDigitalSDK.SIPCallManagerError",
+                        "usr": "s:14LiveDigitalSDK19SIPCallManagerErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Error",
+                        "printedName": "any Swift.Error",
+                        "usr": "s:s5ErrorP"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "LiveDigitalSDK.SIPCallManagerError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SIPCallManagerError",
+                        "printedName": "LiveDigitalSDK.SIPCallManagerError",
+                        "usr": "s:14LiveDigitalSDK19SIPCallManagerErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:14LiveDigitalSDK19SIPCallManagerErrorO12actionFailedyACs0F0_pcACmF",
+            "mangledName": "$s14LiveDigitalSDK19SIPCallManagerErrorO12actionFailedyACs0F0_pcACmF",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:14LiveDigitalSDK19SIPCallManagerErrorO",
+        "mangledName": "$s14LiveDigitalSDK19SIPCallManagerErrorO",
+        "moduleName": "LiveDigitalSDK",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Error",
+            "printedName": "Error",
+            "usr": "s:s5ErrorP",
+            "mangledName": "$ss5ErrorP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -11727,16 +11915,6 @@
       },
       {
         "kind": "Import",
-        "name": "CStrISO8601",
-        "printedName": "CStrISO8601",
-        "declKind": "Import",
-        "moduleName": "LiveDigitalSDK",
-        "declAttributes": [
-          "AccessControl"
-        ]
-      },
-      {
-        "kind": "Import",
         "name": "MoodhoodAnalyticsAPI",
         "printedName": "MoodhoodAnalyticsAPI",
         "declKind": "Import",
@@ -11747,28 +11925,8 @@
       },
       {
         "kind": "Import",
-        "name": "OpenAPIRuntime",
-        "printedName": "OpenAPIRuntime",
-        "declKind": "Import",
-        "moduleName": "LiveDigitalSDK",
-        "declAttributes": [
-          "AccessControl"
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "OpenAPIURLSession",
-        "printedName": "OpenAPIURLSession",
-        "declKind": "Import",
-        "moduleName": "LiveDigitalSDK",
-        "declAttributes": [
-          "AccessControl"
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "HTTPTypes",
-        "printedName": "HTTPTypes",
+        "name": "JWTDecode",
+        "printedName": "JWTDecode",
         "declKind": "Import",
         "moduleName": "LiveDigitalSDK",
         "declAttributes": [
@@ -12256,7 +12414,7 @@
           {
             "kind": "Function",
             "name": "connectToChannel",
-            "printedName": "connectToChannel(_:mediaRole:signalingToken:peerId:peerPayload:completion:)",
+            "printedName": "connectToChannel(signalingToken:peerPayload:completion:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -12265,43 +12423,9 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "ChannelId",
-                "printedName": "LiveDigitalSDK.ChannelId",
-                "usr": "s:14LiveDigitalSDK9ChannelIdV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "LiveDigitalSDK.MediaRole?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "MediaRole",
-                    "printedName": "LiveDigitalSDK.MediaRole",
-                    "usr": "s:14LiveDigitalSDK9MediaRoleO"
-                  }
-                ],
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
                 "name": "String",
                 "printedName": "Swift.String",
                 "usr": "s:SS"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "LiveDigitalSDK.PeerId?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "PeerId",
-                    "printedName": "LiveDigitalSDK.PeerId",
-                    "usr": "s:14LiveDigitalSDK6PeerIdV"
-                  }
-                ],
-                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
@@ -12363,8 +12487,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14LiveDigitalSDK05StockaB6EngineC16connectToChannel_9mediaRole14signalingToken6peerId0M7Payload10completionyAA0hN0V_AA05MediaJ0OSgSSAA04PeerN0VSgSDySSypGSgys6ResultOyAA0H7Session_AA010ObservablehT0pAA0abE5ErrorOGctF",
-            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC16connectToChannel_9mediaRole14signalingToken6peerId0M7Payload10completionyAA0hN0V_AA05MediaJ0OSgSSAA04PeerN0VSgSDySSypGSgys6ResultOyAA0H7Session_AA010ObservablehT0pAA0abE5ErrorOGctF",
+            "usr": "s:14LiveDigitalSDK05StockaB6EngineC16connectToChannel14signalingToken11peerPayload10completionySS_SDySSypGSgys6ResultOyAA0H7Session_AA010ObservablehO0pAA0abE5ErrorOGctF",
+            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC16connectToChannel14signalingToken11peerPayload10completionySS_SDySSypGSgys6ResultOyAA0H7Session_AA010ObservablehO0pAA0abE5ErrorOGctF",
             "moduleName": "LiveDigitalSDK",
             "declAttributes": [
               "Final",
@@ -13328,6 +13452,65 @@
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "initiateCall",
+            "printedName": "initiateCall()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SIPCallId",
+                "printedName": "LiveDigitalSDK.SIPCallId",
+                "usr": "s:14LiveDigitalSDK9SIPCallIdV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK05StockaB6EngineC12initiateCallAA9SIPCallIdVyYaAA0H12ManagerErrorOYKF",
+            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC12initiateCallAA9SIPCallIdVyYaAA0H12ManagerErrorOYKF",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "declineCall",
+            "printedName": "declineCall(callId:token:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SIPCallId",
+                "printedName": "LiveDigitalSDK.SIPCallId",
+                "usr": "s:14LiveDigitalSDK9SIPCallIdV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK05StockaB6EngineC11declineCall6callId5tokenyAA07SIPCallI0V_SStYaAA0K12ManagerErrorOYKF",
+            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC11declineCall6callId5tokenyAA07SIPCallI0V_SStYaAA0K12ManagerErrorOYKF",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Class",
@@ -13343,13 +13526,6 @@
           "RawDocComment"
         ],
         "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "LiveDigitalCameraEngine",
-            "printedName": "LiveDigitalCameraEngine",
-            "usr": "s:14LiveDigitalSDK0aB12CameraEngineP",
-            "mangledName": "$s14LiveDigitalSDK0aB12CameraEngineP"
-          },
           {
             "kind": "Conformance",
             "name": "LiveDigitalMicrophoneEngine",
@@ -13377,6 +13553,20 @@
             "printedName": "LiveDigitalEngine",
             "usr": "s:14LiveDigitalSDK0aB6EngineP",
             "mangledName": "$s14LiveDigitalSDK0aB6EngineP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SIPCallManager",
+            "printedName": "SIPCallManager",
+            "usr": "s:14LiveDigitalSDK14SIPCallManagerP",
+            "mangledName": "$s14LiveDigitalSDK14SIPCallManagerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "LiveDigitalCameraEngine",
+            "printedName": "LiveDigitalCameraEngine",
+            "usr": "s:14LiveDigitalSDK0aB12CameraEngineP",
+            "mangledName": "$s14LiveDigitalSDK0aB12CameraEngineP"
           },
           {
             "kind": "Conformance",
@@ -24250,6 +24440,40 @@
       },
       {
         "kind": "Import",
+        "name": "SignalingAPI",
+        "printedName": "SignalingAPI",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "SignalingAPI",
+        "printedName": "SignalingAPI",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "Import",
         "name": "OpenAPIRuntime",
         "printedName": "OpenAPIRuntime",
         "declKind": "Import",
@@ -30488,6 +30712,253 @@
         "printedName": "Foundation",
         "declKind": "Import",
         "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "LiveDigitalSDK"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SIPCallId",
+        "printedName": "SIPCallId",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:14LiveDigitalSDK9SIPCallIdV8rawValueSSvp",
+            "mangledName": "$s14LiveDigitalSDK9SIPCallIdV8rawValueSSvp",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:14LiveDigitalSDK9SIPCallIdV8rawValueSSvg",
+                "mangledName": "$s14LiveDigitalSDK9SIPCallIdV8rawValueSSvg",
+                "moduleName": "LiveDigitalSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SIPCallId",
+                "printedName": "LiveDigitalSDK.SIPCallId",
+                "usr": "s:14LiveDigitalSDK9SIPCallIdV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:14LiveDigitalSDK9SIPCallIdV8rawValueACSS_tcfc",
+            "mangledName": "$s14LiveDigitalSDK9SIPCallIdV8rawValueACSS_tcfc",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "random",
+            "printedName": "random()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SIPCallId",
+                "printedName": "LiveDigitalSDK.SIPCallId",
+                "usr": "s:14LiveDigitalSDK9SIPCallIdV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK9SIPCallIdV6randomACyFZ",
+            "mangledName": "$s14LiveDigitalSDK9SIPCallIdV6randomACyFZ",
+            "moduleName": "LiveDigitalSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "description",
+            "printedName": "description",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:14LiveDigitalSDK9SIPCallIdV11descriptionSSvp",
+            "mangledName": "$s14LiveDigitalSDK9SIPCallIdV11descriptionSSvp",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:14LiveDigitalSDK9SIPCallIdV11descriptionSSvg",
+                "mangledName": "$s14LiveDigitalSDK9SIPCallIdV11descriptionSSvg",
+                "moduleName": "LiveDigitalSDK",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:14LiveDigitalSDK9SIPCallIdV",
+        "mangledName": "$s14LiveDigitalSDK9SIPCallIdV",
+        "moduleName": "LiveDigitalSDK",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          }
+        ]
       },
       {
         "kind": "Import",
@@ -39357,6 +39828,64 @@
         "name": "Output",
         "printedName": "Output",
         "declKind": "Enum",
+        "usr": "s:12SignalingAPI10OperationsO21DeclineSipInboundCallO6OutputO",
+        "mangledName": "$s12SignalingAPI10OperationsO21DeclineSipInboundCallO6OutputO",
+        "moduleName": "SignalingAPI",
+        "declAttributes": [
+          "Frozen"
+        ],
+        "isExternal": true,
+        "isEnumExhaustive": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Output",
+        "printedName": "Output",
+        "declKind": "Enum",
         "usr": "s:12SignalingAPI10OperationsO14DisconnectPeerO6OutputO",
         "mangledName": "$s12SignalingAPI10OperationsO14DisconnectPeerO6OutputO",
         "moduleName": "SignalingAPI",
@@ -39727,6 +40256,132 @@
         "declKind": "Enum",
         "usr": "s:12SignalingAPI10OperationsO25GetTransportIceParametersO6OutputO",
         "mangledName": "$s12SignalingAPI10OperationsO25GetTransportIceParametersO6OutputO",
+        "moduleName": "SignalingAPI",
+        "declAttributes": [
+          "Frozen"
+        ],
+        "isExternal": true,
+        "isEnumExhaustive": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SipOutboundCallResponse",
+        "printedName": "SipOutboundCallResponse",
+        "declKind": "Struct",
+        "usr": "s:12SignalingAPI10ComponentsO7SchemasO23SipOutboundCallResponseV",
+        "mangledName": "$s12SignalingAPI10ComponentsO7SchemasO23SipOutboundCallResponseV",
+        "moduleName": "SignalingAPI",
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Output",
+        "printedName": "Output",
+        "declKind": "Enum",
+        "usr": "s:12SignalingAPI10OperationsO23InitiateSipOutboundCallO6OutputO",
+        "mangledName": "$s12SignalingAPI10OperationsO23InitiateSipOutboundCallO6OutputO",
         "moduleName": "SignalingAPI",
         "declAttributes": [
           "Frozen"
@@ -47561,56 +48216,56 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "StringLiteral",
-      "offset": 910,
+      "offset": 877,
       "length": 35,
       "value": "\"Session status changed: \""
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "StringLiteral",
-      "offset": 944,
+      "offset": 911,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "BooleanLiteral",
-      "offset": 995,
+      "offset": 962,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "BooleanLiteral",
-      "offset": 1085,
+      "offset": 1052,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "BooleanLiteral",
-      "offset": 1248,
+      "offset": 1215,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "BooleanLiteral",
-      "offset": 2187,
+      "offset": 2154,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "BooleanLiteral",
-      "offset": 2226,
+      "offset": 2193,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/ConnectedChannelSession.swift",
       "kind": "BooleanLiteral",
-      "offset": 2470,
+      "offset": 2402,
       "length": 5,
       "value": "false"
     },
@@ -48044,14 +48699,14 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/Mediasoup\/Transport\/StockReceiveTransport.swift",
       "kind": "StringLiteral",
-      "offset": 5043,
+      "offset": 4775,
       "length": 47,
       "value": "\"Data consumer for \""
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/Mediasoup\/Transport\/StockReceiveTransport.swift",
       "kind": "StringLiteral",
-      "offset": 5081,
+      "offset": 4813,
       "length": 7,
       "value": "\" created\""
     },
@@ -48142,35 +48797,35 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/BroadcastLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1064,
+      "offset": 1109,
       "length": 6,
       "value": "90000"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/BroadcastLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1091,
+      "offset": 1136,
       "length": 2,
       "value": "30"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/BroadcastLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1119,
+      "offset": 1164,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/BroadcastLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1150,
+      "offset": 1195,
       "length": 1,
       "value": "3"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/BroadcastLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1209,
+      "offset": 1254,
       "length": 4,
       "value": "1000"
     },
@@ -48191,63 +48846,63 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "StringLiteral",
-      "offset": 1510,
+      "offset": 1345,
       "length": 8,
       "value": "\"ARDAMS\""
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1650,
+      "offset": 1485,
       "length": 7,
       "value": "150000"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1687,
+      "offset": 1522,
       "length": 1,
       "value": "4"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1772,
+      "offset": 1607,
       "length": 7,
       "value": "200000"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1809,
+      "offset": 1644,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1894,
+      "offset": 1729,
       "length": 7,
       "value": "350000"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1931,
+      "offset": 1766,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 2021,
+      "offset": 1856,
       "length": 6,
       "value": "90000"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "BooleanLiteral",
-      "offset": 4016,
+      "offset": 3919,
       "length": 5,
       "value": "false"
     },
@@ -48495,6 +49150,13 @@
       "offset": 266,
       "length": 6,
       "value": "20000"
+    },
+    {
+      "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Network\/LoggingMiddleware.swift",
+      "kind": "Array",
+      "offset": 319,
+      "length": 19,
+      "value": "[\"pingPeer\"]"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Signaling\/DisconnectReason.swift",
