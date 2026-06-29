@@ -158,13 +158,13 @@ extension AudioCallVM: @MainActor CallManagerObserver {
 			self.audioSource = nil
 		}
 
-		if let channelSession {
+		if engine.currentChannelSession != nil {
 			canFinishSession = false
 			callDurationTimer.callStatus = .disconnecting
-			channelSession.stop(completion: { [weak self] in
+			engine.disconnectFromCurrentChannel { [weak self] in
 				self?.channelSession = nil
 				self?.callDurationTimer.callStatus = .callEnded
-			})
+			}
 		} else {
 			callDurationTimer.callStatus = .callEnded
 		}
