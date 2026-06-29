@@ -396,7 +396,8 @@ public protocol LiveDigitalMicrophoneEngine {
   var audioRouter: any LiveDigitalSDK.AudioRouter { get }
   static func prepareAudioSession(callType: LiveDigitalSDK.CallType, logger: (any LiveDigitalSDK.LDSDKLogger)?)
   func startAudioSource() -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
-  func startAudioSource(encodingParameters: LiveDigitalSDK.AudioEncodingParameters) -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
+  func startAudioSource(preferredCodec: LiveDigitalSDK.AudioCodec) -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
+  func startAudioSource(preferredCodec: LiveDigitalSDK.AudioCodec, encodingParameters: LiveDigitalSDK.AudioEncodingParameters) -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
   func stopAudioSource(_ audioSource: LiveDigitalSDK.AudioSource)
 }
 public struct LiveDigitalSDKEnvironment {
@@ -494,7 +495,8 @@ extension LiveDigitalSDK.StockLiveDigitalEngine : LiveDigitalSDK.LiveDigitalMicr
   }
   public static func prepareAudioSession(callType: LiveDigitalSDK.CallType, logger: (any LiveDigitalSDK.LDSDKLogger)?)
   final public func startAudioSource() -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
-  final public func startAudioSource(encodingParameters: LiveDigitalSDK.AudioEncodingParameters) -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
+  final public func startAudioSource(preferredCodec: LiveDigitalSDK.AudioCodec) -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
+  final public func startAudioSource(preferredCodec: LiveDigitalSDK.AudioCodec, encodingParameters: LiveDigitalSDK.AudioEncodingParameters) -> Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>
   final public func stopAudioSource(_ audioSource: LiveDigitalSDK.AudioSource)
 }
 @available(iOSApplicationExtension, unavailable, message: "Unavailable in extensions.")
@@ -631,6 +633,8 @@ public struct VideoSize : Swift.Sendable, Swift.Hashable, Swift.Equatable {
 }
 public enum AudioCodec : Swift.Sendable, Swift.Hashable, Swift.Equatable {
   case opus
+  case pcmu
+  case pcma
   public static func == (a: LiveDigitalSDK.AudioCodec, b: LiveDigitalSDK.AudioCodec) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -648,7 +652,7 @@ extension LiveDigitalSDK.AudioCodec : LiveDigitalSDK.MIMETyped {
   final public let encodings: [WebRTC.RTCRtpEncodingParameters]?
   final public let scalabilityMode: Swift.String?
   final public let codecOptions: Swift.String?
-  final public var preferredAudioCodec: LiveDigitalSDK.AudioCodec
+  final public let preferredAudioCodec: LiveDigitalSDK.AudioCodec
   final public var preferredCodec: any LiveDigitalSDK.MIMETyped {
     get
   }

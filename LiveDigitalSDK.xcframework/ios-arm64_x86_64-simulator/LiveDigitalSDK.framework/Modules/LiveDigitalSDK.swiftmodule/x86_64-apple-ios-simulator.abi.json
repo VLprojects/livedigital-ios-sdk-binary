@@ -10850,7 +10850,7 @@
           {
             "kind": "Function",
             "name": "startAudioSource",
-            "printedName": "startAudioSource(encodingParameters:)",
+            "printedName": "startAudioSource(preferredCodec:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -10874,14 +10874,65 @@
               },
               {
                 "kind": "TypeNominal",
+                "name": "AudioCodec",
+                "printedName": "LiveDigitalSDK.AudioCodec",
+                "usr": "s:14LiveDigitalSDK10AudioCodecO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK0aB16MicrophoneEngineP16startAudioSource14preferredCodecs6ResultOyAA0gH0CAA0abE5ErrorOGAA0gJ0O_tF",
+            "mangledName": "$s14LiveDigitalSDK0aB16MicrophoneEngineP16startAudioSource14preferredCodecs6ResultOyAA0gH0CAA0abE5ErrorOGAA0gJ0O_tF",
+            "moduleName": "LiveDigitalSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.LiveDigitalMicrophoneEngine>",
+            "sugared_genericSig": "<Self where Self : LiveDigitalSDK.LiveDigitalMicrophoneEngine>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "startAudioSource",
+            "printedName": "startAudioSource(preferredCodec:encodingParameters:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Result",
+                "printedName": "Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AudioSource",
+                    "printedName": "LiveDigitalSDK.AudioSource",
+                    "usr": "s:14LiveDigitalSDK11AudioSourceC"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LiveDigitalEngineError",
+                    "printedName": "LiveDigitalSDK.LiveDigitalEngineError",
+                    "usr": "s:14LiveDigitalSDK0aB11EngineErrorO"
+                  }
+                ],
+                "usr": "s:s6ResultO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "AudioCodec",
+                "printedName": "LiveDigitalSDK.AudioCodec",
+                "usr": "s:14LiveDigitalSDK10AudioCodecO"
+              },
+              {
+                "kind": "TypeNominal",
                 "name": "AudioEncodingParameters",
                 "printedName": "LiveDigitalSDK.AudioEncodingParameters",
                 "usr": "s:14LiveDigitalSDK23AudioEncodingParametersV"
               }
             ],
             "declKind": "Func",
-            "usr": "s:14LiveDigitalSDK0aB16MicrophoneEngineP16startAudioSource18encodingParameterss6ResultOyAA0gH0CAA0abE5ErrorOGAA0g8EncodingJ0V_tF",
-            "mangledName": "$s14LiveDigitalSDK0aB16MicrophoneEngineP16startAudioSource18encodingParameterss6ResultOyAA0gH0CAA0abE5ErrorOGAA0g8EncodingJ0V_tF",
+            "usr": "s:14LiveDigitalSDK0aB16MicrophoneEngineP16startAudioSource14preferredCodec18encodingParameterss6ResultOyAA0gH0CAA0abE5ErrorOGAA0gJ0O_AA0g8EncodingL0VtF",
+            "mangledName": "$s14LiveDigitalSDK0aB16MicrophoneEngineP16startAudioSource14preferredCodec18encodingParameterss6ResultOyAA0gH0CAA0abE5ErrorOGAA0gJ0O_AA0g8EncodingL0VtF",
             "moduleName": "LiveDigitalSDK",
             "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.LiveDigitalMicrophoneEngine>",
             "sugared_genericSig": "<Self where Self : LiveDigitalSDK.LiveDigitalMicrophoneEngine>",
@@ -13259,7 +13310,7 @@
           {
             "kind": "Function",
             "name": "startAudioSource",
-            "printedName": "startAudioSource(encodingParameters:)",
+            "printedName": "startAudioSource(preferredCodec:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -13283,14 +13334,63 @@
               },
               {
                 "kind": "TypeNominal",
+                "name": "AudioCodec",
+                "printedName": "LiveDigitalSDK.AudioCodec",
+                "usr": "s:14LiveDigitalSDK10AudioCodecO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK05StockaB6EngineC16startAudioSource14preferredCodecs6ResultOyAA0gH0CAA0abE5ErrorOGAA0gJ0O_tF",
+            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC16startAudioSource14preferredCodecs6ResultOyAA0gH0CAA0abE5ErrorOGAA0gJ0O_tF",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "startAudioSource",
+            "printedName": "startAudioSource(preferredCodec:encodingParameters:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Result",
+                "printedName": "Swift.Result<LiveDigitalSDK.AudioSource, LiveDigitalSDK.LiveDigitalEngineError>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AudioSource",
+                    "printedName": "LiveDigitalSDK.AudioSource",
+                    "usr": "s:14LiveDigitalSDK11AudioSourceC"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LiveDigitalEngineError",
+                    "printedName": "LiveDigitalSDK.LiveDigitalEngineError",
+                    "usr": "s:14LiveDigitalSDK0aB11EngineErrorO"
+                  }
+                ],
+                "usr": "s:s6ResultO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "AudioCodec",
+                "printedName": "LiveDigitalSDK.AudioCodec",
+                "usr": "s:14LiveDigitalSDK10AudioCodecO"
+              },
+              {
+                "kind": "TypeNominal",
                 "name": "AudioEncodingParameters",
                 "printedName": "LiveDigitalSDK.AudioEncodingParameters",
                 "usr": "s:14LiveDigitalSDK23AudioEncodingParametersV"
               }
             ],
             "declKind": "Func",
-            "usr": "s:14LiveDigitalSDK05StockaB6EngineC16startAudioSource18encodingParameterss6ResultOyAA0gH0CAA0abE5ErrorOGAA0g8EncodingJ0V_tF",
-            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC16startAudioSource18encodingParameterss6ResultOyAA0gH0CAA0abE5ErrorOGAA0g8EncodingJ0V_tF",
+            "usr": "s:14LiveDigitalSDK05StockaB6EngineC16startAudioSource14preferredCodec18encodingParameterss6ResultOyAA0gH0CAA0abE5ErrorOGAA0gJ0O_AA0g8EncodingL0VtF",
+            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC16startAudioSource14preferredCodec18encodingParameterss6ResultOyAA0gH0CAA0abE5ErrorOGAA0gJ0O_AA0g8EncodingL0VtF",
             "moduleName": "LiveDigitalSDK",
             "declAttributes": [
               "Final",
@@ -16966,6 +17066,86 @@
           },
           {
             "kind": "Var",
+            "name": "pcmu",
+            "printedName": "pcmu",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(LiveDigitalSDK.AudioCodec.Type) -> LiveDigitalSDK.AudioCodec",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AudioCodec",
+                    "printedName": "LiveDigitalSDK.AudioCodec",
+                    "usr": "s:14LiveDigitalSDK10AudioCodecO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "LiveDigitalSDK.AudioCodec.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AudioCodec",
+                        "printedName": "LiveDigitalSDK.AudioCodec",
+                        "usr": "s:14LiveDigitalSDK10AudioCodecO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:14LiveDigitalSDK10AudioCodecO4pcmuyA2CmF",
+            "mangledName": "$s14LiveDigitalSDK10AudioCodecO4pcmuyA2CmF",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "pcma",
+            "printedName": "pcma",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(LiveDigitalSDK.AudioCodec.Type) -> LiveDigitalSDK.AudioCodec",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AudioCodec",
+                    "printedName": "LiveDigitalSDK.AudioCodec",
+                    "usr": "s:14LiveDigitalSDK10AudioCodecO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "LiveDigitalSDK.AudioCodec.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AudioCodec",
+                        "printedName": "LiveDigitalSDK.AudioCodec",
+                        "usr": "s:14LiveDigitalSDK10AudioCodecO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:14LiveDigitalSDK10AudioCodecO4pcmayA2CmF",
+            "mangledName": "$s14LiveDigitalSDK10AudioCodecO4pcmayA2CmF",
+            "moduleName": "LiveDigitalSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "hashValue",
             "printedName": "hashValue",
             "children": [
@@ -17517,12 +17697,12 @@
             "mangledName": "$s14LiveDigitalSDK11AudioSourceC09preferredD5CodecAA0dG0Ovp",
             "moduleName": "LiveDigitalSDK",
             "declAttributes": [
-              "HasInitialValue",
               "Final",
               "HasStorage",
               "AccessControl",
               "RawDocComment"
             ],
+            "isLet": true,
             "hasStorage": true,
             "accessors": [
               {
@@ -17546,54 +17726,6 @@
                   "Final"
                 ],
                 "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "AudioCodec",
-                    "printedName": "LiveDigitalSDK.AudioCodec",
-                    "usr": "s:14LiveDigitalSDK10AudioCodecO"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:14LiveDigitalSDK11AudioSourceC09preferredD5CodecAA0dG0Ovs",
-                "mangledName": "$s14LiveDigitalSDK11AudioSourceC09preferredD5CodecAA0dG0Ovs",
-                "moduleName": "LiveDigitalSDK",
-                "implicit": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:14LiveDigitalSDK11AudioSourceC09preferredD5CodecAA0dG0OvM",
-                "mangledName": "$s14LiveDigitalSDK11AudioSourceC09preferredD5CodecAA0dG0OvM",
-                "moduleName": "LiveDigitalSDK",
-                "implicit": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "_modify"
               }
             ]
           },
@@ -48853,56 +48985,56 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1485,
+      "offset": 1544,
       "length": 7,
       "value": "150000"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1522,
+      "offset": 1581,
       "length": 1,
       "value": "4"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1607,
+      "offset": 1666,
       "length": 7,
       "value": "200000"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1644,
+      "offset": 1703,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1729,
+      "offset": 1788,
       "length": 7,
       "value": "350000"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1766,
+      "offset": 1825,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "IntegerLiteral",
-      "offset": 1856,
+      "offset": 1915,
       "length": 6,
       "value": "90000"
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Engine\/StockLiveDigitalEngine.swift",
       "kind": "BooleanLiteral",
-      "offset": 3919,
+      "offset": 3978,
       "length": 5,
       "value": "false"
     },
