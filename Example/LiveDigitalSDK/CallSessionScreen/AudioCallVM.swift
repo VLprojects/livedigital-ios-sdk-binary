@@ -7,6 +7,7 @@ import Combine
 final class AudioCallVM: ObservableObject {
 	private enum Config {
 		static let reconnectInterval: TimeInterval = 3
+		static let audioCodec = LiveDigitalSDK.AudioCodec.pcma
 	}
 
 	@Published var isSoundOn = true
@@ -301,7 +302,7 @@ private extension AudioCallVM {
 	}
 
 	func startAudioSource() {
-		switch engine.startAudioSource() {
+		switch engine.startAudioSource(preferredCodec: Config.audioCodec) {
 			case let .success(audioSource):
 				self.audioSource = audioSource
 			case let .failure(error):
