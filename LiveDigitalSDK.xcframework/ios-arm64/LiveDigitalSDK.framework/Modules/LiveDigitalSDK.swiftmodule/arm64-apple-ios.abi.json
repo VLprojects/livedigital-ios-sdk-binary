@@ -3137,6 +3137,32 @@
           },
           {
             "kind": "Function",
+            "name": "channelSessionNeedsUpdateState",
+            "printedName": "channelSessionNeedsUpdateState(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelSession",
+                "printedName": "any LiveDigitalSDK.ChannelSession",
+                "usr": "s:14LiveDigitalSDK14ChannelSessionP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:14LiveDigitalSDK22ChannelSessionObserverPAAE07channelE16NeedsUpdateStateyyAA0dE0_pF",
+            "mangledName": "$s14LiveDigitalSDK22ChannelSessionObserverPAAE07channelE16NeedsUpdateStateyyAA0dE0_pF",
+            "moduleName": "LiveDigitalSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.ChannelSessionObserver>",
+            "sugared_genericSig": "<Self where Self : LiveDigitalSDK.ChannelSessionObserver>",
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "channelSessionJoinedChannel",
             "printedName": "channelSessionJoinedChannel(_:)",
             "children": [
@@ -11676,18 +11702,12 @@
           {
             "kind": "Function",
             "name": "declineCall",
-            "printedName": "declineCall(callId:token:)",
+            "printedName": "declineCall(token:)",
             "children": [
               {
                 "kind": "TypeNominal",
                 "name": "Void",
                 "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "SIPCallId",
-                "printedName": "LiveDigitalSDK.SIPCallId",
-                "usr": "s:14LiveDigitalSDK9SIPCallIdV"
               },
               {
                 "kind": "TypeNominal",
@@ -11697,8 +11717,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14LiveDigitalSDK14SIPCallManagerP11declineCall6callId5tokenyAA0dI0V_SStYaAA0dE5ErrorOYKF",
-            "mangledName": "$s14LiveDigitalSDK14SIPCallManagerP11declineCall6callId5tokenyAA0dI0V_SStYaAA0dE5ErrorOYKF",
+            "usr": "s:14LiveDigitalSDK14SIPCallManagerP11declineCall5tokenySS_tYaAA0dE5ErrorOYKF",
+            "mangledName": "$s14LiveDigitalSDK14SIPCallManagerP11declineCall5tokenySS_tYaAA0dE5ErrorOYKF",
             "moduleName": "LiveDigitalSDK",
             "genericSig": "<τ_0_0 where τ_0_0 : LiveDigitalSDK.SIPCallManager>",
             "sugared_genericSig": "<Self where Self : LiveDigitalSDK.SIPCallManager>",
@@ -13580,18 +13600,12 @@
           {
             "kind": "Function",
             "name": "declineCall",
-            "printedName": "declineCall(callId:token:)",
+            "printedName": "declineCall(token:)",
             "children": [
               {
                 "kind": "TypeNominal",
                 "name": "Void",
                 "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "SIPCallId",
-                "printedName": "LiveDigitalSDK.SIPCallId",
-                "usr": "s:14LiveDigitalSDK9SIPCallIdV"
               },
               {
                 "kind": "TypeNominal",
@@ -13601,8 +13615,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14LiveDigitalSDK05StockaB6EngineC11declineCall6callId5tokenyAA07SIPCallI0V_SStYaAA0K12ManagerErrorOYKF",
-            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC11declineCall6callId5tokenyAA07SIPCallI0V_SStYaAA0K12ManagerErrorOYKF",
+            "usr": "s:14LiveDigitalSDK05StockaB6EngineC11declineCall5tokenySS_tYaAA19SIPCallManagerErrorOYKF",
+            "mangledName": "$s14LiveDigitalSDK05StockaB6EngineC11declineCall5tokenySS_tYaAA19SIPCallManagerErrorOYKF",
             "moduleName": "LiveDigitalSDK",
             "declAttributes": [
               "Final",
@@ -39960,8 +39974,8 @@
         "name": "Output",
         "printedName": "Output",
         "declKind": "Enum",
-        "usr": "s:12SignalingAPI10OperationsO21DeclineSipInboundCallO6OutputO",
-        "mangledName": "$s12SignalingAPI10OperationsO21DeclineSipInboundCallO6OutputO",
+        "usr": "s:12SignalingAPI10OperationsO21DeclineInboundSIPCallO6OutputO",
+        "mangledName": "$s12SignalingAPI10OperationsO21DeclineInboundSIPCallO6OutputO",
         "moduleName": "SignalingAPI",
         "declAttributes": [
           "Frozen"
@@ -40441,11 +40455,11 @@
       },
       {
         "kind": "TypeDecl",
-        "name": "SipOutboundCallResponse",
-        "printedName": "SipOutboundCallResponse",
+        "name": "InitiateOutboundCallResponse",
+        "printedName": "InitiateOutboundCallResponse",
         "declKind": "Struct",
-        "usr": "s:12SignalingAPI10ComponentsO7SchemasO23SipOutboundCallResponseV",
-        "mangledName": "$s12SignalingAPI10ComponentsO7SchemasO23SipOutboundCallResponseV",
+        "usr": "s:12SignalingAPI10ComponentsO7SchemasO28InitiateOutboundCallResponseV",
+        "mangledName": "$s12SignalingAPI10ComponentsO7SchemasO28InitiateOutboundCallResponseV",
         "moduleName": "SignalingAPI",
         "isExternal": true,
         "conformances": [
@@ -40512,8 +40526,8 @@
         "name": "Output",
         "printedName": "Output",
         "declKind": "Enum",
-        "usr": "s:12SignalingAPI10OperationsO23InitiateSipOutboundCallO6OutputO",
-        "mangledName": "$s12SignalingAPI10OperationsO23InitiateSipOutboundCallO6OutputO",
+        "usr": "s:12SignalingAPI10OperationsO23InitiateOutboundSIPCallO6OutputO",
+        "mangledName": "$s12SignalingAPI10OperationsO23InitiateOutboundSIPCallO6OutputO",
         "moduleName": "SignalingAPI",
         "declAttributes": [
           "Frozen"
@@ -48901,28 +48915,28 @@
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/Mediasoup\/Transport\/StockSendTransport.swift",
       "kind": "StringLiteral",
-      "offset": 14335,
+      "offset": 14217,
       "length": 58,
       "value": "\"Received onProduceData for invalid label: \""
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/Mediasoup\/Transport\/StockSendTransport.swift",
       "kind": "StringLiteral",
-      "offset": 14392,
+      "offset": 14274,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/Mediasoup\/Transport\/StockSendTransport.swift",
       "kind": "StringLiteral",
-      "offset": 14608,
+      "offset": 14490,
       "length": 61,
       "value": "\"Failed to decode producer AppData during onProduceData call\""
     },
     {
       "filePath": "\/Users\/neznajka\/vl\/projects\/livedigital-ios-app\/Modules\/LiveDigitalSDK\/Sources\/LiveDigitalSDK\/Channel\/Mediasoup\/Transport\/StockSendTransport.swift",
       "kind": "StringLiteral",
-      "offset": 14910,
+      "offset": 14792,
       "length": 67,
       "value": "\"Failed to decode SCTP stream parameters during onProduceData call\""
     },

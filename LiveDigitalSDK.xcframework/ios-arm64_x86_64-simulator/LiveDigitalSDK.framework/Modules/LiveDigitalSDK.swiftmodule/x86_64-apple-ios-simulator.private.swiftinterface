@@ -112,6 +112,7 @@ public protocol ChannelSessionObserver : AnyObject {
   func gotConsistencyIssues(_ issues: [LiveDigitalSDK.SessionStateConsistencyIssue])
 }
 extension LiveDigitalSDK.ChannelSessionObserver {
+  public func channelSessionNeedsUpdateState(_ channelSession: any LiveDigitalSDK.ChannelSession)
   public func channelSessionJoinedChannel(_ channelSession: any LiveDigitalSDK.ChannelSession)
   public func channelSessionFailed(_ channelSession: any LiveDigitalSDK.ChannelSession, error: LiveDigitalSDK.ChannelSessionError)
   public func channelSessionStoppedByServer(_ channelSession: any LiveDigitalSDK.ChannelSession)
@@ -424,7 +425,7 @@ extension LiveDigitalSDK.LiveDigitalSessionManager {
 }
 public protocol SIPCallManager {
   func initiateCall() async throws(LiveDigitalSDK.SIPCallManagerError) -> LiveDigitalSDK.SIPCallId
-  func declineCall(callId: LiveDigitalSDK.SIPCallId, token: Swift.String) async throws(LiveDigitalSDK.SIPCallManagerError)
+  func declineCall(token: Swift.String) async throws(LiveDigitalSDK.SIPCallManagerError)
 }
 public enum SIPCallManagerError : Swift.Error {
   case noActiveSession
@@ -520,7 +521,7 @@ extension LiveDigitalSDK.StockLiveDigitalEngine : LiveDigitalSDK.LiveDigitalEngi
 }
 extension LiveDigitalSDK.StockLiveDigitalEngine : LiveDigitalSDK.SIPCallManager {
   final public func initiateCall() async throws(LiveDigitalSDK.SIPCallManagerError) -> LiveDigitalSDK.SIPCallId
-  final public func declineCall(callId: LiveDigitalSDK.SIPCallId, token: Swift.String) async throws(LiveDigitalSDK.SIPCallManagerError)
+  final public func declineCall(token: Swift.String) async throws(LiveDigitalSDK.SIPCallManagerError)
 }
 public protocol LiveDigitalVideoFilterEngine : AnyObject {
   var filter: (any LiveDigitalSDK.VideoSourceFilter)? { get set }
