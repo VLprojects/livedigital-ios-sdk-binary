@@ -128,6 +128,7 @@ private extension CallStartScreenView {
 								.frame(maxWidth: .infinity, alignment: .leading)
 						}
 						TextField(String(localized: .phoneNumberPlaceholder), text: $vm.phoneNumber)
+							.textContentType(.telephoneNumber)
 							.font(AssetFont.mainTextMedium.font)
 							.foregroundStyle(AssetColor.contrast.color)
 							.frame(maxWidth: .infinity, alignment: .leading)

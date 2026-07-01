@@ -101,10 +101,14 @@ internal extension CallStartScreenVM {
 // MARK: - Private methods
 
 private extension CallStartScreenVM {
+	var strippedPhoneNumber: String {
+		phoneNumber.filter { $0.isNumber || $0 == "+" }
+	}
+
 	func signIn() async {
 		authorizationInProgress = true
 		do {
-			let registeredDevice = try await accountManager.signIn(phone: self.phoneNumber)
+			let registeredDevice = try await accountManager.signIn(phone: self.strippedPhoneNumber)
 			notificationsVM.show("Successfully registered: \(registeredDevice)")
 			print("Successfully registered: \(registeredDevice)")
 		} catch {
