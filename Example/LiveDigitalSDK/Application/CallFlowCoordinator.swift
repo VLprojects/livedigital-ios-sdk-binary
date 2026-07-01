@@ -46,10 +46,7 @@ extension CallFlowCoordinator: @MainActor CallManagerObserver {
 	func didDeclineCall(_ call: Call) {
 		Task {
 			do {
-				try await engine.declineCall(
-					callId: SIPCallId(rawValue: call.id.uuidString),
-					token: call.signalingToken
-				)
+				try await engine.declineCall(token: call.signalingToken)
 				print("Successfully declined call \(call.id)")
 			} catch {
 				print("Failed to decline call \(call.id): \(error)")

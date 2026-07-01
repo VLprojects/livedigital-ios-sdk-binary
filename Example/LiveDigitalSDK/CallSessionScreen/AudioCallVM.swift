@@ -7,7 +7,7 @@ import Combine
 final class AudioCallVM: ObservableObject {
 	private enum Config {
 		static let reconnectInterval: TimeInterval = 3
-		static let audioCodec = LiveDigitalSDK.AudioCodec.pcma
+		static let audioCodec = LiveDigitalSDK.AudioCodec.pcmu
 	}
 
 	@Published var isSoundOn = true
@@ -240,11 +240,22 @@ extension AudioCallVM: CameraManagerDelegate {
 
 // MARK: - ChannelSessionObserver implementation
 
-extension AudioCallVM: @MainActor ChannelSessionObserver {
-	func channelSessionNeedsUpdateState(_ channelSession: any LiveDigitalSDK.ChannelSession) {
-		// Session was recovered after connection loss.
-		// Some events may have been missed.
-		// You may want to refetch actual call/room state from applicaion server.
+extension AudioCallVM: @preconcurrency ChannelSessionObserver {
+	func channelSessionStoppedByServer(_ channelSession: any ChannelSession) {
+		print("Session stopped by server")
+		callManager?.endCall(self.call)
+	}
+
+	func peersDisconnected(_ peerIds: Set<PeerId>) {
+		print("Peers disconnected: \(peerIds)")
+		guard let myPeerId = channelSession?.myPeerId else {
+			return
+		}
+		// Disconnected "my peer" can be a stuck duplicate peer after network reconnect.
+		guard peerIds.contains(where: { $0 != myPeerId }) else {
+			return
+		}
+		callManager?.endCall(self.call)
 	}
 }
 
@@ -267,7 +278,9 @@ private extension AudioCallVM {
 			DispatchQueue.main.async {
 				self?.reconnectTimer?.invalidate()
 				self?.reconnectTimer = nil
-				self?.startConferenceSession()
+				self?.engine.disconnectFromCurrentChannel {
+					self?.startConferenceSession()
+				}
 			}
 		}
 	}
@@ -287,10 +300,8 @@ private extension AudioCallVM {
 
 			switch result {
 				case let .success(channelSession):
-					self.channelSession = channelSession
-					channelSession.subscribe(self)
-					channelSession.delegate = self
-					self.callDurationTimer.callStatus = .connected(.now)
+					self.startWithSession(channelSession)
+
 				case let .failure(error):
 					print("Failed to start session with error: \(error)")
 					self.callDurationTimer.callStatus = .disconnected
@@ -299,6 +310,13 @@ private extension AudioCallVM {
 
 			self.updateLocalAudioEnabled(isMicrophoneOn)
 		})
+	}
+
+	func startWithSession(_ channelSession: ChannelSession & ObservableChannelSession) {
+		self.channelSession = channelSession
+		channelSession.delegate = self
+		channelSession.subscribe(self)
+		callDurationTimer.callStatus = .connected(.now)
 	}
 
 	func startAudioSource() {
@@ -327,3 +345,4 @@ private extension AudioCallVM {
 			.assign(to: &$canRedial)
 	}
 }
+

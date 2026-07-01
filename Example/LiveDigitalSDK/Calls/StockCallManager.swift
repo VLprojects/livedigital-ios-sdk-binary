@@ -234,6 +234,47 @@ private extension StockCallManager {
 			observer.value?.callWasAnswered(answeredCall)
 		}
 	}
+
+	func handleCallPush(callId: UUID, action: CallPushAction, payload: [AnyHashable: Any]) {
+		switch action {
+			case .start:
+				guard let caller = payload["caller"] as? String,
+					let signalingToken = payload["signalingToken"] as? String else {
+					print("Failed to parse call object from push payload")
+					return
+				}
+				let call = Call(
+					id: callId,
+					caller: caller,
+					signalingToken: signalingToken,
+					direction: .incoming,
+					state: .new
+				)
+				reportIncomingCall(call)
+
+			case .end:
+				handleCallEnd(callId, reason: .remoteEnded, payload: payload)
+
+			case .answered:
+				handleCallEnd(callId, reason: .answeredElsewhere, payload: payload)
+
+			case .cancelled:
+				handleCallEnd(callId, reason: .remoteEnded, payload: payload)
+
+			case .declinedByCallee:
+				handleCallEnd(callId, reason: .declinedElsewhere, payload: payload)
+		}
+	}
+
+	func handleCallEnd(_ callId: UUID, reason: CXCallEndedReason, payload: [AnyHashable: Any]) {
+		print("Call \(callId) ended, details: \(payload)")
+		callProvider.reportCall(with: callId, endedAt: .now, reason: reason)
+		if let call = calls.removeValue(forKey: callId) {
+			notifyCallFinished(call)
+		} else {
+			print("Call \(callId) not found locally")
+		}
+	}
 }
 
 // MARK: - PKPushRegistryDelegate implementation
@@ -265,62 +306,19 @@ extension StockCallManager: PKPushRegistryDelegate {
 			completion()
 			return
 		}
-
 		guard let actionString = payload.dictionaryPayload["kind"] as? String,
 			let action = CallPushAction(rawValue: actionString) else {
 			print("Failed to parse call object from push payload: no action")
 			completion()
 			return
 		}
-
 		guard let callIdString = payload.dictionaryPayload["sessionId"] as? String,
 			let callId = UUID(uuidString: callIdString) else {
 			print("Failed to parse call object from push payload: no callId")
 			completion()
 			return
 		}
-
-		switch action {
-			case .start:
-				guard let caller = payload.dictionaryPayload["caller"] as? String,
-					let signalingToken = payload.dictionaryPayload["signalingToken"] as? String else {
-					print("Failed to parse call object from push payload")
-					completion()
-					return
-				}
-				let call = Call(
-					id: callId,
-					caller: caller,
-					signalingToken: signalingToken,
-					direction: .incoming,
-					state: .new
-				)
-				reportIncomingCall(call)
-
-			case .end:
-				callProvider.reportCall(with: callId, endedAt: .now, reason: .remoteEnded)
-				if let call = calls[callId] {
-					notifyCallFinished(call)
-					calls.removeValue(forKey: callId)
-				} else {
-					print("Call \(callId) not found locally")
-				}
-
-			case .answered:
-				callProvider.reportOutgoingCall(with: callId, connectedAt: .now)
-				if let call = calls[callId] {
-					notifyCallAnswered(call)
-				} else {
-					print("Call \(callId) not found locally")
-				}
-
-			case .cancelled:
-				break
-
-			case .declinedByCallee:
-				break
-
-		}
+		handleCallPush(callId: callId, action: action, payload: payload.dictionaryPayload)
 		completion()
 	}
 }
