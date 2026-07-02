@@ -2,14 +2,16 @@ import Combine
 import Intents
 
 
-protocol CallManager {
+protocol CallManager: AnyObject {
+	var localPhone: String? { get set }
+
 	func addObserver(_ observer: any CallManagerObserver)
 	func removeObserver(_ observer: any CallManagerObserver)
 
 	func toggleMicrophone(muted: Bool, in call: Call)
 
 	func startCallFromIntent(_ intent: INIntent)
-	func startCallManually(to roomAlias: String)
+	func startCallManually(to operatorNumber: String)
 	func endCall(_ call: Call)
 	func endCall(_ callId: UUID)
 

@@ -79,9 +79,7 @@ extension CallFlowCoordinator: CallScreenCoordinator {
 
 		// We must initiate all calls via callManager because of CallKit architecture.
 		// Outgoing calls are started indirectly via CallKit callback method and then via `didInitiateCall` method.
-
-		// TODO: Implement me!
-		// callManager.startCallManually(to: )
+		callManager.startCallManually(to: call.oppositeParticipant)
 	}
 }
 

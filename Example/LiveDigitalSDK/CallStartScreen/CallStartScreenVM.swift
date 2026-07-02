@@ -40,6 +40,7 @@ final class CallStartScreenVM: ObservableObject {
 		self.cameraPermissionManager = cameraPermissionManager
 
 		self.accountManager = FakeAccountManager(
+			callManager: callManager,
 			apnsTokenProvider: apnsTokenProvider
 		)
 
@@ -93,8 +94,7 @@ internal extension CallStartScreenVM {
 	}
 
 	func initiateCall() {
-		// TODO: Implement me!
-		// callManager.startCallManually(to: outgoingCallRoomAlias)
+		callManager.startCallManually(to: "9201")
 	}
 }
 

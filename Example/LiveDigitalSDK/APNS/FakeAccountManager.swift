@@ -4,10 +4,12 @@ import Foundation
 final class FakeAccountManager {
 	@Published private(set) var isSignedIn: Bool
 
+	private let callManager: CallManager
 	private let crsClient: CRSAPIClient
 	private let apnsTokenProvider: APNSTokenProvider
 
-	init(apnsTokenProvider: APNSTokenProvider) {
+	init(callManager: CallManager, apnsTokenProvider: APNSTokenProvider) {
+		self.callManager = callManager
 		self.apnsTokenProvider = apnsTokenProvider
 		self.isSignedIn = Defaults.isSignedIn ?? false
 
@@ -29,6 +31,7 @@ extension FakeAccountManager: AccountManager {
 
 	func signIn(phone: String) async throws -> RegisteredDevice {
 		Defaults.phoneNumber = phone
+		callManager.localPhone = phone
 
 		guard let pushToken = apnsTokenProvider.deviceTokenCurrentValue else {
 			throw APIClientError.failedToComposeRequest
@@ -48,6 +51,7 @@ extension FakeAccountManager: AccountManager {
 	func signOut() async throws {
 		Defaults.isSignedIn = false
 		isSignedIn = false
+		callManager.localPhone = nil
 		try await crsClient.unregisterDevice()
 	}
 }

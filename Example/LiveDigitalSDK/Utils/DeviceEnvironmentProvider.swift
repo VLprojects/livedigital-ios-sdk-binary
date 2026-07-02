@@ -30,9 +30,9 @@ private extension DeviceEnvironmentProvider {
 
 	static var deviceId: String {
 		if let storedValue = Defaults.deviceId {
-			return storedValue
+			return storedValue.lowercased()
 		} else {
-			let newValue = UUID().uuidString
+			let newValue = UUID().uuidString.lowercased()
 			Defaults.deviceId = newValue
 			return newValue
 		}

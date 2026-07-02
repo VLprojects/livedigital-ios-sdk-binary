@@ -6,9 +6,12 @@ import AVFAudio
 import UIKit
 import Intents
 import LiveDigitalSDK
+import JWTKit
 
 
 final class StockCallManager: NSObject {
+	var localPhone: String?
+
 	private let permissionStateSubject = CurrentValueSubject<PermissionState, Never>(.unknown)
 	private var deviceTokenSubject = CurrentValueSubject<String?, Never>(nil)
 	private let notificationCenter = UNUserNotificationCenter.current()
@@ -120,9 +123,9 @@ extension StockCallManager: CallManager {
 		startCallManually(to: handle)
 	}
 
-	func startCallManually(to roomAlias: String) {
+	func startCallManually(to operatorNumber: String) {
 		let callId = UUID()
-		let callHandle = CXHandle(type: .generic, value: roomAlias)
+		let callHandle = CXHandle(type: .phoneNumber, value: operatorNumber)
 		let startAction = CXStartCallAction(call: callId, handle: callHandle)
 		startAction.isVideo = false
 		let transaction = CXTransaction(action: startAction)
@@ -236,6 +239,11 @@ private extension StockCallManager {
 	}
 
 	func handleCallPush(callId: UUID, action: CallPushAction, payload: [AnyHashable: Any]) {
+		guard let localPhone else {
+			print("No local phone number set")
+			return
+		}
+
 		switch action {
 			case .start:
 				guard let caller = payload["caller"] as? String,
@@ -246,6 +254,7 @@ private extension StockCallManager {
 				let call = Call(
 					id: callId,
 					caller: caller,
+					callee: localPhone,
 					signalingToken: signalingToken,
 					direction: .incoming,
 					state: .new
@@ -274,6 +283,42 @@ private extension StockCallManager {
 		} else {
 			print("Call \(callId) not found locally")
 		}
+	}
+
+	/// This method is implemented only for demonstration without actual app specific backend.
+	/// In real world implementation token must be generated on server side.
+	func makeOutboundCallToken(
+		callerPhoneNumber: String,
+		calleePhoneNumber: String,
+	) async throws -> String {
+		let keys = JWTKeyCollection()
+
+		let formatedSecret = AppConfig.crsAPIKey
+		let components = formatedSecret.split(separator: ":")
+		let tenantId = String(components[0])
+		let secret = AppConfig.signalingTokenSecret
+
+		await keys.add(hmac: HMACKey(from: Data(secret.utf8)), digestAlgorithm: .sha256)
+
+		let payload = OutboundCallTokenPayload(
+			iss: IssuerClaim(value: tenantId),
+			sub: SubjectClaim(value: DeviceEnvironmentProvider.environment.deviceId),
+			aud: AudienceClaim(value: ["host"]),
+			exp: ExpirationClaim(value: .now.addingTimeInterval(86400)),
+			iat: IssuedAtClaim(value: .now.addingTimeInterval(-600)),
+			jti: IDClaim(value: UUID().uuidString.lowercased()),
+			channelId: callerPhoneNumber,
+			groups: ["user"],
+			producePermissions: ["microphone"],
+			externalCall: OutboundCallTokenPayload.OutboundCallData(
+				direction: "outbound",
+				callee: calleePhoneNumber,
+				tenantId: tenantId,
+				caller: callerPhoneNumber
+			)
+		)
+
+		return try await keys.sign(payload)
 	}
 }
 
@@ -339,21 +384,38 @@ extension StockCallManager: CXProviderDelegate {
 	func provider(_ provider: CXProvider, perform action: CXStartCallAction) {
 		print("Call provider requested call start with action \(action)")
 
-		StockLiveDigitalEngine.callAudioCoordinator.prepareSession()
-
-		let call = Call(
-			id: action.callUUID,
-			caller: action.handle.value,
-			// TODO: Implement me!
-			signalingToken: "",
-			direction: .outgoing,
-			state: .active
-		)
-		calls[action.callUUID] = call
-		observers.forEach { observer in
-			observer.value?.didInitiateCall(call)
+		guard let localPhone else {
+			print("No local phone number set")
+			return
 		}
-		action.fulfill()
+
+		Task { @MainActor in
+			do {
+				let signalingToken = try await makeOutboundCallToken(
+					callerPhoneNumber: localPhone,
+					calleePhoneNumber: action.handle.value
+				)
+				print("Generated signaling token: \(signalingToken)")
+				let call = Call(
+					id: action.callUUID,
+					caller: localPhone,
+					callee: action.handle.value,
+					signalingToken: signalingToken,
+					direction: .outgoing,
+					state: .new
+				)
+				calls[action.callUUID] = call
+				StockLiveDigitalEngine.callAudioCoordinator.prepareSession()
+				observers.forEach { observer in
+					observer.value?.didInitiateCall(call)
+				}
+				action.fulfill()
+			} catch {
+				print("Failed to serialize JWT token: \(error)")
+				action.fail()
+				return
+			}
+		}
 	}
 
 	func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {

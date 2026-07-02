@@ -4,15 +4,25 @@ import Foundation
 struct Call {
 	let id: UUID
 	let caller: String
+	let callee: String
 	let signalingToken: String
 	let direction: CallDirection
 	var state: CallState
 	var isMuted: Bool = false
 
+	var oppositeParticipant: String {
+		if direction == .incoming {
+			return caller
+		} else {
+			return callee
+		}
+	}
+
 	func withState(_ newState: CallState) -> Call {
 		Call(
 			id: id,
 			caller: caller,
+			callee: callee,
 			signalingToken: signalingToken,
 			direction: direction,
 			state: newState,

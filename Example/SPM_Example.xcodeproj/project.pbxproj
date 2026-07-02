@@ -87,6 +87,7 @@
 		FFA56F562F236E04000FFD29 /* StockQRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F552F236DFB000FFD29 /* StockQRGenerator.swift */; };
 		FFE484CD2FF67DAD00C8A23B /* JWTKit in Frameworks */ = {isa = PBXBuildFile; productRef = FFE484CC2FF67DAD00C8A23B /* JWTKit */; };
 		FFE484D02FF67E1700C8A23B /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FFE484CF2FF67E1700C8A23B /* LiveDigitalSDK */; };
+		FFE484D22FF686CB00C8A23B /* OutboundCallTokenPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE484D12FF686C900C8A23B /* OutboundCallTokenPayload.swift */; };
 		FFF42C942F31E1A400AE3966 /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C932F31E1A200AE3966 /* SessionView.swift */; };
 		FFF42C9D2F32021B00AE3966 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C9C2F32021900AE3966 /* Weak.swift */; };
 		FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */; };
@@ -186,6 +187,7 @@
 		FFA56F532F236D68000FFD29 /* QRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRGenerator.swift; sourceTree = "<group>"; };
 		FFA56F552F236DFB000FFD29 /* StockQRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockQRGenerator.swift; sourceTree = "<group>"; };
 		FFA56F572F237ADD000FFD29 /* LiveDigitalSDKExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiveDigitalSDKExample.entitlements; sourceTree = "<group>"; };
+		FFE484D12FF686C900C8A23B /* OutboundCallTokenPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutboundCallTokenPayload.swift; sourceTree = "<group>"; };
 		FFF42C932F31E1A200AE3966 /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		FFF42C9C2F32021900AE3966 /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMoodhoodAPIClient.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 		FF098B212F8FB32D00ED440A /* Calls */ = {
 			isa = PBXGroup;
 			children = (
+				FFE484D12FF686C900C8A23B /* OutboundCallTokenPayload.swift */,
 				FF098B1C2F8FB32D00ED440A /* Call.swift */,
 				FF098B1D2F8FB32D00ED440A /* CallManager.swift */,
 				FF098B1E2F8FB32D00ED440A /* CallManagerObserver.swift */,
@@ -639,6 +642,7 @@
 				FF098B0C2F8FB31400ED440A /* RoundButtonStyleCustom.swift in Sources */,
 				FF8D37D82FDA623F0084F833 /* StockAPIClient.swift in Sources */,
 				FF29302A2FE11420003F799A /* AppConfig.swift in Sources */,
+				FFE484D22FF686CB00C8A23B /* OutboundCallTokenPayload.swift in Sources */,
 				FF8D37D62FDA620E0084F833 /* APIClient.swift in Sources */,
 				FF098B0D2F8FB31400ED440A /* RoundButtonConfig.swift in Sources */,
 				FF098B0E2F8FB31400ED440A /* RoundButtonStyleMediaSound.swift in Sources */,
