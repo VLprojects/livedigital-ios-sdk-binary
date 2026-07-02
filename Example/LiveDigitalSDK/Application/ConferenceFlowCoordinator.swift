@@ -5,21 +5,18 @@ import SwiftUI
 
 @MainActor
 final class ConferenceFlowCoordinator {
-	private enum Constants {
-		static let apiEnvironment = MoodhoodAPIEnvironment(
-			apiHost: URL(string: "https://moodhood-api.livedigital.space")!,
-			clientId: "moodhood-demo",
-			clientSecret: "demo12345abcde6789zxcvDemo"
-		)
-	}
-
 	private let apiClient: MoodhoodAPIClient
 	private let window: UIWindow
 	private weak var spinner: UIView?
 	private var currentCallScreen: UIViewController?
 
 	init(window: UIWindow) {
-		self.apiClient = StockMoodhoodAPIClient(environment: Constants.apiEnvironment)
+		let apiEnvironment = MoodhoodAPIEnvironment(
+			apiHost: URL(string: AppConfig.moodhoodAPIBaseURL)!,
+			clientId: AppConfig.moodhoodAPIClientId,
+			clientSecret: AppConfig.moodhoodAPIClientSecret
+		)
+		self.apiClient = StockMoodhoodAPIClient(environment: apiEnvironment)
 		self.window = window
 	}
 
