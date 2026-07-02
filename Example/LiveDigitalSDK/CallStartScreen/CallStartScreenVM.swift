@@ -12,8 +12,9 @@ final class CallStartScreenVM: ObservableObject {
 	@Published var cameraPermissionGranted = false
 	@Published var canInitiateCall = false
 	@Published var presentedImage: Image?
-	@Published var phoneNumber: String
+	@Published var localPhoneNumber: String
 	@Published var isSignedIn: Bool
+	@Published var outgoingPhoneNumber: String
 
 	let notificationsVM = NotificationsVM()
 
@@ -45,7 +46,8 @@ final class CallStartScreenVM: ObservableObject {
 		)
 
 		self.isSignedIn = accountManager.isSignedIn
-		self.phoneNumber = Defaults.phoneNumber ?? ""
+		self.localPhoneNumber = Defaults.localPhoneNumber ?? ""
+		self.outgoingPhoneNumber = Defaults.outgoingPhoneNumber ?? ""
 
 		accountManager.isSignedInPublisher
 			.receive(on: RunLoop.main)
@@ -62,6 +64,10 @@ final class CallStartScreenVM: ObservableObject {
 // MARK: - Internal methods
 
 internal extension CallStartScreenVM {
+	var canInitiateOutgoingCall: Bool {
+		canInitiateCall && !strippedOutgoingPhoneNumber.isEmpty
+	}
+
 	func requestApnsPermission() {
 		apnsPermissionManager.requestPermission()
 	}
@@ -94,7 +100,8 @@ internal extension CallStartScreenVM {
 	}
 
 	func initiateCall() {
-		callManager.startCallManually(to: "9201")
+		Defaults.outgoingPhoneNumber = outgoingPhoneNumber
+		callManager.startCallManually(to: strippedOutgoingPhoneNumber)
 	}
 }
 
@@ -102,7 +109,11 @@ internal extension CallStartScreenVM {
 
 private extension CallStartScreenVM {
 	var strippedPhoneNumber: String {
-		phoneNumber.filter { $0.isNumber || $0 == "+" }
+		localPhoneNumber.filter { $0.isNumber || $0 == "+" }
+	}
+
+	var strippedOutgoingPhoneNumber: String {
+		outgoingPhoneNumber.filter { $0.isNumber || $0 == "+" }
 	}
 
 	func signIn() async {

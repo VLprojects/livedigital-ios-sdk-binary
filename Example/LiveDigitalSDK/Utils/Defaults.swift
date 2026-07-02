@@ -4,7 +4,8 @@ import Foundation
 struct Defaults {
 	enum Keys: String {
 		case deviceId
-		case phoneNumber
+		case localPhoneNumber
+		case outgoingPhoneNumber
 		case isSignedIn
 		case appWorkflow
 	}
@@ -12,8 +13,11 @@ struct Defaults {
 	@StoredValue(key: .deviceId)
 	static var deviceId: String?
 
-	@StoredValue(key: .phoneNumber)
-	static var phoneNumber: String?
+	@StoredValue(key: .localPhoneNumber)
+	static var localPhoneNumber: String?
+
+	@StoredValue(key: .outgoingPhoneNumber)
+	static var outgoingPhoneNumber: String?
 
 	@StoredValue(key: .isSignedIn)
 	static var isSignedIn: Bool?

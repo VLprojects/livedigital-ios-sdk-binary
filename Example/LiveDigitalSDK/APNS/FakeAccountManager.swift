@@ -30,7 +30,7 @@ extension FakeAccountManager: AccountManager {
 	var isSignedInPublisher: Published<Bool>.Publisher { $isSignedIn }
 
 	func signIn(phone: String) async throws -> RegisteredDevice {
-		Defaults.phoneNumber = phone
+		Defaults.localPhoneNumber = phone
 		callManager.localPhone = phone
 
 		guard let pushToken = apnsTokenProvider.deviceTokenCurrentValue else {

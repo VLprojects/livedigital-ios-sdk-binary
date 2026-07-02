@@ -67,9 +67,29 @@ private extension CallStartScreenView {
 					.foregroundStyle(AssetColor.contrast.color)
 					.frame(maxWidth: .infinity, alignment: .leading)
 				HStack {
+					ZStack(alignment: .leading) {
+						if vm.outgoingPhoneNumber.isEmpty {
+							Text(String(localized: .phoneNumberPlaceholder))
+								.font(AssetFont.mainTextMedium.font)
+								.foregroundStyle(AssetColor.secondary02.color)
+								.frame(maxWidth: .infinity, alignment: .leading)
+						}
+						TextField(String(localized: .phoneNumberPlaceholder), text: $vm.outgoingPhoneNumber)
+							.textContentType(.telephoneNumber)
+							.font(AssetFont.mainTextMedium.font)
+							.foregroundStyle(AssetColor.contrast.color)
+							.frame(maxWidth: .infinity, alignment: .leading)
+							.overlay(
+								Rectangle()
+									.frame(height: 1)
+									.foregroundStyle(AssetColor.contrast.color),
+								alignment: .bottom
+							)
+					}
+
 					RoundButton(
 						config: .custom(nil, String(localized: .outgoingCallAction)),
-						disabled: !vm.canInitiateCall,
+						disabled: !vm.canInitiateOutgoingCall,
 						action: {
 							vm.initiateCall()
 						}
@@ -121,13 +141,13 @@ private extension CallStartScreenView {
 					.frame(maxWidth: .infinity, alignment: .leading)
 				HStack {
 					ZStack(alignment: .leading) {
-						if vm.phoneNumber.isEmpty {
+						if vm.localPhoneNumber.isEmpty {
 							Text(String(localized: .phoneNumberPlaceholder))
 								.font(AssetFont.mainTextMedium.font)
 								.foregroundStyle(AssetColor.secondary02.color)
 								.frame(maxWidth: .infinity, alignment: .leading)
 						}
-						TextField(String(localized: .phoneNumberPlaceholder), text: $vm.phoneNumber)
+						TextField(String(localized: .phoneNumberPlaceholder), text: $vm.localPhoneNumber)
 							.textContentType(.telephoneNumber)
 							.font(AssetFont.mainTextMedium.font)
 							.foregroundStyle(AssetColor.contrast.color)
