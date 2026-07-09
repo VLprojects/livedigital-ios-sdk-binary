@@ -171,6 +171,23 @@
         }
       }
     },
+    "flowSelectionHint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please choose example app workflow. Your selection will be saved. If you want to change selection later, you will need to reinstall the app."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите сценарий для example приложения. Выбор будет сохранён. Если вы захотите изменить выбор, нужно переустановить приложение."
+          }
+        }
+      }
+    },
     "microphonePermissionTitle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -184,6 +201,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Микрофон"
+          }
+        }
+      }
+    },
+    "openRoomAction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join room"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Войти"
+          }
+        }
+      }
+    },
+    "openRoomHint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open a room by alias"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подключитесь к комнате по алиасу"
           }
         }
       }
@@ -211,13 +262,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You can start an outgoing call to a given room. This action requires push notifications permissions."
+            "value" : "Initiate an outgoing call"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вы можете инициировать исходящий звонок в указанную комнату. Действие требует разрешение на уведомления."
+            "value" : "Вы можете инициировать исходящий звонок в указанную комнату"
           }
         }
       }
@@ -250,7 +301,7 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "+79998887777"
           }
         }
@@ -303,6 +354,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Алиас комнаты"
+          }
+        }
+      }
+    },
+    "selectCallWorkflow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calls"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Звонки"
+          }
+        }
+      }
+    },
+    "selectConferenceWorkflow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conference rooms"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Работа в конференц-комнате"
           }
         }
       }

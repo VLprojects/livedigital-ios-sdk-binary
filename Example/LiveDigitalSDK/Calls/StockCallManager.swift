@@ -194,7 +194,7 @@ private extension StockCallManager {
 
 	func reportIncomingCall(_ call: Call) {
 		let update = CXCallUpdate()
-		update.remoteHandle = CXHandle(type: .generic, value: call.roomAlias)
+		update.remoteHandle = CXHandle(type: .generic, value: call.caller)
 		update.localizedCallerName = call.caller
 		update.hasVideo = false
 		update.supportsHolding = false
@@ -221,10 +221,58 @@ private extension StockCallManager {
 		}
 	}
 
+	func notifyCallDeclined(_ call: Call) {
+		let endedCall = call.withState(.ended)
+		observers.forEach { observer in
+			observer.value?.didDeclineCall(endedCall)
+		}
+	}
+
 	func notifyCallAnswered(_ call: Call) {
 		let answeredCall = call.withState(.connecting)
 		observers.forEach { observer in
 			observer.value?.callWasAnswered(answeredCall)
+		}
+	}
+
+	func handleCallPush(callId: UUID, action: CallPushAction, payload: [AnyHashable: Any]) {
+		switch action {
+			case .start:
+				guard let caller = payload["caller"] as? String,
+					let signalingToken = payload["signalingToken"] as? String else {
+					print("Failed to parse call object from push payload")
+					return
+				}
+				let call = Call(
+					id: callId,
+					caller: caller,
+					signalingToken: signalingToken,
+					direction: .incoming,
+					state: .new
+				)
+				reportIncomingCall(call)
+
+			case .end:
+				handleCallEnd(callId, reason: .remoteEnded, payload: payload)
+
+			case .answered:
+				handleCallEnd(callId, reason: .answeredElsewhere, payload: payload)
+
+			case .cancelled:
+				handleCallEnd(callId, reason: .remoteEnded, payload: payload)
+
+			case .declinedByCallee:
+				handleCallEnd(callId, reason: .declinedElsewhere, payload: payload)
+		}
+	}
+
+	func handleCallEnd(_ callId: UUID, reason: CXCallEndedReason, payload: [AnyHashable: Any]) {
+		print("Call \(callId) ended, details: \(payload)")
+		callProvider.reportCall(with: callId, endedAt: .now, reason: reason)
+		if let call = calls.removeValue(forKey: callId) {
+			notifyCallFinished(call)
+		} else {
+			print("Call \(callId) not found locally")
 		}
 	}
 }
@@ -252,40 +300,25 @@ extension StockCallManager: PKPushRegistryDelegate {
 		for type: PKPushType,
 		completion: @escaping () -> Void
 	) {
-		print("Did receive incoming push with type \(type), payload: \(payload)")
+		print("Did receive incoming push with type \(type), payload: \(payload.dictionaryPayload)")
 		guard type == .voIP else {
+			print("Failed to handle push: invalid push type: \(type.rawValue)")
 			completion()
 			return
 		}
-
-		guard let actionString = payload.dictionaryPayload["type"] as? String,
-			let action = CallPushAction(rawValue: actionString),
-			let caller = payload.dictionaryPayload["caller"] as? String,
-			let roomAlias = payload.dictionaryPayload["roomAlias"] as? String else {
-			print("Failed to parse call object from push payload")
+		guard let actionString = payload.dictionaryPayload["kind"] as? String,
+			let action = CallPushAction(rawValue: actionString) else {
+			print("Failed to parse call object from push payload: no action")
 			completion()
 			return
 		}
-
-		switch action {
-			case .start:
-				let call = Call(id: UUID(), caller: caller, roomAlias: roomAlias, direction: .incoming, state: .connecting)
-				reportIncomingCall(call)
-			case .end:
-				calls = calls.filter { (callId, call) in
-					guard call.roomAlias == roomAlias else {
-						return true
-					}
-					callProvider.reportCall(with: callId, endedAt: .now, reason: .remoteEnded)
-					notifyCallFinished(call)
-					return false
-				}
-			case .answered:
-				for (callId, call) in calls where call.roomAlias == roomAlias {
-					callProvider.reportOutgoingCall(with: callId, connectedAt: .now)
-					notifyCallAnswered(call)
-				}
+		guard let callIdString = payload.dictionaryPayload["sessionId"] as? String,
+			let callId = UUID(uuidString: callIdString) else {
+			print("Failed to parse call object from push payload: no callId")
+			completion()
+			return
 		}
+		handleCallPush(callId: callId, action: action, payload: payload.dictionaryPayload)
 		completion()
 	}
 }
@@ -311,7 +344,8 @@ extension StockCallManager: CXProviderDelegate {
 		let call = Call(
 			id: action.callUUID,
 			caller: action.handle.value,
-			roomAlias: action.handle.value,
+			// TODO: Implement me!
+			signalingToken: "",
 			direction: .outgoing,
 			state: .active
 		)
@@ -342,6 +376,10 @@ extension StockCallManager: CXProviderDelegate {
 	func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
 		print("Call provider requested call end with action \(action)")
 		if let call = calls.removeValue(forKey: action.callUUID) {
+			if call.direction == .incoming, call.state == .new  {
+				notifyCallDeclined(call)
+			}
+
 			notifyCallFinished(call)
 			action.fulfill()
 		} else {

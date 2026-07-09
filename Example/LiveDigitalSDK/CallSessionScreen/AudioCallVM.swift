@@ -1,6 +1,5 @@
 import Foundation
 import LiveDigitalSDK
-import UIKit.UIDevice
 import Combine
 
 
@@ -8,63 +7,40 @@ import Combine
 final class AudioCallVM: ObservableObject {
 	private enum Config {
 		static let reconnectInterval: TimeInterval = 3
-		static let preferredInternalRoutes: [AudioRoute.Kind] = [
-			.internalLoudspeaker,
-			.internalEarSpeaker,
-			.muted,
-			.noAudio,
-		]
+		static let audioCodec = LiveDigitalSDK.AudioCodec.pcmu
 	}
 
 	@Published var isSoundOn = true
 	@Published var isMicrophoneOn: Bool
 	@Published var canFinishSession = false
 	@Published var companionName: String
-	@Published var callStatusLabel: String
-	@Published var isInCall: Bool
+	@Published var callStatusLabel = String()
+	@Published var isInCall = false
 	@Published var canRedial: Bool
 
 	weak var coordinator: CallScreenCoordinator?
 
-	@Published private var callStatus: CallSessionStatus {
-		didSet {
-			handleStatusChange()
-		}
-	}
-
 	private let callManager: CallManager?
-	private let apiClient: MoodhoodAPIClient
-	private let room: Room
 	private let engine: LiveDigitalEngine
-	private let clientUniqueId: String = UUID().uuidString
+	private let deviceEnvironment = DeviceEnvironmentProvider.environment
 	private var channelSession: ChannelSession?
 	private var audioSource: AudioSource?
-	private var participantId: String?
 	private var call: Call
 	private var peers = [PeerId: Peer]()
 	private var currentRouteKind: AudioRoute.Kind?
 	private var reconnectTimer: Timer?
-	private var callDurationTimerCancellable: AnyCancellable?
+	private var callDurationTimer = CallDurationTimer()
 
-	init(callManager: CallManager?, apiClient: MoodhoodAPIClient, room: Room, call: Call) {
+	init(callManager: CallManager?, engine: StockLiveDigitalEngine, call: Call) {
 		self.callManager = callManager
-		self.apiClient = apiClient
-		self.room = room
 		self.call = call
 		self.isMicrophoneOn = !call.isMuted
 		self.companionName = call.caller
 
 		let callStatus: CallSessionStatus = .disconnected
-		self.callStatus = callStatus
-		self.callStatusLabel = Self.callStatusText(for: callStatus)
-		self.isInCall = Self.isInCall(for: callStatus)
+		self.callDurationTimer.callStatus = callStatus
 		self.canRedial = Self.canRedial(for: callStatus)
 
-		let engine = StockLiveDigitalEngine(
-			environment: .production,
-			clientUniqueId: LiveDigitalSDK.ClientUniqueId(rawValue: clientUniqueId),
-			useCallKitAudio: true
-		)
 		self.engine = engine
 		engine.delegate = self
 
@@ -78,7 +54,7 @@ final class AudioCallVM: ObservableObject {
 			case .incoming:
 				startConferenceSession()
 			case .outgoing:
-				self.callStatus = .dialing
+				self.callDurationTimer.callStatus = .dialing
 		}
 	}
 
@@ -91,7 +67,7 @@ final class AudioCallVM: ObservableObject {
 
 internal extension AudioCallVM {
 	func redial() {
-		coordinator?.redial(to: room)
+		coordinator?.redial(after: call)
 	}
 
 	func dismiss() {
@@ -141,7 +117,7 @@ internal extension AudioCallVM {
 
 		if let channelSession {
 			canFinishSession = false
-			callStatus = .disconnecting
+			callDurationTimer.callStatus = .disconnecting
 			channelSession.stop(completion: { [weak self] in
 				self?.endSession()
 			})
@@ -164,7 +140,7 @@ extension AudioCallVM: @MainActor CallManagerObserver {
 	}
 
 	func callWasAnswered(_ call: Call) {
-		guard call.id == self.call.id, callStatus == .dialing else {
+		guard call.id == self.call.id, callDurationTimer.callStatus == .dialing else {
 			return
 		}
 		self.call = call
@@ -182,15 +158,15 @@ extension AudioCallVM: @MainActor CallManagerObserver {
 			self.audioSource = nil
 		}
 
-		if let channelSession {
+		if engine.currentChannelSession != nil {
 			canFinishSession = false
-			callStatus = .disconnecting
-			channelSession.stop(completion: { [weak self] in
+			callDurationTimer.callStatus = .disconnecting
+			engine.disconnectFromCurrentChannel { [weak self] in
 				self?.channelSession = nil
-				self?.callStatus = .callEnded
-			})
+				self?.callDurationTimer.callStatus = .callEnded
+			}
 		} else {
-			self.callStatus = .callEnded
+			callDurationTimer.callStatus = .callEnded
 		}
 	}
 }
@@ -243,6 +219,7 @@ extension AudioCallVM: @MainActor ChannelSessionDelegate {
 		with trackLabel: TrackLabel,
 		from peer: Peer
 	) -> Bool {
+		// In audio call we don't need to decode incoming video.
 		return true
 	}
 
@@ -251,6 +228,7 @@ extension AudioCallVM: @MainActor ChannelSessionDelegate {
 		with trackLabel: TrackLabel,
 		from peer: Peer
 	) -> Bool {
+		// In audio call we enable all incoming audio.
 		return false
 	}
 }
@@ -262,11 +240,22 @@ extension AudioCallVM: CameraManagerDelegate {
 
 // MARK: - ChannelSessionObserver implementation
 
-extension AudioCallVM: @MainActor ChannelSessionObserver {
-	func channelSessionNeedsUpdateState(_ channelSession: any LiveDigitalSDK.ChannelSession) {
-		// Session was recovered after connection loss.
-		// Some events may have been missed.
-		// You may want to refetch actual call/room state from applicaion server.
+extension AudioCallVM: @preconcurrency ChannelSessionObserver {
+	func channelSessionStoppedByServer(_ channelSession: any ChannelSession) {
+		print("Session stopped by server")
+		callManager?.endCall(self.call)
+	}
+
+	func peersDisconnected(_ peerIds: Set<PeerId>) {
+		print("Peers disconnected: \(peerIds)")
+		guard let myPeerId = channelSession?.myPeerId else {
+			return
+		}
+		// Disconnected "my peer" can be a stuck duplicate peer after network reconnect.
+		guard peerIds.contains(where: { $0 != myPeerId }) else {
+			return
+		}
+		callManager?.endCall(self.call)
 	}
 }
 
@@ -274,13 +263,13 @@ extension AudioCallVM: @MainActor ChannelSessionObserver {
 
 private extension AudioCallVM {
 	func updateLoggerMeta() {
-		engine.logger.addMeta(["roomId": room.id])
-		engine.logger.addMeta(["spaceId": room.spaceId])
+		engine.logger.addMeta(["deviceId": deviceEnvironment.deviceId])
+		engine.logger.addMeta(["deviceName": deviceEnvironment.deviceName])
 	}
 
 	func endSession() {
 		channelSession = nil
-		callStatus = .disconnected
+		callDurationTimer.callStatus = .disconnected
 		callManager?.endCall(call)
 	}
 
@@ -289,58 +278,20 @@ private extension AudioCallVM {
 			DispatchQueue.main.async {
 				self?.reconnectTimer?.invalidate()
 				self?.reconnectTimer = nil
-				self?.startConferenceSession()
+				self?.engine.disconnectFromCurrentChannel {
+					self?.startConferenceSession()
+				}
 			}
 		}
 	}
 
 	func startConferenceSession() {
-		callStatus = .connecting
-
-		Task {
-			if !apiClient.isAuthorized {
-				try await apiClient.authorizeAsGuest()
-			}
-
-			let participant = try await apiClient.createParticipant(
-				space: room.spaceId,
-				room: room.id,
-				clientUniqueId: clientUniqueId,
-				role: "host",
-				name: UIDevice.current.name
-			)
-			print("Created participant: \(participant)")
-
-			let signalingToken = try await apiClient.createSignalingToken(
-				space: room.spaceId,
-				participant: participant.id
-			)
-			print("Created signaling token: \(signalingToken)")
-
-			self.participantId = participant.id
-
-			self.startConferenceSession(
-				channelId: ChannelId(rawValue: room.channelId),
-				peerId: PeerId(rawValue: participant.id),
-				signalingToken: signalingToken.signalingToken
-			)
-		}
-	}
-
-	func startConferenceSession(
-		channelId: ChannelId,
-		peerId: PeerId,
-		signalingToken: String
-	) {
-		callStatus = .connecting
+		callDurationTimer.callStatus = .connecting
 
 		engine.connectToChannel(
-			channelId,
-			mediaRole: .host,
-			signalingToken: signalingToken,
-			peerId: peerId,
+			signalingToken: call.signalingToken,
 			peerPayload: [
-				"name": UIDevice.current.name
+				"name": deviceEnvironment.deviceName
 			],
 			completion: { [weak self] result in
 			guard let self = self else {
@@ -349,13 +300,11 @@ private extension AudioCallVM {
 
 			switch result {
 				case let .success(channelSession):
-					self.channelSession = channelSession
-					channelSession.subscribe(self)
-					channelSession.delegate = self
-					self.callStatus = .connected(.now)
+					self.startWithSession(channelSession)
+
 				case let .failure(error):
 					print("Failed to start session with error: \(error)")
-					self.callStatus = .disconnected
+					self.callDurationTimer.callStatus = .disconnected
 					self.scheduleReconnect()
 			}
 
@@ -363,34 +312,19 @@ private extension AudioCallVM {
 		})
 	}
 
+	func startWithSession(_ channelSession: ChannelSession & ObservableChannelSession) {
+		self.channelSession = channelSession
+		channelSession.delegate = self
+		channelSession.subscribe(self)
+		callDurationTimer.callStatus = .connected(.now)
+	}
+
 	func startAudioSource() {
-		switch engine.startAudioSource() {
+		switch engine.startAudioSource(preferredCodec: Config.audioCodec) {
 			case let .success(audioSource):
 				self.audioSource = audioSource
 			case let .failure(error):
 				print("Failed to start audio source: \(error)")
-		}
-	}
-
-	static func callStatusText(for status: CallSessionStatus) -> String {
-		switch status {
-			case .dialing: String(localized: .callStatusDialing)
-			case .connecting: String(localized: .callStatusConnecting)
-			case .connected(let callStart): callDurationText(Date.now.timeIntervalSince(callStart))
-			case .disconnecting: String(localized: .callStatusDisconnecting)
-			case .disconnected: String(localized: .callStatusDisconnected)
-			case .callEnded: String(localized: .callStatusEnded)
-		}
-	}
-
-	static func isInCall(for status: CallSessionStatus) -> Bool {
-		switch status {
-			case .dialing: false
-			case .connecting: true
-			case .connected: true
-			case .disconnecting: true
-			case .disconnected: true
-			case .callEnded: false
 		}
 	}
 
@@ -401,54 +335,14 @@ private extension AudioCallVM {
 		}
 	}
 
-	static func callDurationText(_ duration: TimeInterval) -> String {
-		let seconds = Int(duration.rounded(.awayFromZero))
-		let h = seconds / 3600
-		let m = (seconds % 3600) / 60
-		let s = seconds % 60
-		if h > 0 {
-			return String(format: "%d:%02d:%02d", h, m, s)
-		} else {
-			return String(format: "%02d:%02d", m, s)
-		}
-	}
-
-	func handleStatusChange() {
-		switch callStatus {
-			case .connected(let startDate):
-				startTimer(from: startDate)
-			case .connecting, .disconnecting, .disconnected, .dialing, .callEnded:
-				stopTimer()
-		}
-	}
-
-	func startTimer(from startDate: Date) {
-		callDurationTimerCancellable?.cancel()
-
-		callDurationTimerCancellable = Timer
-			.publish(every: 1, on: .main, in: .common)
-			.autoconnect()
-			.map { _ in Date().timeIntervalSince(startDate) }
-			.sink { [weak self] elapsed in
-				guard let self else { return }
-				self.callStatusLabel = Self.callDurationText(elapsed)
-			}
-	}
-
-	func stopTimer() {
-		callDurationTimerCancellable?.cancel()
-		callDurationTimerCancellable = nil
-	}
-
 	func bindCallStatus() {
-		$callStatus
-			.map { Self.callStatusText(for: $0) }
-			.assign(to: &$callStatusLabel)
-		$callStatus
-			.map { Self.isInCall(for: $0) }
-			.assign(to: &$isInCall)
-		$callStatus
+		callDurationTimer.$callStatusLabel.assign(to: &$callStatusLabel)
+
+		callDurationTimer.$isInCall.assign(to: &$isInCall)
+
+		callDurationTimer.$callStatus
 			.map { Self.canRedial(for: $0) }
 			.assign(to: &$canRedial)
 	}
 }
+

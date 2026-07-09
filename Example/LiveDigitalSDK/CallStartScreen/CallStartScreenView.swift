@@ -2,17 +2,17 @@ import Foundation
 import SwiftUI
 
 
-struct StartScreenView {
-	@ObservedObject private var vm: StartScreenVM
+struct CallStartScreenView {
+	@ObservedObject private var vm: CallStartScreenVM
 
-	init(vm: StartScreenVM) {
+	init(vm: CallStartScreenVM) {
 		self.vm = vm
 	}
 }
 
 // MARK: - View implementation
 
-extension StartScreenView: View {
+extension CallStartScreenView: View {
 	var body: some View {
 		ZStack {
 			GradientBackgroundView()
@@ -58,7 +58,7 @@ extension StartScreenView: View {
 
 // MARK: - Private methods
 
-private extension StartScreenView {
+private extension CallStartScreenView {
 	var makeCallBlock: some View {
 		RoundedContainer {
 			VStack(spacing: 20) {
@@ -67,24 +67,6 @@ private extension StartScreenView {
 					.foregroundStyle(AssetColor.contrast.color)
 					.frame(maxWidth: .infinity, alignment: .leading)
 				HStack {
-					ZStack(alignment: .leading) {
-						if vm.outgoingCallRoomAlias.isEmpty {
-							Text(String(localized: .roomAliasPlaceholder))
-								.font(AssetFont.mainTextMedium.font)
-								.foregroundStyle(AssetColor.secondary02.color)
-								.frame(maxWidth: .infinity, alignment: .leading)
-						}
-						TextField(String(localized: .roomAliasPlaceholder), text: $vm.outgoingCallRoomAlias)
-							.font(AssetFont.mainTextMedium.font)
-							.foregroundStyle(AssetColor.contrast.color)
-							.frame(maxWidth: .infinity, alignment: .leading)
-							.overlay(
-								Rectangle()
-									.frame(height: 1)
-									.foregroundStyle(AssetColor.contrast.color),
-								alignment: .bottom
-							)
-					}
 					RoundButton(
 						config: .custom(nil, String(localized: .outgoingCallAction)),
 						disabled: !vm.canInitiateCall,
@@ -146,6 +128,7 @@ private extension StartScreenView {
 								.frame(maxWidth: .infinity, alignment: .leading)
 						}
 						TextField(String(localized: .phoneNumberPlaceholder), text: $vm.phoneNumber)
+							.textContentType(.telephoneNumber)
 							.font(AssetFont.mainTextMedium.font)
 							.foregroundStyle(AssetColor.contrast.color)
 							.frame(maxWidth: .infinity, alignment: .leading)

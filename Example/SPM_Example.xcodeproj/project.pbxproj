@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		607FACDB1AFB9204008FA782 /* SessionVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* SessionVC.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		FF098AFD2F8FB31400ED440A /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF098ADE2F8FB31400ED440A /* ColorAssets.xcassets */; };
@@ -37,7 +36,7 @@
 		FF098B162F8FB31400ED440A /* AssetFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AE02F8FB31400ED440A /* AssetFont.swift */; };
 		FF098B172F8FB31400ED440A /* NotificationsStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098AE72F8FB31400ED440A /* NotificationsStack.swift */; };
 		FF098B222F8FB32D00ED440A /* StockCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B202F8FB32D00ED440A /* StockCallManager.swift */; };
-		FF098B232F8FB32D00ED440A /* CallCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B192F8FB32D00ED440A /* CallCoordinator.swift */; };
+		FF098B232F8FB32D00ED440A /* CallFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B192F8FB32D00ED440A /* CallFlowCoordinator.swift */; };
 		FF098B242F8FB32D00ED440A /* Call.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B1C2F8FB32D00ED440A /* Call.swift */; };
 		FF098B252F8FB32D00ED440A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B1A2F8FB32D00ED440A /* SceneDelegate.swift */; };
 		FF098B262F8FB32D00ED440A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B182F8FB32D00ED440A /* AppDelegate.swift */; };
@@ -55,16 +54,23 @@
 		FF098B422F8FB3D000ED440A /* AudioCallVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B3E2F8FB3D000ED440A /* AudioCallVM.swift */; };
 		FF098B432F8FB3D000ED440A /* AudioCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B3D2F8FB3D000ED440A /* AudioCallView.swift */; };
 		FF098B442F8FB3D000ED440A /* CallScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B3F2F8FB3D000ED440A /* CallScreenCoordinator.swift */; };
-		FF098B472F8FB3DF00ED440A /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B452F8FB3DF00ED440A /* StartScreenView.swift */; };
-		FF098B482F8FB3DF00ED440A /* StartScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B462F8FB3DF00ED440A /* StartScreenVM.swift */; };
+		FF098B472F8FB3DF00ED440A /* CallStartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B452F8FB3DF00ED440A /* CallStartScreenView.swift */; };
+		FF098B482F8FB3DF00ED440A /* CallStartScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF098B462F8FB3DF00ED440A /* CallStartScreenVM.swift */; };
 		FF29302A2FE11420003F799A /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2930292FE11407003F799A /* AppConfig.swift */; };
 		FF29302C2FE11450003F799A /* AppConfig+StoredValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29302B2FE1144A003F799A /* AppConfig+StoredValue.swift */; };
+		FF55D4902FECE83F0054752B /* FlowSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55D48F2FECE83B0054752B /* FlowSelectionView.swift */; };
+		FF55D4922FECF0340054752B /* AppWorkflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55D4912FECF02D0054752B /* AppWorkflow.swift */; };
+		FF55D4972FED0BF80054752B /* ConferenceStartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55D4962FED0BF30054752B /* ConferenceStartScreenView.swift */; };
+		FF55D4992FED0C2A0054752B /* ConferenceStartScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55D4982FED0C1B0054752B /* ConferenceStartScreenVM.swift */; };
+		FF55D49B2FED81AB0054752B /* ConferenceFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55D49A2FED81AB0054752B /* ConferenceFlowCoordinator.swift */; };
+		FF55D49E2FED85500054752B /* ConferenceSessionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55D49D2FED85420054752B /* ConferenceSessionVM.swift */; };
+		FF55D4A02FED85720054752B /* ConferenceScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55D49F2FED856B0054752B /* ConferenceScreenCoordinator.swift */; };
+		FF55D4A22FED858C0054752B /* ConferenceSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55D4A12FED85840054752B /* ConferenceSessionView.swift */; };
+		FF55D4A52FEE21F70054752B /* CallDurationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55D4A42FEE21F30054752B /* CallDurationTimer.swift */; };
 		FF6267EC2EEA6F4F0081A62A /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF6267EB2EEA6F4F0081A62A /* LiveDigitalSDK */; };
 		FF781B072FDFF19100173D67 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF781B062FDFF18500173D67 /* AccountManager.swift */; };
 		FF781B092FE0DCB200173D67 /* FakeAccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF781B082FE0DCA800173D67 /* FakeAccountManager.swift */; };
 		FF781B0B2FE0E08C00173D67 /* APNSTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF781B0A2FE0E08500173D67 /* APNSTokenProvider.swift */; };
-		FF800AC42DBA4BD10060FAED /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC32DBA4BD10060FAED /* StartVC.swift */; };
-		FF800AC52DBA4BD10060FAED /* SessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF800AC22DBA4BD10060FAED /* SessionVC.swift */; };
 		FF8D37D62FDA620E0084F833 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37D52FDA620B0084F833 /* APIClient.swift */; };
 		FF8D37D82FDA623F0084F833 /* StockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37D72FDA623A0084F833 /* StockAPIClient.swift */; };
 		FF8D37E12FDA679A0084F833 /* CRSAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D37E02FDA67910084F833 /* CRSAPIClient.swift */; };
@@ -81,13 +87,7 @@
 		FF98FFB02EC1C85A003F1D90 /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF98FFAF2EC1C85A003F1D90 /* LiveDigitalSDK */; };
 		FFA56F542F236D85000FFD29 /* QRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F532F236D68000FFD29 /* QRGenerator.swift */; };
 		FFA56F562F236E04000FFD29 /* StockQRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA56F552F236DFB000FFD29 /* StockQRGenerator.swift */; };
-		FFAFC88A2F2717FD002E4D51 /* FullscreenImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFC8892F2717FC002E4D51 /* FullscreenImageVC.swift */; };
 		FFB0FB2A2E459A6B00F787EC /* LiveDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FFB0FB292E459A6B00F787EC /* LiveDigitalSDK */; };
-		FFE7933726A95E5500FF5148 /* PeerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7933626A95E5500FF5148 /* PeerView.swift */; };
-		FFE7933926A95FB400FF5148 /* PeerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE7933826A95FB400FF5148 /* PeerView.xib */; };
-		FFF42C572F31DA4C00AE3966 /* StartVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF42C562F31DA4C00AE3966 /* StartVC.storyboard */; };
-		FFF42C902F31DEB200AE3966 /* StockSessionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C8F2F31DEAB00AE3966 /* StockSessionPresenter.swift */; };
-		FFF42C922F31E0F800AE3966 /* SessionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C912F31E0F400AE3966 /* SessionPresenter.swift */; };
 		FFF42C942F31E1A400AE3966 /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C932F31E1A200AE3966 /* SessionView.swift */; };
 		FFF42C9D2F32021B00AE3966 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF42C9C2F32021900AE3966 /* Weak.swift */; };
 		FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */; };
@@ -105,7 +105,6 @@
 		1D970F2F152FCB07F1758161 /* Pods_LiveDigitalSDKExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveDigitalSDKExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* LiveDigitalSDKExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveDigitalSDKExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SessionVC.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		78EA401149B94AA7EBFB46CF /* Pods_LiveDigitalSDKExample_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveDigitalSDKExample_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,7 +135,7 @@
 		FF098AFA2F8FB31400ED440A /* PermissionIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionIndicator.swift; sourceTree = "<group>"; };
 		FF098AFB2F8FB31400ED440A /* RoundedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedContainer.swift; sourceTree = "<group>"; };
 		FF098B182F8FB32D00ED440A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FF098B192F8FB32D00ED440A /* CallCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallCoordinator.swift; sourceTree = "<group>"; };
+		FF098B192F8FB32D00ED440A /* CallFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallFlowCoordinator.swift; sourceTree = "<group>"; };
 		FF098B1A2F8FB32D00ED440A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FF098B1C2F8FB32D00ED440A /* Call.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Call.swift; sourceTree = "<group>"; };
 		FF098B1D2F8FB32D00ED440A /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
@@ -154,15 +153,23 @@
 		FF098B3E2F8FB3D000ED440A /* AudioCallVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCallVM.swift; sourceTree = "<group>"; };
 		FF098B3F2F8FB3D000ED440A /* CallScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallScreenCoordinator.swift; sourceTree = "<group>"; };
 		FF098B402F8FB3D000ED440A /* CallSessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSessionStatus.swift; sourceTree = "<group>"; };
-		FF098B452F8FB3DF00ED440A /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
-		FF098B462F8FB3DF00ED440A /* StartScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVM.swift; sourceTree = "<group>"; };
+		FF098B452F8FB3DF00ED440A /* CallStartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallStartScreenView.swift; sourceTree = "<group>"; };
+		FF098B462F8FB3DF00ED440A /* CallStartScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallStartScreenVM.swift; sourceTree = "<group>"; };
 		FF2930292FE11407003F799A /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		FF29302B2FE1144A003F799A /* AppConfig+StoredValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfig+StoredValue.swift"; sourceTree = "<group>"; };
+		FF55D48F2FECE83B0054752B /* FlowSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowSelectionView.swift; sourceTree = "<group>"; };
+		FF55D4912FECF02D0054752B /* AppWorkflow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWorkflow.swift; sourceTree = "<group>"; };
+		FF55D4942FECF9F60054752B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
+		FF55D4962FED0BF30054752B /* ConferenceStartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceStartScreenView.swift; sourceTree = "<group>"; };
+		FF55D4982FED0C1B0054752B /* ConferenceStartScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceStartScreenVM.swift; sourceTree = "<group>"; };
+		FF55D49A2FED81AB0054752B /* ConferenceFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceFlowCoordinator.swift; sourceTree = "<group>"; };
+		FF55D49D2FED85420054752B /* ConferenceSessionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceSessionVM.swift; sourceTree = "<group>"; };
+		FF55D49F2FED856B0054752B /* ConferenceScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceScreenCoordinator.swift; sourceTree = "<group>"; };
+		FF55D4A12FED85840054752B /* ConferenceSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceSessionView.swift; sourceTree = "<group>"; };
+		FF55D4A42FEE21F30054752B /* CallDurationTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDurationTimer.swift; sourceTree = "<group>"; };
 		FF781B062FDFF18500173D67 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		FF781B082FE0DCA800173D67 /* FakeAccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAccountManager.swift; sourceTree = "<group>"; };
 		FF781B0A2FE0E08500173D67 /* APNSTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSTokenProvider.swift; sourceTree = "<group>"; };
-		FF800AC22DBA4BD10060FAED /* SessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionVC.swift; sourceTree = "<group>"; };
-		FF800AC32DBA4BD10060FAED /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
 		FF8D37D52FDA620B0084F833 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		FF8D37D72FDA623A0084F833 /* StockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockAPIClient.swift; sourceTree = "<group>"; };
 		FF8D37E02FDA67910084F833 /* CRSAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRSAPIClient.swift; sourceTree = "<group>"; };
@@ -179,12 +186,6 @@
 		FFA56F532F236D68000FFD29 /* QRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRGenerator.swift; sourceTree = "<group>"; };
 		FFA56F552F236DFB000FFD29 /* StockQRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockQRGenerator.swift; sourceTree = "<group>"; };
 		FFA56F572F237ADD000FFD29 /* LiveDigitalSDKExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiveDigitalSDKExample.entitlements; sourceTree = "<group>"; };
-		FFAFC8892F2717FC002E4D51 /* FullscreenImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenImageVC.swift; sourceTree = "<group>"; };
-		FFE7933626A95E5500FF5148 /* PeerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerView.swift; sourceTree = "<group>"; };
-		FFE7933826A95FB400FF5148 /* PeerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeerView.xib; sourceTree = "<group>"; };
-		FFF42C562F31DA4C00AE3966 /* StartVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartVC.storyboard; sourceTree = "<group>"; };
-		FFF42C8F2F31DEAB00AE3966 /* StockSessionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSessionPresenter.swift; sourceTree = "<group>"; };
-		FFF42C912F31E0F400AE3966 /* SessionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPresenter.swift; sourceTree = "<group>"; };
 		FFF42C932F31E1A200AE3966 /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		FFF42C9C2F32021900AE3966 /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		FFFA321A2D30DD620043C2E7 /* StockMoodhoodAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMoodhoodAPIClient.swift; sourceTree = "<group>"; };
@@ -218,6 +219,7 @@
 				607FACD21AFB9204008FA782 /* Example for LiveDigitalSDK */,
 				607FACD11AFB9204008FA782 /* Products */,
 				88AB4F41780FBA2EEE023D27 /* Frameworks */,
+				FF55D4942FECF9F60054752B /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -236,15 +238,18 @@
 				FF781B052FDFF17500173D67 /* APNS */,
 				FF098B1B2F8FB32D00ED440A /* Application */,
 				FF098B212F8FB32D00ED440A /* Calls */,
+				FFF42C542F31D9BF00AE3966 /* CallSessionScreen */,
+				FFF42C582F31DB3200AE3966 /* CallStartScreen */,
 				FF098AFC2F8FB31400ED440A /* Components */,
+				FF55D49C2FED85320054752B /* ConferenceSessionScreen */,
+				FF55D4952FED0BE20054752B /* ConferenceStartScreen */,
 				FFF42C5A2F31DBC600AE3966 /* Config */,
 				FF8D37D32FDA61C60084F833 /* CRSAPI */,
+				FF55D48E2FECE82F0054752B /* FlowSelection */,
 				FFFA321C2D30DFF50043C2E7 /* MoodhoodAPI */,
 				FF098B2F2F8FB36B00ED440A /* Permissions */,
 				FF52173C2F2A044400725DC7 /* QRCode */,
 				FFF42C592F31DB9000AE3966 /* Resources */,
-				FFF42C542F31D9BF00AE3966 /* SessionScreen */,
-				FFF42C582F31DB3200AE3966 /* StartScreen */,
 				FFF42C9B2F32021300AE3966 /* Utils */,
 			);
 			name = "Example for LiveDigitalSDK";
@@ -328,8 +333,10 @@
 		FF098B1B2F8FB32D00ED440A /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				FF55D4912FECF02D0054752B /* AppWorkflow.swift */,
 				FF098B182F8FB32D00ED440A /* AppDelegate.swift */,
-				FF098B192F8FB32D00ED440A /* CallCoordinator.swift */,
+				FF098B192F8FB32D00ED440A /* CallFlowCoordinator.swift */,
+				FF55D49A2FED81AB0054752B /* ConferenceFlowCoordinator.swift */,
 				FF098B1A2F8FB32D00ED440A /* SceneDelegate.swift */,
 			);
 			path = Application;
@@ -363,9 +370,35 @@
 			children = (
 				FFA56F532F236D68000FFD29 /* QRGenerator.swift */,
 				FFA56F552F236DFB000FFD29 /* StockQRGenerator.swift */,
-				FFAFC8892F2717FC002E4D51 /* FullscreenImageVC.swift */,
 			);
 			path = QRCode;
+			sourceTree = "<group>";
+		};
+		FF55D48E2FECE82F0054752B /* FlowSelection */ = {
+			isa = PBXGroup;
+			children = (
+				FF55D48F2FECE83B0054752B /* FlowSelectionView.swift */,
+			);
+			path = FlowSelection;
+			sourceTree = "<group>";
+		};
+		FF55D4952FED0BE20054752B /* ConferenceStartScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FF55D4982FED0C1B0054752B /* ConferenceStartScreenVM.swift */,
+				FF55D4962FED0BF30054752B /* ConferenceStartScreenView.swift */,
+			);
+			path = ConferenceStartScreen;
+			sourceTree = "<group>";
+		};
+		FF55D49C2FED85320054752B /* ConferenceSessionScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FF55D4A12FED85840054752B /* ConferenceSessionView.swift */,
+				FF55D49F2FED856B0054752B /* ConferenceScreenCoordinator.swift */,
+				FF55D49D2FED85420054752B /* ConferenceSessionVM.swift */,
+			);
+			path = ConferenceSessionScreen;
 			sourceTree = "<group>";
 		};
 		FF781B052FDFF17500173D67 /* APNS */ = {
@@ -411,33 +444,25 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		FFF42C542F31D9BF00AE3966 /* SessionScreen */ = {
+		FFF42C542F31D9BF00AE3966 /* CallSessionScreen */ = {
 			isa = PBXGroup;
 			children = (
 				FF098B3D2F8FB3D000ED440A /* AudioCallView.swift */,
 				FF098B3E2F8FB3D000ED440A /* AudioCallVM.swift */,
 				FF098B3F2F8FB3D000ED440A /* CallScreenCoordinator.swift */,
 				FF098B402F8FB3D000ED440A /* CallSessionStatus.swift */,
-				FFE7933626A95E5500FF5148 /* PeerView.swift */,
-				FFE7933826A95FB400FF5148 /* PeerView.xib */,
-				FFF42C912F31E0F400AE3966 /* SessionPresenter.swift */,
-				607FACD91AFB9204008FA782 /* SessionVC.storyboard */,
-				FF800AC22DBA4BD10060FAED /* SessionVC.swift */,
 				FFF42C932F31E1A200AE3966 /* SessionView.swift */,
-				FFF42C8F2F31DEAB00AE3966 /* StockSessionPresenter.swift */,
 			);
-			path = SessionScreen;
+			path = CallSessionScreen;
 			sourceTree = "<group>";
 		};
-		FFF42C582F31DB3200AE3966 /* StartScreen */ = {
+		FFF42C582F31DB3200AE3966 /* CallStartScreen */ = {
 			isa = PBXGroup;
 			children = (
-				FF098B452F8FB3DF00ED440A /* StartScreenView.swift */,
-				FF098B462F8FB3DF00ED440A /* StartScreenVM.swift */,
-				FFF42C562F31DA4C00AE3966 /* StartVC.storyboard */,
-				FF800AC32DBA4BD10060FAED /* StartVC.swift */,
+				FF098B452F8FB3DF00ED440A /* CallStartScreenView.swift */,
+				FF098B462F8FB3DF00ED440A /* CallStartScreenVM.swift */,
 			);
-			path = StartScreen;
+			path = CallStartScreen;
 			sourceTree = "<group>";
 		};
 		FFF42C592F31DB9000AE3966 /* Resources */ = {
@@ -463,6 +488,7 @@
 		FFF42C9B2F32021300AE3966 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FF55D4A42FEE21F30054752B /* CallDurationTimer.swift */,
 				FF29302B2FE1144A003F799A /* AppConfig+StoredValue.swift */,
 				FF2930292FE11407003F799A /* AppConfig.swift */,
 				FF8D37F42FDAAE570084F833 /* DeviceEnvironmentProvider.swift */,
@@ -560,8 +586,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFE7933926A95FB400FF5148 /* PeerView.xib in Resources */,
-				607FACDB1AFB9204008FA782 /* SessionVC.storyboard in Resources */,
 				FF098AFD2F8FB31400ED440A /* ColorAssets.xcassets in Resources */,
 				FF098AFF2F8FB31400ED440A /* ImageAssets.xcassets in Resources */,
 				FF098B002F8FB31400ED440A /* PTRootUI-Regular.ttf in Resources */,
@@ -569,7 +593,6 @@
 				FF098B012F8FB31400ED440A /* PTRootUI-Bold.ttf in Resources */,
 				FF098B022F8FB31400ED440A /* PTRootUI-Light.ttf in Resources */,
 				FF098B032F8FB31400ED440A /* PTRootUI-Medium.ttf in Resources */,
-				FFF42C572F31DA4C00AE3966 /* StartVC.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
@@ -583,21 +606,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFFA32292D311A560043C2E7 /* MoodhoodParticipant.swift in Sources */,
-				FFE7933726A95E5500FF5148 /* PeerView.swift in Sources */,
 				FFA56F542F236D85000FFD29 /* QRGenerator.swift in Sources */,
 				FFFA322F2D3131ED0043C2E7 /* EmptyResult.swift in Sources */,
 				FFFA321E2D30E0010043C2E7 /* MoodhoodAPIClient.swift in Sources */,
 				FFF42C9D2F32021B00AE3966 /* Weak.swift in Sources */,
 				FFFA32242D30EA170043C2E7 /* APIClientError.swift in Sources */,
-				FFAFC88A2F2717FD002E4D51 /* FullscreenImageVC.swift in Sources */,
 				FF8D37E32FDA67B20084F833 /* StockCRSAPIClient.swift in Sources */,
 				FF781B072FDFF19100173D67 /* AccountManager.swift in Sources */,
 				FF29302C2FE11450003F799A /* AppConfig+StoredValue.swift in Sources */,
 				FF8D37E52FDA6FA00084F833 /* CRSAPIEnvironment.swift in Sources */,
 				FF098B042F8FB31400ED440A /* RoundedContainer.swift in Sources */,
 				FF098B052F8FB31400ED440A /* PermissionIndicator.swift in Sources */,
-				FF098B472F8FB3DF00ED440A /* StartScreenView.swift in Sources */,
-				FF098B482F8FB3DF00ED440A /* StartScreenVM.swift in Sources */,
+				FF098B472F8FB3DF00ED440A /* CallStartScreenView.swift in Sources */,
+				FF098B482F8FB3DF00ED440A /* CallStartScreenVM.swift in Sources */,
 				FF098B062F8FB31400ED440A /* RoundButtonStyle.swift in Sources */,
 				FF8D37ED2FDA74F00084F833 /* TokenInvalidationReason.swift in Sources */,
 				FF098B072F8FB31400ED440A /* NotificationsVM.swift in Sources */,
@@ -605,11 +626,15 @@
 				FF8D37F12FDA9DE50084F833 /* Defaults.swift in Sources */,
 				FF098B422F8FB3D000ED440A /* AudioCallVM.swift in Sources */,
 				FF098B432F8FB3D000ED440A /* AudioCallView.swift in Sources */,
+				FF55D4A22FED858C0054752B /* ConferenceSessionView.swift in Sources */,
+				FF55D4992FED0C2A0054752B /* ConferenceStartScreenVM.swift in Sources */,
 				FF098B442F8FB3D000ED440A /* CallScreenCoordinator.swift in Sources */,
 				FF098B082F8FB31400ED440A /* RoundButtonStyledContent.swift in Sources */,
+				FF55D4922FECF0340054752B /* AppWorkflow.swift in Sources */,
 				FF098B092F8FB31400ED440A /* TopFadeMask.swift in Sources */,
 				FF098B0A2F8FB31400ED440A /* RoundButton.swift in Sources */,
 				FF098B0B2F8FB31400ED440A /* RoundButtonStyleAccept.swift in Sources */,
+				FF55D4A02FED85720054752B /* ConferenceScreenCoordinator.swift in Sources */,
 				FF098B0C2F8FB31400ED440A /* RoundButtonStyleCustom.swift in Sources */,
 				FF8D37D82FDA623F0084F833 /* StockAPIClient.swift in Sources */,
 				FF29302A2FE11420003F799A /* AppConfig.swift in Sources */,
@@ -617,6 +642,7 @@
 				FF098B0D2F8FB31400ED440A /* RoundButtonConfig.swift in Sources */,
 				FF098B0E2F8FB31400ED440A /* RoundButtonStyleMediaSound.swift in Sources */,
 				FF098B0F2F8FB31400ED440A /* AssetColor.swift in Sources */,
+				FF55D4A52FEE21F70054752B /* CallDurationTimer.swift in Sources */,
 				FF098B102F8FB31400ED440A /* NotificationContent.swift in Sources */,
 				FF098B112F8FB31400ED440A /* LDToggleStyle.swift in Sources */,
 				FF098B122F8FB31400ED440A /* NotificationView.swift in Sources */,
@@ -624,7 +650,7 @@
 				FF098B142F8FB31400ED440A /* RoundButtonStyleMediaCapture.swift in Sources */,
 				FF781B0B2FE0E08C00173D67 /* APNSTokenProvider.swift in Sources */,
 				FF098B222F8FB32D00ED440A /* StockCallManager.swift in Sources */,
-				FF098B232F8FB32D00ED440A /* CallCoordinator.swift in Sources */,
+				FF098B232F8FB32D00ED440A /* CallFlowCoordinator.swift in Sources */,
 				FF098B242F8FB32D00ED440A /* Call.swift in Sources */,
 				FF098B252F8FB32D00ED440A /* SceneDelegate.swift in Sources */,
 				FF098B262F8FB32D00ED440A /* AppDelegate.swift in Sources */,
@@ -637,18 +663,17 @@
 				FF098B312F8FB36B00ED440A /* CaptureDeviceType.swift in Sources */,
 				FF098B322F8FB36B00ED440A /* PushPermissionsManager.swift in Sources */,
 				FF098B332F8FB36B00ED440A /* PermissionState.swift in Sources */,
+				FF55D49E2FED85500054752B /* ConferenceSessionVM.swift in Sources */,
 				FF098B342F8FB36B00ED440A /* StockCaptureDevicePermissionsManager.swift in Sources */,
 				FF098B152F8FB31400ED440A /* RoundButtonStyleReject.swift in Sources */,
 				FF098B162F8FB31400ED440A /* AssetFont.swift in Sources */,
 				FF098B172F8FB31400ED440A /* NotificationsStack.swift in Sources */,
+				FF55D4902FECE83F0054752B /* FlowSelectionView.swift in Sources */,
 				FFFA321B2D30DD640043C2E7 /* StockMoodhoodAPIClient.swift in Sources */,
-				FFF42C922F31E0F800AE3966 /* SessionPresenter.swift in Sources */,
-				FF800AC42DBA4BD10060FAED /* StartVC.swift in Sources */,
-				FFF42C902F31DEB200AE3966 /* StockSessionPresenter.swift in Sources */,
-				FF800AC52DBA4BD10060FAED /* SessionVC.swift in Sources */,
 				FFFA32272D30EB020043C2E7 /* MoodhoodUserToken.swift in Sources */,
 				FF781B092FE0DCB200173D67 /* FakeAccountManager.swift in Sources */,
 				FFF42C942F31E1A400AE3966 /* SessionView.swift in Sources */,
+				FF55D4972FED0BF80054752B /* ConferenceStartScreenView.swift in Sources */,
 				FFFA322B2D3120170043C2E7 /* SignalingToken.swift in Sources */,
 				FF8D37EF2FDA9A980084F833 /* DeviceEnvironment.swift in Sources */,
 				FFFA32202D30E0210043C2E7 /* MoodhoodAPIEnvironment.swift in Sources */,
@@ -656,6 +681,7 @@
 				FF8D37EB2FDA74A30084F833 /* RegisteredDevice.swift in Sources */,
 				FF8D37E12FDA679A0084F833 /* CRSAPIClient.swift in Sources */,
 				FF8D37F52FDAAE5A0084F833 /* DeviceEnvironmentProvider.swift in Sources */,
+				FF55D49B2FED81AB0054752B /* ConferenceFlowCoordinator.swift in Sources */,
 				FF8D37F32FDA9DF20084F833 /* Defaults+StoredValue.swift in Sources */,
 				FF8D37F72FDABAB10084F833 /* CurlRequestPrinter.swift in Sources */,
 				FFA56F562F236E04000FFD29 /* StockQRGenerator.swift in Sources */,
@@ -665,14 +691,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		607FACD91AFB9204008FA782 /* SessionVC.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				607FACDA1AFB9204008FA782 /* Base */,
-			);
-			name = SessionVC.storyboard;
-			sourceTree = "<group>";
-		};
 		607FACDE1AFB9204008FA782 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -857,7 +875,7 @@
 			repositoryURL = "https://github.com/VLprojects/livedigital-ios-sdk-binary.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.4.0;
+				minimumVersion = 3.6.1;
 			};
 		};
 		FF98FFAE2EC1C85A003F1D90 /* XCRemoteSwiftPackageReference "livedigital-ios-sdk-binary" */ = {

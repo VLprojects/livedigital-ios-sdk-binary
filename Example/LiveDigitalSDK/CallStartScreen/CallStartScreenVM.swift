@@ -5,14 +5,13 @@ import LiveDigitalSDK
 
 
 @MainActor
-final class StartScreenVM: ObservableObject {
+final class CallStartScreenVM: ObservableObject {
 	@Published var apnsPermissionGranted = false
 	@Published var authorizationInProgress = false
 	@Published var microphonePermissionGranted = false
 	@Published var cameraPermissionGranted = false
 	@Published var canInitiateCall = false
 	@Published var presentedImage: Image?
-	@Published var outgoingCallRoomAlias = "q3_5V3uwik"
 	@Published var phoneNumber: String
 	@Published var isSignedIn: Bool
 
@@ -61,7 +60,7 @@ final class StartScreenVM: ObservableObject {
 
 // MARK: - Internal methods
 
-internal extension StartScreenVM {
+internal extension CallStartScreenVM {
 	func requestApnsPermission() {
 		apnsPermissionManager.requestPermission()
 	}
@@ -94,17 +93,22 @@ internal extension StartScreenVM {
 	}
 
 	func initiateCall() {
-		callManager.startCallManually(to: outgoingCallRoomAlias)
+		// TODO: Implement me!
+		// callManager.startCallManually(to: outgoingCallRoomAlias)
 	}
 }
 
 // MARK: - Private methods
 
-private extension StartScreenVM {
+private extension CallStartScreenVM {
+	var strippedPhoneNumber: String {
+		phoneNumber.filter { $0.isNumber || $0 == "+" }
+	}
+
 	func signIn() async {
 		authorizationInProgress = true
 		do {
-			let registeredDevice = try await accountManager.signIn(phone: self.phoneNumber)
+			let registeredDevice = try await accountManager.signIn(phone: self.strippedPhoneNumber)
 			notificationsVM.show("Successfully registered: \(registeredDevice)")
 			print("Successfully registered: \(registeredDevice)")
 		} catch {
@@ -145,14 +149,9 @@ private extension StartScreenVM {
 	}
 
 	func bindOutgoingCallState() {
-		Publishers.CombineLatest(
-				$outgoingCallRoomAlias.map { !$0.isEmpty },
-				apnsPermissionManager.permissionState.map { $0 == .allowed }
-			)
+		apnsPermissionManager.permissionState
+			.map { $0 == .allowed }
 			.receive(on: DispatchQueue.main)
-			.map { haveRoom, havePermission in
-				return haveRoom && havePermission
-			}
 			.assign(to: &$canInitiateCall)
 	}
 

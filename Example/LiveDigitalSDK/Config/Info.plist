@@ -68,8 +68,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>MOODHOOD_API_BASE_URL</key>
+	<string>https://moodhood-api.livedigital.space</string>
+	<key>MOODHOOD_API_CLIENT_ID</key>
+	<string>moodhood-demo</string>
+	<key>MOODHOOD_API_CLIENT_SECRET</key>
+	<string>demo12345abcde6789zxcvDemo</string>
 	<key>CRS_API_BASE_URL</key>
 	<string>$(CRS_API_BASE_URL)</string>
+	<key>CALL_SIGNALING_BASE_URL</key>
+	<string>$(CALL_SIGNALING_BASE_URL)</string>
 	<key>CRS_API_KEY</key>
 	<string>$(CRS_API_KEY)</string>
 </dict>
