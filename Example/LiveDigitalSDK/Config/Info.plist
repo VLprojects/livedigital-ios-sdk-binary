@@ -80,5 +80,7 @@
 	<string>$(CALL_SIGNALING_BASE_URL)</string>
 	<key>CRS_API_KEY</key>
 	<string>$(CRS_API_KEY)</string>
+	<key>SIGNALING_TOKEN_SECRET</key>
+	<string></string>
 </dict>
 </plist>

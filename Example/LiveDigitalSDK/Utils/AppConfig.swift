@@ -9,6 +9,7 @@ enum AppConfig {
 		case crsAPIBaseURL = "CRS_API_BASE_URL"
 		case crsAPIKey = "CRS_API_KEY"
 		case callSignalingBaseURL = "CALL_SIGNALING_BASE_URL"
+		case signalingTokenSecret = "SIGNALING_TOKEN_SECRET"
 	}
 
 	@StoredValue(key: .moodhoodAPIBaseURL)
@@ -28,4 +29,7 @@ enum AppConfig {
 
 	@StoredValue(key: .callSignalingBaseURL)
 	static var callSignalingBaseURL: String
+
+	@StoredValue(key: .signalingTokenSecret)
+	static var signalingTokenSecret: String
 }

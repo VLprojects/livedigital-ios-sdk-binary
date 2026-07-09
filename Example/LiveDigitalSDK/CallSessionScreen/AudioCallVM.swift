@@ -21,7 +21,7 @@ final class AudioCallVM: ObservableObject {
 	weak var coordinator: CallScreenCoordinator?
 
 	private let callManager: CallManager?
-	private let engine: LiveDigitalEngine
+	private let engine: LiveDigitalEngine & SIPCallManager
 	private let deviceEnvironment = DeviceEnvironmentProvider.environment
 	private var channelSession: ChannelSession?
 	private var audioSource: AudioSource?
@@ -35,7 +35,7 @@ final class AudioCallVM: ObservableObject {
 		self.callManager = callManager
 		self.call = call
 		self.isMicrophoneOn = !call.isMuted
-		self.companionName = call.caller
+		self.companionName = call.oppositeParticipant
 
 		let callStatus: CallSessionStatus = .disconnected
 		self.callDurationTimer.callStatus = callStatus
@@ -50,9 +50,10 @@ final class AudioCallVM: ObservableObject {
 
 		bindCallStatus()
 
+		startCallSession()
 		switch call.direction {
 			case .incoming:
-				startConferenceSession()
+				self.callDurationTimer.callStatus = .connecting
 			case .outgoing:
 				self.callDurationTimer.callStatus = .dialing
 		}
@@ -144,7 +145,7 @@ extension AudioCallVM: @MainActor CallManagerObserver {
 			return
 		}
 		self.call = call
-		startConferenceSession()
+		startCallSession()
 	}
 
 	func didEndCall(_ call: Call) {
@@ -205,13 +206,13 @@ extension AudioCallVM: @MainActor ChannelSessionDelegate {
 			print("Will stop running session during reconnect flow...")
 			channelSession.stop { [weak self] in
 				print("Will start a new session as new participant during reconnect flow...")
-				self?.startConferenceSession()
+				self?.startCallSession()
 			}
 			return
 		}
 
 		print("Will start a new session as new participant during reconnect flow...")
-		self.startConferenceSession()
+		self.startCallSession()
 	}
 
 	func channelSessionShouldSuspendVideo(
@@ -241,6 +242,25 @@ extension AudioCallVM: CameraManagerDelegate {
 // MARK: - ChannelSessionObserver implementation
 
 extension AudioCallVM: @preconcurrency ChannelSessionObserver {
+	func channelSessionJoinedChannel(_ channelSession: any ChannelSession) {
+		switch call.direction {
+			case .incoming:
+				self.callDurationTimer.callStatus = .connected(.now)
+			case .outgoing:
+				Task { @MainActor in
+					do {
+						let callId = try await engine.initiateCall()
+						print("Successfully initiated outgoing call with callId: \(callId)")
+						self.callDurationTimer.callStatus = .connected(.now)
+					} catch {
+						print("Failed to initiate outgoing call: \(error)")
+						self.callDurationTimer.callStatus = .disconnected
+						self.scheduleReconnect()
+					}
+				}
+		}
+	}
+
 	func channelSessionStoppedByServer(_ channelSession: any ChannelSession) {
 		print("Session stopped by server")
 		callManager?.endCall(self.call)
@@ -279,13 +299,13 @@ private extension AudioCallVM {
 				self?.reconnectTimer?.invalidate()
 				self?.reconnectTimer = nil
 				self?.engine.disconnectFromCurrentChannel {
-					self?.startConferenceSession()
+					self?.startCallSession()
 				}
 			}
 		}
 	}
 
-	func startConferenceSession() {
+	func startCallSession() {
 		callDurationTimer.callStatus = .connecting
 
 		engine.connectToChannel(
@@ -316,7 +336,6 @@ private extension AudioCallVM {
 		self.channelSession = channelSession
 		channelSession.delegate = self
 		channelSession.subscribe(self)
-		callDurationTimer.callStatus = .connected(.now)
 	}
 
 	func startAudioSource() {
