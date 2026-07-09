@@ -125,7 +125,7 @@ extension StockCallManager: CallManager {
 
 	func startCallManually(to operatorNumber: String) {
 		let callId = UUID()
-		let callHandle = CXHandle(type: .phoneNumber, value: operatorNumber)
+		let callHandle = CXHandle(type: .generic, value: operatorNumber)
 		let startAction = CXStartCallAction(call: callId, handle: callHandle)
 		startAction.isVideo = false
 		let transaction = CXTransaction(action: startAction)
